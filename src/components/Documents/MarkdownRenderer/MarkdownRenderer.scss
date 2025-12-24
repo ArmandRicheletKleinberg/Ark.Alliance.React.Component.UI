@@ -1,0 +1,610 @@
+/**
+ * @fileoverview MarkdownRenderer Component Styles
+ * @module components/Documents/MarkdownRenderer
+ * 
+ * SCSS styles for the MarkdownRenderer component.
+ * Uses CSS custom properties for theming support.
+ */
+
+// ═══════════════════════════════════════════════════════════════════════════
+// VARIABLES
+// ═══════════════════════════════════════════════════════════════════════════
+
+$markdown-transition: 0.15s ease;
+$focus-ring: 0 0 0 3px rgba(59, 130, 246, 0.4);
+
+// ═══════════════════════════════════════════════════════════════════════════
+// MAIN CONTAINER
+// ═══════════════════════════════════════════════════════════════════════════
+
+.ark-markdown {
+    width: 100%;
+    max-width: 100%;
+    color: var(--ark-text-primary, #111827);
+
+    // Prose size variants
+    &.ark-prose--sm {
+        font-size: 0.875rem;
+        line-height: 1.6;
+    }
+
+    &.ark-prose--base {
+        font-size: 1rem;
+        line-height: 1.7;
+    }
+
+    &.ark-prose--lg {
+        font-size: 1.125rem;
+        line-height: 1.75;
+    }
+
+    &.ark-prose--xl {
+        font-size: 1.25rem;
+        line-height: 1.8;
+    }
+}
+
+.ark-markdown__content {
+    > :first-child {
+        margin-top: 0;
+    }
+
+    > :last-child {
+        margin-bottom: 0;
+    }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// HEADINGS
+// ═══════════════════════════════════════════════════════════════════════════
+
+.ark-heading {
+    font-weight: 600;
+    color: var(--ark-text-primary, #111827);
+    scroll-margin-top: 4rem;
+
+    &--1 {
+        font-size: 2rem;
+        margin: 2rem 0 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid var(--ark-border, #e5e7eb);
+    }
+
+    &--2 {
+        font-size: 1.5rem;
+        margin: 1.75rem 0 0.875rem;
+        padding-bottom: 0.375rem;
+        border-bottom: 1px solid var(--ark-border, #e5e7eb);
+    }
+
+    &--3 {
+        font-size: 1.25rem;
+        margin: 1.5rem 0 0.75rem;
+    }
+
+    &--4 {
+        font-size: 1.125rem;
+        margin: 1.25rem 0 0.625rem;
+    }
+
+    &--5 {
+        font-size: 1rem;
+        margin: 1rem 0 0.5rem;
+    }
+
+    &--6 {
+        font-size: 0.875rem;
+        margin: 1rem 0 0.5rem;
+        color: var(--ark-text-secondary, #6b7280);
+    }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// PARAGRAPHS
+// ═══════════════════════════════════════════════════════════════════════════
+
+.ark-paragraph {
+    margin: 1rem 0;
+    color: var(--ark-text-primary, #111827);
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// LINKS
+// ═══════════════════════════════════════════════════════════════════════════
+
+.ark-link {
+    color: var(--ark-primary, #3b82f6);
+    text-decoration: underline;
+    text-decoration-color: rgba(59, 130, 246, 0.3);
+    text-underline-offset: 2px;
+    transition: $markdown-transition;
+
+    &:hover {
+        color: var(--ark-primary-hover, #2563eb);
+        text-decoration-color: currentColor;
+    }
+
+    &:focus-visible {
+        outline: none;
+        box-shadow: $focus-ring;
+        border-radius: 2px;
+    }
+
+    &__external-icon {
+        display: inline-block;
+        width: 0.875em;
+        height: 0.875em;
+        margin-left: 0.25em;
+        vertical-align: middle;
+        opacity: 0.6;
+    }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// LISTS
+// ═══════════════════════════════════════════════════════════════════════════
+
+.ark-list {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+
+    &--unordered {
+        list-style-type: disc;
+
+        .ark-list--unordered {
+            list-style-type: circle;
+        }
+    }
+
+    &--ordered {
+        list-style-type: decimal;
+    }
+
+    &__item {
+        margin: 0.25rem 0;
+        color: var(--ark-text-primary, #111827);
+
+        // Nested lists
+        .ark-list {
+            margin: 0.5rem 0;
+        }
+    }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// BLOCKQUOTE
+// ═══════════════════════════════════════════════════════════════════════════
+
+.ark-blockquote {
+    margin: 1.5rem 0;
+    padding: 0.75rem 1rem;
+    border-left: 4px solid var(--ark-primary, #3b82f6);
+    background: var(--ark-bg-secondary, #f3f4f6);
+    border-radius: 0 var(--ark-border-radius, 0.375rem) var(--ark-border-radius, 0.375rem) 0;
+    font-style: italic;
+    color: var(--ark-text-secondary, #6b7280);
+
+    > :first-child {
+        margin-top: 0;
+    }
+
+    > :last-child {
+        margin-bottom: 0;
+    }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// TABLES
+// ═══════════════════════════════════════════════════════════════════════════
+
+.ark-table-wrapper {
+    margin: 1.5rem 0;
+    overflow-x: auto;
+    border-radius: var(--ark-border-radius, 0.375rem);
+    border: 1px solid var(--ark-border, #e5e7eb);
+}
+
+.ark-table {
+    width: 100%;
+    border-collapse: collapse;
+
+    &__head {
+        background: var(--ark-bg-secondary, #f3f4f6);
+    }
+
+    &__body {
+        .ark-table__row:hover {
+            background: var(--ark-bg-secondary, #f3f4f6);
+        }
+    }
+
+    &__row {
+        border-bottom: 1px solid var(--ark-border, #e5e7eb);
+        transition: background-color $markdown-transition;
+
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+
+    &__th {
+        padding: 0.75rem 1rem;
+        text-align: left;
+        font-weight: 600;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--ark-text-secondary, #6b7280);
+    }
+
+    &__td {
+        padding: 0.75rem 1rem;
+        font-size: 0.875rem;
+        color: var(--ark-text-primary, #111827);
+    }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// HORIZONTAL RULE
+// ═══════════════════════════════════════════════════════════════════════════
+
+.ark-hr {
+    margin: 2rem 0;
+    border: none;
+    border-top: 1px solid var(--ark-border, #e5e7eb);
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// IMAGES
+// ═══════════════════════════════════════════════════════════════════════════
+
+.ark-image {
+    max-width: 100%;
+    height: auto;
+    margin: 1.5rem 0;
+    border-radius: var(--ark-border-radius, 0.375rem);
+    border: 1px solid var(--ark-border, #e5e7eb);
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// TEXT FORMATTING
+// ═══════════════════════════════════════════════════════════════════════════
+
+.ark-strong {
+    font-weight: 600;
+    color: var(--ark-text-primary, #111827);
+}
+
+.ark-em {
+    font-style: italic;
+}
+
+.ark-del {
+    text-decoration: line-through;
+    color: var(--ark-text-muted, #9ca3af);
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// INLINE CODE
+// ═══════════════════════════════════════════════════════════════════════════
+
+.ark-code {
+    &--inline {
+        padding: 0.125rem 0.375rem;
+        background: var(--ark-bg-tertiary, #e5e7eb);
+        border-radius: var(--ark-border-radius-sm, 0.25rem);
+        font-family: var(--ark-font-mono, monospace);
+        font-size: 0.875em;
+        color: var(--ark-primary, #3b82f6);
+    }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// CODE BLOCKS
+// ═══════════════════════════════════════════════════════════════════════════
+
+.ark-code-block {
+    position: relative;
+    margin: 1.5rem 0;
+
+    &__language {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 0.25rem 0.5rem;
+        background: var(--ark-bg-tertiary, #374151);
+        border-radius: 0 var(--ark-border-radius, 0.375rem) 0 var(--ark-border-radius, 0.375rem);
+        font-size: 0.75rem;
+        font-family: var(--ark-font-mono, monospace);
+        color: var(--ark-text-muted, #9ca3af);
+        text-transform: lowercase;
+    }
+
+    &__copy {
+        position: absolute;
+        top: 0.5rem;
+        right: 4rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 2rem;
+        height: 2rem;
+        padding: 0;
+        background: var(--ark-bg-tertiary, #374151);
+        border: none;
+        border-radius: var(--ark-border-radius, 0.375rem);
+        cursor: pointer;
+        opacity: 0;
+        transition: opacity $markdown-transition, background-color $markdown-transition;
+
+        svg {
+            width: 1rem;
+            height: 1rem;
+            color: var(--ark-text-secondary, #9ca3af);
+        }
+
+        &:hover {
+            background: var(--ark-bg-secondary, #4b5563);
+
+            svg {
+                color: var(--ark-text-primary, #f9fafb);
+            }
+        }
+
+        &:focus-visible {
+            outline: none;
+            box-shadow: $focus-ring;
+        }
+    }
+
+    &:hover .ark-code-block__copy {
+        opacity: 1;
+    }
+
+    &__pre {
+        margin: 0;
+        padding: 1rem;
+        background: var(--ark-bg-primary, #1f2937);
+        border-radius: var(--ark-border-radius, 0.375rem);
+        border: 1px solid var(--ark-border, #374151);
+        overflow-x: auto;
+    }
+
+    &__code {
+        font-family: var(--ark-font-mono, monospace);
+        font-size: 0.875rem;
+        line-height: 1.6;
+        color: var(--ark-text-primary, #e5e7eb);
+    }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// MERMAID DIAGRAMS
+// ═══════════════════════════════════════════════════════════════════════════
+
+.ark-mermaid {
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background: var(--ark-bg-secondary, #f3f4f6);
+    border-radius: var(--ark-border-radius, 0.375rem);
+    border: 1px solid var(--ark-border, #e5e7eb);
+    overflow-x: auto;
+
+    svg {
+        max-width: 100%;
+        height: auto;
+    }
+
+    &--loading {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 8rem;
+    }
+
+    &__spinner {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        color: var(--ark-text-secondary, #6b7280);
+
+        &-icon {
+            width: 1.5rem;
+            height: 1.5rem;
+            animation: ark-spin 1s linear infinite;
+        }
+    }
+
+    &--error {
+        background: rgba(239, 68, 68, 0.1);
+        border-color: rgba(239, 68, 68, 0.3);
+    }
+
+    &__error-header {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 0.75rem;
+        color: var(--ark-error, #ef4444);
+        font-weight: 500;
+    }
+
+    &__error-icon {
+        width: 1.25rem;
+        height: 1.25rem;
+    }
+
+    &__error-message {
+        margin: 0;
+        padding: 0.5rem;
+        background: var(--ark-bg-primary, #ffffff);
+        border-radius: var(--ark-border-radius-sm, 0.25rem);
+        font-size: 0.875rem;
+        color: var(--ark-error, #ef4444);
+        white-space: pre-wrap;
+    }
+
+    &__source {
+        margin-top: 0.75rem;
+
+        summary {
+            cursor: pointer;
+            font-size: 0.75rem;
+            color: var(--ark-text-muted, #9ca3af);
+
+            &:hover {
+                color: var(--ark-text-secondary, #6b7280);
+            }
+        }
+
+        pre {
+            margin-top: 0.5rem;
+            padding: 0.75rem;
+            background: var(--ark-bg-primary, #1f2937);
+            border-radius: var(--ark-border-radius-sm, 0.25rem);
+            font-size: 0.75rem;
+            color: var(--ark-text-muted, #9ca3af);
+            overflow-x: auto;
+        }
+    }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// TABLE OF CONTENTS
+// ═══════════════════════════════════════════════════════════════════════════
+
+.ark-toc {
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: var(--ark-bg-secondary, #f3f4f6);
+    border-radius: var(--ark-border-radius, 0.375rem);
+    border: 1px solid var(--ark-border, #e5e7eb);
+
+    &__title {
+        margin: 0 0 0.75rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--ark-text-secondary, #6b7280);
+    }
+
+    &__list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    &__item {
+        margin: 0.25rem 0;
+    }
+
+    &__link {
+        display: inline-block;
+        padding: 0.25rem 0;
+        background: none;
+        border: none;
+        font-size: 0.875rem;
+        color: var(--ark-text-secondary, #6b7280);
+        cursor: pointer;
+        transition: color $markdown-transition;
+        text-align: left;
+
+        &:hover {
+            color: var(--ark-primary, #3b82f6);
+        }
+
+        &:focus-visible {
+            outline: none;
+            color: var(--ark-primary, #3b82f6);
+            text-decoration: underline;
+        }
+    }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// CHECKBOX (Task Lists)
+// ═══════════════════════════════════════════════════════════════════════════
+
+.ark-checkbox {
+    appearance: none;
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.5rem;
+    background: var(--ark-bg-primary, #ffffff);
+    border: 2px solid var(--ark-border, #d1d5db);
+    border-radius: var(--ark-border-radius-sm, 0.25rem);
+    vertical-align: middle;
+    cursor: default;
+
+    &:checked {
+        background: var(--ark-primary, #3b82f6);
+        border-color: var(--ark-primary, #3b82f6);
+
+        &::after {
+            content: '✓';
+            display: block;
+            text-align: center;
+            font-size: 0.75rem;
+            line-height: 0.875rem;
+            color: white;
+        }
+    }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// DARK MODE
+// ═══════════════════════════════════════════════════════════════════════════
+
+[data-theme="dark"],
+.dark {
+    .ark-markdown {
+        color: var(--ark-text-primary, #f9fafb);
+    }
+
+    .ark-code--inline {
+        background: var(--ark-bg-tertiary, #374151);
+        color: var(--ark-accent, #22d3ee);
+    }
+
+    .ark-code-block {
+        &__pre {
+            background: var(--ark-bg-secondary, #111827);
+            border-color: var(--ark-border, #374151);
+        }
+    }
+
+    .ark-mermaid {
+        background: var(--ark-bg-secondary, #1f2937);
+        border-color: var(--ark-border, #374151);
+    }
+
+    .ark-toc {
+        background: var(--ark-bg-secondary, #1f2937);
+        border-color: var(--ark-border, #374151);
+    }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// ANIMATIONS
+// ═══════════════════════════════════════════════════════════════════════════
+
+@keyframes ark-spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// REDUCED MOTION
+// ═══════════════════════════════════════════════════════════════════════════
+
+@media (prefers-reduced-motion: reduce) {
+    .ark-mermaid__spinner-icon {
+        animation: none;
+    }
+}

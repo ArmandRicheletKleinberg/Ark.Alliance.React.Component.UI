@@ -1,0 +1,313 @@
+/**
+ * Slider Component Styles
+ * Neon-themed range slider with glow effects
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   BASE STYLES
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-slider {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+    width: 100%;
+}
+
+.ark-slider__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ark-slider__label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--ark-text-secondary, #94a3b8);
+}
+
+.ark-slider__value {
+    font-size: 0.75rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   TRACK CONTAINER
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-slider__container {
+    position: relative;
+    width: 100%;
+}
+
+.ark-slider__track {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    height: 4px;
+    background: var(--ark-bg-tertiary, #334155);
+    border-radius: 4px;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.ark-slider__progress {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.1s ease-out;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   INPUT STYLING
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-slider__input {
+    width: 100%;
+    height: 20px;
+    background: transparent;
+    appearance: none;
+    cursor: pointer;
+    margin: 0;
+}
+
+.ark-slider__input::-webkit-slider-thumb {
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    position: relative;
+    z-index: 2;
+}
+
+.ark-slider__input::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.ark-slider__input:hover::-webkit-slider-thumb {
+    transform: scale(1.2);
+}
+
+.ark-slider__input:hover::-moz-range-thumb {
+    transform: scale(1.2);
+}
+
+.ark-slider__input:focus {
+    outline: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   RANGE LABELS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-slider__range {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.625rem;
+    color: var(--ark-text-muted, #64748b);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   COLOR VARIANTS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Cyan (default) */
+.ark-slider--cyan .ark-slider__progress {
+    background: linear-gradient(90deg, #00d4ff, #00b8e6);
+}
+
+.ark-slider--cyan .ark-slider__value {
+    color: #00d4ff;
+}
+
+.ark-slider--cyan .ark-slider__input::-webkit-slider-thumb {
+    background: #00d4ff;
+    box-shadow: 0 0 8px rgba(0, 212, 255, 0.5);
+}
+
+.ark-slider--cyan .ark-slider__input::-moz-range-thumb {
+    background: #00d4ff;
+    box-shadow: 0 0 8px rgba(0, 212, 255, 0.5);
+}
+
+.ark-slider--cyan .ark-slider__input:hover::-webkit-slider-thumb {
+    box-shadow: 0 0 12px rgba(0, 212, 255, 0.8);
+}
+
+/* Blue */
+.ark-slider--blue .ark-slider__progress {
+    background: linear-gradient(90deg, #3b82f6, #2563eb);
+}
+
+.ark-slider--blue .ark-slider__value {
+    color: #3b82f6;
+}
+
+.ark-slider--blue .ark-slider__input::-webkit-slider-thumb {
+    background: #3b82f6;
+    box-shadow: 0 0 8px rgba(59, 130, 246, 0.5);
+}
+
+.ark-slider--blue .ark-slider__input::-moz-range-thumb {
+    background: #3b82f6;
+    box-shadow: 0 0 8px rgba(59, 130, 246, 0.5);
+}
+
+/* Green */
+.ark-slider--green .ark-slider__progress {
+    background: linear-gradient(90deg, #22c55e, #16a34a);
+}
+
+.ark-slider--green .ark-slider__value {
+    color: #22c55e;
+}
+
+.ark-slider--green .ark-slider__input::-webkit-slider-thumb {
+    background: #22c55e;
+    box-shadow: 0 0 8px rgba(34, 197, 94, 0.5);
+}
+
+.ark-slider--green .ark-slider__input::-moz-range-thumb {
+    background: #22c55e;
+    box-shadow: 0 0 8px rgba(34, 197, 94, 0.5);
+}
+
+/* Purple */
+.ark-slider--purple .ark-slider__progress {
+    background: linear-gradient(90deg, #a855f7, #9333ea);
+}
+
+.ark-slider--purple .ark-slider__value {
+    color: #a855f7;
+}
+
+.ark-slider--purple .ark-slider__input::-webkit-slider-thumb {
+    background: #a855f7;
+    box-shadow: 0 0 8px rgba(168, 85, 247, 0.5);
+}
+
+.ark-slider--purple .ark-slider__input::-moz-range-thumb {
+    background: #a855f7;
+    box-shadow: 0 0 8px rgba(168, 85, 247, 0.5);
+}
+
+/* Red */
+.ark-slider--red .ark-slider__progress {
+    background: linear-gradient(90deg, #ef4444, #dc2626);
+}
+
+.ark-slider--red .ark-slider__value {
+    color: #ef4444;
+}
+
+.ark-slider--red .ark-slider__input::-webkit-slider-thumb {
+    background: #ef4444;
+    box-shadow: 0 0 8px rgba(239, 68, 68, 0.5);
+}
+
+.ark-slider--red .ark-slider__input::-moz-range-thumb {
+    background: #ef4444;
+    box-shadow: 0 0 8px rgba(239, 68, 68, 0.5);
+}
+
+/* Yellow */
+.ark-slider--yellow .ark-slider__progress {
+    background: linear-gradient(90deg, #eab308, #ca8a04);
+}
+
+.ark-slider--yellow .ark-slider__value {
+    color: #eab308;
+}
+
+.ark-slider--yellow .ark-slider__input::-webkit-slider-thumb {
+    background: #eab308;
+    box-shadow: 0 0 8px rgba(234, 179, 8, 0.5);
+}
+
+.ark-slider--yellow .ark-slider__input::-moz-range-thumb {
+    background: #eab308;
+    box-shadow: 0 0 8px rgba(234, 179, 8, 0.5);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SIZE VARIANTS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-slider--sm .ark-slider__track {
+    height: 3px;
+}
+
+.ark-slider--sm .ark-slider__input::-webkit-slider-thumb {
+    width: 10px;
+    height: 10px;
+}
+
+.ark-slider--sm .ark-slider__input {
+    height: 14px;
+}
+
+.ark-slider--sm .ark-slider__label,
+.ark-slider--sm .ark-slider__value {
+    font-size: 0.625rem;
+}
+
+.ark-slider--lg .ark-slider__track {
+    height: 6px;
+}
+
+.ark-slider--lg .ark-slider__input::-webkit-slider-thumb {
+    width: 18px;
+    height: 18px;
+}
+
+.ark-slider--lg .ark-slider__input {
+    height: 26px;
+}
+
+.ark-slider--lg .ark-slider__label,
+.ark-slider--lg .ark-slider__value {
+    font-size: 0.875rem;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   NEON VARIANT
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-slider--neon .ark-slider__track {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   STATES
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-slider--disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.ark-slider--disabled .ark-slider__input {
+    cursor: not-allowed;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   THEME
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-slider--light .ark-slider__label {
+    color: #475569;
+}
+
+.ark-slider--light .ark-slider__track {
+    background: #e2e8f0;
+}

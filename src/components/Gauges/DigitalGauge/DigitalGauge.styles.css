@@ -1,0 +1,100 @@
+/**
+ * DigitalGauge Styles
+ */
+
+.ark-digital-gauge {
+    display: flex;
+    flex-direction: column;
+}
+
+.ark-digital-gauge__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ark-digital-gauge__value-container {
+    display: flex;
+    align-items: baseline;
+    gap: 0.25rem;
+}
+
+.ark-digital-gauge__value {
+    font-weight: 700;
+    font-family: ui-monospace, monospace;
+}
+
+.ark-digital-gauge__value--sm {
+    font-size: 1.25rem;
+}
+
+.ark-digital-gauge__value--md {
+    font-size: 1.875rem;
+}
+
+.ark-digital-gauge__value--lg {
+    font-size: 2.25rem;
+}
+
+.ark-digital-gauge__suffix {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-left: 0.25rem;
+}
+
+.ark-digital-gauge__label {
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.ark-digital-gauge__label--sm {
+    font-size: 0.625rem;
+}
+
+.ark-digital-gauge__label--md {
+    font-size: 0.75rem;
+}
+
+.ark-digital-gauge__label--lg {
+    font-size: 0.875rem;
+}
+
+/* Trend indicator */
+.ark-digital-gauge__trend {
+    width: 1rem;
+    height: 1rem;
+}
+
+.ark-digital-gauge__trend--up {
+    color: #4ade80;
+}
+
+.ark-digital-gauge__trend--down {
+    color: #f87171;
+}
+
+.ark-digital-gauge__trend--neutral {
+    color: #9ca3af;
+}
+
+/* Color variants */
+.ark-digital-gauge--green .ark-digital-gauge__value {
+    color: #4ade80;
+}
+
+.ark-digital-gauge--red .ark-digital-gauge__value {
+    color: #f87171;
+}
+
+.ark-digital-gauge--blue .ark-digital-gauge__value {
+    color: #60a5fa;
+}
+
+.ark-digital-gauge--cyan .ark-digital-gauge__value {
+    color: #22d3ee;
+}
+
+.ark-digital-gauge--white .ark-digital-gauge__value {
+    color: #ffffff;
+}

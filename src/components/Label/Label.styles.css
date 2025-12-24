@@ -1,0 +1,67 @@
+/* Label.styles.css */
+.ark-label {
+    display: inline-block;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.ark-label--sm {
+    font-size: 0.75rem;
+}
+
+.ark-label--md {
+    font-size: 0.875rem;
+}
+
+.ark-label--lg {
+    font-size: 1rem;
+}
+
+.ark-label--default {
+    color: var(--text-primary);
+}
+
+.ark-label--subtle {
+    color: var(--text-secondary);
+}
+
+.ark-label--error {
+    color: var(--color-error);
+}
+
+.ark-label--success {
+    color: var(--color-success);
+}
+
+.ark-label--warning {
+    color: var(--color-warning);
+}
+
+.dark .ark-label--default {
+    color: #e2e8f0;
+}
+
+.dark .ark-label--subtle {
+    color: #94a3b8;
+}
+
+.dark .ark-label--error {
+    color: #ef4444;
+}
+
+.dark .ark-label--success {
+    color: #22c55e;
+}
+
+.dark .ark-label--warning {
+    color: #f59e0b;
+}
+
+.ark-label__required {
+    color: var(--color-error);
+    margin-left: 0.25rem;
+}
+
+.dark .ark-label__required {
+    color: #ef4444;
+}

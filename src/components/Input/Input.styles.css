@@ -1,0 +1,160 @@
+/**
+ * Input Styles
+ */
+
+.ark-input-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.ark-input-wrapper--full-width {
+    width: 100%;
+}
+
+/* Label */
+.ark-input__label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--ark-text-primary, #e5e7eb);
+    margin-bottom: 0.25rem;
+}
+
+[data-theme="light"] .ark-input__label {
+    color: #374151;
+}
+
+.ark-input__required {
+    color: #ef4444;
+    margin-left: 0.125rem;
+}
+
+/* Container */
+.ark-input__container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* Icons */
+.ark-input__icon {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6b7280;
+}
+
+.ark-input__icon--left {
+    left: 0.75rem;
+}
+
+.ark-input__icon--right {
+    right: 0.75rem;
+}
+
+/* Input base */
+.ark-input {
+    width: 100%;
+    background: transparent;
+    border: 1px solid;
+    outline: none;
+    font-family: inherit;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    color: var(--ark-text-primary, #ffffff);
+}
+
+[data-theme="light"] .ark-input {
+    color: #1f2937;
+}
+
+/* Sizes */
+.ark-input--sm {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.75rem;
+    border-radius: 0.375rem;
+}
+
+.ark-input--md {
+    padding: 0.5rem 0.875rem;
+    font-size: 0.875rem;
+    border-radius: 0.5rem;
+}
+
+.ark-input--lg {
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+}
+
+/* Variants */
+.ark-input--default {
+    background: rgba(17, 24, 39, 0.5);
+}
+
+[data-theme="light"] .ark-input--default {
+    background: #ffffff;
+}
+
+.ark-input--filled {
+    background: rgba(31, 41, 55, 1);
+    border-color: transparent;
+}
+
+[data-theme="light"] .ark-input--filled {
+    background: #f3f4f6;
+}
+
+.ark-input--outlined {
+    background: transparent;
+}
+
+.ark-input--underlined {
+    border: none;
+    border-bottom: 1px solid;
+    border-radius: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/* States */
+.ark-input--focused {
+    box-shadow: 0 0 0 2px rgba(0, 212, 255, 0.2);
+}
+
+.ark-input--error {
+    border-color: #ef4444 !important;
+}
+
+.ark-input--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.ark-input--has-icon-left {
+    padding-left: 2.5rem;
+}
+
+.ark-input--has-icon-right {
+    padding-right: 2.5rem;
+}
+
+/* Placeholder */
+.ark-input::placeholder {
+    color: #6b7280;
+}
+
+/* Error message */
+.ark-input__error {
+    font-size: 0.75rem;
+    color: #ef4444;
+    margin-top: 0.25rem;
+}
+
+/* Helper text */
+.ark-input__helper {
+    font-size: 0.75rem;
+    color: #6b7280;
+    margin-top: 0.25rem;
+}

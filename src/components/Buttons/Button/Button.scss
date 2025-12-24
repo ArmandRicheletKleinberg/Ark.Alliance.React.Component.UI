@@ -1,0 +1,297 @@
+/**
+ * @fileoverview Button Component Styles
+ * @module components/Buttons/Button
+ * 
+ * SCSS styles for the Button component.
+ * Uses CSS custom properties for theming support.
+ */
+
+@use 'sass:map';
+
+// ═══════════════════════════════════════════════════════════════════════════
+// VARIABLES
+// ═══════════════════════════════════════════════════════════════════════════
+
+$btn-transition: all 0.15s ease-in-out;
+$btn-focus-ring: 0 0 0 3px rgba(59, 130, 246, 0.4);
+
+// Size configurations
+$btn-sizes: (
+    'xs': ('padding': 0.25rem 0.5rem,
+        'font-size': 0.75rem,
+        'min-height': 1.5rem,
+        'icon-size': 0.875rem,
+    ),
+    'sm': ('padding': 0.375rem 0.75rem,
+        'font-size': 0.875rem,
+        'min-height': 2rem,
+        'icon-size': 1rem,
+    ),
+    'md': ('padding': 0.5rem 1rem,
+        'font-size': 0.875rem,
+        'min-height': 2.5rem,
+        'icon-size': 1.125rem,
+    ),
+    'lg': ('padding': 0.625rem 1.25rem,
+        'font-size': 1rem,
+        'min-height': 3rem,
+        'icon-size': 1.25rem,
+    ),
+    'xl': ('padding': 0.75rem 1.5rem,
+        'font-size': 1.125rem,
+        'min-height': 3.5rem,
+        'icon-size': 1.5rem,
+    ),
+);
+
+// ═══════════════════════════════════════════════════════════════════════════
+// BASE STYLES
+// ═══════════════════════════════════════════════════════════════════════════
+
+.ark-btn {
+    // Reset
+    appearance: none;
+    border: none;
+    background: none;
+    font-family: inherit;
+    cursor: pointer;
+
+    // Layout
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+
+    // Typography
+    font-weight: 500;
+    line-height: 1.5;
+    text-decoration: none;
+    white-space: nowrap;
+
+    // Appearance
+    border-radius: var(--ark-border-radius, 0.375rem);
+    transition: $btn-transition;
+
+    // Focus
+    &:focus-visible {
+        outline: none;
+        box-shadow: $btn-focus-ring;
+    }
+
+    // Disabled
+    &:disabled,
+    &--disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+
+    // ═══════════════════════════════════════════════════════════════════════
+    // SIZE VARIANTS
+    // ═══════════════════════════════════════════════════════════════════════
+
+    @each $size, $config in $btn-sizes {
+        &--#{$size} {
+            padding: map.get($config, 'padding');
+            font-size: map.get($config, 'font-size');
+            min-height: map.get($config, 'min-height');
+
+            .ark-btn__icon {
+                width: map.get($config, 'icon-size');
+                height: map.get($config, 'icon-size');
+            }
+        }
+    }
+
+    // ═══════════════════════════════════════════════════════════════════════
+    // COLOR VARIANTS
+    // ═══════════════════════════════════════════════════════════════════════
+
+    &--primary {
+        background: var(--ark-primary, #3b82f6);
+        color: white;
+
+        &:hover:not(:disabled) {
+            background: var(--ark-primary-hover, #2563eb);
+        }
+
+        &:active:not(:disabled) {
+            background: var(--ark-primary-active, #1d4ed8);
+        }
+    }
+
+    &--secondary {
+        background: var(--ark-secondary, #6366f1);
+        color: white;
+
+        &:hover:not(:disabled) {
+            background: color-mix(in srgb, var(--ark-secondary, #6366f1) 90%, black);
+        }
+    }
+
+    &--ghost {
+        background: transparent;
+        color: var(--ark-text-primary, #111827);
+
+        &:hover:not(:disabled) {
+            background: var(--ark-bg-secondary, #f3f4f6);
+        }
+    }
+
+    &--outline {
+        background: transparent;
+        color: var(--ark-primary, #3b82f6);
+        border: 1px solid var(--ark-primary, #3b82f6);
+
+        &:hover:not(:disabled) {
+            background: var(--ark-primary, #3b82f6);
+            color: white;
+        }
+    }
+
+    &--danger {
+        background: var(--ark-error, #ef4444);
+        color: white;
+
+        &:hover:not(:disabled) {
+            background: color-mix(in srgb, var(--ark-error, #ef4444) 90%, black);
+        }
+    }
+
+    &--success {
+        background: var(--ark-success, #10b981);
+        color: white;
+
+        &:hover:not(:disabled) {
+            background: color-mix(in srgb, var(--ark-success, #10b981) 90%, black);
+        }
+    }
+
+    &--link {
+        background: transparent;
+        color: var(--ark-primary, #3b82f6);
+        padding: 0;
+        min-height: auto;
+
+        &:hover:not(:disabled) {
+            text-decoration: underline;
+        }
+    }
+
+    // ═══════════════════════════════════════════════════════════════════════
+    // MODIFIERS
+    // ═══════════════════════════════════════════════════════════════════════
+
+    &--full-width {
+        width: 100%;
+    }
+
+    &--pill {
+        border-radius: 9999px;
+    }
+
+    &--icon-only {
+        padding: 0.5rem;
+
+        @each $size, $config in $btn-sizes {
+            &.ark-btn--#{$size} {
+                padding: 0.25rem;
+                min-width: map.get($config, 'min-height');
+            }
+        }
+    }
+
+    &--loading {
+        position: relative;
+        color: transparent !important;
+
+        .ark-btn__spinner {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// CHILD ELEMENTS
+// ═══════════════════════════════════════════════════════════════════════════
+
+.ark-btn__content {
+    display: inline-flex;
+    align-items: center;
+}
+
+.ark-btn__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    &--left {
+        margin-right: 0.25rem;
+    }
+
+    &--right {
+        margin-left: 0.25rem;
+    }
+}
+
+.ark-btn__spinner {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    &-icon {
+        width: 1.25em;
+        height: 1.25em;
+        animation: ark-spin 1s linear infinite;
+        color: currentColor;
+    }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// ANIMATIONS
+// ═══════════════════════════════════════════════════════════════════════════
+
+@keyframes ark-spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// DARK MODE
+// ═══════════════════════════════════════════════════════════════════════════
+
+[data-theme="dark"],
+.dark {
+    .ark-btn {
+        &--ghost {
+            color: var(--ark-text-primary, #f9fafb);
+
+            &:hover:not(:disabled) {
+                background: var(--ark-bg-secondary, #374151);
+            }
+        }
+    }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// REDUCED MOTION
+// ═══════════════════════════════════════════════════════════════════════════
+
+@media (prefers-reduced-motion: reduce) {
+    .ark-btn {
+        transition: none;
+    }
+
+    .ark-btn__spinner-icon {
+        animation: none;
+    }
+}

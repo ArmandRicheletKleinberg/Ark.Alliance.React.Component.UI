@@ -1,0 +1,456 @@
+/**
+ * Enhanced Header Styles
+ * Supports: visual modes, animated backgrounds, responsive, themes
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ANIMATIONS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes aurora {
+
+    0%,
+    100% {
+        filter: hue-rotate(0deg);
+        opacity: 0.8;
+    }
+
+    50% {
+        filter: hue-rotate(60deg);
+        opacity: 1;
+    }
+}
+
+@keyframes neonPulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px rgba(0, 212, 255, 0.3);
+    }
+
+    50% {
+        box-shadow: 0 0 20px rgba(0, 212, 255, 0.6);
+    }
+}
+
+@keyframes waves {
+    0% {
+        transform: translateX(0) translateY(0);
+    }
+
+    50% {
+        transform: translateX(-2%) translateY(1%);
+    }
+
+    100% {
+        transform: translateX(0) translateY(0);
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   BASE HEADER
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.2s ease;
+}
+
+.ark-header__content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.ark-header__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   LEFT & RIGHT SECTIONS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-header__left {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex: 1;
+    min-width: 0;
+}
+
+.ark-header__right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ICON
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-header__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 212, 255, 0.1);
+    border-radius: 10px;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+}
+
+.ark-header--neon .ark-header__icon {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(124, 58, 237, 0.15));
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.2);
+}
+
+.ark-header--minimal .ark-header__icon {
+    background: transparent;
+}
+
+.ark-header--glass .ark-header__icon {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+}
+
+.ark-header__icon img {
+    border-radius: 6px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   TITLE GROUP
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-header__title-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+    min-width: 0;
+}
+
+.ark-header__title {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #f0f0ff;
+    line-height: 1.3;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ark-header--light .ark-header__title {
+    color: #1a1a2e;
+}
+
+.ark-header--neon .ark-header__title {
+    background: linear-gradient(135deg, #00d4ff, #7c3aed);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.ark-header__subtitle {
+    margin: 0;
+    font-size: 0.75rem;
+    color: #707090;
+    line-height: 1.3;
+}
+
+.ark-header__description {
+    margin: 0.25rem 0 0;
+    font-size: 0.8125rem;
+    color: #606080;
+    line-height: 1.4;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SEARCH
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-header__search {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.875rem;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    min-width: 200px;
+    max-width: 320px;
+    transition: all 0.2s ease;
+}
+
+.ark-header--dark .ark-header__search {
+    background: rgba(15, 20, 45, 0.6);
+    border-color: rgba(0, 212, 255, 0.15);
+}
+
+.ark-header__search:focus-within {
+    border-color: #00d4ff;
+    box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
+}
+
+.ark-header__search-icon {
+    font-size: 0.875rem;
+    opacity: 0.6;
+}
+
+.ark-header__search-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #f0f0ff;
+    font-size: 0.875rem;
+}
+
+.ark-header__search-input::placeholder {
+    color: #606080;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ACTIONS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-header__actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   VARIANTS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-header--panel {
+    padding: 0.875rem 1.25rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ark-header--page {
+    padding: 1.5rem 0;
+    margin-bottom: 2rem;
+}
+
+.ark-header--section {
+    padding: 0.75rem 0;
+    margin-bottom: 1rem;
+}
+
+.ark-header--card {
+    padding: 1rem 1.25rem;
+}
+
+.ark-header--grid {
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   VISUAL MODES
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Normal (default) */
+.ark-header--normal {
+    background: transparent;
+}
+
+.ark-header--normal.ark-header--panel {
+    background: rgba(15, 20, 45, 0.5);
+}
+
+/* Neon */
+.ark-header--neon {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(124, 58, 237, 0.08));
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    animation: neonPulse 3s ease-in-out infinite;
+}
+
+/* Minimal */
+.ark-header--minimal {
+    background: transparent;
+    border: none;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.ark-header--minimal.ark-header--panel {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Glass */
+.ark-header--glass {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   HEIGHT VARIANTS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-header--compact {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.ark-header--compact .ark-header__title {
+    font-size: 0.875rem;
+}
+
+.ark-header--large {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+.ark-header--large .ark-header__title {
+    font-size: 1.25rem;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   BORDER RADIUS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-header--radius-sm {
+    border-radius: 4px;
+}
+
+.ark-header--radius-md {
+    border-radius: 8px;
+}
+
+.ark-header--radius-lg {
+    border-radius: 12px;
+}
+
+.ark-header--radius-xl {
+    border-radius: 16px;
+}
+
+.ark-header--radius-full {
+    border-radius: 9999px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ALIGNMENT
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-header--align-left .ark-header__content {
+    justify-content: flex-start;
+}
+
+.ark-header--align-center .ark-header__content {
+    justify-content: center;
+}
+
+.ark-header--align-right .ark-header__content {
+    justify-content: flex-end;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   STICKY
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-header--sticky {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ANIMATED BACKGROUNDS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-header--bg-gradient-shift {
+    background: linear-gradient(-45deg, #00d4ff, #7c3aed, #ec4899, #00d4ff) !important;
+    background-size: 400% 400% !important;
+    animation: gradientShift 8s ease infinite;
+}
+
+.ark-header--bg-aurora::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(124, 58, 237, 0.2), rgba(236, 72, 153, 0.2));
+    animation: aurora 6s ease-in-out infinite;
+    z-index: 0;
+    border-radius: inherit;
+}
+
+.ark-header--bg-waves::before {
+    content: '';
+    position: absolute;
+    inset: -10%;
+    background: radial-gradient(ellipse at 30% 30%, rgba(0, 212, 255, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 70%, rgba(124, 58, 237, 0.15) 0%, transparent 50%);
+    animation: waves 8s ease-in-out infinite;
+    z-index: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+    .ark-header__content {
+        flex-wrap: wrap;
+        gap: 0.75rem;
+    }
+
+    .ark-header__search {
+        order: 3;
+        width: 100%;
+        max-width: none;
+        min-width: 0;
+    }
+
+    .ark-header__left {
+        flex: 1;
+    }
+
+    .ark-header__title {
+        font-size: 0.9375rem;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .ark-header--panel,
+    .ark-header--card,
+    .ark-header--grid {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .ark-header__title {
+        font-size: 0.875rem;
+    }
+
+    .ark-header__subtitle {
+        font-size: 0.6875rem;
+    }
+}

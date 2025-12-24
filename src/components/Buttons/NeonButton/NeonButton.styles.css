@@ -1,0 +1,65 @@
+/**
+ * NeonButton Styles
+ * 
+ * Premium button with neon glow effect styling.
+ */
+
+.ark-neon-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.2s ease-out;
+    cursor: pointer;
+    outline: none;
+}
+
+.ark-neon-btn:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+}
+
+.ark-neon-btn--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.ark-neon-btn__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.ark-neon-btn__icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Loading spinner */
+.ark-neon-btn__spinner {
+    width: 1em;
+    height: 1em;
+    border: 2px solid currentColor;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: ark-neon-spin 0.8s linear infinite;
+}
+
+@keyframes ark-neon-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Full width utility */
+.ark-neon-btn.w-full {
+    width: 100%;
+}

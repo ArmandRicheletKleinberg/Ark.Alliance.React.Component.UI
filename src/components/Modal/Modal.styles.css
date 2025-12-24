@@ -1,0 +1,163 @@
+/**
+ * Modal Component Styles
+ */
+
+/* Backdrop */
+.ark-modal__backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 3rem 1rem;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    overflow-y: auto;
+    animation: modalBackdropIn 0.2s ease-out;
+}
+
+.ark-modal--centered .ark-modal__backdrop,
+.ark-modal__backdrop:has(.ark-modal--centered) {
+    align-items: center;
+    padding: 1rem;
+}
+
+@keyframes modalBackdropIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Container */
+.ark-modal__container {
+    position: relative;
+    background: linear-gradient(180deg, rgba(20, 25, 50, 0.98) 0%, rgba(15, 20, 40, 0.99) 100%);
+    border: 1px solid rgba(0, 212, 255, 0.15);
+    border-radius: 16px;
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
+    max-width: 100%;
+    animation: modalSlideIn 0.25s ease-out;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Sizes */
+.ark-modal--sm {
+    width: 400px;
+}
+
+.ark-modal--md {
+    width: 560px;
+}
+
+.ark-modal--lg {
+    width: 720px;
+}
+
+.ark-modal--xl {
+    width: 960px;
+}
+
+.ark-modal--full {
+    width: calc(100vw - 2rem);
+    max-width: 1400px;
+}
+
+/* Header */
+.ark-modal__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.5rem 1.5rem 0;
+}
+
+.ark-modal__header-content {
+    flex: 1;
+}
+
+.ark-modal__title {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #f0f0ff;
+}
+
+.ark-modal__subtitle {
+    margin: 0.375rem 0 0;
+    font-size: 0.875rem;
+    color: #707090;
+}
+
+/* Close button */
+.ark-modal__close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: #707090;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.ark-modal__close:hover {
+    background: rgba(239, 68, 68, 0.1);
+    border-color: rgba(239, 68, 68, 0.3);
+    color: #ef4444;
+}
+
+/* Body */
+.ark-modal__body {
+    padding: 1.5rem;
+    color: #c0c0d0;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+}
+
+/* Footer */
+.ark-modal__footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    padding: 0 1.5rem 1.5rem;
+}
+
+/* Light theme */
+.ark-modal--light .ark-modal__backdrop {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.ark-modal--light .ark-modal__container {
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+.ark-modal--light .ark-modal__title {
+    color: #1a1a2e;
+}
+
+.ark-modal--light .ark-modal__body {
+    color: #4a4a5a;
+}

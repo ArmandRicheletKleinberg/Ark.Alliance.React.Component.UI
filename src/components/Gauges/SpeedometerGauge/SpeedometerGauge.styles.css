@@ -1,0 +1,45 @@
+/**
+ * SpeedometerGauge Styles
+ */
+
+.ark-speedometer-gauge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ark-speedometer-gauge__info {
+    text-align: center;
+    margin-top: 0.5rem;
+}
+
+.ark-speedometer-gauge__value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    font-family: ui-monospace, monospace;
+}
+
+.ark-speedometer-gauge__label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.ark-speedometer-gauge__sublabel {
+    font-size: 0.75rem;
+    margin-top: 0.125rem;
+}
+
+/* Theme text color utilities */
+.text-gray-300 {
+    color: #d1d5db;
+}
+
+.text-gray-500 {
+    color: #6b7280;
+}
+
+.text-gray-700 {
+    color: #374151;
+}

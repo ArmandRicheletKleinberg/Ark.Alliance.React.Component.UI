@@ -1,0 +1,183 @@
+/**
+ * @fileoverview Icon Component Styles
+ * @module components/Icon
+ * 
+ * SCSS styles for the Icon component following the design system.
+ * Uses CSS custom properties for theming support.
+ */
+
+// ═══════════════════════════════════════════════════════════════════════════
+// CSS CUSTOM PROPERTIES
+// ═══════════════════════════════════════════════════════════════════════════
+
+:root {
+    // Icon colors
+    --icon-color-default: currentColor;
+    --icon-color-muted: var(--text-secondary, #8f8f9d);
+    --icon-color-primary: var(--color-primary, #00ffff);
+    --icon-color-success: var(--color-success, #00ff88);
+    --icon-color-warning: var(--color-warning, #ffbb00);
+    --icon-color-danger: var(--color-danger, #ff4466);
+
+    // Icon animation
+    --icon-spin-duration: 1s;
+    --icon-transition-duration: 0.2s;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// BASE STYLES
+// ═══════════════════════════════════════════════════════════════════════════
+
+.ark-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    vertical-align: middle;
+    color: var(--icon-color-default);
+    transition:
+        color var(--icon-transition-duration) ease,
+        transform var(--icon-transition-duration) ease,
+        opacity var(--icon-transition-duration) ease;
+
+    // SVG defaults are handled via attributes
+    // But ensure proper line rendering
+    path {
+        vector-effect: non-scaling-stroke;
+    }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// SIZE VARIANTS
+// ═══════════════════════════════════════════════════════════════════════════
+
+.ark-icon--xs {
+    width: 12px;
+    height: 12px;
+}
+
+.ark-icon--sm {
+    width: 16px;
+    height: 16px;
+}
+
+.ark-icon--md {
+    width: 20px;
+    height: 20px;
+}
+
+.ark-icon--lg {
+    width: 24px;
+    height: 24px;
+}
+
+.ark-icon--xl {
+    width: 32px;
+    height: 32px;
+}
+
+.ark-icon--2xl {
+    width: 48px;
+    height: 48px;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// STATE MODIFIERS
+// ═══════════════════════════════════════════════════════════════════════════
+
+.ark-icon--interactive {
+    cursor: pointer;
+
+    &:hover {
+        opacity: 0.8;
+        transform: scale(1.05);
+    }
+
+    &:active {
+        transform: scale(0.95);
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--icon-color-primary);
+        outline-offset: 2px;
+        border-radius: 4px;
+    }
+}
+
+.ark-icon--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.ark-icon--spin {
+    animation: ark-icon-spin var(--icon-spin-duration) linear infinite;
+}
+
+.ark-icon--filled {
+    path {
+        fill: currentColor;
+        stroke: none;
+    }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// ANIMATIONS
+// ═══════════════════════════════════════════════════════════════════════════
+
+@keyframes ark-icon-spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// SEMANTIC COLOR VARIANTS
+// ═══════════════════════════════════════════════════════════════════════════
+
+.ark-icon--primary {
+    color: var(--icon-color-primary);
+}
+
+.ark-icon--success {
+    color: var(--icon-color-success);
+}
+
+.ark-icon--warning {
+    color: var(--icon-color-warning);
+}
+
+.ark-icon--danger {
+    color: var(--icon-color-danger);
+}
+
+.ark-icon--muted {
+    color: var(--icon-color-muted);
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// BUTTON CONTEXT STYLES
+// ═══════════════════════════════════════════════════════════════════════════
+
+// When inside a button, adjust spacing
+.ark-btn .ark-icon {
+
+    // Left icon
+    &:first-child:not(:last-child) {
+        margin-right: 0.5em;
+    }
+
+    // Right icon
+    &:last-child:not(:first-child) {
+        margin-left: 0.5em;
+    }
+}
+
+// Icon-only button
+.ark-btn--icon-only .ark-icon {
+    margin: 0;
+}

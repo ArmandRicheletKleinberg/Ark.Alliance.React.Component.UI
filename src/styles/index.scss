@@ -1,0 +1,186 @@
+/**
+ * @fileoverview Ark Alliance UI Global Styles
+ * @module styles
+ * 
+ * Main stylesheet for the component library.
+ * Import this file in your application:
+ * 
+ * @example
+ * ```tsx
+ * import '@ark-alliance/react-ui/styles.css';
+ * ```
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// ═══════════════════════════════════════════════════════════════════════════
+// CSS CUSTOM PROPERTIES (THEME VARIABLES)
+// ═══════════════════════════════════════════════════════════════════════════
+
+:root {
+    // Brand Colors
+    --ark-primary: #3b82f6;
+    --ark-primary-hover: #2563eb;
+    --ark-primary-active: #1d4ed8;
+    --ark-secondary: #6366f1;
+    --ark-accent: #22d3ee;
+
+    // Semantic Colors
+    --ark-success: #10b981;
+    --ark-warning: #f59e0b;
+    --ark-error: #ef4444;
+    --ark-info: #3b82f6;
+
+    // Background Colors (Light Mode)
+    --ark-bg-primary: #ffffff;
+    --ark-bg-secondary: #f3f4f6;
+    --ark-bg-tertiary: #e5e7eb;
+
+    // Text Colors (Light Mode)
+    --ark-text-primary: #111827;
+    --ark-text-secondary: #6b7280;
+    --ark-text-muted: #9ca3af;
+
+    // Border Colors
+    --ark-border: #e5e7eb;
+    --ark-border-focus: #3b82f6;
+
+    // Border Radius
+    --ark-border-radius: 0.375rem;
+    --ark-border-radius-sm: 0.25rem;
+    --ark-border-radius-lg: 0.5rem;
+    --ark-border-radius-xl: 0.75rem;
+    --ark-border-radius-full: 9999px;
+
+    // Shadows
+    --ark-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --ark-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --ark-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --ark-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+    // Transitions
+    --ark-transition-fast: 0.1s ease;
+    --ark-transition: 0.15s ease;
+    --ark-transition-slow: 0.3s ease;
+
+    // Z-Index Scale
+    --ark-z-dropdown: 1000;
+    --ark-z-modal: 1050;
+    --ark-z-toast: 1100;
+    --ark-z-tooltip: 1200;
+
+    // Spacing Scale
+    --ark-space-1: 0.25rem;
+    --ark-space-2: 0.5rem;
+    --ark-space-3: 0.75rem;
+    --ark-space-4: 1rem;
+    --ark-space-5: 1.25rem;
+    --ark-space-6: 1.5rem;
+    --ark-space-8: 2rem;
+    --ark-space-10: 2.5rem;
+    --ark-space-12: 3rem;
+
+    // Typography
+    --ark-font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --ark-font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, SFMono-Regular, monospace;
+
+    --ark-font-size-xs: 0.75rem;
+    --ark-font-size-sm: 0.875rem;
+    --ark-font-size-base: 1rem;
+    --ark-font-size-lg: 1.125rem;
+    --ark-font-size-xl: 1.25rem;
+    --ark-font-size-2xl: 1.5rem;
+    --ark-font-size-3xl: 1.875rem;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// DARK MODE
+// ═══════════════════════════════════════════════════════════════════════════
+
+[data-theme="dark"],
+.dark {
+    --ark-bg-primary: #111827;
+    --ark-bg-secondary: #1f2937;
+    --ark-bg-tertiary: #374151;
+
+    --ark-text-primary: #f9fafb;
+    --ark-text-secondary: #d1d5db;
+    --ark-text-muted: #9ca3af;
+
+    --ark-border: #374151;
+
+    --ark-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.2);
+    --ark-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.3), 0 1px 2px -1px rgb(0 0 0 / 0.2);
+    --ark-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.2);
+    --ark-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.3), 0 4px 6px -4px rgb(0 0 0 / 0.2);
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// BASE RESET
+// ═══════════════════════════════════════════════════════════════════════════
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+    -moz-tab-size: 4;
+    tab-size: 4;
+}
+
+body {
+    font-family: var(--ark-font-sans);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// FOCUS STYLES
+// ═══════════════════════════════════════════════════════════════════════════
+
+:focus-visible {
+    outline: 2px solid var(--ark-primary);
+    outline-offset: 2px;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// REDUCED MOTION
+// ═══════════════════════════════════════════════════════════════════════════
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// UTILITY CLASSES
+// ═══════════════════════════════════════════════════════════════════════════
+
+.ark-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}

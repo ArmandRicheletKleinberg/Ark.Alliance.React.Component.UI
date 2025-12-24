@@ -1,0 +1,375 @@
+/**
+ * Footer Component Styles
+ * Supports: visual modes, paging controls, responsive
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   BASE FOOTER
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-footer {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.ark-footer__content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 1rem;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   CONTENT SLOTS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-footer__left {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.ark-footer__center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+}
+
+.ark-footer__right {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.ark-footer__text {
+    font-size: 0.8125rem;
+    color: #707090;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   PAGING
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-footer__paging {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Info */
+.ark-footer__paging-info {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-size: 0.8125rem;
+    color: #707090;
+}
+
+.ark-footer__paging-range,
+.ark-footer__paging-total {
+    font-weight: 600;
+    color: #a0a0c0;
+}
+
+/* Page size */
+.ark-footer__page-size {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    color: #707090;
+}
+
+.ark-footer__page-size-select {
+    padding: 0.25rem 0.5rem;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    color: #f0f0ff;
+    font-size: 0.8125rem;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+}
+
+.ark-footer--dark .ark-footer__page-size-select {
+    background: rgba(15, 20, 45, 0.6);
+    border-color: rgba(0, 212, 255, 0.15);
+}
+
+.ark-footer__page-size-select:hover {
+    border-color: rgba(0, 212, 255, 0.4);
+}
+
+.ark-footer__page-size-select:focus {
+    outline: none;
+    border-color: #00d4ff;
+}
+
+/* Navigation */
+.ark-footer__paging-nav {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.ark-footer__paging-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+    color: #a0a0c0;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.ark-footer__paging-btn:hover:not(:disabled) {
+    background: rgba(0, 212, 255, 0.1);
+    border-color: rgba(0, 212, 255, 0.3);
+    color: #00d4ff;
+}
+
+.ark-footer__paging-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+/* Page numbers */
+.ark-footer__paging-pages {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin: 0 0.5rem;
+}
+
+.ark-footer__paging-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    height: 32px;
+    padding: 0 0.5rem;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    color: #a0a0c0;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.ark-footer__paging-page:hover:not(.ark-footer__paging-page--active) {
+    background: rgba(0, 212, 255, 0.05);
+    color: #f0f0ff;
+}
+
+.ark-footer__paging-page--active {
+    background: rgba(0, 212, 255, 0.15);
+    border-color: rgba(0, 212, 255, 0.3);
+    color: #00d4ff;
+}
+
+/* Indicator */
+.ark-footer__paging-indicator {
+    font-size: 0.75rem;
+    color: #505070;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   VARIANTS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-footer--panel {
+    padding: 0.875rem 1.25rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ark-footer--page {
+    padding: 1.5rem 0;
+    margin-top: 2rem;
+}
+
+.ark-footer--section {
+    padding: 0.75rem 0;
+    margin-top: 1rem;
+}
+
+.ark-footer--card {
+    padding: 0.75rem 1rem;
+}
+
+.ark-footer--grid {
+    padding: 0.75rem 1.25rem;
+    border-top: 1px solid rgba(0, 212, 255, 0.1);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   VISUAL MODES
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-footer--normal {
+    background: transparent;
+}
+
+.ark-footer--normal.ark-footer--panel {
+    background: rgba(15, 20, 45, 0.3);
+}
+
+.ark-footer--neon {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.05), rgba(124, 58, 237, 0.05));
+    border-top: 1px solid rgba(0, 212, 255, 0.2);
+}
+
+.ark-footer--minimal {
+    background: transparent;
+    border: none;
+}
+
+.ark-footer--glass {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   HEIGHT VARIANTS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-footer--compact {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.ark-footer--large {
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   BORDER RADIUS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-footer--radius-sm {
+    border-radius: 4px;
+}
+
+.ark-footer--radius-md {
+    border-radius: 8px;
+}
+
+.ark-footer--radius-lg {
+    border-radius: 12px;
+}
+
+.ark-footer--radius-xl {
+    border-radius: 16px;
+}
+
+.ark-footer--radius-full {
+    border-radius: 9999px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ALIGNMENT
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-footer--align-left .ark-footer__content {
+    justify-content: flex-start;
+}
+
+.ark-footer--align-right .ark-footer__content {
+    justify-content: flex-end;
+}
+
+.ark-footer--align-space-between .ark-footer__content {
+    justify-content: space-between;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   STICKY
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-footer--sticky {
+    position: sticky;
+    bottom: 0;
+    z-index: 100;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   LIGHT THEME
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-footer--light .ark-footer__paging-range,
+.ark-footer--light .ark-footer__paging-total {
+    color: #1a1a2e;
+}
+
+.ark-footer--light .ark-footer__paging-btn {
+    border-color: rgba(0, 0, 0, 0.1);
+    color: #4a4a5a;
+}
+
+.ark-footer--light .ark-footer__paging-page {
+    color: #4a4a5a;
+}
+
+.ark-footer--light .ark-footer__page-size-select {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.1);
+    color: #1a1a2e;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+    .ark-footer__paging {
+        gap: 0.75rem;
+    }
+
+    .ark-footer__paging-info,
+    .ark-footer__page-size,
+    .ark-footer__paging-indicator {
+        display: none;
+    }
+
+    .ark-footer__paging-pages {
+        margin: 0;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .ark-footer--panel,
+    .ark-footer--card,
+    .ark-footer--grid {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .ark-footer__paging-btn {
+        width: 28px;
+        height: 28px;
+        font-size: 0.875rem;
+    }
+
+    .ark-footer__paging-page {
+        min-width: 28px;
+        height: 28px;
+        font-size: 0.8125rem;
+    }
+}
