@@ -1,0 +1,10 @@
+/**
+ * @fileoverview FamilyPage Styles
+ * @module showcase/pages/FamilyPage
+ */
+
+.family-page__components {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}

@@ -1,0 +1,141 @@
+{
+    "id": "card-component-scenarios",
+    "name": "Card Component Scenarios",
+    "component": "Card",
+    "category": "Card",
+    "scenarios": [
+        {
+            "id": "CARD-001",
+            "name": "Card - Clickable Behavior",
+            "description": "Verify card click handler fires",
+            "actions": [
+                {
+                    "type": "render",
+                    "props": {
+                        "title": "My Card",
+                        "clickable": true
+                    }
+                },
+                {
+                    "type": "click",
+                    "target": ".ark-card"
+                },
+                {
+                    "type": "assert",
+                    "target": "onClick",
+                    "called": true
+                }
+            ],
+            "expectedResults": {
+                "classes": [
+                    "ark-card--clickable"
+                ]
+            }
+        },
+        {
+            "id": "CARD-002",
+            "name": "Card - Hover State",
+            "description": "Verify hover applies glow and class",
+            "actions": [
+                {
+                    "type": "render",
+                    "props": {
+                        "title": "Hover Card",
+                        "status": "success"
+                    }
+                },
+                {
+                    "type": "hover",
+                    "target": ".ark-card"
+                }
+            ],
+            "expectedResults": {
+                "isHovered": true,
+                "classes": [
+                    "ark-card--hovered"
+                ]
+            }
+        },
+        {
+            "id": "CARD-003",
+            "name": "Card - Status Variants",
+            "description": "Verify status determines styling",
+            "testCases": [
+                {
+                    "props": {
+                        "title": "Card",
+                        "status": "default"
+                    },
+                    "expectedClass": "ark-card--default"
+                },
+                {
+                    "props": {
+                        "title": "Card",
+                        "status": "success"
+                    },
+                    "expectedClass": "ark-card--success"
+                },
+                {
+                    "props": {
+                        "title": "Card",
+                        "status": "warning"
+                    },
+                    "expectedClass": "ark-card--warning"
+                },
+                {
+                    "props": {
+                        "title": "Card",
+                        "status": "danger"
+                    },
+                    "expectedClass": "ark-card--danger"
+                }
+            ]
+        },
+        {
+            "id": "CARD-004",
+            "name": "Card - Compact Mode",
+            "description": "Verify compact class applied",
+            "actions": [
+                {
+                    "type": "render",
+                    "props": {
+                        "title": "Compact Card",
+                        "compact": true
+                    }
+                }
+            ],
+            "expectedResults": {
+                "classes": [
+                    "ark-card--compact"
+                ]
+            }
+        },
+        {
+            "id": "CARD-005",
+            "name": "Card - Disabled State",
+            "description": "Verify disabled card does not fire onClick",
+            "actions": [
+                {
+                    "type": "render",
+                    "props": {
+                        "title": "Disabled",
+                        "clickable": true,
+                        "disabled": true
+                    }
+                },
+                {
+                    "type": "click",
+                    "target": ".ark-card"
+                },
+                {
+                    "type": "assert",
+                    "target": "onClick",
+                    "called": false
+                }
+            ],
+            "expectedResults": {
+                "onClickCalled": false
+            }
+        }
+    ]
+}

@@ -1,0 +1,95 @@
+/**
+ * @fileoverview BasePage Styles
+ * @module showcase/pages/BasePage
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   BASE PAGE CONTAINER
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.showcase-base-page {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 24px;
+    min-height: 100%;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   HEADER
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.showcase-base-page__header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.showcase-base-page__icon {
+    font-size: 48px;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.showcase-base-page__info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.showcase-base-page__title {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0;
+    color: #f8fafc;
+    letter-spacing: -0.02em;
+}
+
+.showcase-base-page__description {
+    margin: 0;
+    font-size: 15px;
+    color: #94a3b8;
+    max-width: 600px;
+}
+
+.showcase-base-page__meta {
+    margin-top: 8px;
+}
+
+.showcase-base-page__count {
+    display: inline-flex;
+    padding: 4px 12px;
+    background: rgba(59, 130, 246, 0.15);
+    color: #60a5fa;
+    border-radius: 16px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   CONTENT
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.showcase-base-page__content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   LIGHT THEME
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.showcase--light .showcase-base-page__header {
+    border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
+.showcase--light .showcase-base-page__title {
+    color: #1e293b;
+}
+
+.showcase--light .showcase-base-page__description {
+    color: #64748b;
+}

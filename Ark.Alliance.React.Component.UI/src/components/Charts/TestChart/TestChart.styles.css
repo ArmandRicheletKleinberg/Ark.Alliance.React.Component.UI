@@ -1,0 +1,217 @@
+/**
+ * TestChart Styles
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   CONTAINER
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-test-chart {
+    position: relative;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.ark-test-chart__svg {
+    width: 100%;
+    overflow: visible;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   GRID
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-test-chart__grid line {
+    stroke: rgba(75, 85, 99, 0.3);
+    stroke-width: 1;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   PRICE LINE
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-test-chart__price-line {
+    fill: none;
+    stroke: #00d4ff;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.ark-test-chart--animated .ark-test-chart__price-line {
+    stroke-dasharray: 2000;
+    stroke-dashoffset: 2000;
+    animation: draw-line 1s ease-out forwards;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   THRESHOLD LINES
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-test-chart__threshold {
+    stroke-dasharray: 4 4;
+    stroke-width: 1.5;
+}
+
+.ark-test-chart__threshold--click {
+    stroke: #10b981;
+}
+
+.ark-test-chart__threshold--inversion {
+    stroke: #ef4444;
+}
+
+.ark-test-chart__threshold--entry {
+    stroke: #f59e0b;
+}
+
+.ark-test-chart__threshold-label {
+    font-size: 10px;
+    fill: #9ca3af;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ENTRY LINE
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-test-chart__entry-line {
+    stroke: #f59e0b;
+    stroke-width: 1.5;
+    stroke-dasharray: 8 4;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   MARKERS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-test-chart__marker {
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.ark-test-chart__marker:hover {
+    transform: scale(1.3);
+}
+
+.ark-test-chart__marker-dot {
+    stroke-width: 2;
+}
+
+.ark-test-chart__marker--pending .ark-test-chart__marker-dot {
+    fill: #4b5563;
+    stroke: #374151;
+}
+
+.ark-test-chart__marker--passed .ark-test-chart__marker-dot {
+    fill: #10b981;
+    stroke: #10b981;
+}
+
+.ark-test-chart__marker--failed .ark-test-chart__marker-dot {
+    fill: #ef4444;
+    stroke: #ef4444;
+}
+
+.ark-test-chart__marker--click .ark-test-chart__marker-dot {
+    fill: #10b981;
+}
+
+.ark-test-chart__marker--inversion .ark-test-chart__marker-dot {
+    fill: #ef4444;
+}
+
+.ark-test-chart__marker-label {
+    font-size: 9px;
+    fill: #9ca3af;
+    text-anchor: middle;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   CURRENT INDICATOR
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-test-chart__current-line {
+    stroke: #00d4ff;
+    stroke-width: 1;
+    stroke-dasharray: 2 2;
+}
+
+.ark-test-chart__current-dot {
+    fill: #00d4ff;
+    stroke: #ffffff;
+    stroke-width: 2;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   AXES
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-test-chart__axis line {
+    stroke: #4b5563;
+    stroke-width: 1;
+}
+
+.ark-test-chart__axis-label {
+    font-size: 10px;
+    fill: #6b7280;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   LEGEND
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-test-chart__legend {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 0.75rem;
+    font-size: 11px;
+    color: #9ca3af;
+}
+
+.ark-test-chart__legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+}
+
+.ark-test-chart__legend-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.ark-test-chart__legend-dot--click {
+    background: #10b981;
+}
+
+.ark-test-chart__legend-dot--inversion {
+    background: #ef4444;
+}
+
+.ark-test-chart__legend-dot--entry {
+    background: #f59e0b;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   TITLE
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-test-chart__title {
+    font-size: 12px;
+    font-weight: 600;
+    color: #f3f4f6;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ANIMATIONS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@keyframes draw-line {
+    to {
+        stroke-dashoffset: 0;
+    }
+}

@@ -1,0 +1,83 @@
+/**
+ * @fileoverview Icon Component Barrel Export
+ * @module components/Icon
+ * 
+ * Central export point for all Icon-related functionality.
+ * Includes both custom SVG icons and Font Awesome icons.
+ */
+
+// ═══════════════════════════════════════════════════════════════════════════
+// CUSTOM SVG ICON
+// ═══════════════════════════════════════════════════════════════════════════
+
+// Component
+export { Icon, default } from './Icon';
+export type { IconProps } from './Icon';
+
+// Model
+export {
+    IconModelSchema,
+    IconSize,
+    IconRotation,
+    IconFlip,
+    createIconModel,
+    defaultIconModel,
+    ICON_SIZE_MAP,
+} from './Icon.model';
+export type {
+    IconModel,
+    IconSizeType,
+    IconRotationType,
+    IconFlipType,
+    IconDefinition,
+} from './Icon.model';
+
+// ViewModel
+export { useIcon, default as useIconHook } from './Icon.viewmodel';
+export type { UseIconOptions, UseIconResult } from './Icon.viewmodel';
+
+// Registry
+export { IconRegistry } from './icons/IconRegistry';
+
+// ═══════════════════════════════════════════════════════════════════════════
+// FONT AWESOME ICON
+// ═══════════════════════════════════════════════════════════════════════════
+
+// Component
+export { FAIcon } from './FAIcon';
+export type { FAIconProps } from './FAIcon';
+
+// Model
+export {
+    FAIconModelSchema,
+    FAIconStyle,
+    FAIconSize,
+    FAIconPrefix,
+    FA_SIZE_MAP,
+    STYLE_PREFIX_MAP,
+    defaultFAIconModel,
+    createFAIconModel,
+} from './FAIcon';
+export type {
+    FAIconModel,
+    FAIconStyleType,
+    FAIconSizeType,
+    FAIconPrefixType,
+} from './FAIcon';
+
+// ViewModel
+export { useFAIcon } from './FAIcon';
+export type { UseFAIconOptions, UseFAIconResult } from './FAIcon';
+
+// Catalog
+export {
+    FA_ICON_CATALOG,
+    SOLID_ICONS,
+    REGULAR_ICONS,
+    BRAND_ICONS,
+    getFAIconsByCategory,
+    getFAIconsByStyle,
+    searchFAIcons,
+    getFAIconCategories,
+} from './icons/FAIconCatalog';
+export type { FAIconMeta } from './icons/FAIconCatalog';

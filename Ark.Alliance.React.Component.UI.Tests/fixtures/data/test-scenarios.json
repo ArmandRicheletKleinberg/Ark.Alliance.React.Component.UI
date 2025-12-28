@@ -1,0 +1,466 @@
+{
+    "config": {
+        "componentLibraryPath": "../Ark.Alliance.React.Component.UI/src",
+        "testEnvironment": "jsdom",
+        "defaultTimeout": 5000,
+        "debounceMs": 50
+    },
+    "defaultComponentProps": {
+        "disabled": false,
+        "loading": false,
+        "className": "",
+        "testId": "test-component"
+    },
+    "scenarios": [
+        {
+            "id": "BASE-001",
+            "name": "BaseModelSchema - Default Values",
+            "category": "Core",
+            "component": "BaseComponentModel",
+            "description": "Verify schema generates unique IDs and applies correct defaults",
+            "input": {},
+            "expectedResults": {
+                "id": "GENERATED",
+                "disabled": false,
+                "loading": false
+            }
+        },
+        {
+            "id": "BASE-002",
+            "name": "BaseModelSchema - Custom Values",
+            "category": "Core",
+            "component": "BaseComponentModel",
+            "input": {
+                "id": "custom-id",
+                "disabled": true,
+                "className": "my-class",
+                "ariaLabel": "Test Label"
+            },
+            "expectedResults": {
+                "id": "custom-id",
+                "disabled": true,
+                "className": "my-class",
+                "ariaLabel": "Test Label"
+            }
+        },
+        {
+            "id": "FORM-001",
+            "name": "FormInputModel - Default State",
+            "category": "Core",
+            "component": "FormInputModel",
+            "description": "Verify form input schema defaults",
+            "input": {},
+            "expectedResults": {
+                "required": false,
+                "touched": false,
+                "validationState": "none",
+                "readOnly": false
+            }
+        },
+        {
+            "id": "FORM-002",
+            "name": "FormInputModel - With Restrictions",
+            "category": "Core",
+            "component": "FormInputModel",
+            "description": "Verify input restrictions are properly parsed",
+            "input": {
+                "inputRestriction": {
+                    "disablePaste": true,
+                    "restrictionMessage": "No paste allowed"
+                }
+            },
+            "expectedResults": {
+                "inputRestriction.disablePaste": true,
+                "inputRestriction.restrictionMessage": "No paste allowed"
+            }
+        },
+        {
+            "id": "RESTR-001",
+            "name": "InputRestriction - Block All Preset",
+            "category": "Core",
+            "component": "InputRestrictionPresets",
+            "description": "Verify blockAll preset configuration",
+            "preset": "blockAll",
+            "expectedResults": {
+                "disableCopy": true,
+                "disableCut": true,
+                "disablePaste": true,
+                "disableDrop": true
+            }
+        },
+        {
+            "id": "RESTR-002",
+            "name": "InputRestriction - Numeric Sanitization",
+            "category": "Core",
+            "component": "InputRestrictionPresets",
+            "description": "Verify numericOnly sanitizes to digits",
+            "preset": "numericOnly",
+            "input": "abc123def456",
+            "expectedResults": {
+                "sanitizedValue": "123456"
+            }
+        }
+    ],
+    "inputScenarios": [
+        {
+            "id": "INPUT-001",
+            "name": "Input - Controlled Value Change",
+            "category": "Input",
+            "component": "Input",
+            "description": "Verify controlled input updates correctly",
+            "actions": [
+                {
+                    "type": "render",
+                    "props": {
+                        "value": "",
+                        "label": "Email"
+                    }
+                },
+                {
+                    "type": "type",
+                    "target": "input",
+                    "text": "test@example.com"
+                },
+                {
+                    "type": "assert",
+                    "target": "onChange",
+                    "calledWith": "test@example.com"
+                }
+            ],
+            "expectedResults": {
+                "value": "test@example.com",
+                "hasError": false
+            }
+        },
+        {
+            "id": "INPUT-002",
+            "name": "Input - With Error State",
+            "category": "Input",
+            "component": "Input",
+            "description": "Verify error styling applied",
+            "actions": [
+                {
+                    "type": "render",
+                    "props": {
+                        "value": "invalid",
+                        "error": "Invalid format"
+                    }
+                }
+            ],
+            "expectedResults": {
+                "hasError": true,
+                "classes": [
+                    "ark-input--error"
+                ]
+            }
+        },
+        {
+            "id": "INPUT-003",
+            "name": "Input - Paste Restriction",
+            "category": "Input",
+            "component": "Input",
+            "description": "Verify paste is blocked with restriction",
+            "actions": [
+                {
+                    "type": "render",
+                    "props": {
+                        "value": "",
+                        "inputRestriction": {
+                            "disablePaste": true,
+                            "restrictionMessage": "No paste"
+                        }
+                    }
+                },
+                {
+                    "type": "paste",
+                    "target": "input",
+                    "text": "pasted text"
+                },
+                {
+                    "type": "assert",
+                    "target": "value",
+                    "equals": ""
+                }
+            ],
+            "expectedResults": {
+                "value": "",
+                "restrictionMessage": "No paste"
+            }
+        },
+        {
+            "id": "INPUT-004",
+            "name": "Input - Numeric Sanitization",
+            "category": "Input",
+            "component": "Input",
+            "description": "Verify paste sanitizes to numbers only",
+            "actions": [
+                {
+                    "type": "render",
+                    "props": {
+                        "value": "",
+                        "inputRestriction": {
+                            "sanitizePaste": true,
+                            "allowedPattern": "[0-9]"
+                        }
+                    }
+                },
+                {
+                    "type": "paste",
+                    "target": "input",
+                    "text": "abc123xyz456"
+                }
+            ],
+            "expectedResults": {
+                "value": "123456"
+            }
+        }
+    ],
+    "panelScenarios": [
+        {
+            "id": "PANEL-001",
+            "name": "Panel - Collapsible Toggle",
+            "category": "Panel",
+            "component": "Panel",
+            "description": "Verify collapsible panel toggles correctly",
+            "actions": [
+                {
+                    "type": "render",
+                    "props": {
+                        "title": "Test Panel",
+                        "collapsible": true,
+                        "collapsed": false
+                    }
+                },
+                {
+                    "type": "click",
+                    "target": ".ark-panel__header"
+                },
+                {
+                    "type": "assert",
+                    "target": "isCollapsed",
+                    "equals": true
+                }
+            ],
+            "expectedResults": {
+                "isCollapsed": true,
+                "classes": [
+                    "ark-panel--collapsed"
+                ]
+            }
+        },
+        {
+            "id": "PANEL-002",
+            "name": "Panel - Non-Collapsible",
+            "category": "Panel",
+            "component": "Panel",
+            "description": "Verify non-collapsible panel ignores toggle",
+            "actions": [
+                {
+                    "type": "render",
+                    "props": {
+                        "title": "Static Panel",
+                        "collapsible": false
+                    }
+                },
+                {
+                    "type": "click",
+                    "target": ".ark-panel__header"
+                }
+            ],
+            "expectedResults": {
+                "isCollapsed": false
+            }
+        }
+    ],
+    "iconScenarios": [
+        {
+            "id": "ICON-001",
+            "name": "FAIcon - Solid Style",
+            "category": "Icon",
+            "component": "FAIcon",
+            "description": "Verify solid Font Awesome icon renders",
+            "actions": [
+                {
+                    "type": "render",
+                    "props": {
+                        "name": "user",
+                        "iconStyle": "solid"
+                    }
+                }
+            ],
+            "expectedResults": {
+                "isValid": true,
+                "prefix": "fas"
+            }
+        },
+        {
+            "id": "ICON-002",
+            "name": "FAIcon - Brands Style",
+            "category": "Icon",
+            "component": "FAIcon",
+            "description": "Verify brand icon renders correctly",
+            "actions": [
+                {
+                    "type": "render",
+                    "props": {
+                        "name": "github",
+                        "iconStyle": "brands"
+                    }
+                }
+            ],
+            "expectedResults": {
+                "isValid": true,
+                "prefix": "fab"
+            }
+        },
+        {
+            "id": "ICON-003",
+            "name": "FAIcon - Invalid Name",
+            "category": "Icon",
+            "component": "FAIcon",
+            "description": "Verify invalid icon name is handled gracefully",
+            "actions": [
+                {
+                    "type": "render",
+                    "props": {
+                        "name": "nonexistent-icon-xyz"
+                    }
+                }
+            ],
+            "expectedResults": {
+                "isValid": false,
+                "iconDef": null
+            }
+        },
+        {
+            "id": "ICON-004",
+            "name": "FAIcon - Spin Animation",
+            "category": "Icon",
+            "component": "FAIcon",
+            "description": "Verify spin prop enables animation",
+            "actions": [
+                {
+                    "type": "render",
+                    "props": {
+                        "name": "spinner",
+                        "spin": true
+                    }
+                }
+            ],
+            "expectedResults": {
+                "isValid": true,
+                "hasSpinAnimation": true
+            }
+        }
+    ],
+    "cardScenarios": [
+        {
+            "id": "CARD-001",
+            "name": "Card - Clickable Behavior",
+            "category": "Card",
+            "component": "Card",
+            "description": "Verify card click handler fires",
+            "actions": [
+                {
+                    "type": "render",
+                    "props": {
+                        "title": "My Card",
+                        "clickable": true
+                    }
+                },
+                {
+                    "type": "click",
+                    "target": ".ark-card"
+                },
+                {
+                    "type": "assert",
+                    "target": "onClick",
+                    "called": true
+                }
+            ],
+            "expectedResults": {
+                "classes": [
+                    "ark-card--clickable"
+                ]
+            }
+        },
+        {
+            "id": "CARD-002",
+            "name": "Card - Hover State",
+            "category": "Card",
+            "component": "Card",
+            "description": "Verify hover applies glow and class",
+            "actions": [
+                {
+                    "type": "render",
+                    "props": {
+                        "title": "Hover Card",
+                        "status": "success"
+                    }
+                },
+                {
+                    "type": "hover",
+                    "target": ".ark-card"
+                }
+            ],
+            "expectedResults": {
+                "isHovered": true,
+                "classes": [
+                    "ark-card--hovered"
+                ]
+            }
+        }
+    ],
+    "pageScenarios": [
+        {
+            "id": "PAGE-001",
+            "name": "Page - Dark Theme",
+            "category": "Layout",
+            "component": "Page",
+            "description": "Verify dark theme class applied",
+            "actions": [
+                {
+                    "type": "render",
+                    "props": {
+                        "title": "Dashboard",
+                        "isDark": true
+                    }
+                }
+            ],
+            "expectedResults": {
+                "classes": [
+                    "ark-page--dark"
+                ]
+            }
+        },
+        {
+            "id": "PAGE-002",
+            "name": "Page - With Breadcrumbs",
+            "category": "Layout",
+            "component": "Page",
+            "description": "Verify breadcrumbs render when provided",
+            "actions": [
+                {
+                    "type": "render",
+                    "props": {
+                        "title": "Settings",
+                        "breadcrumbs": [
+                            {
+                                "label": "Home",
+                                "path": "/"
+                            },
+                            {
+                                "label": "Settings",
+                                "path": "/settings"
+                            }
+                        ]
+                    }
+                }
+            ],
+            "expectedResults": {
+                "hasBreadcrumbs": true,
+                "breadcrumbCount": 2
+            }
+        }
+    ]
+}

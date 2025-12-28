@@ -1,0 +1,222 @@
+/**
+ * StartMenu Component Styles
+ * Neon-themed Windows-like start menu
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   BASE STYLES
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-start-menu {
+    position: absolute;
+    bottom: 56px;
+    left: 8px;
+    display: flex;
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    border-radius: 12px;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+    overflow: hidden;
+    z-index: 9999;
+    animation: ark-start-menu-open 0.2s ease-out;
+}
+
+@keyframes ark-start-menu-open {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SIDEBAR
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-start-menu__sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 48px;
+    padding: 12px 0;
+    background: rgba(2, 6, 23, 0.6);
+    border-right: 1px solid rgba(0, 212, 255, 0.15);
+}
+
+.ark-start-menu__sidebar-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: #94a3b8;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    margin-bottom: 4px;
+}
+
+.ark-start-menu__sidebar-button:hover {
+    background: rgba(148, 163, 184, 0.15);
+    color: #00d4ff;
+}
+
+.ark-start-menu__sidebar-button--power:hover {
+    background: rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+}
+
+.ark-start-menu__sidebar-spacer {
+    flex: 1;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   CONTENT
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-start-menu__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+    overflow: hidden;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SEARCH
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-start-menu__search {
+    margin-bottom: 12px;
+}
+
+.ark-start-menu__search-input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    border-radius: 8px;
+    background: rgba(15, 23, 42, 0.8);
+    color: #e2e8f0;
+    font-size: 13px;
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.ark-start-menu__search-input::placeholder {
+    color: #64748b;
+}
+
+.ark-start-menu__search-input:focus {
+    border-color: rgba(0, 212, 255, 0.6);
+    box-shadow: 0 0 12px rgba(0, 212, 255, 0.2);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SECTION
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-start-menu__section {
+    margin-bottom: 8px;
+}
+
+.ark-start-menu__section-title {
+    padding: 6px 12px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #64748b;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   APPS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-start-menu__apps {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.ark-start-menu__app {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 10px 12px;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: #e2e8f0;
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.15s;
+}
+
+.ark-start-menu__app:hover {
+    background: rgba(0, 212, 255, 0.15);
+}
+
+.ark-start-menu__app-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: rgba(30, 41, 59, 0.8);
+    border: 1px solid rgba(0, 212, 255, 0.15);
+    font-size: 18px;
+    transition: background 0.15s, border-color 0.15s;
+}
+
+.ark-start-menu__app:hover .ark-start-menu__app-icon {
+    background: rgba(30, 41, 59, 1);
+    border-color: rgba(0, 212, 255, 0.3);
+}
+
+.ark-start-menu__app-title {
+    font-size: 13px;
+    font-weight: 500;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   VISUAL MODES
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Neon Mode */
+.ark-start-menu--neon {
+    background: rgba(15, 23, 42, 0.95);
+    border-color: rgba(0, 212, 255, 0.3);
+}
+
+/* Glass Mode */
+.ark-start-menu--glass {
+    background: rgba(15, 23, 42, 0.8);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Minimal Mode */
+.ark-start-menu--minimal {
+    background: #1e293b;
+    border-color: #334155;
+    backdrop-filter: none;
+}
+
+/* Normal Mode */
+.ark-start-menu--normal {
+    background: #0f172a;
+    border-color: #334155;
+    backdrop-filter: none;
+}

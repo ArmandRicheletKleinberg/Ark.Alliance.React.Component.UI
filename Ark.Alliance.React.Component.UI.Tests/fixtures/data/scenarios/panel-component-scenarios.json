@@ -1,0 +1,140 @@
+{
+    "id": "panel-component-scenarios",
+    "name": "Panel Component Scenarios",
+    "component": "Panel",
+    "category": "Panel",
+    "scenarios": [
+        {
+            "id": "PANEL-001",
+            "name": "Panel - Collapsible Toggle",
+            "description": "Verify collapsible panel toggles correctly",
+            "actions": [
+                {
+                    "type": "render",
+                    "props": {
+                        "title": "Test Panel",
+                        "collapsible": true,
+                        "collapsed": false
+                    }
+                },
+                {
+                    "type": "click",
+                    "target": ".ark-panel__header"
+                },
+                {
+                    "type": "assert",
+                    "target": "isCollapsed",
+                    "equals": true
+                }
+            ],
+            "expectedResults": {
+                "isCollapsed": true,
+                "classes": [
+                    "ark-panel--collapsed"
+                ]
+            }
+        },
+        {
+            "id": "PANEL-002",
+            "name": "Panel - Non-Collapsible",
+            "description": "Verify non-collapsible panel ignores toggle",
+            "actions": [
+                {
+                    "type": "render",
+                    "props": {
+                        "title": "Static Panel",
+                        "collapsible": false
+                    }
+                },
+                {
+                    "type": "click",
+                    "target": ".ark-panel__header"
+                }
+            ],
+            "expectedResults": {
+                "isCollapsed": false,
+                "onCollapseChangeCalled": false
+            }
+        },
+        {
+            "id": "PANEL-003",
+            "name": "Panel - Collapsed Prop Sync (REGRESSION)",
+            "description": "NON-REGRESSION: Verify collapsed state syncs when prop changes",
+            "tags": [
+                "regression",
+                "sync",
+                "prop"
+            ],
+            "actions": [
+                {
+                    "type": "render",
+                    "props": {
+                        "title": "Panel",
+                        "collapsible": true,
+                        "collapsed": false
+                    }
+                },
+                {
+                    "type": "assert",
+                    "target": "classes",
+                    "notContains": "ark-panel--collapsed"
+                },
+                {
+                    "type": "rerender",
+                    "props": {
+                        "collapsed": true
+                    }
+                },
+                {
+                    "type": "assert",
+                    "target": "classes",
+                    "contains": "ark-panel--collapsed"
+                }
+            ],
+            "expectedResults": {
+                "propSynced": true
+            }
+        },
+        {
+            "id": "PANEL-004",
+            "name": "Panel - Variant Styling",
+            "description": "Verify variant classes applied",
+            "testCases": [
+                {
+                    "props": {
+                        "variant": "default"
+                    },
+                    "expectedClass": "ark-panel--default"
+                },
+                {
+                    "props": {
+                        "variant": "outlined"
+                    },
+                    "expectedClass": "ark-panel--outlined"
+                },
+                {
+                    "props": {
+                        "variant": "elevated"
+                    },
+                    "expectedClass": "ark-panel--elevated"
+                }
+            ]
+        },
+        {
+            "id": "PANEL-005",
+            "name": "Panel - With Title",
+            "description": "Verify title renders in header",
+            "actions": [
+                {
+                    "type": "render",
+                    "props": {
+                        "title": "My Panel Title"
+                    }
+                }
+            ],
+            "expectedResults": {
+                "titleText": "My Panel Title"
+            }
+        }
+    ]
+}

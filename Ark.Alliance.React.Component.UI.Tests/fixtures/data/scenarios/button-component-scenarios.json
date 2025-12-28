@@ -1,0 +1,236 @@
+{
+    "id": "button-component-scenarios",
+    "name": "Button Component Scenarios",
+    "component": "Button",
+    "category": "Buttons",
+    "scenarios": [
+        {
+            "id": "BTN-001",
+            "name": "Button - Click Handler",
+            "description": "Verify onClick is called when button is clicked",
+            "actions": [
+                {
+                    "type": "render",
+                    "props": {}
+                },
+                {
+                    "type": "click",
+                    "target": "button"
+                },
+                {
+                    "type": "assert",
+                    "target": "onClick",
+                    "called": true
+                }
+            ],
+            "expectedResults": {
+                "onClickCalled": true
+            }
+        },
+        {
+            "id": "BTN-002",
+            "name": "Button - Disabled State",
+            "description": "Verify disabled button does not fire onClick",
+            "actions": [
+                {
+                    "type": "render",
+                    "props": {
+                        "disabled": true
+                    }
+                },
+                {
+                    "type": "click",
+                    "target": "button"
+                },
+                {
+                    "type": "assert",
+                    "target": "onClick",
+                    "called": false
+                }
+            ],
+            "expectedResults": {
+                "onClickCalled": false
+            }
+        },
+        {
+            "id": "BTN-003",
+            "name": "Button - Primary Variant",
+            "description": "Verify primary variant is default",
+            "actions": [
+                {
+                    "type": "render",
+                    "props": {}
+                }
+            ],
+            "expectedResults": {
+                "classes": [
+                    "ark-button--primary"
+                ]
+            }
+        },
+        {
+            "id": "BTN-004",
+            "name": "Button - Danger Variant",
+            "description": "Verify danger variant styling",
+            "actions": [
+                {
+                    "type": "render",
+                    "props": {
+                        "variant": "danger"
+                    }
+                }
+            ],
+            "expectedResults": {
+                "classes": [
+                    "ark-button--danger"
+                ]
+            }
+        },
+        {
+            "id": "BTN-005",
+            "name": "Button - Size Variants",
+            "description": "Verify all size variants apply correct classes",
+            "testCases": [
+                {
+                    "props": {
+                        "size": "xs"
+                    },
+                    "expectedClass": "ark-button--xs"
+                },
+                {
+                    "props": {
+                        "size": "sm"
+                    },
+                    "expectedClass": "ark-button--sm"
+                },
+                {
+                    "props": {
+                        "size": "md"
+                    },
+                    "expectedClass": "ark-button--md"
+                },
+                {
+                    "props": {
+                        "size": "lg"
+                    },
+                    "expectedClass": "ark-button--lg"
+                },
+                {
+                    "props": {
+                        "size": "xl"
+                    },
+                    "expectedClass": "ark-button--xl"
+                }
+            ]
+        },
+        {
+            "id": "BTN-006",
+            "name": "Button - Full Width",
+            "description": "Verify full width styling",
+            "actions": [
+                {
+                    "type": "render",
+                    "props": {
+                        "fullWidth": true
+                    }
+                }
+            ],
+            "expectedResults": {
+                "classes": [
+                    "ark-button--full-width"
+                ]
+            }
+        },
+        {
+            "id": "BTN-007",
+            "name": "Button - Submit Type",
+            "description": "Verify type attribute is set correctly",
+            "actions": [
+                {
+                    "type": "render",
+                    "props": {
+                        "type": "submit"
+                    }
+                }
+            ],
+            "expectedResults": {
+                "type": "submit"
+            }
+        },
+        {
+            "id": "BTN-008",
+            "name": "Button - Icon Left",
+            "description": "Verify icon renders on left side",
+            "input": {
+                "iconLeft": "arrow-left"
+            },
+            "expectedResults": {
+                "hasLeftIcon": true
+            }
+        },
+        {
+            "id": "BTN-009",
+            "name": "Button - Icon Only",
+            "description": "Verify icon-only mode",
+            "input": {
+                "iconOnly": true,
+                "iconCenter": "plus"
+            },
+            "expectedResults": {
+                "iconOnly": true,
+                "classes": [
+                    "ark-button--icon-only"
+                ]
+            }
+        },
+        {
+            "id": "BTN-010",
+            "name": "Button - Pill Shape",
+            "description": "Verify pill-shaped button styling",
+            "actions": [
+                {
+                    "type": "render",
+                    "props": {
+                        "pill": true
+                    }
+                }
+            ],
+            "expectedResults": {
+                "classes": [
+                    "ark-button--pill"
+                ]
+            }
+        }
+    ],
+    "schemaValidation": {
+        "variants": [
+            "primary",
+            "secondary",
+            "ghost",
+            "outline",
+            "danger",
+            "success",
+            "link"
+        ],
+        "sizes": [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl"
+        ],
+        "types": [
+            "button",
+            "submit",
+            "reset"
+        ],
+        "defaults": {
+            "variant": "primary",
+            "size": "md",
+            "type": "button",
+            "fullWidth": false,
+            "iconOnly": false,
+            "pill": false
+        }
+    }
+}
