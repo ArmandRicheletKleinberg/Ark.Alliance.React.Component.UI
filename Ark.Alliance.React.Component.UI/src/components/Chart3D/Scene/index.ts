@@ -1,9 +1,12 @@
 /**
  * @fileoverview Scene Barrel Export
  * @module components/Chart3D/Scene
+ * 
+ * Note: Scene3D is not exported here as it is lazy-loaded in Chart3D.tsx
  */
 
 export { AxisSystem } from './AxisSystem';
 export { ChartShapes } from './ChartShapes';
 export { SurfaceRibbon } from './SurfaceRibbon';
-export { Scene3D } from './Scene3D';
+// Scene3D is lazy-loaded directly in Chart3D.tsx - do not export here
+

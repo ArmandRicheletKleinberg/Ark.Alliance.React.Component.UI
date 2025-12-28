@@ -1,6 +1,6 @@
 {
   "name": "ark-alliance-react-ui",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "Professional React UI component library with MVVM architecture, Zod validation, and comprehensive TypeScript support",
   "author": {
     "name": "Armand Richelet-Kleinberg",
@@ -37,7 +37,7 @@
       "import": "./dist/index.mjs",
       "require": "./dist/index.js"
     },
-    "./styles": "./dist/style.css",
+    "./styles": "./dist/ark-alliance-react-ui.css",
     "./package.json": "./package.json"
   },
   "files": [
