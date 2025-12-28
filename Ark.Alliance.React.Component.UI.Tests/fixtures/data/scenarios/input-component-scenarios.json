@@ -1,0 +1,229 @@
+{
+    "id": "input-component-scenarios",
+    "name": "Input Component Scenarios",
+    "component": "Input",
+    "category": "Input",
+    "scenarios": [
+        {
+            "id": "INPUT-001",
+            "name": "Input - Controlled Value Change",
+            "description": "Verify controlled input updates correctly",
+            "actions": [
+                {
+                    "type": "render",
+                    "props": {
+                        "value": "",
+                        "label": "Email"
+                    }
+                },
+                {
+                    "type": "type",
+                    "target": "input",
+                    "text": "test@example.com"
+                },
+                {
+                    "type": "assert",
+                    "target": "onChange",
+                    "calledWith": "test@example.com"
+                }
+            ],
+            "expectedResults": {
+                "value": "test@example.com",
+                "hasError": false
+            }
+        },
+        {
+            "id": "INPUT-002",
+            "name": "Input - With Error State",
+            "description": "Verify error styling applied",
+            "actions": [
+                {
+                    "type": "render",
+                    "props": {
+                        "value": "invalid",
+                        "error": "Invalid format"
+                    }
+                }
+            ],
+            "expectedResults": {
+                "hasError": true,
+                "classes": [
+                    "ark-input--error"
+                ]
+            }
+        },
+        {
+            "id": "INPUT-003",
+            "name": "Input - Paste Restriction",
+            "description": "Verify paste is blocked with restriction",
+            "actions": [
+                {
+                    "type": "render",
+                    "props": {
+                        "value": "",
+                        "inputRestriction": {
+                            "disablePaste": true,
+                            "restrictionMessage": "No paste"
+                        }
+                    }
+                },
+                {
+                    "type": "paste",
+                    "target": "input",
+                    "text": "pasted text"
+                },
+                {
+                    "type": "assert",
+                    "target": "value",
+                    "equals": ""
+                }
+            ],
+            "expectedResults": {
+                "value": "",
+                "restrictionMessage": "No paste"
+            }
+        },
+        {
+            "id": "INPUT-004",
+            "name": "Input - Numeric Sanitization",
+            "description": "Verify paste sanitizes to numbers only",
+            "actions": [
+                {
+                    "type": "render",
+                    "props": {
+                        "value": "",
+                        "inputRestriction": {
+                            "sanitizePaste": true,
+                            "allowedPattern": "[0-9]"
+                        }
+                    }
+                },
+                {
+                    "type": "paste",
+                    "target": "input",
+                    "text": "abc123xyz456"
+                }
+            ],
+            "expectedResults": {
+                "value": "123456"
+            }
+        },
+        {
+            "id": "INPUT-005",
+            "name": "Input - Focus and Blur Events",
+            "description": "Verify focus/blur handlers fire correctly",
+            "actions": [
+                {
+                    "type": "render",
+                    "props": {
+                        "value": ""
+                    }
+                },
+                {
+                    "type": "focus",
+                    "target": "input"
+                },
+                {
+                    "type": "assert",
+                    "target": "onFocus",
+                    "called": true
+                },
+                {
+                    "type": "blur",
+                    "target": "input"
+                },
+                {
+                    "type": "assert",
+                    "target": "onBlur",
+                    "called": true
+                }
+            ],
+            "expectedResults": {
+                "focusCalled": true,
+                "blurCalled": true
+            }
+        },
+        {
+            "id": "INPUT-006",
+            "name": "Input - Value Sync from Parent (REGRESSION)",
+            "description": "NON-REGRESSION: Verify value syncs when parent prop changes",
+            "tags": [
+                "regression",
+                "sync",
+                "controlled"
+            ],
+            "actions": [
+                {
+                    "type": "render",
+                    "props": {
+                        "value": "initial"
+                    }
+                },
+                {
+                    "type": "assert",
+                    "target": "input.value",
+                    "equals": "initial"
+                },
+                {
+                    "type": "rerender",
+                    "props": {
+                        "value": "updated from parent"
+                    }
+                },
+                {
+                    "type": "assert",
+                    "target": "input.value",
+                    "equals": "updated from parent"
+                }
+            ],
+            "expectedResults": {
+                "valueSynced": true
+            }
+        },
+        {
+            "id": "INPUT-007",
+            "name": "Input - Disabled State",
+            "description": "Verify disabled input cannot be edited",
+            "actions": [
+                {
+                    "type": "render",
+                    "props": {
+                        "value": "readonly",
+                        "disabled": true
+                    }
+                }
+            ],
+            "expectedResults": {
+                "disabled": true,
+                "classes": [
+                    "ark-input--disabled"
+                ]
+            }
+        },
+        {
+            "id": "INPUT-008",
+            "name": "Input - Size Variants",
+            "description": "Verify size classes applied correctly",
+            "testCases": [
+                {
+                    "props": {
+                        "size": "sm"
+                    },
+                    "expectedClass": "ark-input--sm"
+                },
+                {
+                    "props": {
+                        "size": "md"
+                    },
+                    "expectedClass": "ark-input--md"
+                },
+                {
+                    "props": {
+                        "size": "lg"
+                    },
+                    "expectedClass": "ark-input--lg"
+                }
+            ]
+        }
+    ]
+}

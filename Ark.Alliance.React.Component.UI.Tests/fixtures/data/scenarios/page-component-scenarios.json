@@ -1,0 +1,155 @@
+{
+    "id": "page-component-scenarios",
+    "name": "Page Component Scenarios",
+    "component": "Page",
+    "category": "Layout",
+    "scenarios": [
+        {
+            "id": "PAGE-001",
+            "name": "Page - Dark Theme",
+            "description": "Verify dark theme class applied",
+            "actions": [
+                {
+                    "type": "render",
+                    "props": {
+                        "title": "Dashboard",
+                        "isDark": true
+                    }
+                }
+            ],
+            "expectedResults": {
+                "classes": [
+                    "ark-page--dark"
+                ]
+            }
+        },
+        {
+            "id": "PAGE-002",
+            "name": "Page - With Breadcrumbs",
+            "description": "Verify breadcrumbs render when provided",
+            "actions": [
+                {
+                    "type": "render",
+                    "props": {
+                        "title": "Settings",
+                        "breadcrumbs": [
+                            {
+                                "label": "Home",
+                                "path": "/"
+                            },
+                            {
+                                "label": "Settings",
+                                "path": "/settings"
+                            }
+                        ]
+                    }
+                }
+            ],
+            "expectedResults": {
+                "hasBreadcrumbs": true,
+                "breadcrumbCount": 2
+            }
+        },
+        {
+            "id": "PAGE-003",
+            "name": "Page - Back Button Handler",
+            "description": "Verify back button callback is invoked",
+            "actions": [
+                {
+                    "type": "render",
+                    "props": {
+                        "title": "Details",
+                        "showBackButton": true
+                    }
+                },
+                {
+                    "type": "click",
+                    "target": ".ark-page__back-button"
+                },
+                {
+                    "type": "assert",
+                    "target": "onBack",
+                    "called": true
+                }
+            ],
+            "expectedResults": {
+                "onBackCalled": true
+            }
+        },
+        {
+            "id": "PAGE-004",
+            "name": "Page - Breadcrumb Click",
+            "description": "Verify breadcrumb click handler fires with path",
+            "actions": [
+                {
+                    "type": "render",
+                    "props": {
+                        "title": "Details",
+                        "breadcrumbs": [
+                            {
+                                "label": "Home",
+                                "path": "/"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "type": "click",
+                    "target": ".ark-page__breadcrumb-item"
+                },
+                {
+                    "type": "assert",
+                    "target": "onBreadcrumbClick",
+                    "calledWith": "/"
+                }
+            ],
+            "expectedResults": {
+                "breadcrumbClicked": true
+            }
+        },
+        {
+            "id": "PAGE-005",
+            "name": "Page - Light Theme",
+            "description": "Verify light theme class applied",
+            "actions": [
+                {
+                    "type": "render",
+                    "props": {
+                        "title": "Dashboard",
+                        "isDark": false
+                    }
+                }
+            ],
+            "expectedResults": {
+                "classes": [
+                    "ark-page--light"
+                ]
+            }
+        },
+        {
+            "id": "PAGE-006",
+            "name": "Page - Layout Variants",
+            "description": "Verify layout variants",
+            "testCases": [
+                {
+                    "props": {
+                        "layout": "standard"
+                    },
+                    "expectedClass": "ark-page--standard"
+                },
+                {
+                    "props": {
+                        "layout": "full"
+                    },
+                    "expectedClass": "ark-page--full"
+                },
+                {
+                    "props": {
+                        "layout": "compact"
+                    },
+                    "expectedClass": "ark-page--compact"
+                }
+            ]
+        }
+    ]
+}

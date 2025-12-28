@@ -1,0 +1,134 @@
+/**
+ * EditorToolbar Styles
+ */
+
+.ark-editor-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 12px;
+    background: rgba(15, 23, 42, 0.95);
+    border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+    flex-wrap: wrap;
+}
+
+/* Divider */
+.ark-editor-toolbar__divider {
+    width: 1px;
+    height: 24px;
+    background: rgba(148, 163, 184, 0.3);
+    margin: 0 4px;
+}
+
+/* Spacer */
+.ark-editor-toolbar__spacer {
+    flex: 1;
+}
+
+/* Select Dropdowns */
+.ark-editor-toolbar__select {
+    height: 28px;
+    padding: 0 8px;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    background: rgba(30, 41, 59, 0.8);
+    color: #e2e8f0;
+    font-size: 12px;
+    cursor: pointer;
+    outline: none;
+    min-width: 100px;
+}
+
+.ark-editor-toolbar__select--size {
+    min-width: 60px;
+}
+
+.ark-editor-toolbar__select:hover {
+    border-color: rgba(0, 212, 255, 0.4);
+}
+
+.ark-editor-toolbar__select:focus {
+    border-color: rgba(0, 212, 255, 0.6);
+}
+
+/* Toolbar Buttons */
+.ark-editor-toolbar__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: none;
+    border-radius: 4px;
+    background: transparent;
+    color: #94a3b8;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+}
+
+.ark-editor-toolbar__btn:hover {
+    background: rgba(148, 163, 184, 0.15);
+    color: #e2e8f0;
+}
+
+.ark-editor-toolbar__btn--active {
+    background: rgba(0, 212, 255, 0.2);
+    color: #00d4ff;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   VISUAL MODES
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Neon */
+.ark-editor-toolbar--neon {
+    background: rgba(2, 6, 23, 0.95);
+    border-color: rgba(0, 212, 255, 0.3);
+}
+
+.ark-editor-toolbar--neon .ark-editor-toolbar__btn--active {
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+}
+
+/* Light */
+.ark-editor-toolbar--light {
+    background: #f8fafc;
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+.ark-editor-toolbar--light .ark-editor-toolbar__select {
+    background: #ffffff;
+    border-color: rgba(0, 0, 0, 0.15);
+    color: #1e293b;
+}
+
+.ark-editor-toolbar--light .ark-editor-toolbar__btn {
+    color: #64748b;
+}
+
+.ark-editor-toolbar--light .ark-editor-toolbar__btn:hover {
+    background: rgba(0, 0, 0, 0.05);
+    color: #1e293b;
+}
+
+.ark-editor-toolbar--light .ark-editor-toolbar__btn--active {
+    background: rgba(2, 132, 199, 0.15);
+    color: #0284c7;
+}
+
+.ark-editor-toolbar--light .ark-editor-toolbar__divider {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+/* Minimal */
+.ark-editor-toolbar--minimal {
+    background: #1e293b;
+    border-color: #334155;
+}
+
+/* Normal */
+.ark-editor-toolbar--normal {
+    background: #0f172a;
+    border-color: rgba(148, 163, 184, 0.2);
+}

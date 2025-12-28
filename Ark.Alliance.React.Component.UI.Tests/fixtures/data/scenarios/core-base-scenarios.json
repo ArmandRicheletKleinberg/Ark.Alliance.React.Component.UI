@@ -1,0 +1,66 @@
+{
+    "id": "core-base-scenarios",
+    "name": "Core Base Model Scenarios",
+    "component": "BaseComponentModel",
+    "category": "Core",
+    "scenarios": [
+        {
+            "id": "BASE-001",
+            "name": "BaseModelSchema - Default Values",
+            "description": "Verify schema generates unique IDs and applies correct defaults",
+            "input": {},
+            "expectedResults": {
+                "id": "GENERATED",
+                "disabled": false,
+                "loading": false
+            }
+        },
+        {
+            "id": "BASE-002",
+            "name": "BaseModelSchema - Custom Values",
+            "description": "Verify custom values override defaults",
+            "input": {
+                "id": "custom-id",
+                "disabled": true,
+                "className": "my-class",
+                "ariaLabel": "Test Label"
+            },
+            "expectedResults": {
+                "id": "custom-id",
+                "disabled": true,
+                "className": "my-class",
+                "ariaLabel": "Test Label"
+            }
+        },
+        {
+            "id": "BASE-003",
+            "name": "BaseModelSchema - With Metadata",
+            "description": "Verify metadata object is preserved",
+            "input": {
+                "metadata": {
+                    "customField": "value",
+                    "count": 5
+                }
+            },
+            "expectedResults": {
+                "metadata.customField": "value",
+                "metadata.count": 5
+            }
+        },
+        {
+            "id": "BASE-004",
+            "name": "BaseModelSchema - With Style",
+            "description": "Verify style object is preserved",
+            "input": {
+                "style": {
+                    "color": "red",
+                    "fontSize": "16px"
+                }
+            },
+            "expectedResults": {
+                "style.color": "red",
+                "style.fontSize": "16px"
+            }
+        }
+    ]
+}

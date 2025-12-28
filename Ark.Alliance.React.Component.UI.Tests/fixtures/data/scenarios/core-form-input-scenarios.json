@@ -1,0 +1,132 @@
+{
+    "id": "core-form-input-scenarios",
+    "name": "Form Input Model Scenarios",
+    "component": "FormInputModel",
+    "category": "Core",
+    "scenarios": [
+        {
+            "id": "FORM-001",
+            "name": "FormInputModel - Default State",
+            "description": "Verify form input schema defaults",
+            "input": {},
+            "expectedResults": {
+                "required": false,
+                "touched": false,
+                "validationState": "none",
+                "readOnly": false
+            }
+        },
+        {
+            "id": "FORM-002",
+            "name": "FormInputModel - With Restrictions",
+            "description": "Verify input restrictions are properly parsed",
+            "input": {
+                "inputRestriction": {
+                    "disablePaste": true,
+                    "restrictionMessage": "No paste allowed"
+                }
+            },
+            "expectedResults": {
+                "inputRestriction.disablePaste": true,
+                "inputRestriction.restrictionMessage": "No paste allowed"
+            }
+        },
+        {
+            "id": "FORM-003",
+            "name": "FormInputModel - Full Configuration",
+            "description": "Verify all form input properties",
+            "input": {
+                "label": "Email Address",
+                "name": "email",
+                "required": true,
+                "helpText": "Enter your email",
+                "autoComplete": "email"
+            },
+            "expectedResults": {
+                "label": "Email Address",
+                "name": "email",
+                "required": true,
+                "helpText": "Enter your email",
+                "autoComplete": "email"
+            }
+        },
+        {
+            "id": "FORM-004",
+            "name": "FormInputModel - Validation States",
+            "description": "Verify validation state transitions",
+            "testCases": [
+                {
+                    "input": {
+                        "validationState": "none"
+                    },
+                    "expected": "none"
+                },
+                {
+                    "input": {
+                        "validationState": "valid"
+                    },
+                    "expected": "valid"
+                },
+                {
+                    "input": {
+                        "validationState": "invalid"
+                    },
+                    "expected": "invalid"
+                },
+                {
+                    "input": {
+                        "validationState": "pending"
+                    },
+                    "expected": "pending"
+                }
+            ]
+        }
+    ],
+    "presetScenarios": [
+        {
+            "id": "RESTR-001",
+            "name": "InputRestriction - Block All Preset",
+            "description": "Verify blockAll preset configuration",
+            "preset": "blockAll",
+            "expectedResults": {
+                "disableCopy": true,
+                "disableCut": true,
+                "disablePaste": true,
+                "disableDrop": true
+            }
+        },
+        {
+            "id": "RESTR-002",
+            "name": "InputRestriction - Numeric Sanitization",
+            "description": "Verify numericOnly sanitizes to digits",
+            "preset": "numericOnly",
+            "input": "abc123def456",
+            "expectedResults": {
+                "sanitizedValue": "123456",
+                "sanitizePaste": true,
+                "allowedPattern": "[0-9]"
+            }
+        },
+        {
+            "id": "RESTR-003",
+            "name": "InputRestriction - Alphanumeric",
+            "description": "Verify alphanumericOnly preset",
+            "preset": "alphanumericOnly",
+            "input": "Hello World! @#$% 123",
+            "expectedResults": {
+                "sanitizedValue": "HelloWorld123",
+                "allowedPattern": "[a-zA-Z0-9]"
+            }
+        },
+        {
+            "id": "RESTR-004",
+            "name": "InputRestriction - Financial Field",
+            "description": "Verify financial field with length limit",
+            "preset": "financialField",
+            "expectedResults": {
+                "sanitizePaste": true,
+                "maxPasteLength": 20
+            }
+        }
+    ]
+}
