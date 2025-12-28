@@ -116,20 +116,26 @@ export function useBaseViewModel<T extends BaseModel>(
     defaultModel: T,
     options: UseBaseViewModelOptions<T> = {}
 ): BaseViewModelResult<T> {
-    // Merge default model with provided model
-    const initialModel = useMemo(
+    // Merge default model with provided model - now tracks defaultModel changes
+    const mergedModel = useMemo(
         () => ({ ...defaultModel, ...options.model }) as T,
-        [] // Only compute once
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        [JSON.stringify(defaultModel), JSON.stringify(options.model)]
     );
 
-    // Core state
-    const [model, setModel] = useState<T>(initialModel);
+    // Core state - initialized with merged model
+    const [model, setModel] = useState<T>(mergedModel);
     const [state, setState] = useState<BaseViewModelState>({
         phase: 'mounting',
         isLoading: false,
         error: null,
         isMounted: false,
     });
+
+    // Sync model state when mergedModel changes (props updated from parent)
+    useEffect(() => {
+        setModel(mergedModel);
+    }, [mergedModel]);
 
     // Refs for tracking previous values and cleanup
     const prevModelRef = useRef<T>(model);
