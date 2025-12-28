@@ -8,6 +8,16 @@
 
 import { z } from 'zod';
 import { extendSchema } from '../../../core/base';
+import {
+    BasicSizeSchema,
+    InputVariantSchema,
+    InputFormatSchema,
+    InputValidationConfigSchema,
+    type BasicSize,
+    type InputVariant,
+    type InputFormat,
+    type InputValidationConfig,
+} from '../../../core/enums';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // SCHEMA DEFINITIONS
@@ -15,23 +25,25 @@ import { extendSchema } from '../../../core/base';
 
 /**
  * Size variants for input components
+ * @deprecated Use BasicSizeSchema from '@core/enums' instead
  */
-export const InputSize = z.enum(['sm', 'md', 'lg']);
+export const InputSize = BasicSizeSchema;
 
 /**
  * Style variants for input components
+ * @deprecated Use InputVariantSchema from '@core/enums' instead
  */
-export const InputVariant = z.enum(['default', 'filled', 'outlined', 'underlined']);
+export const InputVariant = InputVariantSchema;
 
 /**
  * BaseInput model schema extending base model
  */
 export const BaseInputModelSchema = extendSchema({
     /** Size variant */
-    size: InputSize.default('md'),
+    size: BasicSizeSchema.default('md'),
 
     /** Style variant */
-    variant: InputVariant.default('default'),
+    variant: InputVariantSchema.default('default'),
 
     /** Error state */
     hasError: z.boolean().default(false),
@@ -74,15 +86,57 @@ export const BaseInputModelSchema = extendSchema({
 
     /** Read-only state */
     readOnly: z.boolean().default(false),
+
+    // ═══════════════════════════════════════════════════════════════════════
+    // VALIDATION PROPERTIES
+    // ═══════════════════════════════════════════════════════════════════════
+
+    /**
+     * Expected input format for validation.
+     * Set to 'none' for free text without format validation.
+     * 
+     * @example
+     * ```tsx
+     * <BaseInput validationFormat="email" />
+     * <BaseInput validationFormat="iban" />
+     * <BaseInput validationFormat="none" /> // Free text
+     * ```
+     */
+    validationFormat: InputFormatSchema.default('none'),
+
+    /**
+     * Optional validation configuration.
+     * Used to customize validation behavior (min/max, decimals, etc.)
+     */
+    validationConfig: InputValidationConfigSchema,
+
+    /**
+     * Whether to validate on blur (default) or on change.
+     */
+    validateOnBlur: z.boolean().default(true),
+
+    /**
+     * Whether to validate on each change.
+     */
+    validateOnChange: z.boolean().default(false),
+
+    /**
+     * Current validation error message (set after validation).
+     */
+    validationError: z.string().optional(),
 });
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPE EXPORTS
 // ═══════════════════════════════════════════════════════════════════════════
 
-export type InputSizeType = z.infer<typeof InputSize>;
-export type InputVariantType = z.infer<typeof InputVariant>;
+export type InputSizeType = BasicSize;
+export type InputVariantType = InputVariant;
+export type InputFormatType = InputFormat;
 export type BaseInputModel = z.infer<typeof BaseInputModelSchema>;
+
+// Re-export for convenience
+export { type InputFormat, type InputValidationConfig };
 
 // ═══════════════════════════════════════════════════════════════════════════
 // DEFAULT VALUES
@@ -114,6 +168,10 @@ export const defaultBaseInputModel: BaseInputModel = {
     focusable: true, // Inputs are focusable by default
     tooltipPosition: 'top',
     tooltipDelay: 300,
+    // Validation defaults
+    validationFormat: 'none',
+    validateOnBlur: true,
+    validateOnChange: false,
 };
 
 /**

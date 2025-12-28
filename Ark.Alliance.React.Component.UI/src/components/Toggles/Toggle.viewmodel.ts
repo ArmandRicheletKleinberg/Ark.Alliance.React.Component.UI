@@ -73,10 +73,11 @@ export interface UseToggleResult extends BaseViewModelResult<ToggleModel> {
 export function useToggle(options: UseToggleOptions = {}): UseToggleResult {
     const { onChange, isDark = true, ...modelData } = options;
 
-    // Parse model options
+    // Parse model options with JSON.stringify for proper dependency tracking
     const modelOptions = useMemo(() => {
         return ToggleModelSchema.parse({ ...defaultToggleModel, ...modelData });
-    }, [modelData]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [JSON.stringify(modelData)]);
 
     // Use base ViewModel
     const base = useBaseViewModel<ToggleModel>(modelOptions, {

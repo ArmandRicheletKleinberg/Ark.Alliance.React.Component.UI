@@ -7,6 +7,7 @@
 
 import { z } from 'zod';
 import { extendSchema } from '../../../core/base';
+import { BasicSizeSchema, BasicVariantSchema, type BasicSize, type BasicVariant } from '../../../core/enums';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // SCHEMA
@@ -37,9 +38,9 @@ export const SelectModelSchema = extendSchema({
     /** Searchable/filterable */
     searchable: z.boolean().default(false),
     /** Size variant */
-    size: z.enum(['sm', 'md', 'lg']).default('md'),
+    size: BasicSizeSchema.default('md'),
     /** Visual variant */
-    variant: z.enum(['default', 'neon', 'minimal']).default('default'),
+    variant: BasicVariantSchema.default('default'),
     /** Dark mode */
     isDark: z.boolean().default(true),
 });

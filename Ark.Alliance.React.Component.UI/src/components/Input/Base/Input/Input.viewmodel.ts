@@ -11,7 +11,7 @@ import {
     useBaseViewModel,
     useFormInputRestrictions,
     type BaseViewModelResult,
-} from '../../core/base';
+} from '../../../../core/base';
 import type { InputModel } from './Input.model';
 import {
     defaultInputModel,

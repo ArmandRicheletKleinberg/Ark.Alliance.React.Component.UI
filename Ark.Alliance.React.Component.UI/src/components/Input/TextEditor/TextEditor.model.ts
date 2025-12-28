@@ -7,6 +7,7 @@
 
 import { z } from 'zod';
 import { extendSchema } from '../../../core/base';
+import { TextAlignmentSchema, type TextAlignment } from '../../../core/enums';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // SCHEMA DEFINITIONS
@@ -14,16 +15,17 @@ import { extendSchema } from '../../../core/base';
 
 /**
  * Text alignment options
+ * @deprecated Use TextAlignmentSchema from '@core/enums' instead
  */
-export const TextAlignment = z.enum(['left', 'center', 'right', 'justify']);
+export const TextAlignment = TextAlignmentSchema;
 
 /**
- * Editor visual mode
+ * Editor visual mode (component-specific)
  */
 export const EditorVisualMode = z.enum(['normal', 'neon', 'minimal', 'light']);
 
 /**
- * Editor toolbar position
+ * Editor toolbar position (component-specific)
  */
 export const ToolbarPosition = z.enum(['top', 'bottom', 'floating']);
 
@@ -46,7 +48,7 @@ export const FormatStateSchema = z.object({
     italic: z.boolean().default(false),
     underline: z.boolean().default(false),
     strikethrough: z.boolean().default(false),
-    alignment: TextAlignment.default('left'),
+    alignment: TextAlignmentSchema.default('left'),
     fontFamily: z.string().default('Arial'),
     fontSize: z.number().default(14),
     fontColor: z.string().default('#ffffff'),

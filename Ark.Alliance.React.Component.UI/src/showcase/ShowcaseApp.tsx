@@ -272,7 +272,11 @@ export const ShowcaseApp = memo(function ShowcaseApp({ categories }: ShowcaseApp
                 />
                 <main className="showcase-main">
                     {selectedCategory ? (
-                        <FamilyPage category={selectedCategory} isDark={isDark} />
+                        <FamilyPage
+                            key={selectedCategory.name}
+                            category={selectedCategory}
+                            isDark={isDark}
+                        />
                     ) : (
                         <HomePage
                             categories={categories}

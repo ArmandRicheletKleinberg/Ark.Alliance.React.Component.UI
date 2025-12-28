@@ -7,6 +7,7 @@
 
 import { z } from 'zod';
 import { extendSchema } from '../../core/base';
+import { ModalSizeSchema, type ModalSize } from '../../core/enums';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // MODEL
@@ -20,7 +21,7 @@ export const ModalModelSchema = extendSchema({
     /** Subtitle */
     subtitle: z.string().optional(),
     /** Size variant */
-    size: z.enum(['sm', 'md', 'lg', 'xl', 'full']).default('md'),
+    size: ModalSizeSchema.default('md'),
     /** Show close button */
     showClose: z.boolean().default(true),
     /** Close on backdrop click */

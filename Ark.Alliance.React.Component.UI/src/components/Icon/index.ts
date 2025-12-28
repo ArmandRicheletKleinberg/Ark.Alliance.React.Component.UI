@@ -7,12 +7,12 @@
  */
 
 // ═══════════════════════════════════════════════════════════════════════════
-// CUSTOM SVG ICON
+// BASE SVG ICON
 // ═══════════════════════════════════════════════════════════════════════════
 
 // Component
-export { Icon, default } from './Icon';
-export type { IconProps } from './Icon';
+export { Icon, default } from './Base/Icon/Icon';
+export type { IconProps } from './Base/Icon/Icon';
 
 // Model
 export {
@@ -23,21 +23,22 @@ export {
     createIconModel,
     defaultIconModel,
     ICON_SIZE_MAP,
-} from './Icon.model';
+} from './Base/Icon/Icon.model';
 export type {
     IconModel,
     IconSizeType,
     IconRotationType,
     IconFlipType,
     IconDefinition,
-} from './Icon.model';
+} from './Base/Icon/Icon.model';
 
 // ViewModel
-export { useIcon, default as useIconHook } from './Icon.viewmodel';
-export type { UseIconOptions, UseIconResult } from './Icon.viewmodel';
+export { useIcon, default as useIconHook } from './Base/Icon/Icon.viewmodel';
+export type { UseIconOptions, UseIconResult } from './Base/Icon/Icon.viewmodel';
 
 // Registry
 export { IconRegistry } from './icons/IconRegistry';
+
 
 // ═══════════════════════════════════════════════════════════════════════════
 // FONT AWESOME ICON

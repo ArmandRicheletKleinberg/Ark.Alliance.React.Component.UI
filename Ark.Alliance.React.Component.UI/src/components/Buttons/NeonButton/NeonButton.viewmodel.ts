@@ -108,10 +108,11 @@ const neonVariantStyles: Record<NeonButtonVariantType, { color: string; glow: st
 export function useNeonButton(options: UseNeonButtonOptions): UseNeonButtonResult {
     const { onClick, ...modelData } = options;
 
-    // Parse model options
+    // Parse model options with JSON.stringify for proper dependency tracking
     const modelOptions = useMemo(() => {
         return NeonButtonModelSchema.parse({ ...defaultNeonButtonModel, ...modelData });
-    }, [modelData]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [JSON.stringify(modelData)]);
 
     // Use base ViewModel
     const base = useBaseViewModel<NeonButtonModel>(modelOptions, {

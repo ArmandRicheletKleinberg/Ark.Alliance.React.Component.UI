@@ -7,6 +7,7 @@
  */
 
 import { z } from 'zod';
+import { PositionSchema, type Position } from '../enums';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // BASE MODEL SCHEMA
@@ -61,7 +62,7 @@ export const BaseModelSchema = z.object({
     tooltip: z.string().optional(),
 
     /** Tooltip position relative to the component */
-    tooltipPosition: z.enum(['top', 'bottom', 'left', 'right']).default('top'),
+    tooltipPosition: PositionSchema.default('top'),
 
     /** Delay in ms before showing tooltip */
     tooltipDelay: z.number().min(0).default(300),
@@ -275,7 +276,7 @@ export abstract class BaseComponentModel<T extends BaseModel = BaseModel> {
     /**
      * Get tooltip position
      */
-    get tooltipPosition(): 'top' | 'bottom' | 'left' | 'right' {
+    get tooltipPosition(): Position {
         return (this.data as BaseModel).tooltipPosition || 'top';
     }
 

@@ -3,10 +3,19 @@
  * @module components/Input
  */
 
-export * from './Input.model';
-export * from './Input.viewmodel';
-export { Input, type InputProps } from './Input';
+// ═══════════════════════════════════════════════════════════════════════════
+// BASE INPUT COMPONENTS
+// ═══════════════════════════════════════════════════════════════════════════
+
+export * from './Base/Input/Input.model';
+export * from './Base/Input/Input.viewmodel';
+export { Input, type InputProps } from './Base/Input/Input';
 export * from './BaseInput';
+
+// ═══════════════════════════════════════════════════════════════════════════
+// SPECIALIZED INPUT COMPONENTS
+// ═══════════════════════════════════════════════════════════════════════════
+
 export * from './NeonInput';
 export * from './Select';
 export * from './TextArea';

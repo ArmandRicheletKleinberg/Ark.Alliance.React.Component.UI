@@ -111,10 +111,11 @@ export function useGauge(options: UseGaugeOptions): UseGaugeResult {
     const animationTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
     const isAnimatingRef = useRef(false);
 
-    // Parse model options
+    // Parse model options with JSON.stringify for proper dependency tracking
     const modelOptions = useMemo(() => {
         return GaugeModelSchema.parse({ ...defaultGaugeModel, ...modelData });
-    }, [modelData]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [JSON.stringify(modelData)]);
 
     // Use base ViewModel
     const base = useBaseViewModel<GaugeModel>(modelOptions, {

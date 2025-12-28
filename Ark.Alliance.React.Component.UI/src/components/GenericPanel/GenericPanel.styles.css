@@ -1,0 +1,240 @@
+/**
+ * GenericPanel Styles
+ * 
+ * CSS with custom properties for runtime theming support.
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   BASE STYLES
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-generic-panel {
+    position: relative;
+    overflow: hidden;
+    transition: all 300ms ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   VARIANTS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-generic-panel--default {
+    background: var(--ark-panel-bg, #1f2937);
+    border-color: var(--ark-border, #374151);
+}
+
+.ark-generic-panel--glass {
+    background: rgba(31, 41, 55, 0.7);
+    border-color: rgba(75, 85, 99, 0.5);
+}
+
+.ark-generic-panel--bordered {
+    background: transparent;
+    border: 2px solid var(--ark-border, #374151);
+}
+
+.ark-generic-panel--elevated {
+    background: var(--ark-panel-bg, #1f2937);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Light theme variants */
+[data-theme="light"] .ark-generic-panel--default,
+[data-theme="light"] .ark-generic-panel--elevated {
+    background: #ffffff;
+    border-color: #e5e7eb;
+}
+
+[data-theme="light"] .ark-generic-panel--glass {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: rgba(229, 231, 235, 0.5);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   LAYOUT MODES
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-generic-panel--inline {
+    /* Default inline layout, no special styles */
+}
+
+.ark-generic-panel--sidebar-left,
+.ark-generic-panel--sidebar-right {
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    z-index: 50;
+}
+
+.ark-generic-panel--sidebar-left {
+    left: 0;
+}
+
+.ark-generic-panel--sidebar-right {
+    right: 0;
+}
+
+.ark-generic-panel--fullscreen {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   MODIFIERS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-generic-panel--scrollable .ark-generic-panel__body {
+    overflow-y: auto;
+}
+
+.ark-generic-panel--collapsed {
+    /* Collapsed state handled by hiding body */
+}
+
+.ark-generic-panel--with-grid {
+    /* Grid overlay styles handled by primitive component */
+}
+
+.ark-generic-panel--with-glow {
+    /* Glow effect handled by wrapper component */
+}
+
+.ark-generic-panel--glass-effect {
+    /* Enhanced glass effect */
+    background: rgba(31, 41, 55, 0.5) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   HEADER
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-generic-panel__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--ark-gp-text, var(--ark-text-primary, #f3f4f6));
+}
+
+[data-theme="light"] .ark-generic-panel__header {
+    border-bottom-color: rgba(0, 0, 0, 0.1);
+    color: #1f2937;
+}
+
+.ark-generic-panel--collapsed .ark-generic-panel__header {
+    border-bottom: none;
+}
+
+.ark-generic-panel__header-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.ark-generic-panel__header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.ark-generic-panel__collapse-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background: transparent;
+    border: none;
+    color: var(--ark-gp-text, #6b7280);
+    cursor: pointer;
+    border-radius: 0.25rem;
+    transition:
+        background-color 100ms ease,
+        color 100ms ease;
+}
+
+.ark-generic-panel__collapse-btn:hover {
+    background-color: rgba(107, 114, 128, 0.2);
+    color: var(--ark-gp-accent, var(--ark-primary, #3b82f6));
+}
+
+.ark-generic-panel__collapse-btn:focus {
+    outline: 2px solid var(--ark-gp-accent, var(--ark-primary, #3b82f6));
+    outline-offset: 2px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   BODY
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-generic-panel__body {
+    position: relative;
+    z-index: 1;
+}
+
+.ark-generic-panel__body--none {
+    padding: 0;
+}
+
+.ark-generic-panel__body--sm {
+    padding: 0.5rem;
+}
+
+.ark-generic-panel__body--md {
+    padding: 1rem;
+}
+
+.ark-generic-panel__body--lg {
+    padding: 1.5rem;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-generic-panel__footer {
+    padding: 0.75rem 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="light"] .ark-generic-panel__footer {
+    border-top-color: rgba(0, 0, 0, 0.1);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   OVERLAY
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-generic-panel__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.ark-generic-panel__overlay>* {
+    pointer-events: auto;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   TRANSITIONS & ANIMATIONS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-generic-panel--sidebar-left,
+.ark-generic-panel--sidebar-right {
+    transition: transform 300ms ease-in-out;
+}
+
+/* Sidebar collapse animation */
+.ark-generic-panel--sidebar-left.ark-generic-panel--collapsed {
+    transform: translateX(-100%);
+}
+
+.ark-generic-panel--sidebar-right.ark-generic-panel--collapsed {
+    transform: translateX(100%);
+}

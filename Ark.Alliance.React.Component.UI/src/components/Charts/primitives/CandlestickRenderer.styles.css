@@ -1,0 +1,87 @@
+/**
+ * CandlestickRenderer Styles
+ * 
+ * Styles for the OHLCV candlestick chart primitive.
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   CONTAINER
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-candlestick-renderer {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   CANDLE LAYER
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-candlestick-renderer__candle-layer {
+    /* Container for all candles */
+}
+
+.ark-candlestick-renderer__candle {
+    transition: opacity 0.15s ease;
+}
+
+.ark-candlestick-renderer__candle:hover {
+    opacity: 0.8;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   WICK
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-candlestick-renderer__wick {
+    stroke-linecap: round;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   BODY
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-candlestick-renderer__body {
+    transition: filter 0.15s ease;
+}
+
+.ark-candlestick-renderer__candle:hover .ark-candlestick-renderer__body {
+    filter: brightness(1.1);
+}
+
+.ark-candlestick-renderer__body--doji {
+    stroke-linecap: round;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   VOLUME
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-candlestick-renderer__volume-layer {
+    /* Container for volume bars */
+}
+
+.ark-candlestick-renderer__volume-bar {
+    transition: opacity 0.15s ease;
+}
+
+.ark-candlestick-renderer--with-volume .ark-candlestick-renderer__volume-bar:hover {
+    opacity: 0.5;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   BULLISH / BEARISH MODIFIERS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-candlestick-renderer__candle--bullish .ark-candlestick-renderer__body {
+    /* Green candle styling handled via fill prop */
+}
+
+.ark-candlestick-renderer__candle--bearish .ark-candlestick-renderer__body {
+    /* Red candle styling handled via fill prop */
+}
+
+.ark-candlestick-renderer__candle--doji .ark-candlestick-renderer__wick {
+    stroke-width: 1.5px;
+}

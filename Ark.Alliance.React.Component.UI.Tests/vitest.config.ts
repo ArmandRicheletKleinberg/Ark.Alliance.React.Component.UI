@@ -29,6 +29,7 @@ export default defineConfig({
             '@': resolve(__dirname, '../Ark.Alliance.React.Component.UI/src'),
             '@core': resolve(__dirname, '../Ark.Alliance.React.Component.UI/src/core'),
             '@components': resolve(__dirname, '../Ark.Alliance.React.Component.UI/src/components'),
+            '@lib': resolve(__dirname, '../Ark.Alliance.React.Component.UI/src'),
         },
     },
 });

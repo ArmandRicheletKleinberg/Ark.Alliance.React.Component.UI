@@ -1,0 +1,400 @@
+/**
+ * @fileoverview Property Controls Styles
+ * @module showcase/components/controls
+ * 
+ * Premium dark theme with neon accents for control primitives.
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   BASE CONTROL STYLES
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.property-control {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 0;
+    min-height: 36px;
+}
+
+.property-control__label {
+    flex: 0 0 100px;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: #9ca3af;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.property-control__value {
+    flex: 0 0 60px;
+    font-size: 0.75rem;
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    color: #00d4ff;
+    text-align: right;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SLIDER
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.property-slider__track-container {
+    flex: 1;
+    position: relative;
+}
+
+.property-slider__input {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 4px;
+    border-radius: 2px;
+    background: linear-gradient(to right,
+            #00d4ff 0%,
+            #00d4ff var(--fill-percent, 50%),
+            #374151 var(--fill-percent, 50%),
+            #374151 100%);
+    cursor: pointer;
+    transition: opacity 150ms ease;
+}
+
+.property-slider__input:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.property-slider__input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #00d4ff;
+    border: 2px solid #0a0a0a;
+    box-shadow: 0 0 8px rgba(0, 212, 255, 0.5);
+    cursor: grab;
+    transition: transform 150ms ease, box-shadow 150ms ease;
+}
+
+.property-slider__input::-webkit-slider-thumb:hover {
+    transform: scale(1.15);
+    box-shadow: 0 0 12px rgba(0, 212, 255, 0.7);
+}
+
+.property-slider__input::-webkit-slider-thumb:active {
+    cursor: grabbing;
+    transform: scale(1.1);
+}
+
+.property-slider__input::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #00d4ff;
+    border: 2px solid #0a0a0a;
+    box-shadow: 0 0 8px rgba(0, 212, 255, 0.5);
+    cursor: grab;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   TOGGLE
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.property-toggle__switch {
+    position: relative;
+    width: 44px;
+    height: 24px;
+    background: #374151;
+    border: 1px solid #4b5563;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 200ms ease;
+    padding: 0;
+}
+
+.property-toggle__switch:hover {
+    border-color: #6b7280;
+}
+
+.property-toggle__switch--checked {
+    background: linear-gradient(135deg, #00d4ff, #0ea5e9);
+    border-color: #00d4ff;
+    box-shadow: 0 0 12px rgba(0, 212, 255, 0.4);
+}
+
+.property-toggle__knob {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 18px;
+    height: 18px;
+    background: #f3f4f6;
+    border-radius: 50%;
+    transition: transform 200ms ease, box-shadow 200ms ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.property-toggle__switch--checked .property-toggle__knob {
+    transform: translateX(20px);
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+.property-toggle__switch:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SELECT
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.property-select__input {
+    flex: 1;
+    height: 32px;
+    padding: 0 32px 0 12px;
+    background: #1f2937;
+    border: 1px solid #374151;
+    border-radius: 6px;
+    color: #f3f4f6;
+    font-size: 0.8125rem;
+    cursor: pointer;
+    transition: all 150ms ease;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%239ca3af' d='M3 4.5l3 3 3-3'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+}
+
+.property-select__input:hover {
+    border-color: #4b5563;
+}
+
+.property-select__input:focus {
+    outline: none;
+    border-color: #00d4ff;
+    box-shadow: 0 0 0 2px rgba(0, 212, 255, 0.2);
+}
+
+.property-select__input:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.property-select__input option {
+    background: #1f2937;
+    color: #f3f4f6;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   INPUT
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.property-input__input {
+    flex: 1;
+    height: 32px;
+    padding: 0 12px;
+    background: #1f2937;
+    border: 1px solid #374151;
+    border-radius: 6px;
+    color: #f3f4f6;
+    font-size: 0.8125rem;
+    transition: all 150ms ease;
+}
+
+.property-input__input::placeholder {
+    color: #6b7280;
+}
+
+.property-input__input:hover {
+    border-color: #4b5563;
+}
+
+.property-input__input:focus {
+    outline: none;
+    border-color: #00d4ff;
+    box-shadow: 0 0 0 2px rgba(0, 212, 255, 0.2);
+}
+
+.property-input__input:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   COLOR
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.property-color__container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.property-color__swatch {
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    border: 2px solid #374151;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2);
+}
+
+.property-color__input {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    opacity: 0;
+    position: absolute;
+}
+
+.property-color__container {
+    position: relative;
+}
+
+.property-color__swatch {
+    cursor: pointer;
+    transition: transform 150ms ease, box-shadow 150ms ease;
+}
+
+.property-color__swatch:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 8px rgba(0, 212, 255, 0.3);
+}
+
+.property-color__value {
+    font-size: 0.75rem;
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    color: #9ca3af;
+    text-transform: uppercase;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   UPLOAD
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.property-upload__container {
+    flex: 1;
+}
+
+.property-upload__dropzone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
+    padding: 8px 16px;
+    background: #1f2937;
+    border: 1px dashed #4b5563;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 150ms ease;
+}
+
+.property-upload__dropzone:hover {
+    border-color: #00d4ff;
+    background: rgba(0, 212, 255, 0.05);
+}
+
+.property-upload__input {
+    display: none;
+}
+
+.property-upload__icon {
+    font-size: 1rem;
+    margin-bottom: 2px;
+}
+
+.property-upload__text {
+    font-size: 0.6875rem;
+    color: #9ca3af;
+}
+
+.property-upload__preview {
+    position: relative;
+    width: 48px;
+    height: 48px;
+}
+
+.property-upload__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid #374151;
+}
+
+.property-upload__clear {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    width: 18px;
+    height: 18px;
+    padding: 0;
+    background: #ef4444;
+    border: none;
+    border-radius: 50%;
+    color: white;
+    font-size: 0.75rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: transform 150ms ease;
+}
+
+.property-upload__clear:hover {
+    transform: scale(1.1);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   LIGHT THEME
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+[data-theme="light"] .property-control__label {
+    color: #4b5563;
+}
+
+[data-theme="light"] .property-control__value {
+    color: #0284c7;
+}
+
+[data-theme="light"] .property-slider__input {
+    background: linear-gradient(to right,
+            #0284c7 0%,
+            #0284c7 var(--fill-percent, 50%),
+            #d1d5db var(--fill-percent, 50%),
+            #d1d5db 100%);
+}
+
+[data-theme="light"] .property-slider__input::-webkit-slider-thumb {
+    background: #0284c7;
+    border-color: #fff;
+    box-shadow: 0 0 8px rgba(2, 132, 199, 0.4);
+}
+
+[data-theme="light"] .property-toggle__switch {
+    background: #d1d5db;
+    border-color: #9ca3af;
+}
+
+[data-theme="light"] .property-toggle__switch--checked {
+    background: linear-gradient(135deg, #0284c7, #0369a1);
+    border-color: #0284c7;
+}
+
+[data-theme="light"] .property-select__input,
+[data-theme="light"] .property-input__input {
+    background: #f9fafb;
+    border-color: #d1d5db;
+    color: #1f2937;
+}
+
+[data-theme="light"] .property-color__swatch {
+    border-color: #d1d5db;
+}
+
+[data-theme="light"] .property-color__value {
+    color: #6b7280;
+}

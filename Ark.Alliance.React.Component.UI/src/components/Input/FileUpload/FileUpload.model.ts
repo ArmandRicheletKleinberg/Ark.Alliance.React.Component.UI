@@ -5,6 +5,7 @@
 
 import { z } from 'zod';
 import { extendSchema } from '../../../core/base';
+import { BasicVariantSchema, BasicSizeSchema } from '../../../core/enums';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // SCHEMA
@@ -26,9 +27,9 @@ export const FileUploadModelSchema = extendSchema({
     /** Current file name */
     fileName: z.string().nullable().default(null),
     /** Visual variant */
-    variant: z.enum(['default', 'neon', 'minimal']).default('default'),
+    variant: BasicVariantSchema.default('default'),
     /** Size variant */
-    size: z.enum(['sm', 'md', 'lg']).default('md'),
+    size: BasicSizeSchema.default('md'),
     /** Dark mode */
     isDark: z.boolean().default(true),
 });

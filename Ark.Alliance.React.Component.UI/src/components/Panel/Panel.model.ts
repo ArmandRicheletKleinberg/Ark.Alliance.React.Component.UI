@@ -7,6 +7,7 @@
 
 import { z } from 'zod';
 import { extendSchema } from '../../core/base';
+import { PanelVariantSchema, PaddingSchema, type PanelVariant, type Padding } from '../../core/enums';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // SCHEMA DEFINITIONS
@@ -14,8 +15,9 @@ import { extendSchema } from '../../core/base';
 
 /**
  * Panel variant styles
+ * @deprecated Use PanelVariantSchema from '@core/enums' instead
  */
-export const PanelVariant = z.enum(['default', 'glass', 'bordered', 'elevated']);
+export const PanelVariant = PanelVariantSchema;
 
 /**
  * Panel model schema extending base model
@@ -25,7 +27,7 @@ export const PanelModelSchema = extendSchema({
     title: z.string().optional(),
 
     /** Style variant */
-    variant: PanelVariant.default('default'),
+    variant: PanelVariantSchema.default('default'),
 
     /** Whether panel is collapsible */
     collapsible: z.boolean().default(false),
@@ -34,14 +36,14 @@ export const PanelModelSchema = extendSchema({
     collapsed: z.boolean().default(false),
 
     /** Padding size */
-    padding: z.enum(['none', 'sm', 'md', 'lg']).default('md'),
+    padding: PaddingSchema.default('md'),
 });
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPE EXPORTS
 // ═══════════════════════════════════════════════════════════════════════════
 
-export type PanelVariantType = z.infer<typeof PanelVariant>;
+export type PanelVariantType = PanelVariant;
 export type PanelModel = z.infer<typeof PanelModelSchema>;
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -59,3 +61,4 @@ export const defaultPanelModel: PanelModel = PanelModelSchema.parse({});
 export function createPanelModel(data: Partial<PanelModel> = {}): PanelModel {
     return PanelModelSchema.parse(data);
 }
+

@@ -7,6 +7,7 @@
 
 import { z } from 'zod';
 import { extendSchema } from '../../core/base';
+import { PositionSchema, type Position } from '../../core/enums';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // SCHEMA DEFINITIONS
@@ -14,8 +15,9 @@ import { extendSchema } from '../../core/base';
 
 /**
  * Tooltip position variants
+ * @deprecated Use PositionSchema from '@core/enums' instead
  */
-export const TooltipPosition = z.enum(['top', 'bottom', 'left', 'right']);
+export const TooltipPosition = PositionSchema;
 
 /**
  * Tooltip model schema extending base model
@@ -25,7 +27,7 @@ export const TooltipModelSchema = extendSchema({
     content: z.union([z.string(), z.any()]).optional(),
 
     /** Position relative to trigger element */
-    position: TooltipPosition.default('top'),
+    position: PositionSchema.default('top'),
 
     /** Delay in ms before showing tooltip */
     delay: z.number().min(0).default(300),
@@ -44,7 +46,7 @@ export const TooltipModelSchema = extendSchema({
 // TYPE EXPORTS
 // ═══════════════════════════════════════════════════════════════════════════
 
-export type TooltipPositionType = z.infer<typeof TooltipPosition>;
+export type TooltipPositionType = Position;
 export type TooltipModel = z.infer<typeof TooltipModelSchema>;
 
 // ═══════════════════════════════════════════════════════════════════════════

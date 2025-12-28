@@ -8,6 +8,7 @@
 
 import { z } from 'zod';
 import { extendSchema } from '../../core/base';
+import { PaddingSchema, type Padding } from '../../core/enums';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // SCHEMA DEFINITIONS
@@ -53,14 +54,14 @@ export const PageModelSchema = extendSchema({
     /** Show back button */
     showBackButton: z.boolean().default(false),
 
-    /** Header variant */
+    /** Header variant (component-specific) */
     headerVariant: z.enum(['default', 'compact', 'hero']).default('default'),
 
-    /** Layout variant */
+    /** Layout variant (component-specific) */
     layout: z.enum(['default', 'centered', 'wide']).default('default'),
 
     /** Content padding */
-    padding: z.enum(['none', 'sm', 'md', 'lg']).default('md'),
+    padding: PaddingSchema.default('md'),
 
     /** Dark mode */
     isDark: z.boolean().default(true),

@@ -91,11 +91,12 @@ export interface UseButtonResult extends BaseViewModelResult<ButtonModel> {
  * ```
  */
 export function useButton(options: UseButtonOptions = {}): UseButtonResult {
-    // Parse model options
+    // Parse model options with JSON.stringify for proper dependency tracking
     const modelOptions = useMemo(() => {
         const { onClick, onFocus, onBlur, onKeyDown, ...modelData } = options;
         return ButtonModelSchema.parse({ ...defaultButtonModel, ...modelData });
-    }, [options]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [JSON.stringify(options)]);
 
     // Use base ViewModel
     const base = useBaseViewModel<ButtonModel>(modelOptions, {

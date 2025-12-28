@@ -7,7 +7,7 @@
  */
 
 import { useCallback, useMemo } from 'react';
-import { useBaseViewModel, type BaseViewModelResult } from '../../core/base';
+import { useBaseViewModel, type BaseViewModelResult } from '../../../../core/base';
 import {
     defaultIconModel,
     IconModelSchema,
@@ -18,7 +18,7 @@ import type {
     IconDefinition,
     IconSizeType,
 } from './Icon.model';
-import { IconRegistry } from './icons/IconRegistry';
+import { IconRegistry } from '../../icons/IconRegistry';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES
@@ -111,11 +111,12 @@ export interface UseIconResult extends BaseViewModelResult<IconModel> {
  * ```
  */
 export function useIcon(options: UseIconOptions): UseIconResult {
-    // Parse model options
+    // Parse model options with JSON.stringify for proper dependency tracking
     const modelOptions = useMemo(() => {
         const { onClick, onFocus, onBlur, ...modelData } = options;
         return IconModelSchema.parse({ ...defaultIconModel, ...modelData });
-    }, [options]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [JSON.stringify(options)]);
 
     // Use base ViewModel
     const base = useBaseViewModel<IconModel>(modelOptions, {

@@ -7,6 +7,7 @@
 
 import { z } from 'zod';
 import { extendSchema } from '../../core/base';
+import { BasicSizeSchema, HorizontalPositionSchema, type BasicSize, type HorizontalPosition } from '../../core/enums';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // SCHEMA DEFINITIONS
@@ -14,8 +15,9 @@ import { extendSchema } from '../../core/base';
 
 /**
  * Toggle size variants
+ * @deprecated Use BasicSizeSchema from '@core/enums' instead
  */
-export const ToggleSize = z.enum(['sm', 'md', 'lg']);
+export const ToggleSize = BasicSizeSchema;
 
 /**
  * Toggle model schema extending base model
@@ -34,13 +36,13 @@ export const ToggleModelSchema = extendSchema({
     backgroundColor: z.string().default('rgba(30, 41, 59, 0.8)'),
 
     /** Size of the toggle */
-    size: ToggleSize.default('md'),
+    size: BasicSizeSchema.default('md'),
 
     /** Optional label text */
     label: z.string().optional(),
 
     /** Label position relative to toggle */
-    labelPosition: z.enum(['left', 'right']).default('right'),
+    labelPosition: HorizontalPositionSchema.default('right'),
 
     /** Label shown when toggle is ON (e.g., "ENABLED") */
     onLabel: z.string().optional(),
@@ -53,7 +55,7 @@ export const ToggleModelSchema = extendSchema({
 // TYPE EXPORTS
 // ═══════════════════════════════════════════════════════════════════════════
 
-export type ToggleSizeType = z.infer<typeof ToggleSize>;
+export type ToggleSizeType = BasicSize;
 export type ToggleModel = z.infer<typeof ToggleModelSchema>;
 
 // ═══════════════════════════════════════════════════════════════════════════

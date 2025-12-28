@@ -7,7 +7,7 @@
  */
 
 import { useMemo } from 'react';
-import { useBaseViewModel, type BaseViewModelResult } from '../../core/base';
+import { useBaseViewModel, type BaseViewModelResult } from '../../../../core/base';
 import {
     defaultLabelModel,
     LabelModelSchema,
@@ -86,10 +86,11 @@ export interface UseLabelResult extends BaseViewModelResult<LabelModel> {
  * ```
  */
 export function useLabel(options: UseLabelOptions): UseLabelResult {
-    // Parse model options
+    // Parse model options with JSON.stringify for proper dependency tracking
     const modelOptions = useMemo(() => {
         return LabelModelSchema.parse({ ...defaultLabelModel, ...options });
-    }, [options]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [JSON.stringify(options)]);
 
     // Use base ViewModel
     const base = useBaseViewModel<LabelModel>(modelOptions, {

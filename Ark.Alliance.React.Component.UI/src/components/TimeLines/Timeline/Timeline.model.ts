@@ -5,6 +5,7 @@
 
 import { z } from 'zod';
 import { extendSchema } from '../../../core/base';
+import { ProcessStatusSchema, OrientationSchema, type ProcessStatus, type Orientation } from '../../../core/enums';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // SCHEMA DEFINITIONS
@@ -19,7 +20,7 @@ export const TimelineItemSchema = z.object({
     description: z.string().optional(),
     date: z.string().optional(),
     icon: z.string().optional(),
-    status: z.enum(['pending', 'active', 'completed', 'error']).default('pending'),
+    status: ProcessStatusSchema.default('pending'),
 });
 
 /**
@@ -30,7 +31,7 @@ export const TimelineModelSchema = extendSchema({
     items: z.array(TimelineItemSchema).default([]),
 
     /** Layout orientation */
-    orientation: z.enum(['vertical', 'horizontal']).default('vertical'),
+    orientation: OrientationSchema.default('vertical'),
 
     /** Show connector lines */
     showConnectors: z.boolean().default(true),
@@ -57,3 +58,4 @@ export const defaultTimelineModel: TimelineModel = TimelineModelSchema.parse({})
 export function createTimelineModel(data: Partial<TimelineModel> = {}): TimelineModel {
     return TimelineModelSchema.parse(data);
 }
+

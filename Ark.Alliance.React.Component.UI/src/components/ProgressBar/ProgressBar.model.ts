@@ -7,6 +7,7 @@
 
 import { z } from 'zod';
 import { extendSchema } from '../../core/base';
+import { ProgressSizeSchema, ThemeColorSchema, type ProgressSize, type ThemeColor } from '../../core/enums';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // SCHEMA DEFINITIONS
@@ -14,25 +15,27 @@ import { extendSchema } from '../../core/base';
 
 /**
  * Progress bar size variants
+ * @deprecated Use ProgressSizeSchema from '@core/enums' instead
  */
-export const ProgressBarSize = z.enum(['xs', 'sm', 'md', 'lg']);
+export const ProgressBarSize = ProgressSizeSchema;
 
 /**
- * Progress bar visual variants
+ * Progress bar visual variants (component-specific)
  */
 export const ProgressBarVariant = z.enum(['default', 'neon', 'gradient', 'striped']);
 
 /**
  * Progress bar color options
+ * @deprecated Use ThemeColorSchema from '@core/enums' instead
  */
-export const ProgressBarColor = z.enum(['blue', 'green', 'red', 'cyan', 'purple', 'yellow']);
+export const ProgressBarColor = ThemeColorSchema;
 
 /**
  * Color zone for dynamic coloring based on percentage
  */
 export const ColorZoneSchema = z.object({
     threshold: z.number().min(0).max(100),
-    color: ProgressBarColor,
+    color: ThemeColorSchema,
 });
 
 /**
@@ -55,13 +58,13 @@ export const ProgressBarModelSchema = extendSchema({
     showPercentage: z.boolean().default(false),
 
     /** Size variant */
-    size: ProgressBarSize.default('md'),
+    size: ProgressSizeSchema.default('md'),
 
     /** Visual variant */
     variant: ProgressBarVariant.default('default'),
 
     /** Color */
-    color: ProgressBarColor.default('cyan'),
+    color: ThemeColorSchema.default('cyan'),
 
     /** Whether to animate the progress bar */
     animated: z.boolean().default(false),
@@ -80,9 +83,9 @@ export const ProgressBarModelSchema = extendSchema({
 // TYPE EXPORTS
 // ═══════════════════════════════════════════════════════════════════════════
 
-export type ProgressBarSizeType = z.infer<typeof ProgressBarSize>;
+export type ProgressBarSizeType = ProgressSize;
 export type ProgressBarVariantType = z.infer<typeof ProgressBarVariant>;
-export type ProgressBarColorType = z.infer<typeof ProgressBarColor>;
+export type ProgressBarColorType = ThemeColor;
 export type ColorZone = z.infer<typeof ColorZoneSchema>;
 export type ProgressBarModel = z.infer<typeof ProgressBarModelSchema>;
 

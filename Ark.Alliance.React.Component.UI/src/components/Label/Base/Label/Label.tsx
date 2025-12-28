@@ -8,7 +8,7 @@
 
 import React, { memo, forwardRef } from 'react';
 import { useLabel, type UseLabelOptions } from './Label.viewmodel';
-import { Icon } from '../Icon';
+import { Icon } from '../../../Icon';
 import './Label.styles.css';
 
 // ═══════════════════════════════════════════════════════════════════════════

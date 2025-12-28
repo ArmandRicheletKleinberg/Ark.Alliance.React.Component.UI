@@ -6,7 +6,7 @@
  * prediction overlays, and SVG coordinate calculations.
  */
 
-import { useMemo, useCallback, useState } from 'react';
+import { useMemo, useCallback, useState, useEffect } from 'react';
 import { useBaseViewModel, type BaseViewModelResult } from '../../../core/base';
 import type {
     TrendPriceChartModel,
@@ -144,9 +144,15 @@ export function useTrendPriceChart(options: UseTrendPriceChartOptions = {}): Use
         eventChannel: 'trend-price-chart',
     });
 
-    // Local state for real-time data (not in model to avoid re-parsing)
+    // Local state for real-time data
     const [priceData, setPriceData] = useState<RealTimePricePoint[]>(modelData.priceData);
     const [predictions, setPredictions] = useState<TrendPrediction[]>(modelData.predictions);
+
+    // Sync state with model props when they change (e.g. switching symbols)
+    useEffect(() => {
+        setPriceData(modelData.priceData);
+        setPredictions(modelData.predictions);
+    }, [modelData.priceData, modelData.predictions, modelData.symbol]);
 
     // Calculate scale from price data
     const scale = useMemo<ChartScale>(() => {

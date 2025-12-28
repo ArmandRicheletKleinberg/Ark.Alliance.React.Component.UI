@@ -7,6 +7,7 @@
 
 import { z } from 'zod';
 import { extendSchema } from '../../../core/base';
+import { ComponentVariantSchema, HorizontalPositionSchema, type ComponentVariant, type HorizontalPosition } from '../../../core/enums';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // SCHEMA DEFINITIONS
@@ -54,13 +55,15 @@ export const MenuCategorySchema = z.object({
 
 /**
  * SideBarMenu variant styles
+ * @deprecated Use ComponentVariantSchema from '@core/enums' instead
  */
-export const SideBarMenuVariant = z.enum(['default', 'minimal', 'neon', 'glass']);
+export const SideBarMenuVariant = ComponentVariantSchema;
 
 /**
  * SideBarMenu position
+ * @deprecated Use HorizontalPositionSchema from '@core/enums' instead
  */
-export const SideBarMenuPosition = z.enum(['left', 'right']);
+export const SideBarMenuPosition = HorizontalPositionSchema;
 
 /**
  * SideBarMenu model schema
@@ -73,10 +76,10 @@ export const SideBarMenuModelSchema = extendSchema({
     title: z.string().optional(),
 
     /** Visual variant */
-    variant: SideBarMenuVariant.default('default'),
+    variant: ComponentVariantSchema.default('default'),
 
     /** Position */
-    position: SideBarMenuPosition.default('left'),
+    position: HorizontalPositionSchema.default('left'),
 
     /** Collapsed state */
     collapsed: z.boolean().default(false),
@@ -100,8 +103,8 @@ export const SideBarMenuModelSchema = extendSchema({
 
 // MenuItem interface is defined above (line 34)
 export type MenuCategory = z.infer<typeof MenuCategorySchema>;
-export type SideBarMenuVariantType = z.infer<typeof SideBarMenuVariant>;
-export type SideBarMenuPositionType = z.infer<typeof SideBarMenuPosition>;
+export type SideBarMenuVariantType = ComponentVariant;
+export type SideBarMenuPositionType = HorizontalPosition;
 export type SideBarMenuModel = z.infer<typeof SideBarMenuModelSchema>;
 
 // ═══════════════════════════════════════════════════════════════════════════

@@ -7,7 +7,7 @@
  */
 
 import { z } from 'zod';
-import { extendSchema } from '../../core/base';
+import { extendSchema } from '../../../../core/base';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // SCHEMA DEFINITIONS

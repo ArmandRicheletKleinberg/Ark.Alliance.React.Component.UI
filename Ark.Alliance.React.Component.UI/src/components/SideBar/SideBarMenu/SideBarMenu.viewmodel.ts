@@ -63,10 +63,11 @@ export function useSideBarMenu(options: UseSideBarMenuOptions): UseSideBarMenuRe
         ...modelData
     } = options;
 
-    // Parse model
+    // Parse model with JSON.stringify for proper dependency tracking
     const modelOptions = useMemo(() => {
         return SideBarMenuModelSchema.parse({ ...defaultSideBarMenuModel, ...modelData });
-    }, [modelData]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [JSON.stringify(modelData)]);
 
     // Base ViewModel
     const base = useBaseViewModel<SideBarMenuModel>(modelOptions, {

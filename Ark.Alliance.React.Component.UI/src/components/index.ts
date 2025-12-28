@@ -31,6 +31,8 @@ export * from './TimeLines';
 export * from './ProgressBar';
 export * from './Modal';
 export * from './Panel';
+export * from './GenericPanel';
+export * from './ControlPanel';
 export * from './Page';
 export * from './Header';
 export * from './Footer';

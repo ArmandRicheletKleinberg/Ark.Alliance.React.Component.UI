@@ -8,7 +8,7 @@
 ![Tailwind](https://img.shields.io/badge/Tailwind-4.x-38bdf8?style=for-the-badge&logo=tailwindcss)
 ![Zod](https://img.shields.io/badge/Zod-4.x-3E67B1?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
-![Tests](https://img.shields.io/badge/Tests-233%2F233-success?style=for-the-badge)
+![Tests](https://img.shields.io/badge/Tests-258%2F258-success?style=for-the-badge)
 
 **Enterprise-Grade React Component Library with MVVM Architecture**
 
@@ -196,6 +196,22 @@ The library implements a strict **Model-View-ViewModel** pattern that enforces s
 | `FormInputModel` | Form input base with validation, restrictions | `src/core/base/` |
 | `useFormInputRestrictions` | Input pattern matching, length limits hook | `src/core/base/` |
 
+### Input Validation Rules
+
+The library provides a comprehensive validation system in `src/Helpers/Validators/`:
+
+| Validator | Purpose | Usage |
+|-----------|---------|-------|
+| `email.ts` | Email format validation | `validateEmail(value)` |
+| `text.ts` | Text constraints (min/max length, patterns) | `validateText(value, options)` |
+| `common.ts` | Shared validation utilities | Base validation functions |
+
+**Key Features:**
+- Zod-based schema validation for all models
+- Runtime type checking with clear error messages
+- Pattern-based input restrictions (numeric, alphanumeric, etc.)
+- Configurable length limits and character filters
+
 #### Data Flow Diagram
 
 ```mermaid
@@ -258,6 +274,7 @@ flowchart TB
 | **Header** | `Header` | Visual modes, icons, search, backgrounds |
 | **Footer** | `Footer` | Paging controls, slots |
 | **Panel** | `Panel` | Container with header/footer slots |
+| **GenericPanel** | `GenericPanel` | Universal panel with glassmorphism, gradients, grid overlays, glow effects |
 | **Grids** | `DataGrid`, `TradingGridCard` | Data tables and trading cards |
 | **SideBar** | `SideBarMenu` | Navigation menu with categories |
 | **Label** | `StatusBadge` | Status indicator with pulse animations |
@@ -532,12 +549,13 @@ Ark.Alliance.React.Component.UI.Tests/
 
 ### Test Statistics Summary
 
-> **Last Verified**: 2025-12-27 | **Duration**: 10.86s | **Test Files**: 13 | **All Tests**: 233 ✅
+> **Last Verified**: 2025-12-28 | **Duration**: 10.86s | **Test Files**: 14 | **All Tests**: 258 ✅
 
 | Test Family | Tests | Pass Rate | Status |
 |-------------|-------|-----------|--------|
 | BaseInput | 35 | 100% | ✅ |
 | ProgressBar | 28 | 100% | ✅ |
+| GenericPanel | 25 | 100% | ✅ |
 | Tooltip | 24 | 100% | ✅ |
 | TradingGridCard | 23 | 100% | ✅ |
 | FormInputModel | 21 | 100% | ✅ |
@@ -549,7 +567,7 @@ Ark.Alliance.React.Component.UI.Tests/
 | Card | 11 | 100% | ✅ |
 | BaseComponentModel | 10 | 100% | ✅ |
 | Panel | 8 | 100% | ✅ |
-| **TOTAL** | **233** | **100%** | ✅ |
+| **TOTAL** | **258** | **100%** | ✅ |
 
 ### Running Tests
 

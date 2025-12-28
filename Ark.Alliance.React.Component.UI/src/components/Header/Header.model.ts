@@ -7,6 +7,12 @@
 
 import { z } from 'zod';
 import { extendSchema } from '../../core/base';
+import {
+    FontWeightSchema,
+    HorizontalPositionSchema,
+    type FontWeight,
+    type HorizontalPosition,
+} from '../../core/enums';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // SUB-SCHEMAS
@@ -14,6 +20,7 @@ import { extendSchema } from '../../core/base';
 
 /**
  * Background configuration for animated/gradient/image backgrounds
+ * (Background types are component-specific)
  */
 export const BackgroundConfigSchema = z.object({
     type: z.enum(['solid', 'gradient', 'image', 'animated', 'pattern']).default('solid'),
@@ -35,7 +42,7 @@ export const BackgroundConfigSchema = z.object({
 export const TypographyConfigSchema = z.object({
     titleFont: z.string().optional(),
     titleSize: z.enum(['xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl']).default('md'),
-    titleWeight: z.enum(['normal', 'medium', 'semibold', 'bold', 'extrabold']).default('semibold'),
+    titleWeight: FontWeightSchema.default('semibold'),
     titleColor: z.string().optional(),
     subtitleFont: z.string().optional(),
     subtitleSize: z.enum(['xs', 'sm', 'md', 'lg']).default('sm'),
@@ -59,12 +66,12 @@ export const ActionConfigSchema = z.object({
 // ═══════════════════════════════════════════════════════════════════════════
 
 /**
- * Visual mode enum
+ * Visual mode enum (component-specific)
  */
 export const VisualMode = z.enum(['normal', 'neon', 'minimal', 'glass']);
 
 /**
- * Header variant enum
+ * Header variant enum (component-specific)
  */
 export const HeaderVariant = z.enum(['panel', 'page', 'section', 'card', 'grid']);
 
@@ -79,7 +86,7 @@ export const HeaderModelSchema = extendSchema({
 
     // ─── Icon ─────────────────────────────────────────────────────────────
     icon: z.string().optional(),
-    iconPosition: z.enum(['left', 'right']).default('left'),
+    iconPosition: HorizontalPositionSchema.default('left'),
     iconSize: z.enum(['sm', 'md', 'lg', 'xl']).default('md'),
 
     // ─── Visual Mode ──────────────────────────────────────────────────────

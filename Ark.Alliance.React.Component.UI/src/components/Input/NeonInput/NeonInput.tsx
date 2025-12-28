@@ -7,7 +7,7 @@
 
 import { forwardRef, memo, useState } from 'react';
 import { BaseInput } from '../BaseInput';
-import { useInput, type UseInputOptions } from '../Input.viewmodel';
+import { useInput, type UseInputOptions } from '../Base/Input/Input.viewmodel';
 import './NeonInput.styles.css';
 
 // ═══════════════════════════════════════════════════════════════════════════

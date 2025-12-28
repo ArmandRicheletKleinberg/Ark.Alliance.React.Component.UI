@@ -7,6 +7,7 @@
 
 import { z } from 'zod';
 import { extendSchema } from '../../../core/base';
+import { ResizeModeSchema, BasicVariantSchema, BasicSizeSchema } from '../../../core/enums';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // MODEL
@@ -21,9 +22,9 @@ export const TextAreaModelSchema = extendSchema({
     required: z.boolean().default(false),
     rows: z.number().default(4),
     maxLength: z.number().optional(),
-    resize: z.enum(['none', 'vertical', 'horizontal', 'both']).default('vertical'),
-    variant: z.enum(['default', 'neon', 'minimal']).default('default'),
-    size: z.enum(['sm', 'md', 'lg']).default('md'),
+    resize: ResizeModeSchema.default('vertical'),
+    variant: BasicVariantSchema.default('default'),
+    size: BasicSizeSchema.default('md'),
     isDark: z.boolean().default(true),
 });
 

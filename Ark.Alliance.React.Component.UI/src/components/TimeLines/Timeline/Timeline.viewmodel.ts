@@ -36,9 +36,11 @@ export interface UseTimelineResult extends BaseViewModelResult<TimelineModel> {
 // ═══════════════════════════════════════════════════════════════════════════
 
 export function useTimeline(options: UseTimelineOptions = {}): UseTimelineResult {
+    // Parse model options with JSON.stringify for proper dependency tracking
     const modelOptions = useMemo(() => {
         return TimelineModelSchema.parse({ ...defaultTimelineModel, ...options });
-    }, [options]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [JSON.stringify(options)]);
 
     const base = useBaseViewModel<TimelineModel>(modelOptions, {
         model: modelOptions,

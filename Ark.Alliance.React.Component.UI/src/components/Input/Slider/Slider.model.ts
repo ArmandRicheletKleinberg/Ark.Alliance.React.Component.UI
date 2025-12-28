@@ -5,6 +5,7 @@
 
 import { z } from 'zod';
 import { extendSchema } from '../../../core/base';
+import { BasicVariantSchema, ThemeColorSchema, BasicSizeSchema, type BasicVariant, type ThemeColor, type BasicSize } from '../../../core/enums';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // SCHEMA
@@ -28,11 +29,11 @@ export const SliderModelSchema = extendSchema({
     /** Show min/max labels */
     showRange: z.boolean().default(false),
     /** Visual variant */
-    variant: z.enum(['default', 'neon', 'minimal']).default('default'),
+    variant: BasicVariantSchema.default('default'),
     /** Color theme */
-    color: z.enum(['cyan', 'blue', 'green', 'purple', 'red', 'yellow']).default('cyan'),
+    color: ThemeColorSchema.default('cyan'),
     /** Size variant */
-    size: z.enum(['sm', 'md', 'lg']).default('md'),
+    size: BasicSizeSchema.default('md'),
     /** Dark mode */
     isDark: z.boolean().default(true),
     /** Decimal places for display */

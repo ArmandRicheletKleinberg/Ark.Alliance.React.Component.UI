@@ -7,14 +7,15 @@
  */
 
 import { z } from 'zod';
-import { extendFormInputSchema } from '../../core/base';
+import { extendFormInputSchema } from '../../../../core/base';
+import { BasicSizeSchema, InputVariantSchema, type BasicSize, type InputVariant } from '../../../../core/enums';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // SCHEMA DEFINITIONS
 // ═══════════════════════════════════════════════════════════════════════════
 
 /**
- * Input type variants
+ * Input type variants (component-specific, not centralized)
  */
 export const InputType = z.enum([
     'text', 'password', 'email', 'number', 'tel', 'url', 'search', 'date', 'time'
@@ -22,13 +23,15 @@ export const InputType = z.enum([
 
 /**
  * Input size variants
+ * @deprecated Use BasicSizeSchema from '@core/enums' instead
  */
-export const InputSize = z.enum(['sm', 'md', 'lg']);
+export const InputSize = BasicSizeSchema;
 
 /**
  * Input variant styles
+ * @deprecated Use InputVariantSchema from '@core/enums' instead
  */
-export const InputVariant = z.enum(['default', 'filled', 'outlined', 'underlined']);
+export const InputVariant = InputVariantSchema;
 
 /**
  * Input model schema extending FormInputModel
@@ -49,10 +52,10 @@ export const InputModelSchema = extendFormInputSchema({
     type: InputType.default('text'),
 
     /** Size variant */
-    size: InputSize.default('md'),
+    size: BasicSizeSchema.default('md'),
 
     /** Style variant */
-    variant: InputVariant.default('default'),
+    variant: InputVariantSchema.default('default'),
 
     /** Placeholder text */
     placeholder: z.string().optional(),
@@ -84,8 +87,8 @@ export const InputModelSchema = extendFormInputSchema({
 // ═══════════════════════════════════════════════════════════════════════════
 
 export type InputTypeEnum = z.infer<typeof InputType>;
-export type InputSizeType = z.infer<typeof InputSize>;
-export type InputVariantType = z.infer<typeof InputVariant>;
+export type InputSizeType = BasicSize;
+export type InputVariantType = InputVariant;
 export type InputModel = z.infer<typeof InputModelSchema>;
 
 // ═══════════════════════════════════════════════════════════════════════════

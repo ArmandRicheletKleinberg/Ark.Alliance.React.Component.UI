@@ -64,9 +64,11 @@ const CHART_WIDTH = 600; // Default SVG width
 export function useTestChart(options: UseTestChartOptions = {}): UseTestChartResult {
     const { yAxisPadding = 0.1, onMarkerClick, ...modelOptions } = options;
 
+    // Parse model options with JSON.stringify for proper dependency tracking
     const modelData = useMemo(() => {
         return TestChartModelSchema.parse({ ...defaultTestChartModel, ...modelOptions });
-    }, [modelOptions]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [JSON.stringify(modelOptions)]);
 
     const base = useBaseViewModel<TestChartModel>(modelData, {
         model: modelData,

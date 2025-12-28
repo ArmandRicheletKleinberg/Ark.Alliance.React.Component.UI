@@ -8,6 +8,7 @@
 
 import { z } from 'zod';
 import { extendSchema } from '../../../core/base';
+import { TestStatusSchema, OrientationSchema, type TestStatus, type Orientation } from '../../../core/enums';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // SCHEMA DEFINITIONS
@@ -40,7 +41,7 @@ export const TestStepSchema = z.object({
     /** Detailed description */
     description: z.string().optional(),
     /** Step execution status */
-    status: z.enum(['pending', 'running', 'passed', 'failed', 'skipped']).default('pending'),
+    status: TestStatusSchema.default('pending'),
     /** Assertions for this step */
     assertions: z.array(TestAssertionSchema).default([]),
     /** Execution time in milliseconds */
@@ -63,7 +64,7 @@ export const TestTimelineModelSchema = extendSchema({
     steps: z.array(TestStepSchema).default([]),
 
     /** Layout orientation */
-    orientation: z.enum(['vertical', 'horizontal']).default('vertical'),
+    orientation: OrientationSchema.default('vertical'),
 
     /** Show connector lines */
     showConnectors: z.boolean().default(true),

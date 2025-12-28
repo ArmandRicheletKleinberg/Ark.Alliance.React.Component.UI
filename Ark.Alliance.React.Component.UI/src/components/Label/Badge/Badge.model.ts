@@ -8,13 +8,14 @@
 import { z } from 'zod';
 import { extendSchema } from '../../../core/base';
 import { STATUS_COLORS, type StatusType } from '../../../core/constants';
+import { BasicSizeSchema, type BasicSize } from '../../../core/enums';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // SCHEMA DEFINITIONS
 // ═══════════════════════════════════════════════════════════════════════════
 
 /**
- * Badge status variants
+ * Badge status variants (component-specific)
  * Includes both system statuses (running, stopped, etc.) and priority indicators (success, warning, etc.)
  */
 export const BadgeStatus = z.enum([
@@ -26,8 +27,9 @@ export const BadgeStatus = z.enum([
 
 /**
  * Badge size variants
+ * @deprecated Use BasicSizeSchema from '@core/enums' instead
  */
-export const BadgeSize = z.enum(['sm', 'md', 'lg']);
+export const BadgeSize = BasicSizeSchema;
 
 /**
  * Badge model schema extending base model
@@ -40,7 +42,7 @@ export const BadgeModelSchema = extendSchema({
     label: z.string().optional(),
 
     /** Size variant */
-    size: BadgeSize.default('md'),
+    size: BasicSizeSchema.default('md'),
 
     /** Show animated pulse for 'running' status */
     showPulse: z.boolean().default(true),
@@ -60,7 +62,7 @@ export const BadgeModelSchema = extendSchema({
 // ═══════════════════════════════════════════════════════════════════════════
 
 export type BadgeStatusType = z.infer<typeof BadgeStatus>;
-export type BadgeSizeType = z.infer<typeof BadgeSize>;
+export type BadgeSizeType = BasicSize;
 export type BadgeModel = z.infer<typeof BadgeModelSchema>;
 
 // ═══════════════════════════════════════════════════════════════════════════

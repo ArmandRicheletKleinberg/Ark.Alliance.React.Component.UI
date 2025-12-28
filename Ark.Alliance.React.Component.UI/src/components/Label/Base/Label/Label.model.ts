@@ -7,14 +7,26 @@
  */
 
 import { z } from 'zod';
-import { extendSchema } from '../../core/base';
+import { extendSchema } from '../../../../core/base';
+import {
+    ComponentSizeSchema,
+    FontWeightSchema,
+    TextTransformSchema,
+    HorizontalPositionSchema,
+    PositionSchema,
+    type ComponentSize,
+    type FontWeight,
+    type TextTransform,
+    type HorizontalPosition,
+    type Position,
+} from '../../../../core/enums';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // SCHEMA DEFINITIONS
 // ═══════════════════════════════════════════════════════════════════════════
 
 /**
- * Label semantic variants
+ * Label semantic variants (component-specific, not centralized)
  */
 export const LabelVariant = z.enum([
     'default',
@@ -30,23 +42,27 @@ export const LabelVariant = z.enum([
 
 /**
  * Label size variants
+ * @deprecated Use ComponentSizeSchema from '@core/enums' instead
  */
-export const LabelSize = z.enum(['xs', 'sm', 'md', 'lg', 'xl']);
+export const LabelSize = ComponentSizeSchema;
 
 /**
  * Font weight options
+ * @deprecated Use FontWeightSchema from '@core/enums' instead
  */
-export const LabelWeight = z.enum(['normal', 'medium', 'semibold', 'bold']);
+export const LabelWeight = FontWeightSchema;
 
 /**
  * Text transform options
+ * @deprecated Use TextTransformSchema from '@core/enums' instead
  */
-export const LabelTransform = z.enum(['none', 'uppercase', 'lowercase', 'capitalize']);
+export const LabelTransform = TextTransformSchema;
 
 /**
  * Icon position relative to label text
+ * @deprecated Use HorizontalPositionSchema from '@core/enums' instead
  */
-export const LabelIconPosition = z.enum(['left', 'right']);
+export const LabelIconPosition = HorizontalPositionSchema;
 
 /**
  * Label model schema extending base model
@@ -62,13 +78,13 @@ export const LabelModelSchema = extendSchema({
     variant: LabelVariant.default('default'),
 
     /** Size of the label */
-    size: LabelSize.default('md'),
+    size: ComponentSizeSchema.default('md'),
 
     /** Font weight */
-    weight: LabelWeight.default('medium'),
+    weight: FontWeightSchema.default('medium'),
 
     /** Text transform */
-    transform: LabelTransform.default('none'),
+    transform: TextTransformSchema.default('none'),
 
     /** Shows required indicator (*) */
     required: z.boolean().default(false),
@@ -86,7 +102,7 @@ export const LabelModelSchema = extendSchema({
     icon: z.string().optional(),
 
     /** Icon position relative to text */
-    iconPosition: LabelIconPosition.default('left'),
+    iconPosition: HorizontalPositionSchema.default('left'),
 
     /** Custom icon color */
     iconColor: z.string().optional(),
@@ -95,7 +111,7 @@ export const LabelModelSchema = extendSchema({
     tooltip: z.string().optional(),
 
     /** Tooltip position */
-    tooltipPosition: z.enum(['top', 'bottom', 'left', 'right']).default('top'),
+    tooltipPosition: PositionSchema.default('top'),
 
     /** Whether to truncate with ellipsis */
     truncate: z.boolean().default(false),
@@ -121,10 +137,10 @@ export const LabelModelSchema = extendSchema({
 // ═══════════════════════════════════════════════════════════════════════════
 
 export type LabelVariantType = z.infer<typeof LabelVariant>;
-export type LabelSizeType = z.infer<typeof LabelSize>;
-export type LabelWeightType = z.infer<typeof LabelWeight>;
-export type LabelTransformType = z.infer<typeof LabelTransform>;
-export type LabelIconPositionType = z.infer<typeof LabelIconPosition>;
+export type LabelSizeType = ComponentSize;
+export type LabelWeightType = FontWeight;
+export type LabelTransformType = TextTransform;
+export type LabelIconPositionType = HorizontalPosition;
 export type LabelModel = z.infer<typeof LabelModelSchema>;
 
 // ═══════════════════════════════════════════════════════════════════════════

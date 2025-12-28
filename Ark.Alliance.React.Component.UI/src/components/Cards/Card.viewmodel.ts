@@ -73,10 +73,11 @@ export interface UseCardResult extends BaseViewModelResult<CardModel> {
 export function useCard(options: UseCardOptions): UseCardResult {
     const { onClick, isDark = true, ...modelData } = options;
 
-    // Parse model options
+    // Parse model options with JSON.stringify for proper dependency tracking
     const modelOptions = useMemo(() => {
         return CardModelSchema.parse({ ...defaultCardModel, ...modelData });
-    }, [modelData]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [JSON.stringify(modelData)]);
 
     // Use base ViewModel
     const base = useBaseViewModel<CardModel>(modelOptions, {

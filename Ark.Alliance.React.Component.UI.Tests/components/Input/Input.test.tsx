@@ -11,8 +11,7 @@ import userEvent from '@testing-library/user-event';
 import React from 'react';
 
 // Import real component
-import { Input } from '@components/Input';
-import { InputModelSchema } from '@components/Input/Input.model';
+import { Input, InputModelSchema } from '@components/Input';
 import { loadInputScenario, SCENARIO_IDS } from '../../fixtures/TestScenarioLoader';
 
 // ═══════════════════════════════════════════════════════════════════════════

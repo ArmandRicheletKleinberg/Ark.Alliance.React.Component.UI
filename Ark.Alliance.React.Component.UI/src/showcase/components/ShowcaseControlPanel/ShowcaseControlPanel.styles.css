@@ -1,0 +1,89 @@
+/**
+ * @fileoverview ShowcaseControlPanel Styles
+ * @module showcase/components/ShowcaseControlPanel
+ * 
+ * Premium styling for the auto-generating control panel.
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SHOWCASE CONTROL PANEL
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.showcase-control-panel {
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.9));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    backdrop-filter: blur(12px);
+    box-shadow:
+        0 4px 24px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.showcase-control-panel .ark-control-panel__section {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+}
+
+.showcase-control-panel .ark-control-panel__section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.showcase-control-panel .ark-control-panel__section-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #00d4ff;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.showcase-control-panel .ark-control-panel__section-icon {
+    font-size: 0.875rem;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   HEADER ENHANCEMENT
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.showcase-control-panel .ark-control-panel__header {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(59, 130, 246, 0.1));
+    border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 12px 12px 0 0;
+}
+
+.showcase-control-panel .ark-control-panel__title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   LIGHT THEME
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+[data-theme="light"] .showcase-control-panel {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(249, 250, 251, 0.9));
+    border-color: rgba(0, 0, 0, 0.1);
+    box-shadow:
+        0 4px 24px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+[data-theme="light"] .showcase-control-panel .ark-control-panel__section {
+    border-bottom-color: rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .showcase-control-panel .ark-control-panel__section-title {
+    color: #0284c7;
+}
+
+[data-theme="light"] .showcase-control-panel .ark-control-panel__header {
+    background: linear-gradient(135deg, rgba(2, 132, 199, 0.1), rgba(59, 130, 246, 0.1));
+    border-bottom-color: rgba(2, 132, 199, 0.2);
+}

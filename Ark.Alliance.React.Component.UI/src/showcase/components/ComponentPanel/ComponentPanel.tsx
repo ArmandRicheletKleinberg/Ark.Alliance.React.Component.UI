@@ -1,12 +1,18 @@
 /**
- * @fileoverview ComponentPanel - Individual component showcase panel
+ * @fileoverview ComponentPanel - Master-Detail Component Showcase
  * @module showcase/components/ComponentPanel
  * 
- * Displays a single component with preview, controls, presets, and code output.
+ * Displays a component in Master-Detail view:
+ * - LEFT: Control Panel (single source of truth)
+ * - CENTER: Live Component Preview
+ * - BOTTOM: Code/Syntax View
  */
 
-import { useState, useCallback, memo } from 'react';
-import type { ComponentInfo, StylePreset } from '../../types';
+import { useState, useCallback, memo, useMemo, useEffect } from 'react';
+import type { ComponentInfo } from '../../types';
+import { ShowcaseControlPanel } from '../ShowcaseControlPanel';
+import { ComponentErrorBoundary } from '../ComponentErrorBoundary';
+import '../ComponentErrorBoundary/ComponentErrorBoundary.styles.css';
 import './ComponentPanel.styles.css';
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -21,6 +27,27 @@ export interface ComponentPanelProps {
     info: ComponentInfo;
     /** Dark mode flag */
     isDark: boolean;
+    /** Compact mode for grid view */
+    compact?: boolean;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// CODE GENERATOR
+// ═══════════════════════════════════════════════════════════════════════════
+
+/**
+ * Generate JSX code from props
+ */
+function generateCode(name: string, props: Record<string, unknown>, defaults: Record<string, unknown>): string {
+    const propsStr = Object.entries(props)
+        .filter(([k, v]) => v !== undefined && v !== defaults[k])
+        .map(([k, v]) => {
+            if (typeof v === 'boolean') return v ? ` ${k}` : '';
+            if (typeof v === 'string') return ` ${k}="${v}"`;
+            return ` ${k}={${JSON.stringify(v)}}`;
+        })
+        .join('');
+    return `<${name}${propsStr} />`;
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -28,45 +55,66 @@ export interface ComponentPanelProps {
 // ═══════════════════════════════════════════════════════════════════════════
 
 /**
- * ComponentPanel - Interactive component showcase
+ * ComponentPanel - Master-Detail component showcase
  * 
- * Features:
- * - Live component preview
- * - Property controls (inputs, selects, checkboxes)
- * - Style presets
- * - Code generation and copy
+ * Layout:
+ * - LEFT SIDEBAR: Control panel with all properties
+ * - CENTER: Live component preview (wrapped in Error Boundary)
+ * - BOTTOM: Code syntax view
  * 
- * @example
- * ```tsx
- * <ComponentPanel 
- *     info={buttonComponentInfo}
- *     isDark={true}
- * />
- * ```
+ * State Flow:
+ * Controls → propValues → Live Preview + Code Generation
  */
 export const ComponentPanel = memo(function ComponentPanel(props: ComponentPanelProps) {
-    const { info, isDark } = props;
+    const { info, isDark, compact = false } = props;
 
+    // Single source of truth for all property values
     const [propValues, setPropValues] = useState<Record<string, unknown>>({});
     const [copied, setCopied] = useState(false);
-    const [activePreset, setActivePreset] = useState<string | null>(null);
+    const [errorKey, setErrorKey] = useState(0); // Key to reset error boundary
+
+    // Reset propValues when component changes to prevent stale state
+    useEffect(() => {
+        setPropValues({});
+        setErrorKey(k => k + 1);
+    }, [info.name]);
 
     const Component = info.component;
 
     /**
-     * Handle property value change
+     * Handle property value change - triggers live re-render
      */
     const handlePropChange = useCallback((name: string, value: unknown) => {
-        setPropValues(prev => ({ ...prev, [name]: value }));
-        setActivePreset(null);
+        console.log('[ComponentPanel] handlePropChange called:', name, value);
+        setPropValues(prev => {
+            const next = { ...prev, [name]: value };
+            console.log('[ComponentPanel] propValues updated:', next);
+            return next;
+        });
     }, []);
 
     /**
-     * Apply a style preset
+     * Handle modal/dialog close - sets isOpen to false
+     * This provides a working onClose for Modal-like components
      */
-    const handlePresetApply = useCallback((preset: StylePreset) => {
-        setPropValues(prev => ({ ...prev, ...preset.props }));
-        setActivePreset(preset.name);
+    const handleClose = useCallback(() => {
+        setPropValues(prev => ({ ...prev, isOpen: false }));
+    }, []);
+
+    // Merged props for preview and code generation
+    // Includes special handlers for interactive components
+    const mergedProps = useMemo(() => ({
+        ...info.defaultProps,
+        ...propValues,
+        // Override onClose with working handler for Modal-like components
+        onClose: handleClose,
+    }), [info.defaultProps, propValues, handleClose]);
+
+    /**
+     * Reset error boundary and optionally props
+     */
+    const handleErrorReset = useCallback(() => {
+        setErrorKey(k => k + 1);
     }, []);
 
     /**
@@ -79,126 +127,84 @@ export const ComponentPanel = memo(function ComponentPanel(props: ComponentPanel
         setTimeout(() => setCopied(false), 2000);
     }, [info.name, propValues, info.defaultProps]);
 
-    /**
-     * Generate JSX code from props
-     */
-    const generateCode = (name: string, props: Record<string, unknown>, defaults: Record<string, unknown>): string => {
-        const propsStr = Object.entries(props)
-            .filter(([k, v]) => v !== undefined && v !== defaults[k])
-            .map(([k, v]) => typeof v === 'boolean'
-                ? (v ? ` ${k}` : '')
-                : typeof v === 'string'
-                    ? ` ${k}="${v}"`
-                    : ` ${k}={${JSON.stringify(v)}}`
-            ).join('');
-        return `<${name}${propsStr} />`;
-    };
+    // Compact mode for grid view
+    if (compact) {
+        return (
+            <div className="component-panel component-panel--compact">
+                <div className="component-panel__header">
+                    <h3 className="component-panel__name">{info.name}</h3>
+                </div>
+                <div className="component-panel__preview-compact">
+                    <ComponentErrorBoundary
+                        key={errorKey}
+                        componentName={info.name}
+                        onReset={handleErrorReset}
+                    >
+                        <Component {...mergedProps} isDark={isDark} />
+                    </ComponentErrorBoundary>
+                </div>
+            </div>
+        );
+    }
 
     return (
-        <div className="component-panel">
+        <div className="component-panel component-panel--master-detail">
+            {/* Header */}
             <div className="component-panel__header">
                 <div className="component-panel__info">
-                    <h3 className="component-panel__name">{info.name}</h3>
+                    <h2 className="component-panel__name">{info.name}</h2>
                     <p className="component-panel__desc">{info.description}</p>
                 </div>
             </div>
 
-            <div className="component-panel__content">
-                {/* Preview */}
-                <div className="component-panel__preview">
-                    <span className="component-panel__preview-label">Preview</span>
-                    <div className="component-panel__preview-area">
-                        <Component {...info.defaultProps} {...propValues} isDark={isDark} />
-                    </div>
-                </div>
-
-                {/* Controls */}
-                <div className="component-panel__controls">
-                    {/* Presets */}
-                    {info.presets.length > 0 && (
-                        <div className="component-panel__section">
-                            <h4 className="component-panel__section-title">🎨 Style Presets</h4>
-                            <div className="component-panel__presets">
-                                {info.presets.map((preset) => (
-                                    <button
-                                        key={preset.name}
-                                        className={`component-panel__preset-btn ${activePreset === preset.name ? 'component-panel__preset-btn--active' : ''}`}
-                                        onClick={() => handlePresetApply(preset)}
-                                    >
-                                        {preset.name}
-                                    </button>
-                                ))}
-                            </div>
+            {/* Master-Detail Layout: Preview Left, Controls Right */}
+            <div className="component-panel__body">
+                {/* LEFT: Preview + Code */}
+                <main className="component-panel__main">
+                    {/* Live Preview */}
+                    <div className="component-panel__preview">
+                        <div className="component-panel__preview-header">
+                            <span className="component-panel__preview-label">Live Preview</span>
                         </div>
-                    )}
-
-                    {/* Properties */}
-                    <div className="component-panel__section">
-                        <h4 className="component-panel__section-title">⚙️ Properties</h4>
-                        <div className="component-panel__props">
-                            {info.propDefs.map((prop) => (
-                                <div key={prop.name} className="component-panel__prop">
-                                    <label className="component-panel__prop-label">
-                                        <span className="component-panel__prop-name">{prop.name}</span>
-                                        <span className="component-panel__prop-type">{prop.type}</span>
-                                    </label>
-                                    <div className="component-panel__prop-input">
-                                        {prop.type === 'boolean' ? (
-                                            <input
-                                                type="checkbox"
-                                                checked={(propValues[prop.name] ?? prop.default) as boolean}
-                                                onChange={(e) => handlePropChange(prop.name, e.target.checked)}
-                                            />
-                                        ) : prop.type === 'select' ? (
-                                            <select
-                                                value={(propValues[prop.name] ?? prop.default) as string}
-                                                onChange={(e) => handlePropChange(prop.name, e.target.value)}
-                                            >
-                                                {prop.options?.map((opt) => (
-                                                    <option key={opt} value={opt}>{opt}</option>
-                                                ))}
-                                            </select>
-                                        ) : prop.type === 'number' ? (
-                                            <input
-                                                type="number"
-                                                value={(propValues[prop.name] ?? prop.default) as number}
-                                                onChange={(e) => handlePropChange(prop.name, Number(e.target.value))}
-                                            />
-                                        ) : prop.type === 'color' ? (
-                                            <input
-                                                type="color"
-                                                value={(propValues[prop.name] ?? prop.default) as string}
-                                                onChange={(e) => handlePropChange(prop.name, e.target.value)}
-                                            />
-                                        ) : (
-                                            <input
-                                                type="text"
-                                                value={(propValues[prop.name] ?? prop.default) as string}
-                                                onChange={(e) => handlePropChange(prop.name, e.target.value)}
-                                            />
-                                        )}
-                                    </div>
-                                </div>
-                            ))}
+                        <div className="component-panel__preview-area">
+                            <ComponentErrorBoundary
+                                key={errorKey}
+                                componentName={info.name}
+                                onReset={handleErrorReset}
+                            >
+                                <Component {...mergedProps} isDark={isDark} />
+                            </ComponentErrorBoundary>
                         </div>
                     </div>
 
-                    {/* Code */}
-                    <div className="component-panel__section">
+                    {/* Code Section */}
+                    <div className="component-panel__code-section">
                         <div className="component-panel__code-header">
-                            <h4 className="component-panel__section-title">📋 Code</h4>
                             <button
+                                type="button"
                                 className={`component-panel__copy-btn ${copied ? 'component-panel__copy-btn--copied' : ''}`}
                                 onClick={handleCopy}
                             >
-                                {copied ? '✓ Copied!' : 'Copy'}
+                                {copied ? '✓ Copied!' : '📋 Copy'}
                             </button>
+                            <span className="component-panel__code-label">Code</span>
                         </div>
                         <pre className="component-panel__code">
                             <code>{generateCode(info.name, propValues, info.defaultProps)}</code>
                         </pre>
                     </div>
-                </div>
+                </main>
+
+                {/* RIGHT: Control Panel */}
+                <aside className="component-panel__sidebar">
+                    <ShowcaseControlPanel
+                        componentName={info.name}
+                        propDefs={info.propDefs}
+                        values={mergedProps}
+                        onChange={handlePropChange}
+                        grouped
+                    />
+                </aside>
             </div>
         </div>
     );

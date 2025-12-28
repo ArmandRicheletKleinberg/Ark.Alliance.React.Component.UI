@@ -5,6 +5,7 @@
 
 import { z } from 'zod';
 import { extendSchema } from '../../../core/base';
+import { BasicVariantSchema, BasicSizeSchema } from '../../../core/enums';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // SCHEMA
@@ -28,9 +29,9 @@ export const NumericInputModelSchema = extendSchema({
     /** Show stepper buttons */
     showStepper: z.boolean().default(true),
     /** Visual variant */
-    variant: z.enum(['default', 'neon', 'minimal']).default('default'),
+    variant: BasicVariantSchema.default('default'),
     /** Size variant */
-    size: z.enum(['sm', 'md', 'lg']).default('md'),
+    size: BasicSizeSchema.default('md'),
     /** Dark mode */
     isDark: z.boolean().default(true),
     /** Decimal places */

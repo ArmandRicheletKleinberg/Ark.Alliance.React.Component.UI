@@ -21,6 +21,7 @@ import { Modal } from '../components/Modal';
 import { SideBarMenu } from '../components/SideBar';
 import { StatusBadge } from '../components/Label';
 import { Chart3D } from '../components/Chart3D';
+import { GenericPanel } from '../components/GenericPanel';
 import { FAIcon } from '../components/Icon';
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -54,16 +55,17 @@ const neonButtonProps: PropDefinition[] = [
 const neonTogglePresets: StylePreset[] = [
     { name: 'Default', props: { checked: false, label: 'Enable Feature' } },
     { name: 'Checked', props: { checked: true, label: 'Active' } },
-    { name: 'Cyan', props: { checked: true, color: 'cyan', label: 'Cyan' } },
-    { name: 'Green', props: { checked: true, color: 'green', label: 'Success' } },
-    { name: 'Purple', props: { checked: true, color: 'purple', label: 'Premium' } },
+    { name: 'Cyan', props: { checked: true, onColor: '#00ffff', label: 'Cyan' } },
+    { name: 'Green', props: { checked: true, onColor: '#10b981', label: 'Success' } },
+    { name: 'Purple', props: { checked: true, onColor: '#8b5cf6', label: 'Premium' } },
     { name: 'Compact', props: { checked: true, size: 'sm', label: 'Compact' } },
 ];
 
 const neonToggleProps: PropDefinition[] = [
     { name: 'checked', type: 'boolean', default: false },
     { name: 'label', type: 'string', default: 'Toggle' },
-    { name: 'color', type: 'select', default: 'cyan', options: ['cyan', 'green', 'purple', 'red', 'yellow'] },
+    { name: 'onColor', type: 'select', default: '#10b981', options: ['#10b981', '#00ffff', '#8b5cf6', '#ef4444', '#f59e0b'], description: 'Color when ON' },
+    { name: 'offColor', type: 'select', default: '#4b5563', options: ['#4b5563', '#6b7280', '#9ca3af'], description: 'Color when OFF' },
     { name: 'size', type: 'select', default: 'md', options: ['sm', 'md', 'lg'] },
     { name: 'disabled', type: 'boolean', default: false },
     { name: 'isDark', type: 'boolean', default: true },
@@ -153,6 +155,58 @@ const tradingGridCardProps: PropDefinition[] = [
 ];
 
 // ═══════════════════════════════════════════════════════════════════════════
+// GENERIC PANEL PRESETS
+// ═══════════════════════════════════════════════════════════════════════════
+
+const genericPanelPresets: StylePreset[] = [
+    { name: 'Default', props: { title: 'Panel', children: 'Panel content' } },
+    { name: 'Glassmorphism', props: { title: 'Glass Panel', glassBlur: 12, variant: 'glass' } },
+    { name: 'Gradient', props: { title: 'Gradient Panel', useGradient: true, gradientStart: '#1e3a5f', gradientEnd: '#0f172a' } },
+    { name: 'With Grid', props: { title: 'Tech Panel', showGrid: true, gridSize: 20 } },
+    { name: 'Glow Effect', props: { title: 'Glow Panel', showGlow: true, glowColor: 'rgba(59, 130, 246, 0.3)' } },
+    { name: 'Sidebar', props: { title: 'Sidebar', layout: 'sidebar-left', sidebarWidth: 300 } },
+    { name: 'Empty State', props: { title: 'Empty', showEmptyState: true, emptyMessage: 'No data available', emptyIcon: '📭' } },
+    {
+        name: 'Full Featured', props: {
+            title: 'Dashboard',
+            glassBlur: 8,
+            useGradient: true,
+            gradientStart: '#1e3a5f',
+            gradientEnd: '#0f172a',
+            showGrid: true,
+            showGlow: true,
+            glowColor: 'rgba(34, 197, 94, 0.3)',
+            accentColor: '#22c55e',
+            borderRadius: 16
+        }
+    },
+];
+
+const genericPanelProps: PropDefinition[] = [
+    { name: 'title', type: 'string', default: 'Panel', description: 'Panel title' },
+    { name: 'variant', type: 'select', default: 'default', options: ['default', 'glass', 'bordered', 'elevated'] },
+    { name: 'collapsible', type: 'boolean', default: false },
+    { name: 'collapsed', type: 'boolean', default: false },
+    { name: 'glassBlur', type: 'number', default: 0, description: 'Glass blur intensity (0-40px)' },
+    { name: 'opacity', type: 'number', default: 100, description: 'Panel opacity (0-100%)' },
+    { name: 'borderRadius', type: 'number', default: 8, description: 'Border radius (0-50px)' },
+    { name: 'shadowIntensity', type: 'number', default: 20, description: 'Shadow strength (0-100)' },
+    { name: 'useGradient', type: 'boolean', default: false },
+    { name: 'gradientStart', type: 'color', default: '#1e3a5f' },
+    { name: 'gradientEnd', type: 'color', default: '#0f172a' },
+    { name: 'accentColor', type: 'color', default: '#3b82f6' },
+    { name: 'showGrid', type: 'boolean', default: false },
+    { name: 'gridSize', type: 'number', default: 20 },
+    { name: 'showGlow', type: 'boolean', default: false },
+    { name: 'glowColor', type: 'string', default: 'rgba(59, 130, 246, 0.3)' },
+    { name: 'showEmptyState', type: 'boolean', default: false },
+    { name: 'emptyMessage', type: 'string', default: 'No content available' },
+    { name: 'layout', type: 'select', default: 'inline', options: ['inline', 'sidebar-left', 'sidebar-right', 'fullscreen'] },
+    { name: 'sidebarWidth', type: 'number', default: 320 },
+    { name: 'scrollable', type: 'boolean', default: false },
+];
+
+// ═══════════════════════════════════════════════════════════════════════════
 // CATEGORY REGISTRY
 // ═══════════════════════════════════════════════════════════════════════════
 
@@ -199,6 +253,21 @@ export const componentCategories: ComponentCategory[] = [
                 defaultProps: { title: 'Card Title', children: 'Card content goes here' },
                 propDefs: glowCardProps,
                 presets: glowCardPresets,
+            },
+        ],
+    },
+    {
+        name: 'Panels',
+        icon: '🪟',
+        description: 'Universal panels with glassmorphism, gradients, grid overlays, and dynamic theming',
+        components: [
+            {
+                name: 'GenericPanel',
+                description: 'Universal panel with glassmorphism, gradients, grid overlay, glow effects, and dynamic theming',
+                component: GenericPanel,
+                defaultProps: { title: 'Panel', children: 'Panel content goes here' },
+                propDefs: genericPanelProps,
+                presets: genericPanelPresets,
             },
         ],
     },

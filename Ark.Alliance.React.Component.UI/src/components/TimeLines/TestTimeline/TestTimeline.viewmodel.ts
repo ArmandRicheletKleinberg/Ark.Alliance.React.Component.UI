@@ -61,9 +61,11 @@ export function useTestTimeline(options: UseTestTimelineOptions = {}): UseTestTi
 
     const containerRef = useRef<HTMLDivElement>(null);
 
+    // Parse model options with JSON.stringify for proper dependency tracking
     const modelData = useMemo(() => {
         return TestTimelineModelSchema.parse({ ...defaultTestTimelineModel, ...modelOptions });
-    }, [modelOptions]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [JSON.stringify(modelOptions)]);
 
     const base = useBaseViewModel<TestTimelineModel>(modelData, {
         model: modelData,

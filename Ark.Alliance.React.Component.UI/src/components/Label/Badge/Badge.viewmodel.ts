@@ -53,10 +53,11 @@ export interface UseBadgeResult extends BaseViewModelResult<BadgeModel> {
  * ```
  */
 export function useBadge(options: UseBadgeOptions = {}): UseBadgeResult {
-    // Parse model options
+    // Parse model options with JSON.stringify for proper dependency tracking
     const modelOptions = useMemo(() => {
         return BadgeModelSchema.parse({ ...defaultBadgeModel, ...options });
-    }, [options]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [JSON.stringify(options)]);
 
     // Use base ViewModel
     const base = useBaseViewModel<BadgeModel>(modelOptions, {

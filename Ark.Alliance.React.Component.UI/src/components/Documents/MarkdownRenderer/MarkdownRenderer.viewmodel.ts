@@ -154,14 +154,15 @@ function initializeMermaid(theme: MermaidThemeType): void {
 export function useMarkdownRenderer(
     options: UseMarkdownRendererOptions = {}
 ): UseMarkdownRendererResult {
-    // Parse model options
+    // Parse model options with JSON.stringify for proper dependency tracking
     const modelOptions = useMemo(() => {
         const { onRender, onHeadingClick, onLinkClick, onCodeCopy, ...modelData } = options;
         return MarkdownRendererModelSchema.parse({
             ...defaultMarkdownRendererModel,
             ...modelData
         });
-    }, [options]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [JSON.stringify(options)]);
 
     // Use base ViewModel
     const base = useBaseViewModel<MarkdownRendererModel>(modelOptions, {
