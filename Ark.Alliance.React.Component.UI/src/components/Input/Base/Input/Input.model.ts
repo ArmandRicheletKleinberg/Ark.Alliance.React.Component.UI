@@ -7,8 +7,12 @@
  */
 
 import { z } from 'zod';
+<<<<<<<< HEAD:Ark.Alliance.React.Component.UI/src/components/Input/Base/Input/Input.model.ts
 import { extendFormInputSchema } from '../../../../core/base';
 import { BasicSizeSchema, InputVariantSchema, type BasicSize, type InputVariant } from '../../../../core/enums';
+========
+import { extendFormInputSchema } from '../../core/base';
+>>>>>>>> 51dbefa49bdafb89d9b789ec953d0289844dbe85:Ark.Alliance.React.Component.UI/src/components/Input/Input.model.ts
 
 // ═══════════════════════════════════════════════════════════════════════════
 // SCHEMA DEFINITIONS
