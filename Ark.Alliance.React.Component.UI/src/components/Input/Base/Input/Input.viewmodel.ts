@@ -11,11 +11,7 @@ import {
     useBaseViewModel,
     useFormInputRestrictions,
     type BaseViewModelResult,
-<<<<<<<< HEAD:Ark.Alliance.React.Component.UI/src/components/Input/Base/Input/Input.viewmodel.ts
 } from '../../../../core/base';
-========
-} from '../../core/base';
->>>>>>>> 51dbefa49bdafb89d9b789ec953d0289844dbe85:Ark.Alliance.React.Component.UI/src/components/Input/Input.viewmodel.ts
 import type { InputModel } from './Input.model';
 import {
     defaultInputModel,
