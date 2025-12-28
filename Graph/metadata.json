@@ -1,0 +1,5 @@
+{
+  "name": "NexusStream Chart",
+  "description": "A high-performance, customizable financial charting tool connecting to real-time WebSockets (Binance Futures) with trend analysis indicators, custom thresholds, and advanced UI styling controls.",
+  "requestFramePermissions": []
+}
