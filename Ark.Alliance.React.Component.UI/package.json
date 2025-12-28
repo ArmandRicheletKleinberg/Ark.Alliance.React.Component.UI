@@ -1,5 +1,5 @@
 {
-  "name": "@ark-alliance/react-ui",
+  "name": "ark-alliance-react-ui",
   "version": "1.0.0",
   "description": "Professional React UI component library with MVVM architecture, Zod validation, and comprehensive TypeScript support",
   "author": {
