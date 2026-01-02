@@ -49,8 +49,14 @@ export const ButtonModelSchema = extendSchema({
     /** Icon name to display before text (left position) */
     iconLeft: z.string().optional(),
 
+    /** Custom React Element to display before text (left position) */
+    iconLeftElement: z.any().optional(),
+
     /** Icon name to display after text (right position) */
     iconRight: z.string().optional(),
+
+    /** Custom React Element to display after text (right position) */
+    iconRightElement: z.any().optional(),
 
     /** Icon name for centered icon (use with iconOnly) */
     iconCenter: z.string().optional(),

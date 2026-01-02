@@ -127,6 +127,7 @@ export function useCard(options: UseCardOptions): UseCardResult {
         const classes = [
             'ark-card',
             `ark-card--${base.model.status}`,
+            `ark-card--${base.model.variant}`, // Add variant class
         ];
 
         if (base.model.compact) classes.push('ark-card--compact');
