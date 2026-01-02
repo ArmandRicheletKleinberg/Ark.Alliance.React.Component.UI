@@ -51,13 +51,36 @@ export const TypographyConfigSchema = z.object({
 });
 
 /**
+ * Breadcrumb item configuration
+ */
+export const BreadcrumbItemSchema = z.object({
+    key: z.string(),
+    label: z.string(),
+    href: z.string().optional(),
+    icon: z.string().optional(),
+    active: z.boolean().default(false),
+});
+
+/**
+ * Mobile configuration
+ */
+export const MobileConfigSchema = z.object({
+    enabled: z.boolean().default(true),
+    drawerWidth: z.number().default(280),
+    backdrop: z.boolean().default(true),
+    breakpoint: z.enum(['sm', 'md', 'lg', 'xl']).default('md'),
+});
+
+/**
  * Action button configuration
  */
 export const ActionConfigSchema = z.object({
     id: z.string(),
     label: z.string().optional(),
     icon: z.string().optional(),
-    variant: z.enum(['primary', 'secondary', 'ghost', 'danger']).default('secondary'),
+    variant: z.enum(['primary', 'secondary', 'ghost', 'danger', 'outline']).default('secondary'),
+    tooltip: z.string().optional(),
+    disabled: z.boolean().default(false),
     // onClick is handled by React, not validated by Zod
 });
 
@@ -105,6 +128,10 @@ export const HeaderModelSchema = extendSchema({
     // ─── Border ───────────────────────────────────────────────────────────
     borderRadius: z.enum(['none', 'sm', 'md', 'lg', 'xl', 'full']).default('none'),
 
+    // ─── Navigation ───────────────────────────────────────────────────────
+    breadcrumbs: z.array(BreadcrumbItemSchema).optional(),
+    mobile: MobileConfigSchema.optional(),
+
     // ─── Search (Grid integration) ────────────────────────────────────────
     showSearch: z.boolean().default(false),
     searchPlaceholder: z.string().default('Search...'),
@@ -120,6 +147,8 @@ export const HeaderModelSchema = extendSchema({
 // TYPE EXPORTS
 // ═══════════════════════════════════════════════════════════════════════════
 
+export type BreadcrumbItem = z.infer<typeof BreadcrumbItemSchema>;
+export type MobileConfig = z.infer<typeof MobileConfigSchema>;
 export type BackgroundConfig = z.infer<typeof BackgroundConfigSchema>;
 export type TypographyConfig = z.infer<typeof TypographyConfigSchema>;
 export type ActionConfig = z.infer<typeof ActionConfigSchema>;
@@ -144,6 +173,8 @@ export const defaultHeaderModel: Omit<HeaderModel, 'title'> & { title?: string }
     background: undefined,
     typography: undefined,
     borderRadius: 'none',
+    breadcrumbs: undefined,
+    mobile: undefined,
     showSearch: false,
     searchPlaceholder: 'Search...',
     searchValue: undefined,

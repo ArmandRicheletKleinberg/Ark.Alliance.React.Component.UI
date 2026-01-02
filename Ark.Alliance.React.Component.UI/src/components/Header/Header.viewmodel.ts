@@ -31,6 +31,10 @@ export interface UseHeaderResult extends BaseViewModelResult<HeaderModel> {
     handleSearchChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     /** Icon size in pixels */
     iconSizePx: number;
+    /** Mobile drawer state */
+    isMobileDrawerOpen: boolean;
+    toggleMobileDrawer: () => void;
+    closeMobileDrawer: () => void;
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -143,7 +147,19 @@ export function useHeader(options: UseHeaderOptions): UseHeaderResult {
         const value = e.target.value;
         setSearchValue(value);
         onSearchChange?.(value);
+        onSearchChange?.(value);
     }, [onSearchChange]);
+
+    // Mobile drawer state
+    const [isMobileDrawerOpen, setIsMobileDrawerOpen] = useState(false);
+
+    const toggleMobileDrawer = useCallback(() => {
+        setIsMobileDrawerOpen((prev) => !prev);
+    }, []);
+
+    const closeMobileDrawer = useCallback(() => {
+        setIsMobileDrawerOpen(false);
+    }, []);
 
     // CSS classes
     const headerClasses = useMemo(() => {
@@ -201,6 +217,9 @@ export function useHeader(options: UseHeaderOptions): UseHeaderResult {
         setSearchValue,
         handleSearchChange,
         iconSizePx,
+        isMobileDrawerOpen,
+        toggleMobileDrawer,
+        closeMobileDrawer,
     };
 }
 
