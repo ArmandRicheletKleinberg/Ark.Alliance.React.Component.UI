@@ -8,6 +8,7 @@
 import { forwardRef, memo } from 'react';
 import { useTimeline, type UseTimelineOptions } from './Timeline.viewmodel';
 import type { TimelineItem } from './Timeline.model';
+import { Icon } from '../../Icon';
 import './Timeline.styles.css';
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -25,6 +26,10 @@ export interface TimelineProps extends UseTimelineOptions {
      * @param item - The clicked timeline item
      */
     onItemClick?: (item: TimelineItem) => void;
+    /**
+     * Callback when item edit button is clicked (Admin Mode)
+     */
+    onItemEdit?: (item: TimelineItem) => void;
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -40,26 +45,16 @@ export interface TimelineProps extends UseTimelineOptions {
  * - Status-based styling (pending, active, completed, error)
  * - Optional icons per item
  * - Click handler support for navigation
- * 
- * @example
- * ```tsx
- * <Timeline 
- *     items={[
- *         { id: '1', title: 'Event 1', status: 'completed' },
- *         { id: '2', title: 'Event 2', status: 'active' }
- *     ]}
- *     onItemClick={(item) => console.log('Clicked:', item)}
- * />
- * ```
+ * - Search/Filtering built-in via props
+ * - Admin mode for editing
  */
 export const Timeline = memo(forwardRef<HTMLDivElement, TimelineProps>(
     function Timeline(props, ref) {
-        const { className = '', onItemClick, ...timelineOptions } = props;
+        const { className = '', onItemClick, onItemEdit, ...timelineOptions } = props;
         const vm = useTimeline(timelineOptions);
 
         /**
          * Handle item click event
-         * @param item - The clicked timeline item
          */
         const handleItemClick = (item: TimelineItem) => {
             if (onItemClick) {
@@ -67,10 +62,14 @@ export const Timeline = memo(forwardRef<HTMLDivElement, TimelineProps>(
             }
         };
 
+        const handleEditClick = (e: React.MouseEvent, item: TimelineItem) => {
+            e.stopPropagation();
+            vm.handleItemEdit(item);
+            onItemEdit?.(item);
+        };
+
         /**
          * Handle keyboard navigation for accessibility
-         * @param event - Keyboard event
-         * @param item - The timeline item
          */
         const handleKeyDown = (event: React.KeyboardEvent, item: TimelineItem) => {
             if (onItemClick && (event.key === 'Enter' || event.key === ' ')) {
@@ -85,7 +84,7 @@ export const Timeline = memo(forwardRef<HTMLDivElement, TimelineProps>(
                 className={`${vm.timelineClasses} ${className}`}
                 data-testid={vm.model.testId}
             >
-                {vm.items.map((item, index) => (
+                {vm.filteredItems.map((item, index) => (
                     <div
                         key={item.id}
                         className={`ark-timeline__item ark-timeline__item--${item.status}${onItemClick ? ' ark-timeline__item--clickable' : ''}`}
@@ -98,21 +97,41 @@ export const Timeline = memo(forwardRef<HTMLDivElement, TimelineProps>(
                     >
                         <div className="ark-timeline__marker">
                             {item.icon ? (
-                                <span className="ark-timeline__icon">{item.icon}</span>
+                                <span className="ark-timeline__icon">
+                                    <Icon name={item.icon} size="sm" />
+                                </span>
                             ) : (
                                 <span className="ark-timeline__dot" />
                             )}
                         </div>
                         <div className="ark-timeline__content">
-                            <h4 className="ark-timeline__title">{item.title}</h4>
+                            <div className="ark-timeline__header">
+                                <h4 className="ark-timeline__title">{item.title}</h4>
+                                {vm.model.adminMode && (
+                                    <button
+                                        className="ark-timeline__edit-btn"
+                                        onClick={(e) => handleEditClick(e, item)}
+                                        aria-label="Edit item"
+                                    >
+                                        ✎
+                                    </button>
+                                )}
+                            </div>
+
                             {item.description && (
                                 <p className="ark-timeline__description">{item.description}</p>
                             )}
-                            {item.date && (
-                                <span className="ark-timeline__date">{item.date}</span>
-                            )}
+
+                            <div className="ark-timeline__meta">
+                                {item.date && (
+                                    <span className="ark-timeline__date">{item.date}</span>
+                                )}
+                                {item.category && (
+                                    <span className="ark-timeline__category">{item.category}</span>
+                                )}
+                            </div>
                         </div>
-                        {vm.model.showConnectors && index < vm.items.length - 1 && (
+                        {vm.model.showConnectors && index < vm.filteredItems.length - 1 && (
                             <div className="ark-timeline__connector" />
                         )}
                     </div>

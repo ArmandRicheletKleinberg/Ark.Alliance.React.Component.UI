@@ -1,0 +1,119 @@
+/**
+ * TreeNode Styles
+ */
+
+.ark-tree-node {
+    display: flex;
+    flex-direction: column;
+    user-select: none;
+}
+
+/* Content Row */
+.ark-tree-node__content {
+    display: flex;
+    align-items: center;
+    padding: var(--ark-tree-node-padding-y, 4px) var(--ark-tree-node-padding-x, 8px);
+    border-radius: var(--ark-border-radius, 4px);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: var(--ark-text-secondary, #9ca3af);
+}
+
+.ark-tree-node__content:hover {
+    background: var(--ark-bg-secondary, rgba(255, 255, 255, 0.05));
+    color: var(--ark-text-primary, #f3f4f6);
+}
+
+.ark-tree-node--selected>.ark-tree-node__content {
+    background: var(--ark-primary-light, rgba(59, 130, 246, 0.15));
+    color: var(--ark-primary, #3b82f6);
+}
+
+.ark-tree-node--disabled>.ark-tree-node__content {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: transparent;
+}
+
+/* Indentation handled by padding-left style in component based on level */
+
+/* Icons */
+.ark-tree-node__switcher {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    margin-right: 4px;
+    transition: transform 0.2s ease;
+    cursor: pointer;
+}
+
+.ark-tree-node__switcher:hover {
+    color: var(--ark-primary, #3b82f6);
+}
+
+.ark-tree-node__switcher--leaf {
+    width: 20px;
+    /* Spacer */
+    cursor: default;
+}
+
+.ark-tree-node__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 6px;
+    font-size: 1.1em;
+}
+
+/* Label */
+.ark-tree-node__label {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Children Container */
+.ark-tree-node__children {
+    display: none;
+    flex-direction: column;
+}
+
+.ark-tree-node--expanded>.ark-tree-node__children {
+    display: flex;
+    animation: arkSlideDown 0.2s ease-out;
+}
+
+@keyframes arkSlideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Connecting Lines (Optional) */
+.ark-tree-view--show-lines .ark-tree-node__content {
+    position: relative;
+}
+
+/* Light Mode Overrides */
+[data-theme="light"] .ark-tree-node__content {
+    color: #4b5563;
+}
+
+[data-theme="light"] .ark-tree-node__content:hover {
+    background: #f3f4f6;
+    color: #111827;
+}
+
+[data-theme="light"] .ark-tree-node--selected>.ark-tree-node__content {
+    background: #eff6ff;
+    color: #2563eb;
+}

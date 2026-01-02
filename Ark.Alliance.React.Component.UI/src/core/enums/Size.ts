@@ -103,3 +103,65 @@ export const BASIC_SIZES = ['sm', 'md', 'lg'] as const;
  * Default size for most components.
  */
 export const DEFAULT_SIZE: BasicSize = 'md';
+
+// ═══════════════════════════════════════════════════════════════════════════
+// SIZE MAPPINGS
+// ═══════════════════════════════════════════════════════════════════════════
+
+/**
+ * Standard component padding by size variant.
+ * Used for tabs, buttons, cards, and other interactive elements.
+ */
+export const COMPONENT_PADDING: Record<ComponentSize, { x: number; y: number }> = {
+    xs: { x: 8, y: 4 },
+    sm: { x: 12, y: 6 },
+    md: { x: 16, y: 8 },
+    lg: { x: 20, y: 10 },
+    xl: { x: 24, y: 12 },
+};
+
+/**
+ * Standard font sizes by size variant.
+ */
+export const COMPONENT_FONT_SIZE: Record<ComponentSize, string> = {
+    xs: '0.75rem',    // 12px
+    sm: '0.8125rem',  // 13px
+    md: '0.875rem',   // 14px
+    lg: '1rem',       // 16px
+    xl: '1.125rem',   // 18px
+};
+
+/**
+ * Icon sizes by component size.
+ */
+export const ICON_SIZE_BY_COMPONENT: Record<ComponentSize, 'xs' | 'sm' | 'md' | 'lg'> = {
+    xs: 'xs',
+    sm: 'xs',
+    md: 'sm',
+    lg: 'sm',
+    xl: 'md',
+};
+
+/**
+ * Standard gap sizes.
+ */
+export const GAP_SIZE: Record<ComponentSize, number> = {
+    xs: 4,
+    sm: 6,
+    md: 8,
+    lg: 12,
+    xl: 16,
+};
+
+/**
+ * Border radius by size.
+ */
+export const BORDER_RADIUS: Record<ComponentSize | 'none' | 'full', string> = {
+    none: '0',
+    xs: '4px',
+    sm: '6px',
+    md: '8px',
+    lg: '12px',
+    xl: '16px',
+    full: '9999px',
+};
