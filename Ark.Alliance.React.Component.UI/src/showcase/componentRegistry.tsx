@@ -521,6 +521,26 @@ export const componentCategories: ComponentCategory[] = [
                     { name: 'Neon', props: { title: 'Neon Header', visualMode: 'neon', icon: '✨' } },
                     { name: 'With Search', props: { title: 'Data Grid', showSearch: true, variant: 'grid' } },
                     { name: 'Glass', props: { title: 'Glass Header', visualMode: 'glass', icon: '🔮' } },
+                    {
+                        name: 'With Breadcrumbs',
+                        props: {
+                            title: 'Deep Page',
+                            breadcrumbs: [
+                                { key: 'home', label: 'Home', href: '#' },
+                                { key: 'section', label: 'Section', href: '#' },
+                                { key: 'current', label: 'Current', active: true }
+                            ]
+                        }
+                    },
+                    {
+                        name: 'Mobile Ready',
+                        props: {
+                            title: 'Mobile App',
+                            mobile: { enabled: true },
+                            showSearch: true,
+                            icon: 'bars'
+                        }
+                    },
                 ],
             },
             {
