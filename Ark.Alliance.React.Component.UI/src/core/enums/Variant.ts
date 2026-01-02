@@ -85,6 +85,25 @@ export const ButtonVariantSchema = z.enum([
     'ghost',
 ]);
 
+/**
+ * Tab control variant options.
+ * 
+ * | Variant | Description |
+ * |---------|-------------|
+ * | `default` | Standard tabs with background |
+ * | `pills` | Rounded pill-shaped tabs |
+ * | `underline` | Tabs with bottom border indicator |
+ * | `boxed` | Tabs with full border box |
+ * | `compact` | Smaller tabs with minimal padding |
+ */
+export const TabVariantSchema = z.enum([
+    'default',
+    'pills',
+    'underline',
+    'boxed',
+    'compact',
+]);
+
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPE EXPORTS
 // ═══════════════════════════════════════════════════════════════════════════
@@ -104,6 +123,9 @@ export type PanelVariant = z.infer<typeof PanelVariantSchema>;
 /** Button variant type */
 export type ButtonVariant = z.infer<typeof ButtonVariantSchema>;
 
+/** Tab variant type */
+export type TabVariant = z.infer<typeof TabVariantSchema>;
+
 // ═══════════════════════════════════════════════════════════════════════════
 // CONSTANTS
 // ═══════════════════════════════════════════════════════════════════════════
@@ -112,3 +134,4 @@ export type ButtonVariant = z.infer<typeof ButtonVariantSchema>;
  * Default variant for most components.
  */
 export const DEFAULT_VARIANT: BasicVariant = 'default';
+

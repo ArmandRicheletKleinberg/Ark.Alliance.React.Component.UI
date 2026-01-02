@@ -20,6 +20,11 @@ export const TimelineItemSchema = z.object({
     description: z.string().optional(),
     date: z.string().optional(),
     icon: z.string().optional(),
+    /** Category for filtering */
+    category: z.string().optional(),
+    /** Tags for search/filtering */
+    tags: z.array(z.string()).optional(),
+    /** Status for coloring/styling */
     status: ProcessStatusSchema.default('pending'),
 });
 
@@ -44,6 +49,18 @@ export const TimelineModelSchema = extendSchema({
 
     /** Enable animation for new entries */
     animateNewItems: z.boolean().default(true),
+
+    /** Enable admin/edit mode */
+    adminMode: z.boolean().default(false),
+
+    /** Text filter query */
+    filter: z.string().optional(),
+
+    /** Selected category filter */
+    selectedCategory: z.string().optional(),
+
+    /** Date format string (e.g. 'YYYY-MM-DD') */
+    dateFormat: z.string().optional(),
 });
 
 // ═══════════════════════════════════════════════════════════════════════════

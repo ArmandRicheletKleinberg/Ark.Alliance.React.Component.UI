@@ -32,6 +32,8 @@ export const ModalModelSchema = extendSchema({
     isDark: z.boolean().default(true),
     /** Centered vertically */
     centered: z.boolean().default(true),
+    /** Visual variant */
+    variant: z.enum(['default', 'glass', 'bordered', 'elevated']).default('default'),
 });
 
 export type ModalModel = z.infer<typeof ModalModelSchema>;

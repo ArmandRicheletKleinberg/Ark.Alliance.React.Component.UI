@@ -70,6 +70,13 @@ export const ToolbarPositionSchema = z.enum(['top', 'bottom', 'floating']);
  */
 export const OrientationSchema = z.enum(['vertical', 'horizontal']);
 
+/**
+ * Flex/layout alignment options.
+ * 
+ * Used for tabs, buttons, content alignment.
+ */
+export const AlignmentSchema = z.enum(['start', 'center', 'end', 'stretch']);
+
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPE EXPORTS
 // ═══════════════════════════════════════════════════════════════════════════
@@ -91,6 +98,9 @@ export type ToolbarPosition = z.infer<typeof ToolbarPositionSchema>;
 
 /** Orientation type */
 export type Orientation = z.infer<typeof OrientationSchema>;
+
+/** Alignment type */
+export type Alignment = z.infer<typeof AlignmentSchema>;
 
 // ═══════════════════════════════════════════════════════════════════════════
 // CONSTANTS
@@ -115,3 +125,9 @@ export const DEFAULT_SIDEBAR_POSITION: HorizontalPosition = 'left';
  * Default orientation for timelines.
  */
 export const DEFAULT_ORIENTATION: Orientation = 'vertical';
+
+/**
+ * Default alignment.
+ */
+export const DEFAULT_ALIGNMENT: Alignment = 'start';
+

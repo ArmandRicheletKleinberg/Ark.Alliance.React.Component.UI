@@ -48,12 +48,14 @@ export {
     InputVariantSchema,
     PanelVariantSchema,
     ButtonVariantSchema,
+    TabVariantSchema,
     // Types
     type ComponentVariant,
     type BasicVariant,
     type InputVariant,
     type PanelVariant,
     type ButtonVariant,
+    type TabVariant,
     // Constants
     DEFAULT_VARIANT,
 } from './Variant';
@@ -70,6 +72,7 @@ export {
     VerticalPositionSchema,
     ToolbarPositionSchema,
     OrientationSchema,
+    AlignmentSchema,
     // Types
     type Position,
     type ExtendedPosition,
@@ -77,11 +80,13 @@ export {
     type VerticalPosition,
     type ToolbarPosition,
     type Orientation,
+    type Alignment,
     // Constants
     POSITIONS,
     DEFAULT_TOOLTIP_POSITION,
     DEFAULT_SIDEBAR_POSITION,
     DEFAULT_ORIENTATION,
+    DEFAULT_ALIGNMENT,
 } from './Position';
 
 // ═══════════════════════════════════════════════════════════════════════════

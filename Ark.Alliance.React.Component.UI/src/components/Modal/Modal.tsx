@@ -65,6 +65,7 @@ export const Modal = memo(forwardRef<HTMLDivElement, ModalProps>(
         if (!isOpen) return null;
 
         const sizeClass = `ark-modal--${base.model.size}`;
+        const variantClass = `ark-modal--${base.model.variant}`;
         const themeClass = base.model.isDark ? 'ark-modal--dark' : 'ark-modal--light';
         const centeredClass = base.model.centered ? 'ark-modal--centered' : '';
 
@@ -78,7 +79,7 @@ export const Modal = memo(forwardRef<HTMLDivElement, ModalProps>(
             >
                 <div
                     ref={ref}
-                    className={`ark-modal__container ${sizeClass} ${centeredClass} ${className}`}
+                    className={`ark-modal__container ${sizeClass} ${variantClass} ${centeredClass} ${className}`}
                     data-testid={base.model.testId}
                 >
                     {(base.model.title || base.model.showClose) && (
