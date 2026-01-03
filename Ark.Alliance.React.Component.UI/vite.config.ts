@@ -13,7 +13,7 @@ export default defineConfig({
       include: ['src'],
       outDir: 'dist',
       insertTypesEntry: true,
-      tsconfigPath: './tsconfig.json',
+      tsconfigPath: './tsconfig.app.json',
       copyDtsFiles: true,
     }),
   ],
