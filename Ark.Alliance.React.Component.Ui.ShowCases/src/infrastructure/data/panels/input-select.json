@@ -1,0 +1,64 @@
+{
+    "id": "input-select",
+    "componentId": "Select",
+    "title": "Select Dropdown",
+    "description": "Customizable dropdown select with support for icons and search.",
+    "defaultProps": {
+        "label": "Asset",
+        "placeholder": "Select an asset...",
+        "optionSet": "crypto",
+        "searchable": false,
+        "size": "md",
+        "variant": "default",
+        "helperText": "Select base currency"
+    },
+    "controls": [
+        {
+            "type": "text",
+            "name": "label",
+            "label": "Label",
+            "defaultValue": "Asset"
+        },
+        {
+            "type": "text",
+            "name": "placeholder",
+            "label": "Placeholder",
+            "defaultValue": "Select an asset..."
+        },
+        {
+            "type": "text",
+            "name": "helperText",
+            "label": "Helper Text",
+            "defaultValue": "Select base currency"
+        },
+        {
+            "type": "select",
+            "name": "optionSet",
+            "label": "Data Source",
+            "defaultValue": "crypto",
+            "options": [
+                "crypto",
+                "fiat",
+                "actions",
+                "timeframes"
+            ]
+        },
+        {
+            "type": "select",
+            "name": "size",
+            "label": "Size",
+            "defaultValue": "md",
+            "options": [
+                "sm",
+                "md",
+                "lg"
+            ]
+        },
+        {
+            "type": "boolean",
+            "name": "searchable",
+            "label": "Searchable",
+            "defaultValue": false
+        }
+    ]
+}

@@ -1,0 +1,55 @@
+{
+    "id": "input-file",
+    "componentId": "FileUpload",
+    "title": "File Upload",
+    "description": "Drag and drop file upload zone with preview.",
+    "defaultProps": {
+        "label": "Upload Document",
+        "placeholder": "Drag & Drop or Click to Upload",
+        "accept": "image/*,.pdf",
+        "variant": "default",
+        "showPreview": true,
+        "size": "md"
+    },
+    "layout": {
+        "width": "100%",
+        "minWidth": "full"
+    },
+    "controls": [
+        {
+            "type": "text",
+            "name": "label",
+            "label": "Label",
+            "defaultValue": "Upload Document"
+        },
+        {
+            "type": "text",
+            "name": "placeholder",
+            "label": "Placeholder",
+            "defaultValue": "Drag & Drop..."
+        },
+        {
+            "type": "text",
+            "name": "accept",
+            "label": "Accept Types",
+            "defaultValue": "image/*,.pdf"
+        },
+        {
+            "type": "boolean",
+            "name": "showPreview",
+            "label": "Show Preview",
+            "defaultValue": true
+        },
+        {
+            "type": "select",
+            "name": "size",
+            "label": "Size",
+            "defaultValue": "md",
+            "options": [
+                "sm",
+                "md",
+                "lg"
+            ]
+        }
+    ]
+}

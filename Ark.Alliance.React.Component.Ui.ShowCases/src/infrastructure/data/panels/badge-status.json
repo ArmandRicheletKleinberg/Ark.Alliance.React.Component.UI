@@ -1,0 +1,50 @@
+{
+    "id": "badge-status",
+    "title": "Status Badge",
+    "description": "Label indicating status or state.",
+    "componentId": "StatusBadge",
+    "layout": {
+        "width": "auto",
+        "height": "auto"
+    },
+    "preview": {
+        "background": "light"
+    },
+    "defaultProps": {
+        "label": "Active",
+        "status": "success",
+        "variant": "filled"
+    },
+    "controls": [
+        {
+            "propName": "label",
+            "type": "text",
+            "label": "Label Text",
+            "group": "content"
+        },
+        {
+            "propName": "status",
+            "type": "select",
+            "label": "Status",
+            "options": [
+                "success",
+                "warning",
+                "error",
+                "info",
+                "neutral"
+            ],
+            "group": "style"
+        },
+        {
+            "propName": "variant",
+            "type": "select",
+            "label": "Variant",
+            "options": [
+                "filled",
+                "outlined",
+                "subtle"
+            ],
+            "group": "style"
+        }
+    ]
+}

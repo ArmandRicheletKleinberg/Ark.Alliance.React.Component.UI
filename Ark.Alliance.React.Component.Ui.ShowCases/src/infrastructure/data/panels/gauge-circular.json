@@ -1,0 +1,83 @@
+{
+    "id": "gauge-circular",
+    "title": "Circular Gauge",
+    "description": "Radial progress indicator with color mapping.",
+    "componentId": "CircularGauge",
+    "layout": {
+        "width": "auto",
+        "height": "auto"
+    },
+    "preview": {
+        "background": "dark"
+    },
+    "defaultProps": {
+        "value": 75,
+        "max": 100,
+        "label": "CPU Usage",
+        "unit": "%",
+        "size": "md"
+    },
+    "controls": [
+        {
+            "propName": "value",
+            "type": "slider",
+            "label": "Value",
+            "min": 0,
+            "max": 100,
+            "group": "data"
+        },
+        {
+            "propName": "decimals",
+            "type": "slider",
+            "label": "Decimals",
+            "min": 0,
+            "max": 2,
+            "step": 1,
+            "group": "data"
+        },
+        {
+            "propName": "autoColor",
+            "type": "boolean",
+            "label": "Auto Color",
+            "group": "behavior"
+        },
+        {
+            "propName": "color",
+            "type": "select",
+            "label": "Color",
+            "options": [
+                "blue",
+                "green",
+                "red",
+                "cyan",
+                "yellow",
+                "purple"
+            ],
+            "group": "style"
+        },
+        {
+            "propName": "size",
+            "type": "select",
+            "label": "Size",
+            "options": [
+                "sm",
+                "md",
+                "lg",
+                "xl"
+            ],
+            "group": "style"
+        },
+        {
+            "propName": "label",
+            "type": "text",
+            "label": "Label",
+            "group": "content"
+        },
+        {
+            "propName": "unit",
+            "type": "text",
+            "label": "Unit",
+            "group": "content"
+        }
+    ]
+}

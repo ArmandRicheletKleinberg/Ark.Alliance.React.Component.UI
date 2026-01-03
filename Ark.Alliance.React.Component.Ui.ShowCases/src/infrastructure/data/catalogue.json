@@ -1,0 +1,90 @@
+{
+    "categories": [
+        {
+            "name": "Inputs",
+            "icon": "keyboard",
+            "description": "User input controls.",
+            "componentIds": [
+                "input-neon",
+                "input-numeric",
+                "input-select",
+                "input-slider",
+                "input-textarea",
+                "input-file",
+                "input-editor"
+            ]
+        },
+        {
+            "name": "Buttons",
+            "icon": "circle-dot",
+            "description": "Interactive elements that trigger actions.",
+            "componentIds": [
+                "btn-standard",
+                "btn-neon"
+            ]
+        },
+        {
+            "name": "Data Display",
+            "icon": "chart-simple",
+            "description": "Visualize data sets and timelines.",
+            "componentIds": [
+                "timeline-vertical",
+                "grid-project"
+            ]
+        },
+        {
+            "name": "Containers",
+            "icon": "box",
+            "description": "Wrappers and layout elements.",
+            "componentIds": [
+                "panel-basic",
+                "card-basic"
+            ]
+        },
+        {
+            "name": "Feedback",
+            "icon": "circle-info",
+            "description": "Indicators and alerts.",
+            "componentIds": [
+                "badge-status"
+            ]
+        },
+        {
+            "name": "Gauges",
+            "icon": "gauge-high",
+            "description": "Visual instruments for values.",
+            "componentIds": [
+                "gauge-circular",
+                "gauge-speedometer",
+                "gauge-digital",
+                "gauge-signal-bars",
+                "gauge-battery"
+            ]
+        },
+        {
+            "name": "Grids",
+            "icon": "layer-group",
+            "description": "Structured layouts for collections.",
+            "componentIds": [
+                "grid-project",
+                "grid-data"
+            ]
+        },
+        {
+            "name": "Charts",
+            "icon": "chart-line",
+            "description": "Visual data representation.",
+            "componentIds": [
+                "chart-financial",
+                "chart-trend",
+                "chart-test"
+            ]
+        },
+        {
+            "name": "TestFamily",
+            "icon": "vial",
+            "description": "Testing generic configuration.",
+            "componentIds": []
+        }
+    ]
+}
