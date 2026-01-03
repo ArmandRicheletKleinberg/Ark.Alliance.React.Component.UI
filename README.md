@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Version](https://img.shields.io/badge/version-1.1.2-blue?style=for-the-badge)
+![Version](https://img.shields.io/badge/version-1.1.3-blue?style=for-the-badge)
 [![npm version](https://img.shields.io/npm/v/ark-alliance-react-ui?style=for-the-badge&logo=npm&color=CB3837)](https://www.npmjs.com/package/ark-alliance-react-ui)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/ArmandRicheletKleinberg/Ark.Alliance.React.Component.UI/node.js.yml?style=for-the-badge&logo=github&label=Build)](https://github.com/ArmandRicheletKleinberg/Ark.Alliance.React.Component.UI/actions/workflows/node.js.yml)
 [![Publish Status](https://img.shields.io/github/actions/workflow/status/ArmandRicheletKleinberg/Ark.Alliance.React.Component.UI/npm-publish.yml?style=for-the-badge&logo=npm&label=Publish)](https://github.com/ArmandRicheletKleinberg/Ark.Alliance.React.Component.UI/actions/workflows/npm-publish.yml)
