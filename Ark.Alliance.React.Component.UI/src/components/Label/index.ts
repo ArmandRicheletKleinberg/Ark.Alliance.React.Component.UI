@@ -6,3 +6,4 @@ export type { LabelVariant, LabelSize } from './Base/Label/Label.types';
 
 // Specialized Label components
 export * from './Badge';
+export * from './TechBadge';
