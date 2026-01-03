@@ -2,13 +2,14 @@
 
 <div align="center">
 
-![Version](https://img.shields.io/badge/version-1.0.0-blue?style=for-the-badge)
+![Version](https://img.shields.io/badge/version-1.1.2-blue?style=for-the-badge)
+[![npm version](https://img.shields.io/npm/v/ark-alliance-react-ui?style=for-the-badge&logo=npm&color=CB3837)](https://www.npmjs.com/package/ark-alliance-react-ui)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/ArmandRicheletKleinberg/Ark.Alliance.React.Component.UI/node.js.yml?style=for-the-badge&logo=github&label=Build)](https://github.com/ArmandRicheletKleinberg/Ark.Alliance.React.Component.UI/actions/workflows/node.js.yml)
+[![Publish Status](https://img.shields.io/github/actions/workflow/status/ArmandRicheletKleinberg/Ark.Alliance.React.Component.UI/npm-publish.yml?style=for-the-badge&logo=npm&label=Publish)](https://github.com/ArmandRicheletKleinberg/Ark.Alliance.React.Component.UI/actions/workflows/npm-publish.yml)
 ![React](https://img.shields.io/badge/React-19.x-61dafb?style=for-the-badge&logo=react)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178c6?style=for-the-badge&logo=typescript)
-![Tailwind](https://img.shields.io/badge/Tailwind-4.x-38bdf8?style=for-the-badge&logo=tailwindcss)
-![Zod](https://img.shields.io/badge/Zod-4.x-3E67B1?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
-![Tests](https://img.shields.io/badge/Tests-502%2F502-success?style=for-the-badge)
+![Tests](https://img.shields.io/badge/Tests-100%25-success?style=for-the-badge)
 
 **Enterprise-Grade React Component Library with MVVM Architecture**
 

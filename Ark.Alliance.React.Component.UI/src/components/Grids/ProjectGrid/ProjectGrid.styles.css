@@ -1,0 +1,287 @@
+/**
+ * @fileoverview ProjectGrid Component Styles
+ * @module components/Grids/ProjectGrid
+ * 
+ * BEM naming convention: ark-project-grid, ark-project-card
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   GRID CONTAINER
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-project-grid {
+    width: 100%;
+}
+
+.ark-project-grid--loading,
+.ark-project-grid--error,
+.ark-project-grid--empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 5rem 1rem;
+    color: rgb(148, 163, 184);
+}
+
+.ark-project-grid__spinner {
+    width: 48px;
+    height: 48px;
+    border: 3px solid rgb(51, 65, 85);
+    border-top-color: rgb(59, 130, 246);
+    border-radius: 50%;
+    animation: arkProjectSpinner 1s linear infinite;
+    margin-bottom: 1rem;
+}
+
+@keyframes arkProjectSpinner {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   PROJECT CARD
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-project-card {
+    display: flex;
+    flex-direction: column;
+    background: rgba(30, 41, 59, 0.8);
+    border: 1px solid rgba(51, 65, 85, 0.5);
+    border-radius: 1rem;
+    overflow: hidden;
+    transition: all 0.3s ease-out;
+}
+
+.ark-project-card:hover {
+    border-color: rgb(59, 130, 246);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 30px rgba(59, 130, 246, 0.1);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   CARD IMAGE
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-project-card__image-container {
+    position: relative;
+    height: 180px;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgb(30, 41, 59) 0%, rgb(51, 65, 85) 100%);
+}
+
+.ark-project-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease-out;
+}
+
+.ark-project-card:hover .ark-project-card__image {
+    transform: scale(1.05);
+}
+
+.ark-project-card__placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.875rem;
+    color: rgb(100, 116, 139);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+}
+
+.ark-project-card__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, transparent 50%);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   CARD CONTENT
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-project-card__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 1.25rem;
+}
+
+.ark-project-card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.75rem;
+}
+
+.ark-project-card__title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: rgb(241, 245, 249);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+.ark-project-card__link-icon {
+    opacity: 0;
+    transform: translateX(-4px);
+    transition: all 0.3s ease-out;
+    color: rgb(96, 165, 250);
+}
+
+.ark-project-card:hover .ark-project-card__link-icon {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.ark-project-card__status {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: rgb(96, 165, 250);
+    margin-top: 0.25rem;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   CARD ACTIONS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-project-card__actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.ark-project-card__action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 0.5rem;
+    color: rgb(148, 163, 184);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+    text-decoration: none;
+}
+
+.ark-project-card__action-btn:hover {
+    color: rgb(241, 245, 249);
+    background: rgba(100, 116, 139, 0.1);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   CARD DESCRIPTION
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-project-card__description {
+    flex: 1;
+    font-size: 0.875rem;
+    color: rgb(148, 163, 184);
+    line-height: 1.6;
+    margin: 0 0 1rem 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   CARD FOOTER (TECHNOLOGIES)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-project-card__footer {
+    margin-top: auto;
+}
+
+.ark-project-card__tech-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: rgb(100, 116, 139);
+    letter-spacing: 0.1em;
+    margin: 0 0 0.5rem 0;
+}
+
+.ark-project-card__tech-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.ark-project-card__tech-badge {
+    font-family: ui-monospace, SFMono-Regular, monospace;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.25rem 0.5rem;
+    background: rgba(30, 41, 59, 0.6);
+    border: 1px solid rgba(100, 116, 139, 0.4);
+    border-radius: 0.5rem;
+    color: rgba(100, 116, 139, 0.8);
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+}
+
+.ark-project-card__tech-badge:hover {
+    border-color: rgba(100, 116, 139, 0.6);
+    transform: scale(1.05);
+}
+
+.ark-project-card__tech-more {
+    font-size: 0.75rem;
+    color: rgb(100, 116, 139);
+    padding: 0.125rem 0.5rem;
+    background: rgb(30, 41, 59);
+    border-radius: 9999px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   CARD CTA
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ark-project-card__cta {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgb(51, 65, 85);
+    cursor: pointer;
+}
+
+.ark-project-card__cta-text {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: rgb(96, 165, 250);
+    transition: all 0.3s ease-out;
+}
+
+.ark-project-card__cta-text svg {
+    transition: transform 0.3s ease-out;
+}
+
+.ark-project-card:hover .ark-project-card__cta-text {
+    color: rgb(147, 197, 253);
+}
+
+.ark-project-card:hover .ark-project-card__cta-text svg {
+    transform: translateX(4px);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+    .ark-project-card__image-container {
+        height: 140px;
+    }
+}

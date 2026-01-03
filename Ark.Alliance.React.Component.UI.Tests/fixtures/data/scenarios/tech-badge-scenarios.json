@@ -1,0 +1,190 @@
+{
+    "id": "tech-badge-scenarios",
+    "name": "TechBadge Component Scenarios",
+    "component": "TechBadge",
+    "category": "Label",
+    "technologies": [
+        {
+            "key": "react",
+            "name": "React",
+            "label": "React.js",
+            "category": "frontend",
+            "description": "A JavaScript library for building user interfaces with component-based architecture",
+            "icon": "fab fa-react",
+            "color": "#61DAFB",
+            "website": "https://react.dev",
+            "versions": [
+                "16",
+                "17",
+                "18",
+                "19"
+            ]
+        },
+        {
+            "key": "typescript",
+            "name": "TypeScript",
+            "label": "TypeScript",
+            "category": "languages",
+            "description": "A strongly typed programming language that builds on JavaScript",
+            "icon": "devicon-typescript-plain",
+            "color": "#3178C6",
+            "website": "https://www.typescriptlang.org"
+        },
+        {
+            "key": "nodejs",
+            "name": "Node.js",
+            "label": "Node.js",
+            "category": "runtimes",
+            "description": "A JavaScript runtime built on Chrome's V8 engine for server-side development",
+            "icon": "fab fa-node-js",
+            "color": "#339933",
+            "website": "https://nodejs.org"
+        },
+        {
+            "key": "python",
+            "name": "Python",
+            "label": "Python",
+            "category": "languages",
+            "description": "A versatile programming language known for its readability and extensive libraries",
+            "icon": "fab fa-python",
+            "color": "#3776AB",
+            "website": "https://www.python.org"
+        },
+        {
+            "key": "docker",
+            "name": "Docker",
+            "label": "Docker",
+            "category": "devops",
+            "description": "A platform for developing, shipping, and running applications in containers",
+            "icon": "fab fa-docker",
+            "color": "#2496ED",
+            "website": "https://www.docker.com"
+        },
+        {
+            "key": "kubernetes",
+            "name": "Kubernetes",
+            "label": "Kubernetes (K8s)",
+            "category": "devops",
+            "description": "An open-source system for automating deployment and management of containerized applications",
+            "icon": "devicon-kubernetes-plain",
+            "color": "#326CE5",
+            "website": "https://kubernetes.io"
+        },
+        {
+            "key": "aws",
+            "name": "AWS",
+            "label": "Amazon Web Services",
+            "category": "cloud",
+            "description": "The world's leading cloud computing platform by Amazon",
+            "icon": "fab fa-aws",
+            "color": "#FF9900",
+            "website": "https://aws.amazon.com"
+        },
+        {
+            "key": "csharp",
+            "name": "C#",
+            "label": "C#",
+            "category": "languages",
+            "description": "A modern, object-oriented programming language developed by Microsoft",
+            "icon": "devicon-csharp-plain",
+            "color": "#239120",
+            "website": "https://docs.microsoft.com/en-us/dotnet/csharp/"
+        },
+        {
+            "key": "dotnet",
+            "name": ".NET",
+            "label": ".NET",
+            "category": "runtimes",
+            "description": "A free, cross-platform, open-source developer platform by Microsoft",
+            "icon": "devicon-dotnetcore-plain",
+            "color": "#512BD4",
+            "website": "https://dotnet.microsoft.com",
+            "versions": [
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10"
+            ]
+        },
+        {
+            "key": "postgresql",
+            "name": "PostgreSQL",
+            "label": "PostgreSQL",
+            "category": "databases",
+            "description": "A powerful, open-source object-relational database system",
+            "icon": "devicon-postgresql-plain",
+            "color": "#4169E1",
+            "website": "https://www.postgresql.org"
+        }
+    ],
+    "scenarios": [
+        {
+            "id": "TECH-001",
+            "name": "TechBadge Render",
+            "description": "TechBadge renders with technology data",
+            "input": {
+                "techKey": "react",
+                "size": "md",
+                "showIcon": true
+            },
+            "expectedResults": {
+                "displayName": "React",
+                "hasIcon": true
+            }
+        },
+        {
+            "id": "TECH-002",
+            "name": "TechBadge Click Handler",
+            "description": "TechBadge triggers onClick with technology data",
+            "input": {
+                "techKey": "typescript"
+            },
+            "expectedResults": {
+                "clickable": true
+            }
+        },
+        {
+            "id": "TECH-003",
+            "name": "TechBadge Sizes",
+            "description": "TechBadge supports sm, md, lg sizes",
+            "input": {
+                "techKey": "nodejs"
+            },
+            "expectedResults": {
+                "sizes": [
+                    "sm",
+                    "md",
+                    "lg"
+                ]
+            }
+        },
+        {
+            "id": "TECH-004",
+            "name": "Badge Detail Modal Open",
+            "description": "BadgeDetailModal opens with technology details",
+            "input": {
+                "isOpen": true,
+                "data": {
+                    "name": "Docker",
+                    "color": "#2496ED"
+                }
+            },
+            "expectedResults": {
+                "isVisible": true
+            }
+        },
+        {
+            "id": "TECH-005",
+            "name": "Badge Detail Modal Close on Escape",
+            "description": "BadgeDetailModal closes on Escape key",
+            "input": {
+                "isOpen": true
+            },
+            "expectedResults": {
+                "closesOnEscape": true
+            }
+        }
+    ]
+}
