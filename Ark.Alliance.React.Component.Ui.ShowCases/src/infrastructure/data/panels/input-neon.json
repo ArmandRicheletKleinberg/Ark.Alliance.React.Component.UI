@@ -1,0 +1,98 @@
+{
+    "id": "input-neon",
+    "componentId": "NeonInput",
+    "title": "Neon Input",
+    "description": "Cyberpunk-styled text input with configurable glow effects and validation states.",
+    "defaultProps": {
+        "label": "Username",
+        "placeholder": "Enter username...",
+        "glowColor": "cyan",
+        "size": "md",
+        "variant": "default",
+        "fullWidth": false,
+        "required": true,
+        "hasError": false,
+        "helperText": "Must be unique",
+        "validationFormat": "none"
+    },
+    "controls": [
+        {
+            "type": "text",
+            "name": "label",
+            "label": "Label",
+            "defaultValue": "Username"
+        },
+        {
+            "type": "text",
+            "name": "placeholder",
+            "label": "Placeholder",
+            "defaultValue": "Enter username..."
+        },
+        {
+            "type": "text",
+            "name": "helperText",
+            "label": "Helper Text",
+            "defaultValue": "Must be unique"
+        },
+        {
+            "type": "select",
+            "name": "glowColor",
+            "label": "Glow Color",
+            "defaultValue": "cyan",
+            "options": [
+                "cyan",
+                "blue",
+                "purple",
+                "green",
+                "red"
+            ]
+        },
+        {
+            "type": "select",
+            "name": "size",
+            "label": "Size",
+            "defaultValue": "md",
+            "options": [
+                "sm",
+                "md",
+                "lg"
+            ]
+        },
+        {
+            "type": "select",
+            "name": "validationFormat",
+            "label": "Format Validation",
+            "defaultValue": "none",
+            "options": [
+                "none",
+                "email",
+                "ipv4",
+                "url",
+                "number"
+            ]
+        },
+        {
+            "type": "divider",
+            "name": "div1",
+            "label": "States"
+        },
+        {
+            "type": "boolean",
+            "name": "fullWidth",
+            "label": "Full Width",
+            "defaultValue": false
+        },
+        {
+            "type": "boolean",
+            "name": "required",
+            "label": "Required",
+            "defaultValue": true
+        },
+        {
+            "type": "boolean",
+            "name": "hasError",
+            "label": "Force Error",
+            "defaultValue": false
+        }
+    ]
+}

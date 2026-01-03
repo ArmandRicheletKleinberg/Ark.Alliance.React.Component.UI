@@ -87,6 +87,7 @@ export const TabControl = memo(forwardRef<HTMLDivElement, TabControlProps>(
                 >
                     {vm.model.items.map((tab: TabItemModel, index: number) => (
                         <TabItem
+                            key={tab.tabKey}
                             tabKey={tab.tabKey}
                             {...tab}
                             isActive={tab.tabKey === vm.activeKey}
@@ -104,7 +105,7 @@ export const TabControl = memo(forwardRef<HTMLDivElement, TabControlProps>(
                     {renderPanel ? (
                         vm.model.items.map((tab: TabItemModel) => (
                             <div
-                                tabKey={tab.tabKey}
+                                key={tab.tabKey}
                                 className="ark-tab-control__panel"
                                 {...vm.getPanelAriaProps(tab.tabKey)}
                             >

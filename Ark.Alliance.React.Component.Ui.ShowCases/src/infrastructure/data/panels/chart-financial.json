@@ -1,0 +1,180 @@
+{
+    "id": "chart-financial",
+    "componentId": "FinancialChart",
+    "title": "Financial Chart",
+    "description": "Advanced financial chart with candlesticks, MAs, and customizable styling.",
+    "defaultProps": {
+        "headerTitle": "BTC/USD - Perpetual",
+        "chartType": "candlestick",
+        "dataPoints": 60,
+        "startPrice": 45000,
+        "volatility": 50,
+        "trend": "up",
+        "height": 500,
+        "interval": "1m",
+        "useLogScale": false,
+        "borderColor": "#475569",
+        "borderWidth": 1,
+        "borderRadius": 12,
+        "boxShadowIntensity": 10,
+        "fastMA_enabled": true,
+        "fastMA_period": 7,
+        "fastMA_color": "#22c55e",
+        "fastMA_type": "SMA",
+        "slowMA_enabled": true,
+        "slowMA_period": 25,
+        "slowMA_color": "#ef4444",
+        "slowMA_type": "SMA"
+    },
+    "layout": {
+        "width": "100%",
+        "minWidth": "full"
+    },
+    "controls": [
+        {
+            "type": "text",
+            "name": "headerTitle",
+            "label": "Chart Title",
+            "defaultValue": "BTC/USD"
+        },
+        {
+            "type": "select",
+            "name": "chartType",
+            "label": "Type",
+            "defaultValue": "candlestick",
+            "options": [
+                "line",
+                "candlestick",
+                "area"
+            ]
+        },
+        {
+            "type": "select",
+            "name": "interval",
+            "label": "Time Interval",
+            "defaultValue": "1m",
+            "options": [
+                "1s",
+                "1m",
+                "15m",
+                "1h",
+                "4h"
+            ]
+        },
+        {
+            "type": "boolean",
+            "name": "useLogScale",
+            "label": "Log Scale",
+            "defaultValue": false
+        },
+        {
+            "type": "divider",
+            "name": "div1",
+            "label": "Fast MA"
+        },
+        {
+            "type": "boolean",
+            "name": "fastMA_enabled",
+            "label": "Enable Fast MA",
+            "defaultValue": true
+        },
+        {
+            "type": "slider",
+            "name": "fastMA_period",
+            "label": "Fast Period",
+            "defaultValue": 7,
+            "min": 2,
+            "max": 50
+        },
+        {
+            "type": "color",
+            "name": "fastMA_color",
+            "label": "Fast Color",
+            "defaultValue": "#22c55e"
+        },
+        {
+            "type": "divider",
+            "name": "div2",
+            "label": "Slow MA"
+        },
+        {
+            "type": "boolean",
+            "name": "slowMA_enabled",
+            "label": "Enable Slow MA",
+            "defaultValue": true
+        },
+        {
+            "type": "slider",
+            "name": "slowMA_period",
+            "label": "Slow Period",
+            "defaultValue": 25,
+            "min": 10,
+            "max": 200
+        },
+        {
+            "type": "color",
+            "name": "slowMA_color",
+            "label": "Slow Color",
+            "defaultValue": "#ef4444"
+        },
+        {
+            "type": "divider",
+            "name": "div3",
+            "label": "Simulation"
+        },
+        {
+            "type": "slider",
+            "name": "volatility",
+            "label": "Volatility",
+            "defaultValue": 50,
+            "min": 10,
+            "max": 200
+        },
+        {
+            "type": "select",
+            "name": "trend",
+            "label": "Trend",
+            "defaultValue": "up",
+            "options": [
+                "up",
+                "down",
+                "flat"
+            ]
+        },
+        {
+            "type": "divider",
+            "name": "div4",
+            "label": "Style"
+        },
+        {
+            "type": "slider",
+            "name": "borderWidth",
+            "label": "Border Width",
+            "defaultValue": 1,
+            "min": 0,
+            "max": 10
+        },
+        {
+            "type": "slider",
+            "name": "borderRadius",
+            "label": "Border Radius",
+            "defaultValue": 12,
+            "min": 0,
+            "max": 50
+        },
+        {
+            "type": "slider",
+            "name": "boxShadowIntensity",
+            "label": "Shadow Int.",
+            "defaultValue": 10,
+            "min": 0,
+            "max": 50
+        },
+        {
+            "type": "color",
+            "name": "borderColor",
+            "label": "Border Color",
+            "defaultValue": "#475569"
+        }
+    ]
+}

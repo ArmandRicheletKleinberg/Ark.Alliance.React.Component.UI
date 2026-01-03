@@ -1,0 +1,221 @@
+/* Tailwind CSS v4 Import */
+@import "tailwindcss";
+
+@theme {
+  /* Colors - Brand (Teal/Neon) */
+  --color-ark-primary: #00d4ff;
+  --color-ark-primary-hover: #00ffff;
+  --color-ark-secondary: #00ffff;
+  --color-ark-accent: #22d3ee;
+
+  /* Colors - Semantic */
+  --color-ark-success: #10b981;
+  --color-ark-warning: #f59e0b;
+  --color-ark-error: #ef4444;
+  --color-ark-info: #00d4ff;
+
+  /* Colors - Background (Deep Space) */
+  --color-ark-bg-primary: #0a0e17;
+  --color-ark-bg-secondary: rgba(15, 20, 30, 0.65);
+  --color-ark-bg-tertiary: rgba(10, 14, 23, 0.8);
+
+  /* Colors - Text */
+  --color-ark-text-primary: #e0e7ff;
+  --color-ark-text-secondary: #94a3b8;
+  --color-ark-text-muted: #64748b;
+
+  /* Colors - Border */
+  --color-ark-border: rgba(0, 212, 255, 0.2);
+
+  /* Border Radius */
+  --radius-ark: 0.5rem;
+  --radius-ark-lg: 0.75rem;
+  --radius-ark-xl: 1rem;
+
+  /* Shadows & Glows */
+  --shadow-ark-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+  --shadow-ark: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+  --shadow-ark-md: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --shadow-ark-lg: 0 0 12px rgba(0, 212, 255, 0.6);
+  /* Neon Glow */
+  --shadow-ark-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+
+  /* Fonts */
+  --font-ark-sans: Inter, system-ui, sans-serif;
+  --font-ark-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  /* Animations */
+  --animate-ark-spin: spin 1s linear infinite;
+  --animate-ark-pulse: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-ark-fade-in: fadeIn 0.2s ease-out;
+  --animate-ark-slide-up: slideUp 0.3s ease-out;
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      transform: translateY(10px);
+      opacity: 0;
+    }
+
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+}
+
+:root {
+  font-family: 'Inter', system-ui, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: dark;
+  color: var(--color-ark-text-primary);
+  background-color: var(--color-ark-bg-primary);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Animation durations */
+  --ark-transition-fast: 150ms;
+  --ark-transition-normal: 300ms;
+  --ark-transition-slow: 500ms;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-color: var(--color-ark-bg-primary);
+  /* Deep Space Black */
+  color: var(--color-ark-text-primary);
+  transition: background-color var(--ark-transition-normal), color var(--ark-transition-normal);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   THEME PRESETS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* --- NORMAL (Light/Corporate) --- */
+.theme-normal {
+  /* Colors */
+  --color-ark-primary: #3b82f6;
+  /* Blue 500 */
+  --color-ark-primary-hover: #2563eb;
+  --color-ark-secondary: #6366f1;
+  /* Indigo 500 */
+  --color-ark-accent: #0ea5e9;
+
+  /* Backgrounds */
+  --color-ark-bg-primary: #f8fafc;
+  /* Slate 50 */
+  --color-ark-bg-secondary: #ffffff;
+  --color-ark-bg-tertiary: #f1f5f9;
+  /* Slate 100 */
+
+  /* Text */
+  --color-ark-text-primary: #0f172a;
+  /* Slate 900 */
+  --color-ark-text-secondary: #475569;
+  /* Slate 600 */
+  --color-ark-text-muted: #94a3b8;
+  /* Slate 400 */
+
+  /* Borders */
+  --color-ark-border: #e2e8f0;
+  /* Slate 200 */
+
+  /* Shadows */
+  --shadow-ark-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-ark: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  --shadow-ark-md: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  --shadow-ark-lg: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+  --shadow-ark-glass: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  --shadow-ark-glow: none;
+}
+
+/* --- NEON (Default/Cyberpunk) --- */
+.theme-neon {
+  /* Inherits Root Defaults (Dark/Teal) */
+  --shadow-ark-glow: 0 0 12px rgba(0, 212, 255, 0.6);
+}
+
+/* --- MINIMAL (Monochrome/High Contrast) --- */
+.theme-minimal {
+  /* Colors */
+  --color-ark-primary: #ffffff;
+  --color-ark-primary-hover: #d4d4d4;
+  --color-ark-secondary: #a3a3a3;
+  --color-ark-accent: #ffffff;
+
+  /* Backgrounds */
+  --color-ark-bg-primary: #000000;
+  --color-ark-bg-secondary: #171717;
+  /* Neutral 900 */
+  --color-ark-bg-tertiary: #262626;
+  /* Neutral 800 */
+
+  /* Text */
+  --color-ark-text-primary: #ffffff;
+  --color-ark-text-secondary: #a3a3a3;
+  --color-ark-text-muted: #525252;
+
+  /* Borders */
+  --color-ark-border: #404040;
+
+  /* Shadows - FLAT */
+  --shadow-ark-sm: none;
+  --shadow-ark: none;
+  --shadow-ark-md: none;
+  --shadow-ark-lg: none;
+  --shadow-ark-glass: none;
+  --shadow-ark-glow: none;
+}
+
+/* --- GLASS (Translucent/Frost) --- */
+.theme-glass {
+  /* Colors - Softer Cyan */
+  --color-ark-primary: #7dd3fc;
+  --color-ark-primary-hover: #38bdf8;
+
+  /* Backgrounds - Highly Transparent */
+  --color-ark-bg-primary: #0f172a;
+  /* Deep Slate Background */
+  --color-ark-bg-secondary: rgba(30, 41, 59, 0.4);
+  /* Glassy Panel */
+  --color-ark-bg-tertiary: rgba(51, 65, 85, 0.4);
+
+  /* Borders */
+  --color-ark-border: rgba(255, 255, 255, 0.1);
+
+  /* Shadows */
+  --shadow-ark-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+  --shadow-ark-glow: 0 0 20px rgba(125, 211, 252, 0.3);
+
+
+  /* Glassmorphism Utilities (Optional Helper Classes) */
+  .glass {
+    background: var(--color-ark-bg-secondary);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--color-ark-border);
+  }
+
+  .glass-panel {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  }

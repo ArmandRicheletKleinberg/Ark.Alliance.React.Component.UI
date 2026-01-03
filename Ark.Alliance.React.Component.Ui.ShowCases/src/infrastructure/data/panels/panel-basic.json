@@ -1,0 +1,45 @@
+{
+    "id": "panel-basic",
+    "title": "Panel Container",
+    "description": "A flexible container with header, detailed content, and footer.",
+    "componentId": "Panel",
+    "layout": {
+        "width": "100%",
+        "height": "auto",
+        "minWidth": "full"
+    },
+    "preview": {
+        "background": "checker"
+    },
+    "defaultProps": {
+        "title": "Panel Header",
+        "content": "This is the main body content of the panel. It can contain text or other components.",
+        "variant": "default",
+        "collapsible": true
+    },
+    "controls": [
+        {
+            "propName": "title",
+            "type": "text",
+            "label": "Header Title",
+            "group": "content"
+        },
+        {
+            "propName": "variant",
+            "type": "select",
+            "label": "Style Variant",
+            "options": [
+                "default",
+                "glass",
+                "outlined"
+            ],
+            "group": "style"
+        },
+        {
+            "propName": "collapsible",
+            "type": "boolean",
+            "label": "Collapsible",
+            "group": "behavior"
+        }
+    ]
+}

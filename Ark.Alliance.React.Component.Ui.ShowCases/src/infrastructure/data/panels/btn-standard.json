@@ -1,0 +1,71 @@
+{
+    "id": "btn-standard",
+    "title": "Standard Button",
+    "description": "The primary interactive element for user actions.",
+    "componentId": "Button",
+    "layout": {
+        "width": "100%",
+        "height": "100%"
+    },
+    "preview": {
+        "background": "checker"
+    },
+    "defaultProps": {
+        "children": "Click Me",
+        "variant": "primary",
+        "size": "md",
+        "disabled": false,
+        "loading": false
+    },
+    "controls": [
+        {
+            "propName": "children",
+            "type": "text",
+            "label": "Label",
+            "group": "content"
+        },
+        {
+            "propName": "iconLeft",
+            "type": "icon",
+            "label": "Left Icon",
+            "group": "content"
+        },
+        {
+            "propName": "variant",
+            "type": "select",
+            "label": "Variant",
+            "options": [
+                "primary",
+                "secondary",
+                "outline",
+                "ghost",
+                "danger",
+                "success"
+            ],
+            "group": "style"
+        },
+        {
+            "propName": "size",
+            "type": "select",
+            "label": "Size",
+            "options": [
+                "sm",
+                "md",
+                "lg"
+            ],
+            "group": "style"
+        },
+        {
+            "propName": "disabled",
+            "type": "boolean",
+            "label": "Disabled",
+            "group": "behavior"
+        },
+        {
+            "propName": "loading",
+            "type": "boolean",
+            "label": "Loading",
+            "group": "behavior"
+        }
+    ]
+}

@@ -1,0 +1,90 @@
+{
+    "id": "input-slider",
+    "componentId": "Slider",
+    "title": "Range Slider",
+    "description": "Interactive range slider with precise control and visual feedback.",
+    "defaultProps": {
+        "label": "Leverage",
+        "value": 20,
+        "min": 1,
+        "max": 100,
+        "step": 1,
+        "unit": "x",
+        "color": "cyan",
+        "showValue": true,
+        "showRange": true,
+        "size": "md"
+    },
+    "controls": [
+        {
+            "type": "text",
+            "name": "label",
+            "label": "Label",
+            "defaultValue": "Leverage"
+        },
+        {
+            "type": "text",
+            "name": "unit",
+            "label": "Unit",
+            "defaultValue": "x"
+        },
+        {
+            "type": "select",
+            "name": "color",
+            "label": "Color Theme",
+            "defaultValue": "cyan",
+            "options": [
+                "cyan",
+                "blue",
+                "purple",
+                "green",
+                "red",
+                "orange"
+            ]
+        },
+        {
+            "type": "slider",
+            "name": "min",
+            "label": "Min Value",
+            "defaultValue": 1,
+            "min": 0,
+            "max": 50
+        },
+        {
+            "type": "slider",
+            "name": "max",
+            "label": "Max Value",
+            "defaultValue": 100,
+            "min": 50,
+            "max": 200
+        },
+        {
+            "type": "divider",
+            "name": "div1",
+            "label": "Display"
+        },
+        {
+            "type": "boolean",
+            "name": "showValue",
+            "label": "Show Value",
+            "defaultValue": true
+        },
+        {
+            "type": "boolean",
+            "name": "showRange",
+            "label": "Show Min/Max",
+            "defaultValue": true
+        },
+        {
+            "type": "select",
+            "name": "size",
+            "label": "Size",
+            "defaultValue": "md",
+            "options": [
+                "sm",
+                "md",
+                "lg"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,71 @@
+{
+    "id": "gauge-speedometer",
+    "title": "Speedometer",
+    "description": "Radial needle gauge with tick marks and neon glow.",
+    "componentId": "SpeedometerGauge",
+    "layout": {
+        "width": "auto",
+        "height": "auto"
+    },
+    "preview": {
+        "background": "dark"
+    },
+    "defaultProps": {
+        "value": 65,
+        "max": 100,
+        "label": "Memory",
+        "subLabel": "Usage",
+        "unit": "%",
+        "size": "md",
+        "color": "blue",
+        "autoColor": false,
+        "isDark": true
+    },
+    "controls": [
+        {
+            "propName": "value",
+            "type": "slider",
+            "label": "Value",
+            "min": 0,
+            "max": 100,
+            "group": "data"
+        },
+        {
+            "propName": "autoColor",
+            "type": "boolean",
+            "label": "Auto Color",
+            "group": "behavior"
+        },
+        {
+            "propName": "color",
+            "type": "select",
+            "label": "Theme Color",
+            "options": [
+                "blue",
+                "green",
+                "red",
+                "cyan",
+                "yellow",
+                "purple"
+            ],
+            "group": "style"
+        },
+        {
+            "propName": "size",
+            "type": "select",
+            "label": "Size",
+            "options": [
+                "sm",
+                "md",
+                "lg"
+            ],
+            "group": "style"
+        },
+        {
+            "propName": "label",
+            "type": "text",
+            "label": "Main Label",
+            "group": "content"
+        }
+    ]
+}

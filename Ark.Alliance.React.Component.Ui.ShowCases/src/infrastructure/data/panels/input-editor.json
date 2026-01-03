@@ -1,0 +1,79 @@
+{
+    "id": "input-editor",
+    "componentId": "TextEditor",
+    "title": "Rich Text Editor",
+    "description": "Advanced WYSIWYG editor with formatting tools.",
+    "defaultProps": {
+        "placeholder": "Start writing your content...",
+        "visualMode": "neon",
+        "toolbarPosition": "top",
+        "minHeight": 300,
+        "showToolbar": true,
+        "showWordCount": true,
+        "enableAI": false
+    },
+    "layout": {
+        "width": "100%",
+        "minWidth": "full"
+    },
+    "controls": [
+        {
+            "type": "text",
+            "name": "placeholder",
+            "label": "Placeholder",
+            "defaultValue": "Start writing..."
+        },
+        {
+            "type": "select",
+            "name": "visualMode",
+            "label": "Visual Mode",
+            "defaultValue": "neon",
+            "options": [
+                "normal",
+                "neon",
+                "minimal"
+            ]
+        },
+        {
+            "type": "select",
+            "name": "toolbarPosition",
+            "label": "Toolbar Pos",
+            "defaultValue": "top",
+            "options": [
+                "top",
+                "bottom"
+            ]
+        },
+        {
+            "type": "slider",
+            "name": "minHeight",
+            "label": "Min Height",
+            "defaultValue": 300,
+            "min": 150,
+            "max": 600
+        },
+        {
+            "type": "divider",
+            "name": "div1",
+            "label": "Features"
+        },
+        {
+            "type": "boolean",
+            "name": "showToolbar",
+            "label": "Show Toolbar",
+            "defaultValue": true
+        },
+        {
+            "type": "boolean",
+            "name": "showWordCount",
+            "label": "Word Count",
+            "defaultValue": true
+        },
+        {
+            "type": "boolean",
+            "name": "enableAI",
+            "label": "AI Features",
+            "defaultValue": false
+        }
+    ]
+}

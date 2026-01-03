@@ -1,97 +1,103 @@
 {
-  "name": "ark-alliance-react-ui",
-  "version": "1.1.2",
-  "description": "Professional React UI component library with MVVM architecture, Zod validation, and comprehensive TypeScript support",
-  "author": {
-    "name": "Armand Richelet-Kleinberg",
-    "email": "contact@m2h.io",
-    "url": "https://github.com/ArmandRicheletKleinberg"
-  },
-  "license": "MIT",
-  "keywords": [
-    "react",
-    "ui",
-    "components",
-    "mvvm",
-    "typescript",
-    "zod",
-    "design-system",
-    "ark-alliance"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ArmandRicheletKleinberg/Ark.Alliance.React.Component.UI.git"
-  },
-  "homepage": "https://github.com/ArmandRicheletKleinberg/Ark.Alliance.React.Component.UI#readme",
-  "bugs": {
-    "url": "https://github.com/ArmandRicheletKleinberg/Ark.Alliance.React.Component.UI/issues"
-  },
-  "type": "module",
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
+    "name": "ark-alliance-react-ui",
+    "version": "1.1.5",
+    "description": "Professional React UI component library with MVVM architecture, Zod validation, and comprehensive TypeScript support",
+    "author": {
+        "name": "Armand Richelet-Kleinberg",
+        "email": "contact@m2h.io",
+        "url": "https://github.com/ArmandRicheletKleinberg"
     },
-    "./styles": "./dist/ark-alliance-react-ui.css",
-    "./package.json": "./package.json"
-  },
-  "files": [
-    "dist",
-    "README.md",
-    "LICENSE"
-  ],
-  "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "build:lib": "tsc && vite build --mode library",
-    "lint": "eslint .",
-    "preview": "vite preview",
-    "prepublishOnly": "npm run build:lib"
-  },
-  "peerDependencies": {
-    "react": "^18.0.0 || ^19.0.0",
-    "react-dom": "^18.0.0 || ^19.0.0",
-    "zod": "^3.0.0 || ^4.0.0"
-  },
-  "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^7.1.0",
-    "@fortawesome/free-brands-svg-icons": "^7.1.0",
-    "@fortawesome/free-regular-svg-icons": "^7.1.0",
-    "@fortawesome/free-solid-svg-icons": "^7.1.0",
-    "@fortawesome/react-fontawesome": "^3.1.1",
-    "@react-three/drei": "^10.7.7",
-    "@react-three/fiber": "^9.4.2",
-    "@react-three/postprocessing": "^3.0.4",
-    "mermaid": "^11.12.2",
-    "react-markdown": "^10.1.0",
-    "remark-gfm": "^4.0.1",
-    "three": "^0.182.0"
-  },
-  "devDependencies": {
-    "@eslint/js": "^9.39.1",
-    "@tailwindcss/vite": "^4.1.18",
-    "@types/node": "^24.10.1",
-    "@types/react": "^19.2.5",
-    "@types/react-dom": "^19.2.3",
-    "@vitejs/plugin-react": "^5.1.1",
-    "autoprefixer": "^10.4.23",
-    "eslint": "^9.39.1",
-    "eslint-plugin-react-hooks": "^7.0.1",
-    "eslint-plugin-react-refresh": "^0.4.24",
-    "globals": "^16.5.0",
-    "postcss": "^8.5.6",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
-    "sass": "^1.97.1",
-    "tailwindcss": "^4.1.18",
-    "typescript": "~5.9.3",
-    "typescript-eslint": "^8.46.4",
-    "vite": "^7.2.4",
-    "vite-plugin-dts": "^4.5.4",
-    "zod": "^4.2.1"
-  }
+    "license": "MIT",
+    "keywords": [
+        "react",
+        "ui",
+        "components",
+        "mvvm",
+        "typescript",
+        "zod",
+        "design-system",
+        "ark-alliance"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/ArmandRicheletKleinberg/Ark.Alliance.React.Component.UI.git"
+    },
+    "homepage": "https://github.com/ArmandRicheletKleinberg/Ark.Alliance.React.Component.UI#readme",
+    "bugs": {
+        "url": "https://github.com/ArmandRicheletKleinberg/Ark.Alliance.React.Component.UI/issues"
+    },
+    "type": "module",
+    "main": "./dist/index.js",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.mjs",
+            "require": "./dist/index.js"
+        },
+        "./styles": "./dist/ark-alliance-react-ui.css",
+        "./package.json": "./package.json"
+    },
+    "files": [
+        "dist",
+        "README.md",
+        "LICENSE"
+    ],
+    "scripts": {
+        "dev": "vite",
+        "build": "tsc && vite build",
+        "build:lib": "tsc && vite build --mode library",
+        "lint": "eslint .",
+        "preview": "vite preview",
+        "prepublishOnly": "npm run build:lib",
+        "test": "vitest"
+    },
+    "peerDependencies": {
+        "react": "^18.0.0 || ^19.0.0",
+        "react-dom": "^18.0.0 || ^19.0.0",
+        "zod": "^3.0.0 || ^4.0.0"
+    },
+    "dependencies": {
+        "@fortawesome/fontawesome-svg-core": "^7.1.0",
+        "@fortawesome/free-brands-svg-icons": "^7.1.0",
+        "@fortawesome/free-regular-svg-icons": "^7.1.0",
+        "@fortawesome/free-solid-svg-icons": "^7.1.0",
+        "@fortawesome/react-fontawesome": "^3.1.1",
+        "@react-three/drei": "^10.7.7",
+        "@react-three/fiber": "^9.4.2",
+        "@react-three/postprocessing": "^3.0.4",
+        "mermaid": "^11.12.2",
+        "react-markdown": "^10.1.0",
+        "remark-gfm": "^4.0.1",
+        "three": "^0.182.0"
+    },
+    "devDependencies": {
+        "@eslint/js": "^9.39.1",
+        "@tailwindcss/vite": "^4.1.18",
+        "@testing-library/dom": "^10.4.1",
+        "@testing-library/jest-dom": "^6.9.1",
+        "@testing-library/react": "^16.3.1",
+        "@types/node": "^24.10.1",
+        "@types/react": "^19.2.5",
+        "@types/react-dom": "^19.2.3",
+        "@vitejs/plugin-react": "^5.1.1",
+        "autoprefixer": "^10.4.23",
+        "eslint": "^9.39.1",
+        "eslint-plugin-react-hooks": "^7.0.1",
+        "eslint-plugin-react-refresh": "^0.4.24",
+        "globals": "^16.5.0",
+        "jsdom": "^27.4.0",
+        "postcss": "^8.5.6",
+        "react": "^19.2.0",
+        "react-dom": "^19.2.0",
+        "sass": "^1.97.1",
+        "tailwindcss": "^4.1.18",
+        "typescript": "~5.9.3",
+        "typescript-eslint": "^8.46.4",
+        "vite": "^7.2.4",
+        "vite-plugin-dts": "^4.5.4",
+        "vitest": "^4.0.16",
+        "zod": "^4.2.1"
+    }
 }

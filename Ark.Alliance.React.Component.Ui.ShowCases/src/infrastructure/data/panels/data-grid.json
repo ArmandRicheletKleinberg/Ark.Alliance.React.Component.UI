@@ -1,0 +1,73 @@
+{
+    "id": "grid-data",
+    "title": "Data Grid",
+    "description": "Advanced data table with sorting, filtering, and selection.",
+    "componentId": "DataGrid",
+    "layout": {
+        "width": "100%",
+        "height": "auto",
+        "minWidth": "full"
+    },
+    "preview": {
+        "background": "dark"
+    },
+    "defaultProps": {
+        "title": "Inventory Items",
+        "subtitle": "List of current stock items",
+        "pageSize": 10,
+        "selectionEnabled": true,
+        "multiSelection": true,
+        "isDark": true,
+        "rowCount": 20
+    },
+    "controls": [
+        {
+            "propName": "title",
+            "type": "text",
+            "label": "Grid Title",
+            "group": "content"
+        },
+        {
+            "propName": "subtitle",
+            "type": "text",
+            "label": "Subtitle",
+            "group": "content"
+        },
+        {
+            "propName": "pageSize",
+            "type": "slider",
+            "label": "Page Size",
+            "min": 5,
+            "max": 50,
+            "step": 5,
+            "group": "behavior"
+        },
+        {
+            "propName": "rowCount",
+            "type": "slider",
+            "label": "Row Count",
+            "min": 0,
+            "max": 100,
+            "step": 10,
+            "group": "data"
+        },
+        {
+            "propName": "selectionEnabled",
+            "type": "boolean",
+            "label": "Enable Selection",
+            "group": "behavior"
+        },
+        {
+            "propName": "multiSelection",
+            "type": "boolean",
+            "label": "Multi-Select",
+            "group": "behavior"
+        },
+        {
+            "propName": "isDark",
+            "type": "boolean",
+            "label": "Dark Mode",
+            "group": "style"
+        }
+    ]
+}

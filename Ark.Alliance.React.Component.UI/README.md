@@ -4,10 +4,10 @@
 
 A comprehensive, institutional-quality UI component library built with React, TypeScript, and Zod validation. Designed for large-scale trading applications with premium neon aesthetics and complete MVVM separation.
 
-![Version](https://img.shields.io/badge/version-1.0.0-blue)
+[![npm version](https://img.shields.io/npm/v/ark-alliance-react-ui.svg)](https://www.npmjs.com/package/ark-alliance-react-ui)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ![React](https://img.shields.io/badge/React-19.0-61dafb)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.6-3178c6)
-![Tailwind](https://img.shields.io/badge/Tailwind-4.0-38bdf8)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178c6)
 
 ---
 
@@ -19,7 +19,7 @@ A comprehensive, institutional-quality UI component library built with React, Ty
 4. [Component Categories](#component-categories)
 5. [Installation](#installation)
 6. [Usage Examples](#usage-examples)
-7. [Showcase Dashboard](#showcase-dashboard)
+7. [Testing](#testing)
 8. [Dependencies](#dependencies)
 9. [Contributing](#contributing)
 10. [Author](#author)
@@ -34,7 +34,7 @@ Ark.Alliance.React.Component.UI is a professionally crafted component library fe
 - **Zod Validation**: Runtime type safety with schema-based validation
 - **Premium Aesthetics**: Neon, minimal, and glass visual modes
 - **Enterprise Ready**: TypeScript strict mode, accessibility, responsive design
-- **Showcase Dashboard**: Interactive component explorer at `localhost:5090`
+- **Comprehensive Testing**: Vitest + React Testing Library
 
 ---
 
@@ -79,30 +79,6 @@ Ark.Alliance.React.Component.UI is a professionally crafted component library fe
 | `useBaseViewModel` | Lifecycle, state, events, async execution |
 | `extendSchema()` | Utility to extend base with component-specific fields |
 
-### Example MVVM Flow
-
-```typescript
-// 1. MODEL - Define schema and types
-export const ButtonModelSchema = extendSchema({
-    variant: z.enum(['primary', 'danger']).default('primary'),
-    size: z.enum(['sm', 'md', 'lg']).default('md'),
-});
-export type ButtonModel = z.infer<typeof ButtonModelSchema>;
-
-// 2. VIEWMODEL - Create hook with state logic
-export function useButton(options: UseButtonOptions): UseButtonResult {
-    const base = useBaseViewModel<ButtonModel>(defaultModel, options);
-    const buttonClasses = useMemo(() => buildClasses(base.model), [base.model]);
-    return { ...base, buttonClasses };
-}
-
-// 3. VIEW - Render component
-export const Button = memo(forwardRef((props, ref) => {
-    const vm = useButton(props);
-    return <button ref={ref} className={vm.buttonClasses}>{children}</button>;
-}));
-```
-
 ---
 
 ## Project Structure
@@ -110,44 +86,34 @@ export const Button = memo(forwardRef((props, ref) => {
 ```
 Ark.Alliance.React.Component.UI/
 ├── src/
-│   ├── main.tsx                    # Entry point
-│   ├── App.tsx                     # Root component (loads Showcase)
 │   ├── index.ts                    # Library barrel export
 │   ├── index.css                   # Global styles + Tailwind
 │   │
 │   ├── core/                       # Foundation
 │   │   ├── base/                   # BaseModel, BaseViewModel
+│   │   ├── enums/                  # Centralized enums (Color, Size, Status, Variant)
 │   │   ├── events/                 # Event bus system
-│   │   └── styles/                 # Color constants
+│   │   ├── services/               # Utility services
+│   │   └── theme/                  # Theme configuration
 │   │
 │   ├── components/                 # Component library
-│   │   ├── Buttons/                # NeonButton
-│   │   ├── Toggles/                # NeonToggle
-│   │   ├── Cards/                  # GlowCard
-│   │   ├── Gauges/                 # Circular, Speedometer, Digital, etc.
-│   │   ├── Input/                  # Input, Select, TextArea, Slider, NumericInput, FileUpload
-│   │   ├── Chart3D/                # 3D visualization with Three.js
-│   │   ├── Modal/                  # Modal dialog
-│   │   ├── ProgressBar/            # Linear progress
-│   │   ├── Header/                 # Enhanced header
-│   │   ├── Footer/                 # Footer with paging
+│   │   ├── Buttons/                # Button, NeonButton
+│   │   ├── Input/                  # NeonInput, NumericInput, Select, Slider, TextArea, FileUpload, TextEditor
+│   │   ├── Gauges/                 # CircularGauge, SpeedometerGauge, DigitalGauge, BatteryGauge, SignalBarsGauge
+│   │   ├── Charts/                 # FinancialChart, TrendPriceChart
+│   │   ├── Grids/                  # DataGrid, ProjectGrid
 │   │   ├── Panel/                  # Container panel
-│   │   ├── Grids/                  # DataGrid, TradingGridCard
-│   │   ├── SideBar/                # SideBarMenu
+│   │   ├── Modal/                  # Modal dialog
 │   │   ├── Label/                  # StatusBadge
-│   │   ├── Documents/              # MarkdownRenderer, HTMLViewer
-│   │   ├── Desktop/                # WindowPanel, DesktopIcon, Taskbar, StartMenu, DesktopPage
-│   │   └── TimeLines/              # Timeline
+│   │   ├── TimeLines/              # Timeline, TestTimeline
+│   │   └── ...                     # Additional component families
 │   │
-│   └── showcase/                   # Interactive dashboard
-│       ├── ShowcaseApp.tsx         # Main showcase component
-│       ├── componentRegistry.tsx   # Component definitions
-│       ├── showcase.css            # Dashboard styles
-│       └── index.ts                # Exports
+│   ├── Helpers/                    # Utility functions
+│   └── test/                       # Test setup
 │
-├── vite.config.ts                  # Vite config (port 5090)
+├── vite.config.ts                  # Vite config with library build
 ├── tsconfig.json                   # TypeScript config
-├── package.json                    # Dependencies
+├── package.json                    # Dependencies & scripts
 └── README.md                       # This file
 ```
 
@@ -155,29 +121,21 @@ Ark.Alliance.React.Component.UI/
 
 ## Component Categories
 
-### Core Components (28 Implemented)
+### Core Components
 
 | Category | Components | Description |
 |----------|------------|-------------|
-| **Buttons** | `NeonButton` | Premium button with glow effects and variants |
-| **Toggles** | `NeonToggle` | Switch with neon styling and colors |
-| **Cards** | `GlowCard` | Status-based card with hover effects |
+| **Buttons** | `Button`, `NeonButton` | Premium buttons with glow effects |
+| **Input** | `NeonInput`, `NumericInput`, `Select`, `Slider`, `TextArea`, `FileUpload`, `TextEditor` | Form inputs with validation |
 | **Gauges** | `CircularGauge`, `SpeedometerGauge`, `DigitalGauge`, `BatteryGauge`, `SignalBarsGauge` | Data visualization gauges |
-| **Input** | `Input`, `Select`, `TextArea`, `Slider`, `NumericInput`, `FileUpload`, `TextEditor` | Form inputs with validation |
-| **Charts** | `Chart3D` | 3D visualization with Cuboid, Cylinder, Bubble, Candle shapes |
-| **Modal** | `Modal` | Dialog with portal, backdrop, escape |
-| **ProgressBar** | `ProgressBar` | Linear progress with animations |
-| **Header** | `Header` | Visual modes, icons, search, backgrounds |
-| **Footer** | `Footer` | Paging controls, slots |
+| **Charts** | `FinancialChart`, `TrendPriceChart` | Financial data visualization |
+| **Grids** | `DataGrid`, `ProjectGrid` | Data tables and grids |
 | **Panel** | `Panel` | Container with header/footer slots |
-| **Grids** | `DataGrid`, `TradingGridCard` | Data tables |
-| **SideBar** | `SideBarMenu` | Navigation menu with categories |
+| **Modal** | `Modal` | Dialog with portal, backdrop, escape |
 | **Label** | `StatusBadge` | Status indicator with pulse |
-| **Documents** | `MarkdownRenderer`, `HTMLViewer` | Render markdown/HTML content |
-| **Desktop** | `WindowPanel`, `DesktopIcon`, `Taskbar`, `StartMenu`, `DesktopPage` | BwarkOS desktop environment |
 | **TimeLines** | `Timeline` | Event timeline display |
 
-### Visual Modes (All Components)
+### Visual Modes
 
 | Mode | Description |
 |------|-------------|
@@ -190,155 +148,122 @@ Ark.Alliance.React.Component.UI/
 
 ## Installation
 
+### From npm
+
+```bash
+npm install ark-alliance-react-ui
+```
+
+### Usage
+
+```tsx
+import { Button, NeonInput, CircularGauge } from 'ark-alliance-react-ui';
+import 'ark-alliance-react-ui/styles';
+
+function App() {
+  return (
+    <Button variant="primary" size="lg">
+      Click Me
+    </Button>
+  );
+}
+```
+
+### From Source
+
 ```bash
 # Clone repository
-git clone https://github.com/ArmandRicheletKleinberg/Ark.Alliance.Trading.Bot-React.git
+git clone https://github.com/ArmandRicheletKleinberg/Ark.Alliance.React.Component.UI.git
 
 # Navigate to library
-cd Ark.Alliance.React.Component.UI
+cd Ark.Alliance.React.Component.UI/Ark.Alliance.React.Component.UI
 
 # Install dependencies
 npm install
 
-# Start development server
-npm run dev
+# Build library
+npm run build:lib
 ```
 
 ---
 
 ## Usage Examples
 
-### NeonButton
+### NeonInput
 
 ```tsx
-import { NeonButton } from '@ark/components';
+import { NeonInput } from 'ark-alliance-react-ui';
 
-<NeonButton 
-    variant="primary"
-    size="lg"
-    onClick={() => console.log('Clicked!')}
->
-    Click Me
-</NeonButton>
-```
-
-### GlowCard
-
-```tsx
-import { GlowCard } from '@ark/components';
-
-<GlowCard
-    title="Trading Status"
-    subtitle="Active positions"
-    status="success"
-    visualMode="neon"
->
-    Card content here
-</GlowCard>
-```
-
-### Header with Search
-
-```tsx
-import { Header } from '@ark/components';
-
-<Header
-    title="Dashboard"
-    subtitle="Real-time data"
-    icon="📊"
-    visualMode="neon"
-    showSearch
-    onSearchChange={(value) => setFilter(value)}
-    actions={<NeonButton>New</NeonButton>}
-/>
-```
-
-### Footer with Paging
-
-```tsx
-import { Footer } from '@ark/components';
-
-<Footer
-    showPaging
-    paging={{
-        currentPage: 1,
-        totalPages: 10,
-        totalItems: 250,
-        pageSize: 25,
-    }}
-    onPageChange={(page) => setPage(page)}
-/>
-```
-
-### Select Dropdown
-
-```tsx
-import { Select } from '@ark/components';
-
-<Select
-    label="Choose option"
-    options={[
-        { value: 'a', label: 'Option A' },
-        { value: 'b', label: 'Option B' },
-    ]}
-    value={selected}
-    onChange={(value) => setSelected(value)}
-    searchable
+<NeonInput
+  label="Username"
+  placeholder="Enter username..."
+  glowColor="cyan"
+  size="md"
+  validationFormat="email"
 />
 ```
 
 ### CircularGauge
 
 ```tsx
-import { CircularGauge } from '@ark/components';
+import { CircularGauge } from 'ark-alliance-react-ui';
 
 <CircularGauge
-    value={75}
-    max={100}
-    label="Progress"
-    showValue
-    colorStart="#00d4ff"
-    colorEnd="#7c3aed"
+  value={75}
+  max={100}
+  label="Progress"
+  showValue
+  colorStart="#00d4ff"
+  colorEnd="#7c3aed"
+/>
+```
+
+### FinancialChart
+
+```tsx
+import { FinancialChart } from 'ark-alliance-react-ui';
+
+<FinancialChart
+  candlestickData={data}
+  fastMA={{ enabled: true, period: 7, color: '#22c55e' }}
+  slowMA={{ enabled: true, period: 25, color: '#ef4444' }}
 />
 ```
 
 ---
 
-## Showcase Dashboard
-
-Interactive component explorer available at http://localhost:5090
+## Testing
 
 ```bash
-npm run dev
+# Run tests
+npm test
+
+# Run tests with coverage
+npm test -- --coverage
 ```
 
-Features:
-- **Sidebar Navigation**: Browse all component families
-- **Live Preview**: See components with real-time updates
-- **Property Editor**: Modify props interactively
-- **Style Presets**: Quick apply preset configurations
-- **Code Export**: Copy usage code
+The library uses **Vitest** with **React Testing Library** for component testing.
 
 ---
 
 ## Dependencies
 
-### Production
+### Peer Dependencies
 
 | Package | Version | Purpose |
 |---------|---------|---------|
-| `react` | 19.0.0 | UI framework |
-| `react-dom` | 19.0.0 | DOM rendering |
-| `zod` | 3.x | Schema validation |
+| `react` | ^18.0.0 \|\| ^19.0.0 | UI framework |
+| `react-dom` | ^18.0.0 \|\| ^19.0.0 | DOM rendering |
+| `zod` | ^3.0.0 \|\| ^4.0.0 | Schema validation |
 
 ### Development
 
 | Package | Version | Purpose |
 |---------|---------|---------|
-| `typescript` | 5.6.x | Type safety |
-| `vite` | 5.x | Build tool |
-| `@tailwindcss/vite` | 4.x | Tailwind CSS v4 |
-| `eslint` | 9.x | Linting |
+| `typescript` | ~5.9.x | Type safety |
+| `vite` | ^7.x | Build tool |
+| `vitest` | latest | Testing |
+| `@tailwindcss/vite` | ^4.x | Tailwind CSS v4 |
 
 ---
 
@@ -346,23 +271,22 @@ Features:
 
 1. Follow MVVM pattern for all components
 2. Use `extendSchema()` for models
-3. Include JSDoc documentation
-4. Add component to Showcase registry
+3. Include TSDoc documentation
+4. Write tests for new components
 5. Ensure zero TypeScript errors
+
+See [CONTRIBUTING.md](../CONTRIBUTING.md) for detailed guidelines.
 
 ---
 
-# Author
+## Author
 
 **Armand Richelet-Kleinberg**  
-M2H.IO - Ark Alliance Eco System
-
-**Project**: Ark.Alliance.React.Component.UI 
-**Component Library**: @Ark.Alliance.React.Component.UI  
-**License**: MIT
-
+M2H.IO - Ark Alliance Ecosystem
 
 - GitHub: [@ArmandRicheletKleinberg](https://github.com/ArmandRicheletKleinberg)
+- Package: [ark-alliance-react-ui](https://www.npmjs.com/package/ark-alliance-react-ui)
 
+**License**: MIT
 
 ---

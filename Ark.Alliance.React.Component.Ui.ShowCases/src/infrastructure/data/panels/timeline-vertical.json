@@ -1,0 +1,45 @@
+{
+    "id": "timeline-vertical",
+    "title": "Timeline",
+    "description": "Vertical list of events with status and connectors.",
+    "componentId": "Timeline",
+    "layout": {
+        "width": "100%",
+        "height": "100%",
+        "minWidth": "full"
+    },
+    "preview": {
+        "background": "light"
+    },
+    "defaultProps": {
+        "itemCount": 5,
+        "orientation": "vertical",
+        "showConnectors": true
+    },
+    "controls": [
+        {
+            "propName": "itemCount",
+            "type": "slider",
+            "label": "Event Count",
+            "min": 1,
+            "max": 10,
+            "group": "data"
+        },
+        {
+            "propName": "orientation",
+            "type": "select",
+            "label": "Orientation",
+            "options": [
+                "vertical",
+                "horizontal"
+            ],
+            "group": "layout"
+        },
+        {
+            "propName": "showConnectors",
+            "type": "boolean",
+            "label": "Show Connectors",
+            "group": "style"
+        }
+    ]
+}

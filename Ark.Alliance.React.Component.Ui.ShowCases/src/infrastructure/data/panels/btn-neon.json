@@ -1,0 +1,45 @@
+{
+    "id": "btn-neon",
+    "title": "Neon Button",
+    "description": "High-visibility button with glowing neon effects.",
+    "componentId": "NeonButton",
+    "layout": {
+        "width": "100%",
+        "height": "100%"
+    },
+    "preview": {
+        "background": "dark"
+    },
+    "defaultProps": {
+        "children": "Neon Glow",
+        "variant": "primary",
+        "size": "lg",
+        "iconLeft": "bolt"
+    },
+    "controls": [
+        {
+            "propName": "children",
+            "type": "text",
+            "label": "Label",
+            "group": "content"
+        },
+        {
+            "propName": "iconLeft",
+            "type": "icon",
+            "label": "Left Icon",
+            "group": "content"
+        },
+        {
+            "propName": "size",
+            "type": "select",
+            "label": "Size",
+            "options": [
+                "sm",
+                "md",
+                "lg",
+                "xl"
+            ],
+            "group": "style"
+        }
+    ]
+}
