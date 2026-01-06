@@ -132,8 +132,9 @@ Ark.Alliance.React.Component.UI/
 | **Grids** | `DataGrid`, `ProjectGrid` | Data tables and grids |
 | **Panel** | `Panel` | Container with header/footer slots |
 | **Modal** | `Modal` | Dialog with portal, backdrop, escape |
-| **Label** | `StatusBadge` | Status indicator with pulse |
+| **Label** | `StatusBadge`, `RoleBadge`, `DepartmentBadge` | Status indicators, role badges, department tags |
 | **TimeLines** | `Timeline` | Event timeline display |
+| **TreeView** | `TreeView`, `OrgChart`, `OrgChartNode` | Tree structures and organizational charts |
 
 ### Visual Modes
 
@@ -230,6 +231,36 @@ import { FinancialChart } from 'ark-alliance-react-ui';
 />
 ```
 
+### RoleBadge (v1.2.0)
+
+```tsx
+import { RoleBadge } from 'ark-alliance-react-ui';
+
+// Simple usage
+<RoleBadge role="admin" />
+
+// With size and removable
+<RoleBadge role="supervisor" size="lg" removable onRemove={() => handleRemove()} />
+```
+
+### OrgChart (v1.2.0)
+
+```tsx
+import { OrgChart } from 'ark-alliance-react-ui';
+
+<OrgChart
+  rootNodes={[{
+    id: '1',
+    name: 'CEO',
+    position: 'Chief Executive Officer',
+    children: [
+      { id: '2', name: 'CTO', position: 'Chief Technology Officer' }
+    ]
+  }]}
+  onNodeClick={(id) => navigate(`/team/${id}`)}
+/>
+```
+
 ---
 
 ## Testing
@@ -243,6 +274,15 @@ npm test -- --coverage
 ```
 
 The library uses **Vitest** with **React Testing Library** for component testing.
+
+### Test Coverage (v1.2.0+)
+
+| Component | Tests | Coverage |
+|-----------|-------|----------|
+| RoleBadge | 10 tests | Rendering, styling, remove functionality, accessibility |
+| DepartmentBadge | 8 tests | Rendering, icons, known departments, styling |
+| OrgChart | 8 tests | Empty state, rendering, interactions, accessibility |
+| OrgChartNode | 8 tests | Rendering, avatars, clicks, keyboard navigation |
 
 ---
 
