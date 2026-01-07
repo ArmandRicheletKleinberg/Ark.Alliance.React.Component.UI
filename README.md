@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Version](https://img.shields.io/badge/version-1.1.5-blue?style=for-the-badge)
+![Version](https://img.shields.io/badge/version-1.2.0-blue?style=for-the-badge)
 [![npm version](https://img.shields.io/npm/v/ark-alliance-react-ui?style=for-the-badge&logo=npm&color=CB3837)](https://www.npmjs.com/package/ark-alliance-react-ui)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/ArmandRicheletKleinberg/Ark.Alliance.React.Component.UI/node.js.yml?style=for-the-badge&logo=github&label=Build)](https://github.com/ArmandRicheletKleinberg/Ark.Alliance.React.Component.UI/actions/workflows/node.js.yml)
 [![Publish Status](https://img.shields.io/github/actions/workflow/status/ArmandRicheletKleinberg/Ark.Alliance.React.Component.UI/npm-publish.yml?style=for-the-badge&logo=npm&label=Publish)](https://github.com/ArmandRicheletKleinberg/Ark.Alliance.React.Component.UI/actions/workflows/npm-publish.yml)
@@ -79,6 +79,9 @@ While primarily designed for **large-scale trading and financial applications**,
 | 📊 **Data Visualization** | `Chart3D/`, `Charts/`, `Diagram/`, `FlowChart/` | 2D/3D charts, flow diagrams, data analytics |
 | 📅 **Scheduling & Events** | `Calendars/`, `DatePicker/`, `TimeLines/` | Calendars, event scheduling, timeline displays |
 | 📑 **Content & Documents** | `Documents/`, `Slides/` | Document viewers, presentations, markdown rendering |
+| 🏢 **Corporate & CMS** *(v1.2.0)* | `Label/RoleBadge`, `Label/DepartmentBadge`, `TreeView/OrgChart` | Role management, org charts, team hierarchies |
+
+> 📝 **v1.2.0**: Added Corporate CMS components for organization management. See [Library README](./Ark.Alliance.React.Component.UI/README.md#rolebadge-v120) for detailed usage.
 
 ---
 
