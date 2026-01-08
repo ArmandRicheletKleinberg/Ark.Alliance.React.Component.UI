@@ -2,14 +2,21 @@
 
 <div align="center">
 
-![Version](https://img.shields.io/badge/version-1.2.0-blue?style=for-the-badge)
+![Version](https://img.shields.io/badge/version-1.3.0-blue?style=for-the-badge)
 [![npm version](https://img.shields.io/npm/v/ark-alliance-react-ui?style=for-the-badge&logo=npm&color=CB3837)](https://www.npmjs.com/package/ark-alliance-react-ui)
 [![Build Status](https://img.shields.io/github/actions/workflow/status/ArmandRicheletKleinberg/Ark.Alliance.React.Component.UI/node.js.yml?style=for-the-badge&logo=github&label=Build)](https://github.com/ArmandRicheletKleinberg/Ark.Alliance.React.Component.UI/actions/workflows/node.js.yml)
-[![Publish Status](https://img.shields.io/github/actions/workflow/status/ArmandRicheletKleinberg/Ark.Alliance.React.Component.UI/npm-publish.yml?style=for-the-badge&logo=npm&label=Publish)](https://github.com/ArmandRicheletKleinberg/Ark.Alliance.React.Component.UI/actions/workflows/npm-publish.yml)
+[![Publish Status](https://img.shields.io/github/actions/workflow/status/ArmandRicheletKleinberg/Ark.Alliance.React.Component.UI/npm-publish.yml?style=for-the-badge&logo=npm&label=Publish&branch=master)](https://github.com/ArmandRicheletKleinberg/Ark.Alliance.React.Component.UI/actions/workflows/npm-publish.yml)
 ![React](https://img.shields.io/badge/React-19.x-61dafb?style=for-the-badge&logo=react)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178c6?style=for-the-badge&logo=typescript)
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 ![Tests](https://img.shields.io/badge/Tests-100%25-success?style=for-the-badge)
+![SEO](https://img.shields.io/badge/SEO-Ready-00d4ff?style=for-the-badge&logo=google)
+
+**AI Crawler Compliance:**  
+![OpenAI](https://img.shields.io/badge/OpenAI-GPTBot-412991?style=flat-square&logo=openai)
+![Anthropic](https://img.shields.io/badge/Anthropic-ClaudeBot-d4a373?style=flat-square)
+![Google](https://img.shields.io/badge/Google-Extended-4285F4?style=flat-square&logo=google)
+![Perplexity](https://img.shields.io/badge/Perplexity-Bot-1FB0E8?style=flat-square)
 
 **Enterprise-Grade React Component Library with MVVM Architecture**
 
@@ -80,8 +87,11 @@ While primarily designed for **large-scale trading and financial applications**,
 | 📅 **Scheduling & Events** | `Calendars/`, `DatePicker/`, `TimeLines/` | Calendars, event scheduling, timeline displays |
 | 📑 **Content & Documents** | `Documents/`, `Slides/` | Document viewers, presentations, markdown rendering |
 | 🏢 **Corporate & CMS** *(v1.2.0)* | `Label/RoleBadge`, `Label/DepartmentBadge`, `TreeView/OrgChart` | Role management, org charts, team hierarchies |
+| 🔍 **SEO & AEO Optimization** *(v1.3.0)* | `SEO/Breadcrumb`, `SEO/StructuredDataScript`, `Helpers/seo` | Breadcrumb navigation with Schema.org JSON-LD, structured data injection, SEO helper utilities |
 
 > 📝 **v1.2.0**: Added Corporate CMS components for organization management. See [Library README](./Ark.Alliance.React.Component.UI/README.md#rolebadge-v120) for detailed usage.
+
+> 🔍 **v1.3.0**: Added SEO/AEO components with Schema.org support for search engine optimization and answer engine optimization. Includes `Breadcrumb` with BreadcrumbList schema, `StructuredDataScript` for JSON-LD injection, and comprehensive SEO helpers. Full AI crawler compliance (GPTBot, ClaudeBot, PerplexityBot, Google-Extended). See [SEO Components](#seo--search-engine-optimization-v130) for details.
 
 ---
 
@@ -348,6 +358,96 @@ All components support multiple visual modes for consistent theming:
 | `neon` | Glowing borders and gradients | Trading dashboards, gaming |
 | `minimal` | Reduced visual weight | Clean interfaces |
 | `glass` | Glassmorphism with backdrop blur | Modern, premium UIs |
+
+---
+
+## SEO & Search Engine Optimization (v1.3.0)
+
+### Overview
+
+Version 1.3.0 introduces comprehensive **SEO (Search Engine Optimization)** and **AEO (Answer Engine Optimization)** capabilities, enabling applications built with this library to achieve maximum visibility across traditional search engines and modern AI-powered answer engines.
+
+### SEO Components
+
+| Component | Purpose | Key Features |
+|-----------|---------|--------------|
+| **Breadcrumb** | Navigation trail with Schema.org markup | BreadcrumbList JSON-LD schema, customizable separators, size/variant support, accessible ARIA labels |
+| **StructuredDataScript** | JSON-LD schema injection | Multiple schema support, pretty-printing, validation, SSR-compatible |
+
+### SEO Helper Utilities
+
+The `Helpers/seo` module provides type-safe Schema.org JSON-LD generators:
+
+| Helper Function | Schema Type | Use Case |
+|-----------------|-------------|----------|
+| `generateBreadcrumbListSchema` | BreadcrumbList | Navigation trails |
+| `generateOrganizationSchema` | Organization | Company information |
+| `generateWebSiteSchema` | WebSite | Site-wide metadata |
+| `generatePersonSchema` | Person | Author profiles, team members |
+| `generateArticleSchema` | Article/BlogPosting | Blog posts, articles |
+| `generateFAQPageSchema` | FAQPage | FAQ sections |
+
+### AI Crawler Compliance
+
+The library is designed for full compliance with AI-powered search and answer engines:
+
+| AI Crawler | Status | Purpose |
+|------------|--------|---------|
+| **GPTBot** (OpenAI) | ✅ Supported | ChatGPT training data |
+| **ClaudeBot** / claude-web (Anthropic) | ✅ Supported | Claude AI training |
+| **PerplexityBot** | ✅ Supported | Perplexity AI answers |
+| **Google-Extended** | ✅ Supported | Bard/Gemini training |
+| **CCBot**, **Bytespider** | ✅ Supported | Common Crawl, general AI |
+| **Googlebot**, **Bingbot** | ✅ Supported | Supported | Traditional search engines |
+
+### Usage Example
+
+```tsx
+import { Breadcrumb, StructuredDataScript } from 'ark-alliance-react-ui';
+import { generateOrganizationSchema } from 'ark-alliance-react-ui/helpers';
+
+// Breadcrumb with automatic Schema.org markup
+<Breadcrumb
+  items={[
+    { key: '1', label: 'Home', href: '/', position: 1 },
+    { key: '2', label: 'Projects', href: '/projects', position: 2 },
+    { key: '3', label: 'Details', current: true, position: 3 }
+  ]}
+  baseUrl="https://example.com"
+  generateSchema={true}
+  size="md"
+  variant="default"
+/>
+
+// Organization Schema for site-wide SEO
+<StructuredDataScript
+  schema={generateOrganizationSchema({
+    name: 'Your Company',
+    url: 'https://example.com',
+    logo: 'https://example.com/logo.png',
+    contactPoint: {
+      email: 'contact@example.com',
+      telephone: '+1234567890'
+    }
+  })}
+/>
+```
+
+### Architecture: BaseSEOModel
+
+All SEO components extend `BaseSEOModel`, which provides:
+- `baseUrl`: Base URL for absolute URL generation
+- `generateSchema`: Enable/disable JSON-LD generation
+- All `BaseModelSchema` properties (id, disabled, loading, etc.)
+
+```typescript
+import { extendSEOSchema } from 'ark-alliance-react-ui/core';
+
+const MyComponentSchema = extendSEOSchema({
+  customProp: z.string(),
+  // Inherits: baseUrl, generateSchema, id, disabled, etc.
+});
+```
 
 ---
 
