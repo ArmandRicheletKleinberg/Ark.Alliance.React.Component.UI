@@ -16,7 +16,7 @@ import {
     generateFAQPageSchema,
     validateSchema,
     SchemaType,
-} from '../../src/Helpers/seo/generateSchema';
+} from '../../../Ark.Alliance.React.Component.UI/src/Helpers/seo/generateSchema';
 
 describe('SEO Helper Functions', () => {
     describe('SH-001: generateBreadcrumbListSchema', () => {
