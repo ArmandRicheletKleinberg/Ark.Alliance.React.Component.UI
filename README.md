@@ -12,6 +12,12 @@
 ![Tests](https://img.shields.io/badge/Tests-100%25-success?style=for-the-badge)
 ![SEO](https://img.shields.io/badge/SEO-Ready-00d4ff?style=for-the-badge&logo=google)
 
+**AI Crawler Compliance:**  
+![OpenAI](https://img.shields.io/badge/OpenAI-GPTBot-412991?style=flat-square&logo=openai)
+![Anthropic](https://img.shields.io/badge/Anthropic-ClaudeBot-d4a373?style=flat-square)
+![Google](https://img.shields.io/badge/Google-Extended-4285F4?style=flat-square&logo=google)
+![Perplexity](https://img.shields.io/badge/Perplexity-Bot-1FB0E8?style=flat-square)
+
 **Enterprise-Grade React Component Library with MVVM Architecture**
 
 *A comprehensive, institutional-quality UI component library designed for multi-domain enterprise applications — including Finance & Trading, Healthcare, Logistics, E-Commerce, AI/ML, Media & Entertainment, Social Platforms, and more — with premium neon aesthetics and complete MVVM separation.*

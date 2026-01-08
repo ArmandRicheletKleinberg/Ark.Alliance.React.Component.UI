@@ -8,6 +8,7 @@ A comprehensive, institutional-quality UI component library built with React, Ty
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ![React](https://img.shields.io/badge/React-19.0-61dafb)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178c6)
+![SEO](https://img.shields.io/badge/SEO-Ready-00d4ff?logo=google)
 
 ---
 
@@ -17,12 +18,13 @@ A comprehensive, institutional-quality UI component library built with React, Ty
 2. [MVVM Architecture](#mvvm-architecture)
 3. [Project Structure](#project-structure)
 4. [Component Categories](#component-categories)
-5. [Installation](#installation)
-6. [Usage Examples](#usage-examples)
-7. [Testing](#testing)
-8. [Dependencies](#dependencies)
-9. [Contributing](#contributing)
-10. [Author](#author)
+5. [SEO Components (v1.3.0)](#seo-components-v130)
+6. [Installation](#installation)
+7. [Usage Examples](#usage-examples)
+8. [Testing](#testing)
+9. [Dependencies](#dependencies)
+10. [Contributing](#contributing)
+11. [Author](#author)
 
 ---
 
@@ -144,6 +146,65 @@ Ark.Alliance.React.Component.UI/
 | `neon` | Glowing borders and gradients |
 | `minimal` | Reduced visual weight |
 | `glass` | Glassmorphism with backdrop blur |
+
+---
+
+## SEO Components (v1.3.0)
+
+### Overview
+
+Version 1.3.0 introduces SEO (Search Engine Optimization) and AEO (Answer Engine Optimization) components designed for maximum visibility across traditional search engines and AI-powered answer engines.
+
+### Components
+
+| Component | Description |
+|-----------|-------------|
+| **Breadcrumb** | Navigation trail with automatic Schema.org BreadcrumbList JSON-LD generation |
+| **StructuredDataScript** | Flexible JSON-LD schema injection component |
+
+### SEO Helpers
+
+Located in `Helpers/seo`:
+
+- `generateBreadcrumbListSchema()` - BreadcrumbList for navigation
+- `generateOrganizationSchema()` - Company/organization data
+- `generateWebSiteSchema()` - Site-wide metadata
+- `generatePersonSchema()` - Author/team member profiles
+- `generateArticleSchema()` - Blog posts and articles
+- `generateFAQPageSchema()` - FAQ sections
+
+### AI Crawler Support
+
+✅ **GPTBot** (OpenAI) - ChatGPT training  
+✅ **ClaudeBot** (Anthropic) - Claude AI training  
+✅ **Google-Extended** - Gemini training  
+✅ **PerplexityBot** - Perplexity AI  
+✅ **Googlebot/Bingbot** - Traditional search
+
+### Usage Example
+
+```tsx
+import { Breadcrumb, StructuredDataScript } from 'ark-alliance-react-ui';
+import { generateOrganizationSchema } from 'ark-alliance-react-ui/helpers';
+
+<Breadcrumb
+  items={[
+    { key: '1', label: 'Home', href: '/', position: 1 },
+    { key: '2', label: 'Products', href: '/products', position: 2 },
+    { key: '3', label: 'Details', current: true, position: 3 }
+  ]}
+  baseUrl="https://example.com"
+  generateSchema={true}
+/>
+
+<StructuredDataScript
+  schema={generateOrganizationSchema({
+    name: 'Your Company',
+    url: 'https://example.com',
+    logo: 'https://example.com/logo.png'
+  })}
+/>
+```
 
 ---
 
