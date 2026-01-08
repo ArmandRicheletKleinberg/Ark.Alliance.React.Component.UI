@@ -45,6 +45,10 @@ export * from './ProgressBar';
 export * from './Grids';
 export * from './Documents';
 export * from './Gauges';
+export * from './TreeView';
+
+// SEO Components (NEW - v1.3.0)
+export * from './SEO';
 
 // Visualizations
 export * from './Charts';
