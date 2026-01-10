@@ -196,6 +196,12 @@ export function generateFAQPageSchema(faqs: FAQItem[]): Record<string, any> {
  * @returns true if valid, false otherwise
  */
 export function validateSchema(schema: Record<string, any>): boolean {
+    // Guard against null, undefined, or non-object inputs
+    if (!schema || typeof schema !== 'object') {
+        console.warn('Invalid schema: not an object', schema);
+        return false;
+    }
+
     if (!schema['@context'] || !schema['@type']) {
         console.warn('Invalid schema: missing @context or @type', schema);
         return false;

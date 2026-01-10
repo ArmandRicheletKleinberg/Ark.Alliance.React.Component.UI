@@ -43,7 +43,7 @@ export const BadgeDetailDataSchema = z.object({
     /** Related links (website, docs, etc.) */
     links: z.array(BadgeDetailLinkSchema).optional(),
     /** Additional metadata as key-value pairs */
-    metadata: z.record(z.string()).optional(),
+    metadata: z.record(z.string(), z.string()).optional(),
     /** Version or level info */
     version: z.string().optional(),
 });
