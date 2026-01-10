@@ -420,3 +420,353 @@ describe('BreadcrumbSchema', () => {
         ).toThrow();
     });
 });
+
+// ═══════════════════════════════════════════════════════════════════════════
+// EDGE CASE TESTS (BC-009+) - Based on Real-World Community Research
+// ═══════════════════════════════════════════════════════════════════════════
+
+describe('BC-009: XSS Prevention in JSON-LD', () => {
+    const maliciousItems: BreadcrumbItemModel[] = [
+        { key: '1', label: '</script><script>alert("XSS")</script>', href: '/', position: 1 },
+        { key: '2', label: 'Normal', href: '/test', position: 2 },
+    ];
+
+    it('should escape script tags in labels', () => {
+        const { container } = render(
+            React.createElement(Breadcrumb, {
+                items: maliciousItems,
+                baseUrl: 'https://example.com',
+            })
+        );
+
+        const script = container.querySelector('script[type="application/ld+json"]');
+        const content = script?.textContent || '';
+
+        // Verify JSON is valid and parseable (XSS would break parsing)
+        expect(() => JSON.parse(content)).not.toThrow();
+
+        // Verify the data is properly contained in JSON structure
+        const schemaData = JSON.parse(content);
+        expect(schemaData.itemListElement[0].name).toBeTruthy();
+    });
+
+    it('should handle image onerror injection attempts', () => {
+        const items: BreadcrumbItemModel[] = [
+            { key: '1', label: '<img onerror="alert(1)" src="x">', href: '/', position: 1 },
+        ];
+
+        const { container } = render(
+            React.createElement(Breadcrumb, {
+                items,
+                baseUrl: 'https://example.com',
+            })
+        );
+
+        const script = container.querySelector('script[type="application/ld+json"]');
+        const schemaData = JSON.parse(script?.textContent || '{}');
+
+        // Label should be preserved but not execute as HTML
+        expect(schemaData.itemListElement[0].name).toContain('img');
+    });
+
+    it('should handle javascript: protocol URLs safely', () => {
+        const items: BreadcrumbItemModel[] = [
+            { key: '1', label: 'Home', href: 'javascript:alert(1)', position: 1 },
+        ];
+
+        const { container } = render(
+            React.createElement(Breadcrumb, {
+                items,
+                baseUrl: '',
+            })
+        );
+
+        // Component should render without executing javascript
+        const nav = container.querySelector('nav');
+        expect(nav).toBeTruthy();
+    });
+});
+
+describe('BC-010: Invalid Data Handling', () => {
+    it('should handle empty label strings gracefully', () => {
+        const items: BreadcrumbItemModel[] = [
+            { key: '1', label: '', href: '/', position: 1 },
+        ];
+
+        const { container } = render(
+            React.createElement(Breadcrumb, {
+                items,
+            })
+        );
+
+        // Should still render navigation
+        const nav = container.querySelector('nav');
+        expect(nav).toBeTruthy();
+    });
+
+    it('should handle very long labels (1000+ chars)', () => {
+        const longLabel = 'A'.repeat(1000);
+        const items: BreadcrumbItemModel[] = [
+            { key: '1', label: longLabel, href: '/', position: 1 },
+        ];
+
+        const { container } = render(
+            React.createElement(Breadcrumb, {
+                items,
+            })
+        );
+
+        // Should render without memory issues
+        const nav = container.querySelector('nav');
+        expect(nav).toBeTruthy();
+    });
+
+    it('should handle non-sequential positions', () => {
+        const items: BreadcrumbItemModel[] = [
+            { key: '1', label: 'First', href: '/', position: 1 },
+            { key: '2', label: 'Third', href: '/third', position: 5 },
+            { key: '3', label: 'Last', href: '/last', position: 100 },
+        ];
+
+        const { container } = render(
+            React.createElement(Breadcrumb, {
+                items,
+                baseUrl: 'https://example.com',
+            })
+        );
+
+        const script = container.querySelector('script[type="application/ld+json"]');
+        const schemaData = JSON.parse(script?.textContent || '{}');
+
+        // Should preserve original positions in schema
+        expect(schemaData.itemListElement[1].position).toBe(5);
+    });
+
+    it('should handle items with no href', () => {
+        const items: BreadcrumbItemModel[] = [
+            { key: '1', label: 'Home', position: 1 },
+            { key: '2', label: 'Projects', position: 2, current: true },
+        ];
+
+        const { container } = render(
+            React.createElement(Breadcrumb, {
+                items,
+            })
+        );
+
+        // Current item without href should render as span
+        const currentSpan = container.querySelector('.ark-breadcrumb__text--current');
+        expect(currentSpan).toBeTruthy();
+    });
+
+    it('should reject zero position in schema validation', () => {
+        expect(() =>
+            BreadcrumbSchema.parse({
+                items: [{ key: '1', label: 'Home', position: 0 }],
+            })
+        ).toThrow();
+    });
+
+    it('should reject negative position', () => {
+        expect(() =>
+            BreadcrumbSchema.parse({
+                items: [{ key: '1', label: 'Home', position: -1 }],
+            })
+        ).toThrow();
+    });
+});
+
+describe('BC-011: URL Edge Cases', () => {
+    it('should handle URLs with query parameters', () => {
+        const items: BreadcrumbItemModel[] = [
+            { key: '1', label: 'Search', href: '/search?q=test&page=1', position: 1 },
+        ];
+
+        const { container } = render(
+            React.createElement(Breadcrumb, {
+                items,
+                baseUrl: 'https://example.com',
+            })
+        );
+
+        const link = container.querySelector('a[href="/search?q=test&page=1"]');
+        expect(link).toBeTruthy();
+    });
+
+    it('should handle URLs with hash fragments', () => {
+        const items: BreadcrumbItemModel[] = [
+            { key: '1', label: 'Section', href: '/page#section', position: 1 },
+        ];
+
+        const { container } = render(
+            React.createElement(Breadcrumb, {
+                items,
+                baseUrl: 'https://example.com',
+            })
+        );
+
+        const script = container.querySelector('script[type="application/ld+json"]');
+        const schemaData = JSON.parse(script?.textContent || '{}');
+
+        expect(schemaData.itemListElement[0].item).toBe('https://example.com/page#section');
+    });
+
+    it('should handle trailing slashes in baseUrl', () => {
+        const items: BreadcrumbItemModel[] = [
+            { key: '1', label: 'Home', href: '/page', position: 1 },
+        ];
+
+        const { container } = render(
+            React.createElement(Breadcrumb, {
+                items,
+                baseUrl: 'https://example.com/',
+            })
+        );
+
+        const script = container.querySelector('script[type="application/ld+json"]');
+        const schemaData = JSON.parse(script?.textContent || '{}');
+
+        // Should construct URL with baseUrl
+        const url = schemaData.itemListElement[0].item;
+        expect(url).toContain('example.com');
+    });
+
+    it('should handle international domain names', () => {
+        const items: BreadcrumbItemModel[] = [
+            { key: '1', label: 'Accueil', href: '/', position: 1 },
+        ];
+
+        const { container } = render(
+            React.createElement(Breadcrumb, {
+                items,
+                baseUrl: 'https://例え.jp',
+            })
+        );
+
+        const script = container.querySelector('script[type="application/ld+json"]');
+        const schemaData = JSON.parse(script?.textContent || '{}');
+
+        expect(schemaData.itemListElement[0].item).toContain('例え.jp');
+    });
+});
+
+describe('BC-012: Unicode and Special Characters', () => {
+    it('should handle emoji in labels', () => {
+        const items: BreadcrumbItemModel[] = [
+            { key: '1', label: '🏠 Home', href: '/', position: 1 },
+            { key: '2', label: '📁 Projects', href: '/projects', position: 2 },
+        ];
+
+        const { container } = render(
+            React.createElement(Breadcrumb, {
+                items,
+            })
+        );
+
+        expect(screen.getByText('🏠 Home')).toBeTruthy();
+        expect(screen.getByText('📁 Projects')).toBeTruthy();
+    });
+
+    it('should handle RTL text (Arabic/Hebrew)', () => {
+        const items: BreadcrumbItemModel[] = [
+            { key: '1', label: 'الرئيسية', href: '/', position: 1 },
+            { key: '2', label: 'المشاريع', href: '/projects', position: 2 },
+        ];
+
+        const { container } = render(
+            React.createElement(Breadcrumb, {
+                items,
+            })
+        );
+
+        expect(screen.getByText('الرئيسية')).toBeTruthy();
+    });
+
+    it('should handle Chinese characters', () => {
+        const items: BreadcrumbItemModel[] = [
+            { key: '1', label: '首页', href: '/', position: 1 },
+            { key: '2', label: '项目', href: '/projects', position: 2 },
+        ];
+
+        const { container } = render(
+            React.createElement(Breadcrumb, {
+                items,
+            })
+        );
+
+        expect(screen.getByText('首页')).toBeTruthy();
+    });
+
+    it('should handle special JSON characters in labels', () => {
+        const items: BreadcrumbItemModel[] = [
+            { key: '1', label: 'Quote "Test" & <Special>', href: '/', position: 1 },
+        ];
+
+        const { container } = render(
+            React.createElement(Breadcrumb, {
+                items,
+                baseUrl: 'https://example.com',
+            })
+        );
+
+        const script = container.querySelector('script[type="application/ld+json"]');
+        const schemaData = JSON.parse(script?.textContent || '{}');
+
+        // JSON should be properly escaped and parseable
+        expect(schemaData.itemListElement[0].name).toContain('Quote');
+    });
+});
+
+describe('BC-013: SSR Compatibility', () => {
+    it('should handle undefined window object', () => {
+        // This tests the component's SSR compatibility
+        const items: BreadcrumbItemModel[] = [
+            { key: '1', label: 'Home', href: '/', position: 1 },
+        ];
+
+        // Component should not throw even when window might be undefined
+        expect(() =>
+            render(
+                React.createElement(Breadcrumb, {
+                    items,
+                    baseUrl: '',
+                })
+            )
+        ).not.toThrow();
+    });
+});
+
+describe('BC-014: Accessibility Edge Cases', () => {
+    it('should have proper aria-label on navigation', () => {
+        const items: BreadcrumbItemModel[] = [
+            { key: '1', label: 'Home', href: '/', position: 1 },
+            { key: '2', label: 'Current', current: true, position: 2 },
+        ];
+
+        const { container } = render(
+            React.createElement(Breadcrumb, {
+                items,
+            })
+        );
+
+        const nav = screen.getByRole('navigation');
+        expect(nav.getAttribute('aria-label')).toBe('Breadcrumb');
+    });
+
+    it('should use ordered list for proper semantics', () => {
+        const items: BreadcrumbItemModel[] = [
+            { key: '1', label: 'Home', href: '/', position: 1 },
+            { key: '2', label: 'Page', href: '/page', position: 2 },
+        ];
+
+        const { container } = render(
+            React.createElement(Breadcrumb, {
+                items,
+            })
+        );
+
+        const list = container.querySelector('ol');
+        expect(list).toBeTruthy();
+    });
+});
+

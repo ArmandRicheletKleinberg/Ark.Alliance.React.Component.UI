@@ -50,7 +50,7 @@ export const TreeNodeSchema: z.ZodType<TreeNodeItem> = z.object({
     /** Badge count */
     badge: z.number().optional(),
     /** Arbitrary metadata */
-    metadata: z.record(z.unknown()).optional(),
+    metadata: z.record(z.string(), z.unknown()).optional(),
 });
 
 // ═══════════════════════════════════════════════════════════════════════════

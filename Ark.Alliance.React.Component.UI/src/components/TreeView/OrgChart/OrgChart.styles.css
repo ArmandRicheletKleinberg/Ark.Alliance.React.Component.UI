@@ -167,3 +167,99 @@
         padding: 0.5rem;
     }
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════ */
+/* LAYOUT IMPROVEMENTS: Center top card + maximize sibling spacing            */
+/* ═══════════════════════════════════════════════════════════════════════════ */
+
+/**
+ * Override react-organizational-chart library's internal structure
+ * to maximize horizontal spacing between sibling nodes at the same level.
+ * 
+ * The library generates nested <ul> and <li> elements for the tree structure.
+ * We override these to use space-evenly distribution.
+ */
+
+/* Full width tree container */
+.ark-org-chart__tree {
+    width: 100%;
+    max-width: 100%;
+}
+
+/* Center the root node (top card) */
+.ark-org-chart__tree > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+/* Target the library's internal <ul> for children rows */
+.ark-org-chart ul {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-evenly !important;  /* Maximize horizontal spacing */
+    align-items: flex-start;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    gap: 1rem;  /* Minimum gap between nodes */
+}
+
+/* Target individual tree node containers (li elements) */
+.ark-org-chart li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;  /* Allow nodes to grow and fill available space */
+    max-width: 300px;  /* Prevent nodes from becoming too wide */
+    text-align: center;
+}
+
+/* Ensure the children containers use full width */
+.ark-org-chart li > ul {
+    width: 100%;
+}
+
+/* Maintain connector lines styling */
+.ark-org-chart li::before,
+.ark-org-chart li::after {
+    content: '';
+    flex-shrink: 0;
+}
+
+/* Responsive spacing adjustments */
+@media (max-width: 1024px) {
+    .ark-org-chart ul {
+        gap: 0.75rem;
+    }
+    
+    .ark-org-chart li {
+        max-width: 200px;
+    }
+}
+
+@media (max-width: 768px) {
+    .ark-org-chart ul {
+        flex-wrap: wrap;  /* Allow wrapping on mobile */
+        justify-content: center;
+        gap: 0.5rem;
+    }
+    
+    .ark-org-chart li {
+        flex: 0 0 auto;  /* Don't grow on mobile, maintain natural size */
+        max-width: 150px;
+    }
+}
+
+@media (max-width: 480px) {
+    .ark-org-chart ul {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .ark-org-chart li {
+        max-width: 100%;
+    }
+}

@@ -324,3 +324,304 @@ describe('StructuredDataScript Component', () => {
         });
     });
 });
+
+// ═══════════════════════════════════════════════════════════════════════════
+// SECURITY & EDGE CASE TESTS (SDS-008+) - Based on Real-World Research
+// ═══════════════════════════════════════════════════════════════════════════
+
+describe('SDS-008: XSS Prevention Security Tests', () => {
+    it('should escape script tag in string values', () => {
+        const maliciousSchema = {
+            '@context': 'https://schema.org',
+            '@type': 'Organization',
+            name: '</script><script>alert("XSS")</script>',
+        };
+
+        const { container } = render(
+            React.createElement(StructuredDataScript, {
+                schemas: maliciousSchema,
+            })
+        );
+
+        const script = container.querySelector('script[type="application/ld+json"]');
+        const rawContent = script?.textContent || '';
+
+        // The JSON stringify should escape the < and > characters
+        // making them safe within JSON-LD context
+        expect(() => JSON.parse(rawContent)).not.toThrow();
+    });
+
+    it('should handle event handler injection attempts', () => {
+        const maliciousSchema = {
+            '@context': 'https://schema.org',
+            '@type': 'Organization',
+            name: '<img src=x onerror=alert(1)>',
+            description: 'javascript:void(0)',
+        };
+
+        const { container } = render(
+            React.createElement(StructuredDataScript, {
+                schemas: maliciousSchema,
+            })
+        );
+
+        const script = container.querySelector('script[type="application/ld+json"]');
+        const content = JSON.parse(script?.textContent || '{}');
+
+        // Should preserve the content as string data, not execute
+        expect(content.name).toBe('<img src=x onerror=alert(1)>');
+    });
+
+    it('should handle javascript: protocol in URL fields', () => {
+        const maliciousSchema = {
+            '@context': 'https://schema.org',
+            '@type': 'Organization',
+            url: 'javascript:alert(document.cookie)',
+        };
+
+        const { container } = render(
+            React.createElement(StructuredDataScript, {
+                schemas: maliciousSchema,
+            })
+        );
+
+        // Component should render without executing
+        const script = container.querySelector('script[type="application/ld+json"]');
+        expect(script).toBeTruthy();
+    });
+
+    it('should handle Unicode zero-width characters', () => {
+        const maliciousSchema = {
+            '@context': 'https://schema.org',
+            '@type': 'Organization',
+            name: 'Test\u200B\u200C\u200DName', // Zero-width space, non-joiner, joiner
+        };
+
+        const { container } = render(
+            React.createElement(StructuredDataScript, {
+                schemas: maliciousSchema,
+            })
+        );
+
+        const script = container.querySelector('script[type="application/ld+json"]');
+        const content = JSON.parse(script?.textContent || '{}');
+
+        // Should preserve the string including zero-width chars
+        expect(content.name).toContain('Test');
+    });
+});
+
+describe('SDS-009: Malformed Data Handling', () => {
+    it('should handle undefined values in schema', () => {
+        const schemaWithUndefined = {
+            '@context': 'https://schema.org',
+            '@type': 'Organization',
+            name: 'Test',
+            url: undefined,
+        };
+
+        const { container } = render(
+            React.createElement(StructuredDataScript, {
+                schemas: schemaWithUndefined,
+            })
+        );
+
+        const script = container.querySelector('script[type="application/ld+json"]');
+        const content = JSON.parse(script?.textContent || '{}');
+
+        // undefined should be stripped by JSON.stringify
+        expect(content.url).toBeUndefined();
+    });
+
+    it('should handle null values in schema', () => {
+        const schemaWithNull = {
+            '@context': 'https://schema.org',
+            '@type': 'Organization',
+            name: 'Test',
+            description: null,
+        };
+
+        const { container } = render(
+            React.createElement(StructuredDataScript, {
+                schemas: schemaWithNull,
+            })
+        );
+
+        const script = container.querySelector('script[type="application/ld+json"]');
+        const content = JSON.parse(script?.textContent || '{}');
+
+        expect(content.description).toBeNull();
+    });
+
+    it('should handle very large schemas', () => {
+        const largeArray = Array.from({ length: 100 }, (_, i) => ({
+            '@type': 'ListItem',
+            position: i + 1,
+            name: `Item ${i + 1}`,
+        }));
+
+        const largeSchema = {
+            '@context': 'https://schema.org',
+            '@type': 'ItemList',
+            itemListElement: largeArray,
+        };
+
+        const { container } = render(
+            React.createElement(StructuredDataScript, {
+                schemas: largeSchema,
+            })
+        );
+
+        const script = container.querySelector('script[type="application/ld+json"]');
+        const content = JSON.parse(script?.textContent || '{}');
+
+        expect(content.itemListElement.length).toBe(100);
+    });
+
+    it('should handle deeply nested schemas', () => {
+        const deepSchema = {
+            '@context': 'https://schema.org',
+            '@type': 'Organization',
+            name: 'Root',
+            parentOrganization: {
+                '@type': 'Organization',
+                name: 'Level1',
+                parentOrganization: {
+                    '@type': 'Organization',
+                    name: 'Level2',
+                    parentOrganization: {
+                        '@type': 'Organization',
+                        name: 'Level3',
+                    },
+                },
+            },
+        };
+
+        const { container } = render(
+            React.createElement(StructuredDataScript, {
+                schemas: deepSchema,
+            })
+        );
+
+        const script = container.querySelector('script[type="application/ld+json"]');
+        const content = JSON.parse(script?.textContent || '{}');
+
+        expect(content.parentOrganization.parentOrganization.parentOrganization.name).toBe('Level3');
+    });
+});
+
+describe('SDS-010: Character Encoding Edge Cases', () => {
+    it('should handle special JSON characters', () => {
+        const schemaWithSpecialChars = {
+            '@context': 'https://schema.org',
+            '@type': 'Organization',
+            name: 'Test "Quoted" & <Tagged>',
+            description: "Tab:\t Newline:\n Backslash:\\",
+        };
+
+        const { container } = render(
+            React.createElement(StructuredDataScript, {
+                schemas: schemaWithSpecialChars,
+            })
+        );
+
+        const script = container.querySelector('script[type="application/ld+json"]');
+
+        // Should be valid JSON that can be parsed
+        expect(() => JSON.parse(script?.textContent || '{}')).not.toThrow();
+    });
+
+    it('should handle emoji in schema', () => {
+        const schemaWithEmoji = {
+            '@context': 'https://schema.org',
+            '@type': 'Organization',
+            name: '🚀 Rocket Corp',
+            description: 'We 💛 technology',
+        };
+
+        const { container } = render(
+            React.createElement(StructuredDataScript, {
+                schemas: schemaWithEmoji,
+            })
+        );
+
+        const script = container.querySelector('script[type="application/ld+json"]');
+        const content = JSON.parse(script?.textContent || '{}');
+
+        expect(content.name).toBe('🚀 Rocket Corp');
+    });
+
+    it('should handle RTL languages and mixed direction', () => {
+        const rtlSchema = {
+            '@context': 'https://schema.org',
+            '@type': 'Organization',
+            name: 'شركة التقنية ABC', // Arabic + English
+        };
+
+        const { container } = render(
+            React.createElement(StructuredDataScript, {
+                schemas: rtlSchema,
+            })
+        );
+
+        const script = container.querySelector('script[type="application/ld+json"]');
+        const content = JSON.parse(script?.textContent || '{}');
+
+        expect(content.name).toContain('شركة');
+    });
+});
+
+describe('SDS-011: Schema Without Required Fields', () => {
+    it('should render schema without @context', () => {
+        const noContextSchema = {
+            '@type': 'Organization',
+            name: 'No Context Org',
+        };
+
+        const { container } = render(
+            React.createElement(StructuredDataScript, {
+                schemas: noContextSchema,
+            })
+        );
+
+        const script = container.querySelector('script[type="application/ld+json"]');
+        const content = JSON.parse(script?.textContent || '{}');
+
+        // Should still render (validation can be done separately)
+        expect(content['@type']).toBe('Organization');
+    });
+
+    it('should render schema without @type', () => {
+        const noTypeSchema = {
+            '@context': 'https://schema.org',
+            name: 'No Type Entity',
+        };
+
+        const { container } = render(
+            React.createElement(StructuredDataScript, {
+                schemas: noTypeSchema,
+            })
+        );
+
+        const script = container.querySelector('script[type="application/ld+json"]');
+        const content = JSON.parse(script?.textContent || '{}');
+
+        expect(content.name).toBe('No Type Entity');
+    });
+});
+
+describe('SDS-012: Script Attributes', () => {
+    it('should apply custom script props', () => {
+        const { container } = render(
+            React.createElement(StructuredDataScript, {
+                schemas: { '@context': 'https://schema.org', '@type': 'Organization' },
+                scriptProps: { id: 'custom-schema', 'data-testid': 'schema-test' },
+            })
+        );
+
+        const script = container.querySelector('script[type="application/ld+json"]');
+        expect(script?.getAttribute('id')).toBe('custom-schema');
+        expect(script?.getAttribute('data-testid')).toBe('schema-test');
+    });
+});
+

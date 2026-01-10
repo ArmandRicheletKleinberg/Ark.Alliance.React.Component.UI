@@ -231,3 +231,213 @@ describe('SEO Helper Functions', () => {
         });
     });
 });
+
+// ═══════════════════════════════════════════════════════════════════════════
+// EDGE CASE & ERROR HANDLING TESTS (SH-008+) - Based on Real-World Research
+// ═══════════════════════════════════════════════════════════════════════════
+
+describe('SH-008: BreadcrumbList Error Handling', () => {
+    it('should handle empty items array', () => {
+        const schema = generateBreadcrumbListSchema([]);
+
+        expect(schema['@type']).toBe(SchemaType.BREADCRUMB_LIST);
+        expect(schema.itemListElement).toHaveLength(0);
+    });
+
+    it('should handle items with empty names', () => {
+        const items = [
+            { position: 1, name: '', item: TEST_URLS.HOME },
+        ];
+
+        const schema = generateBreadcrumbListSchema(items);
+
+        expect(schema.itemListElement[0].name).toBe('');
+    });
+
+    it('should handle very long breadcrumb trails (100+ items)', () => {
+        const items = Array.from({ length: 100 }, (_, i) => ({
+            position: i + 1,
+            name: `Level ${i + 1}`,
+            item: `${TEST_URLS.HOME}/level-${i + 1}`,
+        }));
+
+        const schema = generateBreadcrumbListSchema(items);
+
+        expect(schema.itemListElement).toHaveLength(100);
+        expect(schema.itemListElement[99].position).toBe(100);
+    });
+
+    it('should handle Unicode names in breadcrumbs', () => {
+        const items = [
+            { position: 1, name: '首页', item: TEST_URLS.HOME },
+            { position: 2, name: 'الرئيسية', item: `${TEST_URLS.HOME}/ar` },
+            { position: 3, name: '🏠 Emoji Home', item: `${TEST_URLS.HOME}/emoji` },
+        ];
+
+        const schema = generateBreadcrumbListSchema(items);
+
+        expect(schema.itemListElement[0].name).toBe('首页');
+        expect(schema.itemListElement[2].name).toContain('🏠');
+    });
+});
+
+describe('SH-009: Organization Schema Error Handling', () => {
+    it('should handle minimal organization (name only)', () => {
+        const org = { name: 'Minimal Org' };
+
+        const schema = generateOrganizationSchema(org);
+
+        expect(schema['@type']).toBe(SchemaType.ORGANIZATION);
+        expect(schema.name).toBe('Minimal Org');
+    });
+
+    it('should handle organization with empty sameAs array', () => {
+        const org = {
+            name: TEST_ORG.NAME,
+            url: TEST_ORG.URL,
+            sameAs: [],
+        };
+
+        const schema = generateOrganizationSchema(org);
+
+        expect(schema.sameAs).toEqual([]);
+    });
+
+    it('should handle special characters in organization name', () => {
+        const org = {
+            name: 'Test & Co. "Special" <Corp>',
+            url: TEST_ORG.URL,
+        };
+
+        const schema = generateOrganizationSchema(org);
+
+        expect(schema.name).toContain('&');
+        expect(schema.name).toContain('"');
+    });
+});
+
+describe('SH-010: Person Schema Error Handling', () => {
+    it('should handle person with name only', () => {
+        const person = { name: 'John Doe' };
+
+        const schema = generatePersonSchema(person);
+
+        expect(schema['@type']).toBe(SchemaType.PERSON);
+        expect(schema.name).toBe('John Doe');
+    });
+
+    it('should handle person with complex sameAs URLs', () => {
+        const person = {
+            name: TEST_PERSON.NAME,
+            sameAs: [
+                'https://twitter.com/user?ref=123',
+                'https://linkedin.com/in/user#section',
+                TEST_SOCIAL.GITHUB,
+            ],
+        };
+
+        const schema = generatePersonSchema(person);
+
+        expect(schema.sameAs).toHaveLength(3);
+    });
+});
+
+describe('SH-011: Article Schema Error Handling', () => {
+    it('should handle article with minimal data', () => {
+        const article = {
+            headline: 'Test Article',
+            author: { name: 'Anonymous' },
+            publishedAt: new Date().toISOString(),
+        };
+
+        const schema = generateArticleSchema(article);
+
+        expect(schema['@type']).toBe(SchemaType.ARTICLE);
+        expect(schema.headline).toBe('Test Article');
+    });
+
+    it('should handle very long headline', () => {
+        const article = {
+            headline: 'A'.repeat(200),
+            author: { name: 'Test Author' },
+            publishedAt: new Date().toISOString(),
+        };
+
+        const schema = generateArticleSchema(article);
+
+        expect(schema.headline).toHaveLength(200);
+    });
+
+    it('should handle article with nested author object', () => {
+        const article = {
+            headline: 'Test',
+            author: {
+                '@type': 'Person',
+                name: TEST_PERSON.NAME,
+            },
+        };
+
+        const schema = generateArticleSchema(article);
+
+        expect(schema.author.name).toBe(TEST_PERSON.NAME);
+    });
+});
+
+describe('SH-012: FAQPage Schema Error Handling', () => {
+    it('should handle empty FAQ array', () => {
+        const schema = generateFAQPageSchema([]);
+
+        expect(schema['@type']).toBe(SchemaType.FAQ_PAGE);
+        expect(schema.mainEntity).toHaveLength(0);
+    });
+
+    it('should handle FAQ with special characters in questions/answers', () => {
+        const faqs = [
+            { question: 'What is "SEO" & why matters?', answer: '<p>It helps with search</p>' },
+        ];
+
+        const schema = generateFAQPageSchema(faqs);
+
+        expect(schema.mainEntity[0].name).toContain('"SEO"');
+        expect(schema.mainEntity[0].acceptedAnswer.text).toContain('<p>');
+    });
+
+    it('should handle large FAQ list (50+ items)', () => {
+        const faqs = Array.from({ length: 50 }, (_, i) => ({
+            question: `Question ${i + 1}`,
+            answer: `Answer ${i + 1}`,
+        }));
+
+        const schema = generateFAQPageSchema(faqs);
+
+        expect(schema.mainEntity).toHaveLength(50);
+    });
+});
+
+describe('SH-013: validateSchema Edge Cases', () => {
+    it('should return false for null input', () => {
+        expect(validateSchema(null as any)).toBe(false);
+    });
+
+    it('should return false for undefined input', () => {
+        expect(validateSchema(undefined as any)).toBe(false);
+    });
+
+    it('should return false for non-object input', () => {
+        expect(validateSchema('string' as any)).toBe(false);
+        expect(validateSchema(123 as any)).toBe(false);
+    });
+
+    it('should return true for schema with all valid fields', () => {
+        const schema = {
+            '@context': 'https://schema.org',
+            '@type': 'Person',
+            name: TEST_PERSON.NAME,
+            jobTitle: TEST_PERSON.JOB_TITLE,
+            sameAs: [TEST_SOCIAL.LINKEDIN, TEST_SOCIAL.GITHUB],
+        };
+
+        expect(validateSchema(schema)).toBe(true);
+    });
+});
+
