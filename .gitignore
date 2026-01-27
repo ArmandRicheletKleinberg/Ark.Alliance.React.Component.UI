@@ -24,3 +24,4 @@ dist-ssr
 *.sw?
 /.vs/Ark.Alliance.React.Component.UI/CopilotIndices/18.0.981.45449
 /.vs
+/Ark.Alliance.React.Component.UI/DOCS/error.txt
