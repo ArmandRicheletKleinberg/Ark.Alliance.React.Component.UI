@@ -76,10 +76,10 @@ export const FinancialChartModelSchema = TrendPriceChartModelSchema.extend({
     // ─────────────────────────────────────────────────────────────────────────
 
     /** Fast moving average configuration */
-    fastMA: MovingAverageSchema.default({ enabled: true, period: 7, color: '#22c55e' }),
+    fastMA: MovingAverageSchema.default({ enabled: true, period: 7, color: '#22c55e', type: 'SMA' }),
 
     /** Slow moving average configuration */
-    slowMA: MovingAverageSchema.default({ enabled: true, period: 25, color: '#ef4444' }),
+    slowMA: MovingAverageSchema.default({ enabled: true, period: 25, color: '#ef4444', type: 'SMA' }),
 
     // ─────────────────────────────────────────────────────────────────────────
     // STYLING (from Graph sample)
@@ -165,19 +165,19 @@ export function createFinancialChartModel(data: Partial<FinancialChartModel> = {
  */
 export const FINANCIAL_CHART_COLORS = {
     /** Price line color */
-    priceLine: '#6366f1',
+    priceLine: 'var(--ark-primary, #6366f1)',
     /** Price area fill gradient start */
-    areaFillStart: 'rgba(99, 102, 241, 0.3)',
+    areaFillStart: 'var(--ark-chart-area-start, rgba(99, 102, 241, 0.3))',
     /** Price area fill gradient end */
-    areaFillEnd: 'rgba(99, 102, 241, 0.05)',
+    areaFillEnd: 'var(--ark-chart-area-end, rgba(99, 102, 241, 0.05))',
     /** Bullish candle color */
-    bullish: '#22c55e',
+    bullish: 'var(--ark-success, #22c55e)',
     /** Bearish candle color */
-    bearish: '#ef4444',
+    bearish: 'var(--ark-error, #ef4444)',
     /** Grid line color */
-    grid: '#1e293b',
+    grid: 'var(--ark-border-color, #1e293b)',
     /** Axis text color */
-    axis: '#64748b',
+    axis: 'var(--ark-text-muted, #64748b)',
     /** Current price line */
-    currentPrice: '#ffffff',
+    currentPrice: 'var(--ark-text-primary, #ffffff)',
 } as const;

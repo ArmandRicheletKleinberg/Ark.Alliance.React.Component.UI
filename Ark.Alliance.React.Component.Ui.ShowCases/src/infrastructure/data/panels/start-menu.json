@@ -1,0 +1,78 @@
+{
+    "id": "start-menu",
+    "componentId": "StartMenu",
+    "title": "Start Menu",
+    "description": "Application launcher with search, categories, and recent items.",
+    "layout": {
+        "width": "auto",
+        "height": "500px"
+    },
+    "preview": {
+        "background": "dark"
+    },
+    "defaultProps": {
+        "isOpen": true,
+        "showSearch": true,
+        "showRecent": true,
+        "showPinned": true,
+        "showAllApps": true,
+        "visualMode": "glass",
+        "appSet": "default"
+    },
+    "controls": [
+        {
+            "propName": "isOpen",
+            "type": "boolean",
+            "label": "Open",
+            "group": "behavior"
+        },
+        {
+            "propName": "showSearch",
+            "type": "boolean",
+            "label": "Show Search",
+            "group": "behavior"
+        },
+        {
+            "propName": "showRecent",
+            "type": "boolean",
+            "label": "Show Recent",
+            "group": "behavior"
+        },
+        {
+            "propName": "showPinned",
+            "type": "boolean",
+            "label": "Show Pinned",
+            "group": "behavior"
+        },
+        {
+            "propName": "showAllApps",
+            "type": "boolean",
+            "label": "Show All Apps",
+            "group": "behavior"
+        },
+        {
+            "propName": "visualMode",
+            "type": "select",
+            "label": "Visual Mode",
+            "options": [
+                "normal",
+                "neon",
+                "minimal",
+                "glass"
+            ],
+            "group": "style"
+        },
+        {
+            "propName": "appSet",
+            "type": "select",
+            "label": "App Set",
+            "options": [
+                "default",
+                "trading",
+                "dev",
+                "productivity"
+            ],
+            "group": "content"
+        }
+    ]
+}

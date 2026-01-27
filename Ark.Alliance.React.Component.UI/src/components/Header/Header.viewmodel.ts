@@ -5,6 +5,7 @@
 
 import { useState, useMemo, useCallback, type CSSProperties } from 'react';
 import { useBaseViewModel, type BaseViewModelResult } from '../../core/base';
+import { useTheme } from '../../core/theme/useTheme';
 import type { HeaderModel, BackgroundConfig, TypographyConfig } from './Header.model';
 import { defaultHeaderModel, HeaderModelSchema } from './Header.model';
 
@@ -140,6 +141,10 @@ export function useHeader(options: UseHeaderOptions): UseHeaderResult {
         eventChannel: 'header',
     });
 
+    // Theme integration
+    const { resolvedMode } = useTheme();
+    const isDark = base.model.isDark !== undefined ? base.model.isDark : resolvedMode === 'dark';
+
     // Search state
     const [searchValue, setSearchValue] = useState(base.model.searchValue || '');
 
@@ -168,7 +173,8 @@ export function useHeader(options: UseHeaderOptions): UseHeaderResult {
             `ark-header--${base.model.variant}`,
             `ark-header--${base.model.visualMode}`,
             `ark-header--${base.model.height}`,
-            base.model.isDark ? 'ark-header--dark' : 'ark-header--light',
+            `ark-header--${base.model.height}`,
+            isDark ? 'ark-header--dark' : 'ark-header--light',
         ];
 
         if (base.model.borderRadius !== 'none') {

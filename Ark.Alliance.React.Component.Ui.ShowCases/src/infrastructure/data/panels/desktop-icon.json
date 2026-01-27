@@ -1,0 +1,50 @@
+{
+    "id": "desktop-icon",
+    "componentId": "DesktopIcon",
+    "title": "Desktop Icon",
+    "description": "Application icon for desktop with label and click action.",
+    "layout": {
+        "width": "auto",
+        "height": "auto"
+    },
+    "preview": {
+        "background": "dark"
+    },
+    "defaultProps": {
+        "label": "My App",
+        "icon": "📊",
+        "selected": false,
+        "size": "md"
+    },
+    "controls": [
+        {
+            "propName": "label",
+            "type": "text",
+            "label": "Label",
+            "group": "content"
+        },
+        {
+            "propName": "icon",
+            "type": "text",
+            "label": "Icon (emoji)",
+            "group": "content"
+        },
+        {
+            "propName": "selected",
+            "type": "boolean",
+            "label": "Selected",
+            "group": "behavior"
+        },
+        {
+            "propName": "size",
+            "type": "select",
+            "label": "Size",
+            "options": [
+                "sm",
+                "md",
+                "lg"
+            ],
+            "group": "style"
+        }
+    ]
+}

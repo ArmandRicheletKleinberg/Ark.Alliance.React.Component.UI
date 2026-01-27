@@ -7,7 +7,7 @@
 
 import React, { memo, forwardRef } from 'react';
 import { useWindowPanel, type UseWindowPanelOptions, type ResizeDirection } from './WindowPanel.viewmodel';
-import './WindowPanel.styles.css';
+import './WindowPanel.scss';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES

@@ -9,7 +9,7 @@
 import { forwardRef, memo } from 'react';
 import { useTestTimeline, type UseTestTimelineOptions } from './TestTimeline.viewmodel';
 import type { TestStep } from './TestTimeline.model';
-import './TestTimeline.styles.css';
+import './TestTimeline.scss';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES

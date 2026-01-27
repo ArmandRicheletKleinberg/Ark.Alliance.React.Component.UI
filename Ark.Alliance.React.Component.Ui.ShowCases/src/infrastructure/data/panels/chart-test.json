@@ -1,0 +1,82 @@
+{
+    "id": "chart-test",
+    "componentId": "TestChart",
+    "title": "Test Scenario Chart",
+    "description": "SVG-based chart for plotting test steps and thresholds.",
+    "defaultProps": {
+        "title": "Scenario Execution 001",
+        "entryPrice": 1000,
+        "currentIndex": 40,
+        "showGrid": true,
+        "showLegend": true,
+        "animate": true,
+        "pointCount": 80,
+        "volatility": 5,
+        "height": 300
+    },
+    "layout": {
+        "width": "100%",
+        "minWidth": "full"
+    },
+    "controls": [
+        {
+            "type": "text",
+            "propName": "title",
+            "label": "Chart Title",
+            "defaultValue": "Scenario Execution 001"
+        },
+        {
+            "type": "number",
+            "propName": "entryPrice",
+            "label": "Entry Price",
+            "defaultValue": 1000
+        },
+        {
+            "type": "slider",
+            "propName": "currentIndex",
+            "label": "Current Cursor",
+            "defaultValue": 40,
+            "min": 0,
+            "max": 150
+        },
+        {
+            "type": "divider",
+            "propName": "div1",
+            "label": "Options"
+        },
+        {
+            "type": "boolean",
+            "propName": "showGrid",
+            "label": "Show Grid",
+            "defaultValue": true
+        },
+        {
+            "type": "boolean",
+            "propName": "showLegend",
+            "label": "Show Legend",
+            "defaultValue": true
+        },
+        {
+            "type": "boolean",
+            "propName": "animate",
+            "label": "Animate",
+            "defaultValue": true
+        },
+        {
+            "type": "slider",
+            "propName": "pointCount",
+            "label": "Points",
+            "defaultValue": 80,
+            "min": 20,
+            "max": 150
+        },
+        {
+            "type": "slider",
+            "propName": "volatility",
+            "label": "Volatility",
+            "defaultValue": 5,
+            "min": 1,
+            "max": 20
+        }
+    ]
+}

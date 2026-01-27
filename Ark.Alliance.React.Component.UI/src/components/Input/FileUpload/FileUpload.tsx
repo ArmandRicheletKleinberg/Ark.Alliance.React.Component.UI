@@ -5,7 +5,7 @@
 
 import { forwardRef, memo, useRef } from 'react';
 import { useFileUpload, type UseFileUploadOptions } from './FileUpload.viewmodel';
-import './FileUpload.styles.css';
+import './FileUpload.scss';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES

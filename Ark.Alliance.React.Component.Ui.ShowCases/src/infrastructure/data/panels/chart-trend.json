@@ -1,0 +1,134 @@
+{
+    "id": "chart-trend",
+    "componentId": "TrendPriceChart",
+    "title": "Trend Prediction Chart",
+    "description": "Real-time line chart with trend prediction overlays and advanced controls.",
+    "defaultProps": {
+        "title": "ETH/USDT Real-time",
+        "symbol": "ETHUSDT",
+        "precision": "1s",
+        "showGrid": true,
+        "showVolume": true,
+        "showForecastHorizon": true,
+        "showLegend": true,
+        "animateNewPoints": true,
+        "autoScaleY": true,
+        "yAxisPadding": 0.05,
+        "isStreaming": false,
+        "dataPoints": 100,
+        "startPrice": 2500,
+        "volatility": 10,
+        "height": 350
+    },
+    "layout": {
+        "width": "100%",
+        "minWidth": "full"
+    },
+    "controls": [
+        {
+            "type": "text",
+            "propName": "title",
+            "label": "Chart Title",
+            "defaultValue": "ETH/USDT Real-time"
+        },
+        {
+            "type": "text",
+            "propName": "symbol",
+            "label": "Symbol",
+            "defaultValue": "ETHUSDT"
+        },
+        {
+            "type": "select",
+            "propName": "precision",
+            "label": "Precision",
+            "defaultValue": "1s",
+            "options": [
+                "1s",
+                "1m",
+                "15m"
+            ]
+        },
+        {
+            "type": "divider",
+            "propName": "div1",
+            "label": "Toggles"
+        },
+        {
+            "type": "boolean",
+            "propName": "showGrid",
+            "label": "Show Grid",
+            "defaultValue": true
+        },
+        {
+            "type": "boolean",
+            "propName": "showVolume",
+            "label": "Show Volume",
+            "defaultValue": true
+        },
+        {
+            "type": "boolean",
+            "propName": "showForecastHorizon",
+            "label": "Show Forecast",
+            "defaultValue": true
+        },
+        {
+            "type": "boolean",
+            "propName": "showLegend",
+            "label": "Show Legend",
+            "defaultValue": true
+        },
+        {
+            "type": "boolean",
+            "propName": "animateNewPoints",
+            "label": "Animate Points",
+            "defaultValue": true
+        },
+        {
+            "type": "boolean",
+            "propName": "isStreaming",
+            "label": "Simulate Stream",
+            "defaultValue": false
+        },
+        {
+            "type": "divider",
+            "propName": "div2",
+            "label": "Axis"
+        },
+        {
+            "type": "boolean",
+            "propName": "autoScaleY",
+            "label": "Auto Scale Y",
+            "defaultValue": true
+        },
+        {
+            "type": "slider",
+            "propName": "yAxisPadding",
+            "label": "Y Padding (x100)",
+            "defaultValue": 0.05,
+            "min": 0,
+            "max": 0.5,
+            "step": 0.01
+        },
+        {
+            "type": "divider",
+            "propName": "div3",
+            "label": "Simulation"
+        },
+        {
+            "type": "slider",
+            "propName": "dataPoints",
+            "label": "Data Points",
+            "defaultValue": 100,
+            "min": 50,
+            "max": 200
+        },
+        {
+            "type": "slider",
+            "propName": "volatility",
+            "label": "Sim Volatility",
+            "defaultValue": 10,
+            "min": 1,
+            "max": 50
+        }
+    ]
+}

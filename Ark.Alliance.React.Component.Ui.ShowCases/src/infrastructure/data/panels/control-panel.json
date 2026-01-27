@@ -1,0 +1,96 @@
+{
+    "id": "control-panel",
+    "componentId": "ControlPanel",
+    "title": "Control Panel",
+    "description": "Side panel for controls with collapsible sections and header actions.",
+    "layout": {
+        "width": "100%",
+        "height": "500px"
+    },
+    "preview": {
+        "background": "dark"
+    },
+    "defaultProps": {
+        "title": "Control Panel",
+        "titleIcon": "⚙️",
+        "visible": true,
+        "collapsible": true,
+        "defaultCollapsed": false,
+        "position": "right",
+        "width": 280,
+        "isLoading": false,
+        "connectionStatus": "connected"
+    },
+    "controls": [
+        {
+            "propName": "title",
+            "type": "text",
+            "label": "Title",
+            "group": "content"
+        },
+        {
+            "propName": "titleIcon",
+            "type": "text",
+            "label": "Icon (emoji)",
+            "group": "content"
+        },
+        {
+            "propName": "visible",
+            "type": "boolean",
+            "label": "Visible",
+            "group": "behavior"
+        },
+        {
+            "propName": "collapsible",
+            "type": "boolean",
+            "label": "Collapsible",
+            "group": "behavior"
+        },
+        {
+            "propName": "defaultCollapsed",
+            "type": "boolean",
+            "label": "Start Collapsed",
+            "group": "behavior"
+        },
+        {
+            "propName": "position",
+            "type": "select",
+            "label": "Position",
+            "options": [
+                "right",
+                "left",
+                "top",
+                "bottom",
+                "floating"
+            ],
+            "group": "layout"
+        },
+        {
+            "propName": "width",
+            "type": "slider",
+            "label": "Width",
+            "min": 150,
+            "max": 600,
+            "step": 20,
+            "group": "layout"
+        },
+        {
+            "propName": "isLoading",
+            "type": "boolean",
+            "label": "Loading",
+            "group": "behavior"
+        },
+        {
+            "propName": "connectionStatus",
+            "type": "select",
+            "label": "Connection",
+            "options": [
+                "connected",
+                "disconnected",
+                "connecting",
+                "error"
+            ],
+            "group": "demo"
+        }
+    ]
+}

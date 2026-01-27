@@ -8,7 +8,7 @@
 
 import { forwardRef, memo } from 'react';
 import { useTestChart, type UseTestChartOptions } from './TestChart.viewmodel';
-import './TestChart.styles.css';
+import './TestChart.scss';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES

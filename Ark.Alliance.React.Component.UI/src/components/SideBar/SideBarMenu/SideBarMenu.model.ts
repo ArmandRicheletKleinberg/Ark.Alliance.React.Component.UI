@@ -115,6 +115,7 @@ export const defaultSideBarMenuModel: Omit<SideBarMenuModel, 'categories'> & { c
     categories: [],
     title: 'Menu',
     variant: 'default',
+    size: 'md',
     position: 'left',
     collapsed: false,
     expandedWidth: 280,

@@ -1,0 +1,85 @@
+{
+    "id": "trade-history-grid",
+    "componentId": "TradeHistoryGrid",
+    "title": "Trade History Grid",
+    "description": "Historical trades with realized P&L, fees, and export functionality.",
+    "layout": {
+        "width": "100%",
+        "minWidth": "full",
+        "height": "500px"
+    },
+    "preview": {
+        "background": "dark"
+    },
+    "defaultProps": {
+        "title": "Trade History",
+        "isDark": true,
+        "showDateFilter": true,
+        "showSymbolFilter": true,
+        "showSideFilter": true,
+        "enableExport": true,
+        "compact": false,
+        "tradeCount": 30,
+        "instrumentType": "CRYPTO_PERP"
+    },
+    "controls": [
+        {
+            "propName": "title",
+            "type": "text",
+            "label": "Title",
+            "group": "content"
+        },
+        {
+            "propName": "showDateFilter",
+            "type": "boolean",
+            "label": "Date Filter",
+            "group": "behavior"
+        },
+        {
+            "propName": "showSymbolFilter",
+            "type": "boolean",
+            "label": "Symbol Filter",
+            "group": "behavior"
+        },
+        {
+            "propName": "showSideFilter",
+            "type": "boolean",
+            "label": "Side Filter",
+            "group": "behavior"
+        },
+        {
+            "propName": "enableExport",
+            "type": "boolean",
+            "label": "Export",
+            "group": "behavior"
+        },
+        {
+            "propName": "compact",
+            "type": "boolean",
+            "label": "Compact Mode",
+            "group": "style"
+        },
+        {
+            "propName": "tradeCount",
+            "type": "slider",
+            "label": "Demo Trades",
+            "min": 10,
+            "max": 100,
+            "step": 10,
+            "group": "demo"
+        },
+        {
+            "propName": "instrumentType",
+            "type": "select",
+            "label": "Instrument",
+            "options": [
+                "CRYPTO_SPOT",
+                "CRYPTO_PERP",
+                "CRYPTO_FUTURES",
+                "OPTIONS",
+                "STOCK"
+            ],
+            "group": "demo"
+        }
+    ]
+}

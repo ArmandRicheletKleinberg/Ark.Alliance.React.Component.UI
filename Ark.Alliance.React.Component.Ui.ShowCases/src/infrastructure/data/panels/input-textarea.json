@@ -1,0 +1,59 @@
+{
+    "id": "input-textarea",
+    "componentId": "TextArea",
+    "title": "Text Area",
+    "description": "Multi-line text input for longer content.",
+    "defaultProps": {
+        "label": "Description",
+        "placeholder": "Enter detailed description...",
+        "rows": 4,
+        "resize": "vertical",
+        "maxLength": 500,
+        "variant": "default",
+        "size": "md"
+    },
+    "layout": {
+        "width": "100%",
+        "minWidth": "full"
+    },
+    "controls": [
+        {
+            "type": "text",
+            "propName": "label",
+            "label": "Label",
+            "defaultValue": "Description"
+        },
+        {
+            "type": "text",
+            "propName": "placeholder",
+            "label": "Placeholder",
+            "defaultValue": "Enter detailed description..."
+        },
+        {
+            "type": "slider",
+            "propName": "rows",
+            "label": "Rows",
+            "defaultValue": 4,
+            "min": 2,
+            "max": 10
+        },
+        {
+            "type": "select",
+            "propName": "resize",
+            "label": "Resize Mode",
+            "defaultValue": "vertical",
+            "options": [
+                "none",
+                "vertical",
+                "horizontal",
+                "both"
+            ]
+        },
+        {
+            "type": "number",
+            "propName": "maxLength",
+            "label": "Max Length",
+            "defaultValue": 500
+        }
+    ]
+}

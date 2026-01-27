@@ -11,7 +11,7 @@ import { useGenericPanel, type UseGenericPanelOptions } from './GenericPanel.vie
 import { PanelGridOverlay } from './primitives/PanelGridOverlay';
 import { PanelGlowEffect } from './primitives/PanelGlowEffect';
 import { PanelEmptyState } from './primitives/PanelEmptyState';
-import './GenericPanel.styles.css';
+import './GenericPanel.scss';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES

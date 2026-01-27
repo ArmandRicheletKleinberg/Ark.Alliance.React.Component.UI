@@ -1,0 +1,36 @@
+{
+    "id": "grid-project",
+    "title": "Project Grid",
+    "description": "A responsive grid layout for displaying project cards with status and tags.",
+    "componentId": "ProjectGrid",
+    "layout": {
+        "width": "100%",
+        "height": "100%",
+        "minWidth": "full"
+    },
+    "preview": {
+        "background": "checker"
+    },
+    "defaultProps": {
+        "count": 6,
+        "title": "Active Projects",
+        "description": "Overview of current development tasks."
+    },
+    "controls": [
+        {
+            "propName": "count",
+            "type": "slider",
+            "label": "Item Count",
+            "min": 1,
+            "max": 20,
+            "step": 1,
+            "group": "content"
+        },
+        {
+            "propName": "title",
+            "type": "text",
+            "label": "Grid Title",
+            "group": "content"
+        }
+    ]
+}

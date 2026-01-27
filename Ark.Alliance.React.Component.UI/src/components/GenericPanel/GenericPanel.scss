@@ -1,0 +1,189 @@
+/**
+ * GenericPanel Styles
+ * CSS with custom properties for runtime theming support.
+ */
+
+.ark-generic-panel {
+    position: relative;
+    overflow: hidden;
+    transition: all 300ms ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    /* Variants */
+    &--default {
+        background: var(--ark-panel-bg, #1f2937);
+        border-color: var(--ark-border, #374151);
+    }
+
+    &--glass {
+        background: rgba(31, 41, 55, 0.7);
+        border-color: rgba(75, 85, 99, 0.5);
+    }
+
+    &--bordered {
+        background: transparent;
+        border: 2px solid var(--ark-border, #374151);
+    }
+
+    &--elevated {
+        background: var(--ark-panel-bg, #1f2937);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+
+    /* Layout Modes */
+    &--sidebar-left,
+    &--sidebar-right {
+        position: fixed;
+        top: 0;
+        height: 100vh;
+        z-index: 50;
+        transition: transform 300ms ease-in-out;
+    }
+
+    &--sidebar-left {
+        left: 0;
+
+        &.ark-generic-panel--collapsed {
+            transform: translateX(-100%);
+        }
+    }
+
+    &--sidebar-right {
+        right: 0;
+
+        &.ark-generic-panel--collapsed {
+            transform: translateX(100%);
+        }
+    }
+
+    &--fullscreen {
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+    }
+
+    /* Modifiers */
+    &--scrollable &__body {
+        overflow-y: auto;
+    }
+
+    &--glass-effect {
+        background: rgba(31, 41, 55, 0.5) !important;
+    }
+
+    /* Header */
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.75rem 1rem;
+        font-weight: 600;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        color: var(--ark-gp-text, var(--ark-text-primary, #f3f4f6));
+    }
+
+    &--collapsed &__header {
+        border-bottom: none;
+    }
+
+    &__header-content {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    &__header-actions {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    &__collapse-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+        background: transparent;
+        border: none;
+        color: var(--ark-gp-text, #6b7280);
+        cursor: pointer;
+        border-radius: 0.25rem;
+        transition: background-color 100ms ease, color 100ms ease;
+
+        &:hover {
+            background-color: rgba(107, 114, 128, 0.2);
+            color: var(--ark-gp-accent, var(--ark-primary, #3b82f6));
+        }
+
+        &:focus {
+            outline: 2px solid var(--ark-gp-accent, var(--ark-primary, #3b82f6));
+            outline-offset: 2px;
+        }
+    }
+
+    /* Body */
+    &__body {
+        position: relative;
+        z-index: 1;
+
+        &--none {
+            padding: 0;
+        }
+
+        &--sm {
+            padding: 0.5rem;
+        }
+
+        &--md {
+            padding: 1rem;
+        }
+
+        &--lg {
+            padding: 1.5rem;
+        }
+    }
+
+    /* Footer */
+    &__footer {
+        padding: 0.75rem 1rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Overlay */
+    &__overlay {
+        position: absolute;
+        inset: 0;
+        z-index: 10;
+        pointer-events: none;
+
+        >* {
+            pointer-events: auto;
+        }
+    }
+
+    /* Light Theme */
+    [data-theme="light"] & {
+
+        &--default,
+        &--elevated {
+            background: #ffffff;
+            border-color: #e5e7eb;
+        }
+
+        &--glass {
+            background: rgba(255, 255, 255, 0.8);
+            border-color: rgba(229, 231, 235, 0.5);
+        }
+
+        &__header {
+            border-bottom-color: rgba(0, 0, 0, 0.1);
+            color: #1f2937;
+        }
+
+        &__footer {
+            border-top-color: rgba(0, 0, 0, 0.1);
+        }
+    }
+}

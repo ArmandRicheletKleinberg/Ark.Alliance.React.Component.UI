@@ -1,0 +1,146 @@
+@use '../../../core/styles/abstracts/mixins' as *;
+
+// ═══════════════════════════════════════════════════════════════════════════
+// INPUT BASE STYLES
+// ═══════════════════════════════════════════════════════════════════════════
+
+.ark-input-base {
+    position: relative;
+    border-radius: var(--ark-border-radius, 6px);
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+    background: transparent;
+
+    // ─── Input Element ───
+    &__input {
+        appearance: none;
+        background: transparent;
+        border: none;
+        outline: none;
+        color: var(--ark-text);
+        font-family: inherit;
+        font-size: inherit;
+        line-height: inherit;
+        padding: 0;
+        margin: 0;
+        min-width: 0; // Fix flexbox overflow
+
+        &::placeholder {
+            color: var(--ark-text-muted);
+            opacity: 1;
+        }
+
+        &:-webkit-autofill,
+        &:-webkit-autofill:hover,
+        &:-webkit-autofill:focus {
+            -webkit-text-fill-color: var(--ark-text);
+            transition: background-color 5000s ease-in-out 0s;
+        }
+    }
+
+    // ─── Adornments ───
+    &__start-adornment,
+    &__end-adornment {
+        color: var(--ark-text-secondary);
+        flex-shrink: 0;
+    }
+
+    &__start-adornment {
+        margin-right: 0.5rem;
+    }
+
+    &__end-adornment {
+        margin-left: 0.5rem;
+    }
+
+    // ─── Variants ───
+
+    // Default
+    &--default {
+        border-color: var(--ark-border);
+        background: rgba(255, 255, 255, 0.03);
+
+        &:hover:not(.ark-disabled) {
+            border-color: var(--ark-border-hover);
+        }
+
+        // Focus within is handled by parent/state usually, 
+        // but can use :focus-within for CSS-only
+        &:focus-within {
+            border-color: var(--ark-primary);
+            box-shadow: 0 0 0 1px var(--ark-primary);
+        }
+    }
+
+    // Filled
+    &--filled {
+        background: rgba(255, 255, 255, 0.06);
+        border-color: transparent;
+
+        &:hover:not(.ark-disabled) {
+            background: rgba(255, 255, 255, 0.09);
+        }
+
+        &:focus-within {
+            background: rgba(255, 255, 255, 0.09);
+            border-bottom-color: var(--ark-primary);
+        }
+    }
+
+    // Outlined (Stronger border)
+    &--outlined {
+        border-color: var(--ark-border);
+        background: transparent;
+
+        &:focus-within {
+            border-color: var(--ark-primary);
+            box-shadow: 0 0 0 2px rgba(var(--ark-primary), 0.2);
+        }
+    }
+
+    // Underlined
+    &--underlined {
+        border-radius: 0;
+        border: none;
+        border-bottom: 1px solid var(--ark-border);
+        padding-left: 0;
+        padding-right: 0;
+
+        &:focus-within {
+            border-bottom-color: var(--ark-primary);
+            box-shadow: 0 1px 0 0 var(--ark-primary);
+        }
+    }
+
+    // ─── Error State ───
+    &--error {
+        border-color: var(--ark-error) !important;
+
+        .ark-input-base__end-adornment {
+            color: var(--ark-error);
+        }
+
+        &:focus-within {
+            box-shadow: 0 0 0 1px var(--ark-error) !important;
+        }
+    }
+
+    // ─── Sizes ───
+    &--sm {
+        min-height: 2rem;
+        padding: 0 0.5rem;
+        font-size: 0.875rem;
+    }
+
+    &--md {
+        min-height: 2.5rem;
+        padding: 0 0.75rem;
+        font-size: 0.875rem;
+    }
+
+    &--lg {
+        min-height: 3rem;
+        padding: 0 1rem;
+        font-size: 1rem;
+    }
+}

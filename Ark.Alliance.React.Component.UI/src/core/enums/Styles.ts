@@ -70,6 +70,18 @@ export const AnimationTypeSchema = z.enum([
  */
 export const LayoutModeSchema = z.enum(['default', 'centered', 'wide']);
 
+/**
+ * Visual mode options for components.
+ * 
+ * | Mode | Description |
+ * |------|-------------|
+ * | `normal` | Standard appearance |
+ * | `neon` | Neon/Glowing appearance |
+ * | `minimal` | Minimalist appearance |
+ * | `glass` | Glassmorphism appearance |
+ */
+export const VisualModeSchema = z.enum(['normal', 'neon', 'minimal', 'glass']);
+
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPE EXPORTS
 // ═══════════════════════════════════════════════════════════════════════════
@@ -91,6 +103,9 @@ export type AnimationType = z.infer<typeof AnimationTypeSchema>;
 
 /** Layout mode type */
 export type LayoutMode = z.infer<typeof LayoutModeSchema>;
+
+/** Visual mode type */
+export type VisualMode = z.infer<typeof VisualModeSchema>;
 
 // ═══════════════════════════════════════════════════════════════════════════
 // CONSTANTS

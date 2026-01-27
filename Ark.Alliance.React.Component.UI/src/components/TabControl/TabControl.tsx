@@ -9,7 +9,7 @@ import { forwardRef, memo, useMemo, type ReactNode } from 'react';
 import { TabItem } from './TabItem';
 import { useTabControl, type UseTabControlOptions } from './TabControl.viewmodel';
 import { type TabItemModel } from './TabControl.model';
-import './TabControl.styles.css';
+import './TabControl.scss';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES
@@ -87,6 +87,7 @@ export const TabControl = memo(forwardRef<HTMLDivElement, TabControlProps>(
                 >
                     {vm.model.items.map((tab: TabItemModel, index: number) => (
                         <TabItem
+                            key={tab.tabKey}
                             tabKey={tab.tabKey}
                             {...tab}
                             isActive={tab.tabKey === vm.activeKey}
@@ -104,7 +105,7 @@ export const TabControl = memo(forwardRef<HTMLDivElement, TabControlProps>(
                     {renderPanel ? (
                         vm.model.items.map((tab: TabItemModel) => (
                             <div
-                                tabKey={tab.tabKey}
+                                key={tab.tabKey}
                                 className="ark-tab-control__panel"
                                 {...vm.getPanelAriaProps(tab.tabKey)}
                             >

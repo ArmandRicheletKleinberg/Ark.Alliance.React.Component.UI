@@ -1,0 +1,58 @@
+{
+    "id": "gauge-signal-bars",
+    "title": "Signal Bars",
+    "description": "Mobile-style network quality indicator.",
+    "componentId": "SignalBarsGauge",
+    "layout": {
+        "width": "auto",
+        "height": "auto"
+    },
+    "preview": {
+        "background": "dark"
+    },
+    "defaultProps": {
+        "value": 85,
+        "max": 100,
+        "bars": 4,
+        "showLabel": true,
+        "size": "lg",
+        "label": "Signal"
+    },
+    "controls": [
+        {
+            "propName": "value",
+            "type": "slider",
+            "label": "Signal Strength",
+            "min": 0,
+            "max": 100,
+            "group": "data"
+        },
+        {
+            "propName": "bars",
+            "type": "select",
+            "label": "Bar Count",
+            "options": [
+                4,
+                5
+            ],
+            "group": "style"
+        },
+        {
+            "propName": "showLabel",
+            "type": "boolean",
+            "label": "Show Percentage",
+            "group": "style"
+        },
+        {
+            "propName": "size",
+            "type": "select",
+            "label": "Size",
+            "options": [
+                "sm",
+                "md",
+                "lg"
+            ],
+            "group": "style"
+        }
+    ]
+}

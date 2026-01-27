@@ -10,7 +10,7 @@ import { forwardRef, memo, useId } from 'react';
 import { useTrendPriceChart, type UseTrendPriceChartOptions } from './TrendPriceChart.viewmodel';
 import type { TrendPrediction } from './TrendPriceChart.model';
 import { TREND_DIRECTION_COLORS } from './TrendPriceChart.model';
-import './TrendPriceChart.styles.css';
+import './TrendPriceChart.scss';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES

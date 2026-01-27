@@ -8,7 +8,12 @@
 
 import { z } from 'zod';
 import { extendSchema } from '../../core/base';
-import { HorizontalPositionSchema, VerticalPositionSchema } from '../../core/enums';
+import {
+    ToastPositionSchema,
+    SemanticStatusSchema,
+    type ToastPosition,
+    type SemanticStatus,
+} from '../../core/enums';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // SCHEMA DEFINITIONS
@@ -17,19 +22,12 @@ import { HorizontalPositionSchema, VerticalPositionSchema } from '../../core/enu
 /**
  * Toast type/severity variants
  */
-export const ToastType = z.enum(['success', 'error', 'warning', 'info']);
+export const ToastType = SemanticStatusSchema;
 
 /**
  * Toast position options
  */
-export const ToastPosition = z.enum([
-    'top-left',
-    'top-center',
-    'top-right',
-    'bottom-left',
-    'bottom-center',
-    'bottom-right',
-]);
+export const ToastPosition = ToastPositionSchema;
 
 /**
  * Individual toast item schema
@@ -84,8 +82,8 @@ export const ToastModelSchema = extendSchema({
 // TYPE EXPORTS
 // ═══════════════════════════════════════════════════════════════════════════
 
-export type ToastTypeValue = z.infer<typeof ToastType>;
-export type ToastPositionType = z.infer<typeof ToastPosition>;
+export type ToastTypeValue = SemanticStatus;
+export type ToastPositionType = ToastPosition;
 export type ToastItem = z.infer<typeof ToastItemSchema>;
 export type ToastModel = z.infer<typeof ToastModelSchema>;
 
@@ -106,16 +104,18 @@ export const TOAST_TYPE_ICONS: Record<ToastTypeValue, string> = {
     error: 'x-circle',
     warning: 'alert-triangle',
     info: 'info',
+    neutral: 'circle',
 };
 
 /**
  * Default colors for toast types (CSS custom property names)
  */
 export const TOAST_TYPE_COLORS: Record<ToastTypeValue, string> = {
-    success: 'var(--ark-toast-success, #10b981)',
-    error: 'var(--ark-toast-error, #ef4444)',
-    warning: 'var(--ark-toast-warning, #f59e0b)',
-    info: 'var(--ark-toast-info, #3b82f6)',
+    success: 'var(--ark-success)',
+    error: 'var(--ark-error)',
+    warning: 'var(--ark-warning)',
+    info: 'var(--ark-info)',
+    neutral: 'var(--ark-text-secondary)', // Mapping neutral to secondary text color
 };
 
 // ═══════════════════════════════════════════════════════════════════════════

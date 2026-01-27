@@ -7,7 +7,7 @@
 
 import React, { memo } from 'react';
 import type { FormatState, TextAlignmentType } from '../TextEditor.model';
-import './EditorToolbar.styles.css';
+import './EditorToolbar.scss';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES

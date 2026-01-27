@@ -5,7 +5,7 @@
 
 import { forwardRef, memo } from 'react';
 import { useSlider, type UseSliderOptions } from './Slider.viewmodel';
-import './Slider.styles.css';
+import './Slider.scss';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES

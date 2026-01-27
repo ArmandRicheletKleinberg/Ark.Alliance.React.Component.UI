@@ -83,6 +83,9 @@ export const ButtonVariantSchema = z.enum([
     'danger',
     'success',
     'ghost',
+    'outline',
+    'neon',
+    'link',
 ]);
 
 /**
@@ -102,6 +105,27 @@ export const TabVariantSchema = z.enum([
     'underline',
     'boxed',
     'compact',
+]);
+
+/**
+ * Semantic variant options for feedback/status.
+ * 
+ * | Variant | Use Case |
+ * |---------|----------|
+ * | `primary` | Main actions |
+ * | `secondary` | Secondary actions |
+ * | `success` | Successful operations |
+ * | `warning` | Cautions |
+ * | `error` | Errors/Failures |
+ * | `info` | Information |
+ */
+export const SemanticVariantSchema = z.enum([
+    'primary',
+    'secondary',
+    'success',
+    'warning',
+    'error',
+    'info',
 ]);
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -125,6 +149,9 @@ export type ButtonVariant = z.infer<typeof ButtonVariantSchema>;
 
 /** Tab variant type */
 export type TabVariant = z.infer<typeof TabVariantSchema>;
+
+/** Semantic variant type */
+export type SemanticVariant = z.infer<typeof SemanticVariantSchema>;
 
 // ═══════════════════════════════════════════════════════════════════════════
 // CONSTANTS

@@ -121,12 +121,17 @@ describe('ThemeProvider', () => {
 
 describe('useTheme Hook', () => {
     it('should throw error if used outside provider', () => {
+        // Import bare renderHook directly bypassing our global wrapper
+        // eslint-disable-next-line @typescript-eslint/no-require-imports
+        const TestingLibrary = require('@testing-library/react/pure');
+        const bareRenderHook = TestingLibrary.renderHook;
+
         // Suppress console.error for expected error
         const consoleError = console.error;
         console.error = vi.fn();
 
         expect(() => {
-            renderHook(() => useTheme());
+            bareRenderHook(() => useTheme());
         }).toThrow('useTheme must be used within a ThemeProvider');
 
         console.error = consoleError;

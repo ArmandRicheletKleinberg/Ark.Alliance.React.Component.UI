@@ -8,6 +8,7 @@
 
 import { useCallback, useMemo } from 'react';
 import { useBaseViewModel, type BaseViewModelResult } from '../../../core/base';
+import { useTheme } from '../../../core/theme/useTheme';
 import type { ButtonModel } from './Button.model';
 import {
     defaultButtonModel,
@@ -104,6 +105,9 @@ export function useButton(options: UseButtonOptions = {}): UseButtonResult {
         eventChannel: 'button',
     });
 
+    const { resolvedMode } = useTheme();
+    const isDark = base.model.isDark !== undefined ? base.model.isDark : resolvedMode === 'dark';
+
     // ═══════════════════════════════════════════════════════════════════════
     // EVENT HANDLERS
     // ═══════════════════════════════════════════════════════════════════════
@@ -186,6 +190,8 @@ export function useButton(options: UseButtonOptions = {}): UseButtonResult {
         if (base.model.iconOnly) classes.push('ark-btn--icon-only');
         if (base.model.disabled) classes.push('ark-btn--disabled');
         if (base.state.isLoading) classes.push('ark-btn--loading');
+        if (isDark) classes.push('ark-btn--dark');
+        else classes.push('ark-btn--light');
         if (base.model.className) classes.push(base.model.className);
 
         return classes.join(' ');

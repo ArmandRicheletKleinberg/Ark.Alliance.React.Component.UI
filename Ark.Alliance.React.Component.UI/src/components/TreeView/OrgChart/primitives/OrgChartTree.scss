@@ -1,0 +1,114 @@
+/**
+ * OrgChartTree Primitive Styles
+ * @module components/TreeView/OrgChart/primitives
+ */
+
+.ark-org-tree {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+
+    // ═══════════════════════════════════════════════════════════════════════════
+    // NODE WRAPPER
+    // ═══════════════════════════════════════════════════════════════════════════
+
+    &__node-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0; // Connectors handle spacing
+    }
+
+    // ═══════════════════════════════════════════════════════════════════════════
+    // CHILDREN CONTAINER
+    // ═══════════════════════════════════════════════════════════════════════════
+
+    &__children {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        width: 100%;
+    }
+
+    // ═══════════════════════════════════════════════════════════════════════════
+    // HORIZONTAL BRIDGE
+    // ═══════════════════════════════════════════════════════════════════════════
+
+    &__bridge {
+        width: 100%;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    // ═══════════════════════════════════════════════════════════════════════════
+    // CHILD NODES
+    // ═══════════════════════════════════════════════════════════════════════════
+
+    &__child {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex: 1;
+        min-width: 0; // Allow flex shrink
+    }
+
+    // Multiple children - arrange horizontally
+    &__children:has(> .ark-org-tree__child + .ark-org-tree__child) {
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+        gap: var(--node-spacing, 24px);
+    }
+
+    // Single child - center vertically
+    &__children:has(> .ark-org-tree__child:only-child) {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    // ═══════════════════════════════════════════════════════════════════════════
+    // RESPONSIVE SPACING
+    // ═══════════════════════════════════════════════════════════════════════════
+
+    @media (max-width: 768px) {
+        &__children {
+            gap: calc(var(--node-spacing, 24px) * 0.75);
+        }
+
+        // Stack children vertically on mobile if needed
+        &.ark-org-tree--mobile-stack &__children {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+
+    // ═══════════════════════════════════════════════════════════════════════════
+    // COMPACT MODE
+    // ═══════════════════════════════════════════════════════════════════════════
+
+    &--compact {
+        .ark-org-tree__children {
+            gap: calc(var(--node-spacing, 24px) * 0.5);
+        }
+    }
+
+    // ═══════════════════════════════════════════════════════════════════════════
+    // ACCESSIBILITY
+    // ═══════════════════════════════════════════════════════════════════════════
+
+    // Ensure keyboard focus is visible
+    &:focus-within {
+        outline: none;
+    }
+
+    // Tree structure roles
+    &[role="tree"] {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+}

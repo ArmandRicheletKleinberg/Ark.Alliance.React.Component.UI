@@ -1,0 +1,52 @@
+@use 'sass:map';
+
+// ═══════════════════════════════════════════════════════════════════════════
+// COLOR TOKENS
+// Single source of truth for CSS variables
+// ═══════════════════════════════════════════════════════════════════════════
+
+:root {
+    // Brand Colors
+    --ark-primary: #00d4ff;
+    --ark-secondary: #8b5cf6;
+    --ark-accent: #f472b6;
+
+    // Backgrounds
+    --ark-bg: #0f172a;
+    --ark-bg-secondary: #1f2937;
+    --ark-bg-tertiary: #374151;
+
+    // Text
+    --ark-text: #f3f4f6;
+    --ark-text-secondary: #9ca3af;
+    --ark-text-muted: #6b7280;
+
+    // Semantic Colors
+    --ark-success: #10b981;
+    --ark-warning: #f59e0b;
+    --ark-error: #ef4444;
+    --ark-info: #3b82f6;
+
+    // Borders
+    --ark-border: rgba(255, 255, 255, 0.1);
+    --ark-border-hover: rgba(255, 255, 255, 0.2);
+
+    // Shadows
+    --ark-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --ark-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --ark-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+// Light Theme Overrides
+[data-theme="light"] {
+    --ark-bg: #ffffff;
+    --ark-bg-secondary: #f3f4f6;
+    --ark-bg-tertiary: #e5e7eb;
+
+    --ark-text: #111827;
+    --ark-text-secondary: #4b5563;
+    --ark-text-muted: #9ca3af;
+
+    --ark-border: rgba(0, 0, 0, 0.1);
+    --ark-border-hover: rgba(0, 0, 0, 0.2);
+}

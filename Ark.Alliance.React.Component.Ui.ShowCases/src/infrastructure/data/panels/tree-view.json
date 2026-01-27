@@ -1,0 +1,76 @@
+{
+    "id": "tree-view",
+    "componentId": "TreeView",
+    "title": "Tree View",
+    "description": "Hierarchical tree structure with selection and expansion.",
+    "layout": {
+        "width": "100%",
+        "height": "500px"
+    },
+    "preview": {
+        "background": "dark"
+    },
+    "defaultProps": {
+        "selectionMode": "single",
+        "size": "md",
+        "showLines": true,
+        "autoExpandParent": true,
+        "isDark": true,
+        "dataSet": "fileSystem"
+    },
+    "controls": [
+        {
+            "propName": "selectionMode",
+            "type": "select",
+            "label": "Selection",
+            "options": [
+                "none",
+                "single",
+                "multiple"
+            ],
+            "group": "behavior"
+        },
+        {
+            "propName": "size",
+            "type": "select",
+            "label": "Size",
+            "options": [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl"
+            ],
+            "group": "style"
+        },
+        {
+            "propName": "showLines",
+            "type": "boolean",
+            "label": "Show Lines",
+            "group": "style"
+        },
+        {
+            "propName": "autoExpandParent",
+            "type": "boolean",
+            "label": "Auto Expand",
+            "group": "behavior"
+        },
+        {
+            "propName": "isDark",
+            "type": "boolean",
+            "label": "Dark Mode",
+            "group": "style"
+        },
+        {
+            "propName": "dataSet",
+            "type": "select",
+            "label": "Data Set",
+            "options": [
+                "fileSystem",
+                "organization",
+                "categories"
+            ],
+            "group": "data"
+        }
+    ]
+}

@@ -1,0 +1,74 @@
+{
+    "id": "taskbar",
+    "componentId": "Taskbar",
+    "title": "Taskbar",
+    "description": "Desktop taskbar with start button, running apps, and system tray.",
+    "layout": {
+        "width": "100%",
+        "height": "auto"
+    },
+    "preview": {
+        "background": "dark"
+    },
+    "defaultProps": {
+        "position": "bottom",
+        "showClock": true,
+        "showSystemTray": true,
+        "showStartButton": true,
+        "visualMode": "neon",
+        "appSet": "default"
+    },
+    "controls": [
+        {
+            "propName": "position",
+            "type": "select",
+            "label": "Position",
+            "options": [
+                "bottom",
+                "top"
+            ],
+            "group": "style"
+        },
+        {
+            "propName": "showClock",
+            "type": "boolean",
+            "label": "Show Clock",
+            "group": "behavior"
+        },
+        {
+            "propName": "showSystemTray",
+            "type": "boolean",
+            "label": "Show System Tray",
+            "group": "behavior"
+        },
+        {
+            "propName": "showStartButton",
+            "type": "boolean",
+            "label": "Show Start Button",
+            "group": "behavior"
+        },
+        {
+            "propName": "visualMode",
+            "type": "select",
+            "label": "Visual Mode",
+            "options": [
+                "normal",
+                "neon",
+                "minimal",
+                "glass"
+            ],
+            "group": "style"
+        },
+        {
+            "propName": "appSet",
+            "type": "select",
+            "label": "Running Apps",
+            "options": [
+                "default",
+                "trading",
+                "productivity"
+            ],
+            "group": "content"
+        }
+    ]
+}

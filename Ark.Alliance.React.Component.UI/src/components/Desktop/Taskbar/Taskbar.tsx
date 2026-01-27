@@ -7,7 +7,7 @@
 
 import React, { memo, forwardRef } from 'react';
 import { useTaskbar, type UseTaskbarOptions } from './Taskbar.viewmodel';
-import './Taskbar.styles.css';
+import './Taskbar.scss';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES

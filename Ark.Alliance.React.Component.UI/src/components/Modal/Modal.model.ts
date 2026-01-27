@@ -29,7 +29,7 @@ export const ModalModelSchema = extendSchema({
     /** Close on escape key */
     closeOnEscape: z.boolean().default(true),
     /** Dark mode */
-    isDark: z.boolean().default(true),
+    isDark: z.boolean().optional(),
     /** Centered vertically */
     centered: z.boolean().default(true),
     /** Visual variant */
@@ -42,11 +42,12 @@ export const defaultModalModel: ModalModel = {
     isOpen: false,
     title: undefined,
     subtitle: undefined,
+    variant: 'default',
     size: 'md',
     showClose: true,
     closeOnBackdrop: true,
     closeOnEscape: true,
-    isDark: true,
+    isDark: undefined,
     centered: true,
     disabled: false,
     loading: false,

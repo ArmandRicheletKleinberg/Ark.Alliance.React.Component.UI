@@ -1,0 +1,109 @@
+/**
+ * ConnectionIndicator Styles
+ * 
+ * Styles for the connection status indicator component.
+ */
+
+/* Container */
+.ark-connection-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+    /* Dot */
+    &__dot {
+        display: inline-block;
+        border-radius: 50%;
+        flex-shrink: 0;
+    }
+
+    /* Size variants for dot */
+    &--sm &__dot {
+        width: 6px;
+        height: 6px;
+    }
+
+    &--md &__dot {
+        width: 8px;
+        height: 8px;
+    }
+
+    &--lg &__dot {
+        width: 10px;
+        height: 10px;
+    }
+
+    /* Label */
+    &__label {
+        font-weight: 700;
+        letter-spacing: 0.025em;
+        text-transform: uppercase;
+    }
+
+    /* Size variants for label */
+    &--sm &__label {
+        font-size: 0.625rem;
+    }
+
+    &--md &__label {
+        font-size: 0.75rem;
+    }
+
+    &--lg &__label {
+        font-size: 0.875rem;
+    }
+
+    /* Status Animations */
+
+    /* Connected - pulsing animation */
+    &--connected &__dot {
+        animation: ark-connection-pulse 1.5s ease-in-out infinite;
+    }
+
+    &--connected &__label {
+        animation: ark-connection-label-pulse 1.5s ease-in-out infinite;
+    }
+
+    /* Connecting - slower pulse */
+    &--connecting &__dot {
+        animation: ark-connection-pulse 1s ease-in-out infinite;
+    }
+
+    /* Error - faster pulse */
+    &--error &__dot {
+        animation: ark-connection-pulse 0.75s ease-in-out infinite;
+    }
+
+    /* Disconnected - no animation */
+    &--disconnected &__dot {
+        animation: none;
+    }
+}
+
+/* Keyframes */
+@keyframes ark-connection-pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.6;
+        transform: scale(1.1);
+    }
+}
+
+@keyframes ark-connection-label-pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
+}

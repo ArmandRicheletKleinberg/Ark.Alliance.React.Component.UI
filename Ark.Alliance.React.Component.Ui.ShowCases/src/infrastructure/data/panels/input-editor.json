@@ -1,0 +1,79 @@
+{
+    "id": "input-editor",
+    "componentId": "TextEditor",
+    "title": "Rich Text Editor",
+    "description": "Advanced WYSIWYG editor with formatting tools.",
+    "defaultProps": {
+        "placeholder": "Start writing your content...",
+        "visualMode": "neon",
+        "toolbarPosition": "top",
+        "minHeight": 300,
+        "showToolbar": true,
+        "showWordCount": true,
+        "enableAI": false
+    },
+    "layout": {
+        "width": "100%",
+        "minWidth": "full"
+    },
+    "controls": [
+        {
+            "type": "text",
+            "propName": "placeholder",
+            "label": "Placeholder",
+            "defaultValue": "Start writing..."
+        },
+        {
+            "type": "select",
+            "propName": "visualMode",
+            "label": "Visual Mode",
+            "defaultValue": "neon",
+            "options": [
+                "normal",
+                "neon",
+                "minimal"
+            ]
+        },
+        {
+            "type": "select",
+            "propName": "toolbarPosition",
+            "label": "Toolbar Pos",
+            "defaultValue": "top",
+            "options": [
+                "top",
+                "bottom"
+            ]
+        },
+        {
+            "type": "slider",
+            "propName": "minHeight",
+            "label": "Min Height",
+            "defaultValue": 300,
+            "min": 150,
+            "max": 600
+        },
+        {
+            "type": "divider",
+            "propName": "div1",
+            "label": "Features"
+        },
+        {
+            "type": "boolean",
+            "propName": "showToolbar",
+            "label": "Show Toolbar",
+            "defaultValue": true
+        },
+        {
+            "type": "boolean",
+            "propName": "showWordCount",
+            "label": "Word Count",
+            "defaultValue": true
+        },
+        {
+            "type": "boolean",
+            "propName": "enableAI",
+            "label": "AI Features",
+            "defaultValue": false
+        }
+    ]
+}

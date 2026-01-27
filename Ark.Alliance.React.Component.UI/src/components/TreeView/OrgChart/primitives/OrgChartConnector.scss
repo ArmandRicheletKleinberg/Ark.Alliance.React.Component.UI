@@ -1,0 +1,65 @@
+/**
+ * OrgChartConnector Primitive Styles
+ * @module components/TreeView/OrgChart/primitives
+ */
+
+.ark-org-connector {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    // ═══════════════════════════════════════════════════════════════════════════
+    // LINE ELEMENTS
+    // ═══════════════════════════════════════════════════════════════════════════
+
+    &__line {
+        // Common line styles
+        background-color: var(--connector-color);
+
+        &--vertical {
+            width: var(--connector-width);
+            height: var(--connector-height);
+        }
+
+        &--horizontal {
+            height: var(--connector-width);
+            width: 100%;
+        }
+
+        &--branch {
+            width: var(--connector-width);
+            height: var(--connector-height);
+            margin: 0 auto;
+        }
+    }
+
+    // ═══════════════════════════════════════════════════════════════════════════
+    // CONNECTOR TYPES
+    // ═══════════════════════════════════════════════════════════════════════════
+
+    &--vertical {
+        flex-direction: column;
+        height: var(--connector-height);
+    }
+
+    &--horizontal-bridge {
+        flex-direction: row;
+        width: 100%;
+        position: relative;
+    }
+
+    &--child-branch {
+        flex-direction: column;
+        height: var(--connector-height);
+    }
+
+    // ═══════════════════════════════════════════════════════════════════════════
+    // ACCESSIBILITY
+    // ═══════════════════════════════════════════════════════════════════════════
+
+    // Hide from screen readers (decorative only)
+    &[aria-hidden="true"] {
+        pointer-events: none;
+    }
+}

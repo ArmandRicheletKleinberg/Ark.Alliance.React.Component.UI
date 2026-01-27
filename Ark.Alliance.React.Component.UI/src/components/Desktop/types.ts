@@ -143,9 +143,22 @@ export type DesktopVisualModeType = z.infer<typeof DesktopVisualMode>;
 // ═══════════════════════════════════════════════════════════════════════════
 
 /**
- * Context menu item
+ * Context menu item type (for recursive reference)
  */
-export const ContextMenuItemSchema = z.object({
+export type ContextMenuItem = {
+    id: string;
+    label: string;
+    icon?: string;
+    disabled?: boolean;
+    separator?: boolean;
+    shortcut?: string;
+    children?: ContextMenuItem[];
+};
+
+/**
+ * Context menu item schema
+ */
+export const ContextMenuItemSchema: z.ZodType<ContextMenuItem> = z.object({
     /** Item ID */
     id: z.string(),
 
@@ -156,10 +169,10 @@ export const ContextMenuItemSchema = z.object({
     icon: z.string().optional(),
 
     /** Whether item is disabled */
-    disabled: z.boolean().default(false),
+    disabled: z.boolean().default(false).optional(),
 
     /** Whether item is a separator */
-    separator: z.boolean().default(false),
+    separator: z.boolean().default(false).optional(),
 
     /** Keyboard shortcut hint */
     shortcut: z.string().optional(),
@@ -167,7 +180,6 @@ export const ContextMenuItemSchema = z.object({
     /** Sub-menu items */
     children: z.array(z.lazy(() => ContextMenuItemSchema)).optional(),
 });
-export type ContextMenuItem = z.infer<typeof ContextMenuItemSchema>;
 
 // ═══════════════════════════════════════════════════════════════════════════
 // FACTORY FUNCTIONS

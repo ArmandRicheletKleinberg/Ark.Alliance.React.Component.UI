@@ -1,0 +1,145 @@
+{
+    "categories": [
+        {
+            "name": "Inputs",
+            "icon": "keyboard",
+            "description": "User input controls.",
+            "componentIds": [
+                "input-neon",
+                "input-numeric",
+                "input-select",
+                "input-slider",
+                "input-textarea",
+                "input-file",
+                "input-editor"
+            ]
+        },
+        {
+            "name": "Buttons",
+            "icon": "circle-dot",
+            "description": "Interactive elements that trigger actions.",
+            "componentIds": [
+                "btn-standard",
+                "btn-neon",
+                "toggle"
+            ]
+        },
+        {
+            "name": "Navigation & UI",
+            "icon": "compass",
+            "description": "Navigation bars, tabs, and carousels.",
+            "componentIds": [
+                "sidebar-menu",
+                "tab-control",
+                "carousel"
+            ]
+        },
+        {
+            "name": "Overlays",
+            "icon": "layer-group",
+            "description": "Modals, toasts, and popups.",
+            "componentIds": [
+                "modal",
+                "toast",
+                "tooltip"
+            ]
+        },
+        {
+            "name": "Data Display",
+            "icon": "chart-simple",
+            "description": "Visualize data sets and timelines.",
+            "componentIds": [
+                "timeline-vertical",
+                "grid-project",
+                "progress-bar",
+                "tree-view",
+                "tech-badge"
+            ]
+        },
+        {
+            "name": "Desktop OS",
+            "icon": "desktop",
+            "description": "Complete desktop operating system simulation.",
+            "componentIds": [
+                "desktop-page",
+                "window-panel",
+                "desktop-icon",
+                "taskbar",
+                "start-menu"
+            ]
+        },
+        {
+            "name": "Finance & Trading",
+            "icon": "chart-line",
+            "description": "Professional trading grid components.",
+            "componentIds": [
+                "orders-grid",
+                "positions-grid",
+                "trade-history-grid",
+                "trading-grid-card"
+            ]
+        },
+        {
+            "name": "Advanced Panels",
+            "icon": "window-maximize",
+            "description": "Feature-rich panel and container components.",
+            "componentIds": [
+                "generic-panel",
+                "control-panel",
+                "panel-basic"
+            ]
+        },
+        {
+            "name": "Containers",
+            "icon": "box",
+            "description": "Wrappers and layout elements.",
+            "componentIds": [
+                "card-basic"
+            ]
+        },
+        {
+            "name": "Feedback",
+            "icon": "circle-info",
+            "description": "Indicators and alerts.",
+            "componentIds": [
+                "badge-status"
+            ]
+        },
+        {
+            "name": "Gauges",
+            "icon": "gauge-high",
+            "description": "Visual instruments for values.",
+            "componentIds": [
+                "gauge-circular",
+                "gauge-speedometer",
+                "gauge-digital",
+                "gauge-signal-bars",
+                "gauge-battery"
+            ]
+        },
+        {
+            "name": "Grids",
+            "icon": "list",
+            "description": "Structured layouts for collections.",
+            "componentIds": [
+                "grid-data"
+            ]
+        },
+        {
+            "name": "Charts",
+            "icon": "chart-area",
+            "description": "Visual data representation.",
+            "componentIds": [
+                "chart-financial",
+                "chart-trend",
+                "chart-test"
+            ]
+        },
+        {
+            "name": "TestFamily",
+            "icon": "vial",
+            "description": "Testing generic configuration.",
+            "componentIds": []
+        }
+    ]
+}

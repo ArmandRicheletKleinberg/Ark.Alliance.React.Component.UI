@@ -1,0 +1,85 @@
+{
+    "id": "positions-grid",
+    "componentId": "PositionsGrid",
+    "title": "Positions Grid",
+    "description": "Open positions with P&L, leverage, margin, and close actions.",
+    "layout": {
+        "width": "100%",
+        "minWidth": "full",
+        "height": "500px"
+    },
+    "preview": {
+        "background": "dark"
+    },
+    "defaultProps": {
+        "title": "Positions",
+        "isDark": true,
+        "showInstrumentFilter": false,
+        "showSymbolFilter": true,
+        "enableSelection": false,
+        "showTotalPnl": true,
+        "compact": false,
+        "positionCount": 8,
+        "instrumentType": "CRYPTO_PERP"
+    },
+    "controls": [
+        {
+            "propName": "title",
+            "type": "text",
+            "label": "Title",
+            "group": "content"
+        },
+        {
+            "propName": "showInstrumentFilter",
+            "type": "boolean",
+            "label": "Instrument Filter",
+            "group": "behavior"
+        },
+        {
+            "propName": "showSymbolFilter",
+            "type": "boolean",
+            "label": "Symbol Filter",
+            "group": "behavior"
+        },
+        {
+            "propName": "enableSelection",
+            "type": "boolean",
+            "label": "Selection",
+            "group": "behavior"
+        },
+        {
+            "propName": "showTotalPnl",
+            "type": "boolean",
+            "label": "Show Total P&L",
+            "group": "behavior"
+        },
+        {
+            "propName": "compact",
+            "type": "boolean",
+            "label": "Compact Mode",
+            "group": "style"
+        },
+        {
+            "propName": "positionCount",
+            "type": "slider",
+            "label": "Demo Positions",
+            "min": 1,
+            "max": 20,
+            "step": 1,
+            "group": "demo"
+        },
+        {
+            "propName": "instrumentType",
+            "type": "select",
+            "label": "Instrument",
+            "options": [
+                "CRYPTO_SPOT",
+                "CRYPTO_PERP",
+                "CRYPTO_FUTURES",
+                "OPTIONS",
+                "STOCK"
+            ],
+            "group": "demo"
+        }
+    ]
+}

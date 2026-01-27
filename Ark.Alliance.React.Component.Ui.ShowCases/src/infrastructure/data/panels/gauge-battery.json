@@ -1,0 +1,52 @@
+{
+    "id": "gauge-battery",
+    "title": "Battery Gauge",
+    "description": "Battery level indicator.",
+    "componentId": "BatteryGauge",
+    "layout": {
+        "width": "auto",
+        "height": "auto"
+    },
+    "preview": {
+        "background": "dark"
+    },
+    "defaultProps": {
+        "value": 50,
+        "charging": false,
+        "size": "lg",
+        "label": "Battery"
+    },
+    "controls": [
+        {
+            "propName": "value",
+            "type": "slider",
+            "label": "Charge Level",
+            "min": 0,
+            "max": 100,
+            "group": "data"
+        },
+        {
+            "propName": "charging",
+            "type": "boolean",
+            "label": "Is Charging",
+            "group": "state"
+        },
+        {
+            "propName": "size",
+            "type": "select",
+            "label": "Size",
+            "options": [
+                "sm",
+                "md",
+                "lg"
+            ],
+            "group": "style"
+        },
+        {
+            "propName": "label",
+            "type": "text",
+            "label": "Label",
+            "group": "content"
+        }
+    ]
+}

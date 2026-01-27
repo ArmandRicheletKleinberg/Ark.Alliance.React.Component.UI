@@ -14,7 +14,7 @@
 import { forwardRef, memo } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useFAIcon, type UseFAIconOptions } from './FAIcon.viewmodel';
-import './FAIcon.styles.css';
+import './FAIcon.scss';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES

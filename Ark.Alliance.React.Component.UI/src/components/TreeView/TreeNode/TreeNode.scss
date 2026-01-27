@@ -1,0 +1,119 @@
+/**
+ * TreeNode Styles
+ */
+
+.ark-tree-node {
+    display: flex;
+    flex-direction: column;
+    user-select: none;
+
+    /* Content Row */
+    &__content {
+        display: flex;
+        align-items: center;
+        padding: var(--ark-tree-node-padding-y, 4px) var(--ark-tree-node-padding-x, 8px);
+        border-radius: var(--ark-border-radius, 4px);
+        cursor: pointer;
+        transition: all 0.2s ease;
+        color: var(--ark-text-secondary, #9ca3af);
+
+        &:hover {
+            background: var(--ark-bg-secondary, rgba(255, 255, 255, 0.05));
+            color: var(--ark-text-primary, #f3f4f6);
+        }
+    }
+
+    &--selected>&__content {
+        background: var(--ark-primary-light, rgba(59, 130, 246, 0.15));
+        color: var(--ark-primary, #3b82f6);
+    }
+
+    &--disabled>&__content {
+        opacity: 0.5;
+        cursor: not-allowed;
+        background: transparent;
+    }
+
+    /* Icons */
+    &__switcher {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 20px;
+        height: 20px;
+        margin-right: 4px;
+        transition: transform 0.2s ease;
+        cursor: pointer;
+
+        &:hover {
+            color: var(--ark-primary, #3b82f6);
+        }
+
+        &--leaf {
+            width: 20px;
+            /* Spacer */
+            cursor: default;
+        }
+    }
+
+    &__icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 6px;
+        font-size: 1.1em;
+    }
+
+    /* Label */
+    &__label {
+        flex: 1;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    /* Children Container */
+    &__children {
+        display: none;
+        flex-direction: column;
+    }
+
+    &--expanded>&__children {
+        display: flex;
+        animation: arkSlideDown 0.2s ease-out;
+    }
+
+    /* Light Mode Overrides */
+    :global([data-theme="light"]) & {
+        &__content {
+            color: #4b5563;
+
+            &:hover {
+                background: #f3f4f6;
+                color: #111827;
+            }
+        }
+    }
+
+    :global([data-theme="light"]) &--selected>&__content {
+        background: #eff6ff;
+        color: #2563eb;
+    }
+}
+
+/* Connecting Lines (Optional) */
+.ark-tree-view--show-lines .ark-tree-node__content {
+    position: relative;
+}
+
+@keyframes arkSlideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

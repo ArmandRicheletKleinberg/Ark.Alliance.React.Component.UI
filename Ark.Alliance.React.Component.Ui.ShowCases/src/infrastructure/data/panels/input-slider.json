@@ -1,0 +1,90 @@
+{
+    "id": "input-slider",
+    "componentId": "Slider",
+    "title": "Range Slider",
+    "description": "Interactive range slider with precise control and visual feedback.",
+    "defaultProps": {
+        "label": "Leverage",
+        "value": 20,
+        "min": 1,
+        "max": 100,
+        "step": 1,
+        "unit": "x",
+        "color": "cyan",
+        "showValue": true,
+        "showRange": true,
+        "size": "md"
+    },
+    "controls": [
+        {
+            "type": "text",
+            "propName": "label",
+            "label": "Label",
+            "defaultValue": "Leverage"
+        },
+        {
+            "type": "text",
+            "propName": "unit",
+            "label": "Unit",
+            "defaultValue": "x"
+        },
+        {
+            "type": "select",
+            "propName": "color",
+            "label": "Color Theme",
+            "defaultValue": "cyan",
+            "options": [
+                "cyan",
+                "blue",
+                "purple",
+                "green",
+                "red",
+                "orange"
+            ]
+        },
+        {
+            "type": "slider",
+            "propName": "min",
+            "label": "Min Value",
+            "defaultValue": 1,
+            "min": 0,
+            "max": 50
+        },
+        {
+            "type": "slider",
+            "propName": "max",
+            "label": "Max Value",
+            "defaultValue": 100,
+            "min": 50,
+            "max": 200
+        },
+        {
+            "type": "divider",
+            "propName": "div1",
+            "label": "Display"
+        },
+        {
+            "type": "boolean",
+            "propName": "showValue",
+            "label": "Show Value",
+            "defaultValue": true
+        },
+        {
+            "type": "boolean",
+            "propName": "showRange",
+            "label": "Show Min/Max",
+            "defaultValue": true
+        },
+        {
+            "type": "select",
+            "propName": "size",
+            "label": "Size",
+            "defaultValue": "md",
+            "options": [
+                "sm",
+                "md",
+                "lg"
+            ]
+        }
+    ]
+}

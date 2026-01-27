@@ -1,3 +1,4 @@
+/// <reference types="vitest" />
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
@@ -13,7 +14,7 @@ export default defineConfig({
       include: ['src'],
       outDir: 'dist',
       insertTypesEntry: true,
-      tsconfigPath: './tsconfig.json',
+      tsconfigPath: './tsconfig.app.json',
       copyDtsFiles: true,
     }),
   ],
@@ -36,7 +37,7 @@ export default defineConfig({
         },
         // Preserve CSS imports
         assetFileNames: (assetInfo) => {
-          if (assetInfo.name === 'style.css') return 'style.css';
+          if (assetInfo.name === 'style.css') return 'ark-alliance-react-ui.css';
           return assetInfo.name;
         }
       }
@@ -49,5 +50,11 @@ export default defineConfig({
     port: 5090,
     open: true,
   },
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    css: true,
+    setupFiles: ['./src/test/setup.ts'],
+  }
 })
 

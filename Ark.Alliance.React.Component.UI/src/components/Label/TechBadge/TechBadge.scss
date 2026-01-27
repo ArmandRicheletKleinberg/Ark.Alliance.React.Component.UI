@@ -1,0 +1,39 @@
+/**
+ * TechBadge Component Styles
+ * BEM naming convention: ark-tech-badge
+ */
+
+.ark-tech-badge {
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--font-mono, ui-monospace, SFMono-Regular, monospace);
+    font-weight: 600;
+    border-radius: 0.5rem;
+    border-width: 1px;
+    border-style: solid;
+    transition: all 0.3s ease-out;
+    border-color: currentColor;
+
+    /* States */
+    &--clickable {
+        cursor: pointer;
+
+        &:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 10px rgba(100, 116, 139, 0.15);
+        }
+    }
+
+    &--active {
+        box-shadow: 0 0 10px rgba(59, 130, 246, 0.2);
+    }
+
+    &--unknown {
+        opacity: 0.7;
+    }
+
+    /* Icon Styles */
+    i {
+        flex-shrink: 0;
+    }
+}

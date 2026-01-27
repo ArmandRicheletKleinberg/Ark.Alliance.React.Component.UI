@@ -19,8 +19,8 @@
  * }
  * ```
  * 
- * @see {@link https://github.com/ark-alliance/react-ui} - GitHub Repository
- * @see {@link https://ark-alliance.github.io/react-ui} - Documentation
+ * @see {@link https://github.com/ArmandRicheletKleinberg/Ark.Alliance.React.Component.UI} - GitHub Repository
+ * @see {@link https://github.com/ArmandRicheletKleinberg/Ark.Alliance.React.Component.UI#readme} - Documentation
  */
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -28,6 +28,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 
 export * from './core';
+import './core/styles/main.scss';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // COMPONENTS

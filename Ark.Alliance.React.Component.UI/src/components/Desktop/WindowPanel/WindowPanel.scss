@@ -1,0 +1,209 @@
+/**
+ * WindowPanel Component Styles
+ * Neon-themed resizable window panel
+ */
+
+.ark-window-panel {
+    display: flex;
+    flex-direction: column;
+    background: var(--ark-window-bg, #0f172a);
+    border: 1px solid var(--ark-window-border, rgba(0, 212, 255, 0.3));
+    overflow: hidden;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+    user-select: none;
+
+    &--focused {
+        border-color: var(--ark-window-border-focused, rgba(0, 212, 255, 0.6));
+        box-shadow:
+            0 0 40px rgba(0, 0, 0, 0.6),
+            0 0 20px rgba(0, 212, 255, 0.15);
+    }
+
+    &--dragging,
+    &--resizing {
+        cursor: move;
+        opacity: 0.95;
+    }
+
+    /* Visual Modes */
+    &--neon {
+        background: linear-gradient(180deg, #0f172a 0%, #0a0e1a 100%);
+        border-color: rgba(0, 212, 255, 0.4);
+
+        &.ark-window-panel--focused {
+            box-shadow:
+                0 0 40px rgba(0, 0, 0, 0.6),
+                0 0 30px rgba(0, 212, 255, 0.2),
+                inset 0 0 20px rgba(0, 212, 255, 0.05);
+        }
+    }
+
+    &--glass {
+        background: rgba(15, 23, 42, 0.85);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    &--minimal {
+        background: #1e293b;
+        border-color: #334155;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    &--normal {
+        background: #0f172a;
+        border-color: #334155;
+    }
+
+    /* Title Bar */
+    &__titlebar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 36px;
+        padding: 0 8px;
+        background: var(--ark-titlebar-bg, #020617);
+        border-bottom: 1px solid var(--ark-window-border, rgba(0, 212, 255, 0.2));
+        cursor: default;
+        flex-shrink: 0;
+    }
+
+    &__titlebar-left {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        min-width: 0;
+    }
+
+    &__icon {
+        font-size: 16px;
+        flex-shrink: 0;
+    }
+
+    &__title {
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--ark-text-primary, #e2e8f0);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    /* Window Controls */
+    &__controls {
+        display: flex;
+        align-items: center;
+        height: 100%;
+    }
+
+    &__control {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 100%;
+        padding: 0;
+        border: none;
+        background: transparent;
+        color: var(--ark-text-muted, #94a3b8);
+        cursor: pointer;
+        transition: background 0.15s, color 0.15s;
+
+        &:hover {
+            color: var(--ark-text-primary, #ffffff);
+        }
+
+        &--minimize:hover,
+        &--maximize:hover {
+            background: rgba(148, 163, 184, 0.2);
+        }
+
+        &--close:hover {
+            background: rgba(239, 68, 68, 0.8);
+            color: #ffffff;
+        }
+    }
+
+    /* Content Area */
+    &__content {
+        flex: 1;
+        overflow: hidden;
+        background: var(--ark-content-bg, #0f172a);
+        position: relative;
+    }
+
+    /* Resize Handles */
+    &__resize-handle {
+        position: absolute;
+        z-index: 10;
+
+        &:hover {
+            background: rgba(0, 212, 255, 0.1);
+        }
+
+        &--n {
+            top: 0;
+            left: 8px;
+            right: 8px;
+            height: 4px;
+            cursor: ns-resize;
+        }
+
+        &--s {
+            bottom: 0;
+            left: 8px;
+            right: 8px;
+            height: 4px;
+            cursor: ns-resize;
+        }
+
+        &--e {
+            right: 0;
+            top: 8px;
+            bottom: 8px;
+            width: 4px;
+            cursor: ew-resize;
+        }
+
+        &--w {
+            left: 0;
+            top: 8px;
+            bottom: 8px;
+            width: 4px;
+            cursor: ew-resize;
+        }
+
+        &--ne {
+            top: 0;
+            right: 0;
+            width: 12px;
+            height: 12px;
+            cursor: nesw-resize;
+        }
+
+        &--nw {
+            top: 0;
+            left: 0;
+            width: 12px;
+            height: 12px;
+            cursor: nwse-resize;
+        }
+
+        &--se {
+            bottom: 0;
+            right: 0;
+            width: 12px;
+            height: 12px;
+            cursor: nwse-resize;
+        }
+
+        &--sw {
+            bottom: 0;
+            left: 0;
+            width: 12px;
+            height: 12px;
+            cursor: nesw-resize;
+        }
+    }
+}

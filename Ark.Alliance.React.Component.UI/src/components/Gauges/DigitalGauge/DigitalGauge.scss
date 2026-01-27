@@ -1,0 +1,107 @@
+/**
+ * DigitalGauge Styles
+ * 
+ * Segment-display style digital counter with trend indicator.
+ */
+
+.ark-digital-gauge {
+    display: flex;
+    flex-direction: column;
+
+    /* Row Layout */
+    &__row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    /* Value Container */
+    &__value-container {
+        display: flex;
+        align-items: baseline;
+        gap: 0.25rem;
+    }
+
+    /* Value Text */
+    &__value {
+        font-weight: 700;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+        &--sm {
+            font-size: 1.25rem;
+        }
+
+        &--md {
+            font-size: 1.875rem;
+        }
+
+        &--lg {
+            font-size: 2.25rem;
+        }
+    }
+
+    /* Suffix */
+    &__suffix {
+        font-size: 0.875rem;
+        color: var(--ark-text-muted, #6b7280);
+        margin-left: 0.25rem;
+    }
+
+    /* Label */
+    &__label {
+        color: var(--ark-text-secondary, #9ca3af);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+
+        &--sm {
+            font-size: 0.625rem;
+        }
+
+        &--md {
+            font-size: 0.75rem;
+        }
+
+        &--lg {
+            font-size: 0.875rem;
+        }
+    }
+
+    /* Trend Indicator */
+    &__trend {
+        width: 1rem;
+        height: 1rem;
+
+        &--up {
+            color: var(--ark-success, #4ade80);
+        }
+
+        &--down {
+            color: var(--ark-error, #f87171);
+        }
+
+        &--neutral {
+            color: var(--ark-text-secondary, #9ca3af);
+        }
+    }
+
+    /* Color Variants */
+    &--green &__value {
+        color: var(--ark-success, #4ade80);
+    }
+
+    &--red &__value {
+        color: var(--ark-error, #f87171);
+    }
+
+    &--blue &__value {
+        color: var(--ark-info, #60a5fa);
+    }
+
+    &--cyan &__value {
+        color: var(--ark-cyan, #22d3ee);
+    }
+
+    &--white &__value {
+        color: var(--ark-text-primary, #ffffff);
+    }
+}

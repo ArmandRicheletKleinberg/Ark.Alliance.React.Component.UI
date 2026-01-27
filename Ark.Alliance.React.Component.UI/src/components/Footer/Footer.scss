@@ -1,0 +1,336 @@
+/**
+ * Footer Component Styles
+ * Supports: visual modes, paging controls, responsive
+ */
+
+.ark-footer {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+
+    &__content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        gap: 1rem;
+    }
+
+    /* Content Slots */
+    &__left {
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+    }
+
+    &__center {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+    }
+
+    &__right {
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+    }
+
+    &__text {
+        font-size: 0.8125rem;
+        color: var(--ark-text-muted, #707090);
+    }
+
+    /* Paging */
+    &__paging {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    &__paging-info {
+        display: flex;
+        align-items: center;
+        gap: 0.375rem;
+        font-size: 0.8125rem;
+        color: var(--ark-text-muted, #707090);
+    }
+
+    &__paging-range,
+    &__paging-total {
+        font-weight: 600;
+        color: var(--ark-text-secondary, #a0a0c0);
+    }
+
+    &__page-size {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.8125rem;
+        color: var(--ark-text-muted, #707090);
+    }
+
+    &__page-size-select {
+        padding: 0.25rem 0.5rem;
+        background: rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+        color: var(--ark-text-primary, #f0f0ff);
+        font-size: 0.8125rem;
+        cursor: pointer;
+        transition: border-color 0.2s ease;
+
+        &:hover {
+            border-color: rgba(0, 212, 255, 0.4);
+        }
+
+        &:focus {
+            outline: none;
+            border-color: var(--ark-cyan, #00d4ff);
+        }
+    }
+
+    /* Navigation */
+    &__paging-nav {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+    }
+
+    &__paging-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        padding: 0;
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 6px;
+        color: var(--ark-text-secondary, #a0a0c0);
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.15s ease;
+
+        &:hover:not(:disabled) {
+            background: rgba(0, 212, 255, 0.1);
+            border-color: rgba(0, 212, 255, 0.3);
+            color: var(--ark-cyan, #00d4ff);
+        }
+
+        &:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+    }
+
+    /* Page Numbers */
+    &__paging-pages {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        margin: 0 0.5rem;
+    }
+
+    &__paging-page {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 32px;
+        height: 32px;
+        padding: 0 0.5rem;
+        background: transparent;
+        border: 1px solid transparent;
+        border-radius: 6px;
+        color: var(--ark-text-secondary, #a0a0c0);
+        font-size: 0.875rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.15s ease;
+
+        &:hover:not(.ark-footer__paging-page--active) {
+            background: rgba(0, 212, 255, 0.05);
+            color: var(--ark-text-primary, #f0f0ff);
+        }
+
+        &--active {
+            background: rgba(0, 212, 255, 0.15);
+            border-color: rgba(0, 212, 255, 0.3);
+            color: var(--ark-cyan, #00d4ff);
+        }
+    }
+
+    &__paging-indicator {
+        font-size: 0.75rem;
+        color: var(--ark-text-muted, #505070);
+    }
+
+    /* Variants */
+    &--panel {
+        padding: 0.875rem 1.25rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    &--page {
+        padding: 1.5rem 0;
+        margin-top: 2rem;
+    }
+
+    &--section {
+        padding: 0.75rem 0;
+        margin-top: 1rem;
+    }
+
+    &--card {
+        padding: 0.75rem 1rem;
+    }
+
+    &--grid {
+        padding: 0.75rem 1.25rem;
+        border-top: 1px solid rgba(0, 212, 255, 0.1);
+    }
+
+    /* Visual Modes */
+    &--normal {
+        background: transparent;
+
+        &.ark-footer--panel {
+            background: rgba(15, 20, 45, 0.3);
+        }
+    }
+
+    &--neon {
+        background: linear-gradient(135deg, rgba(0, 212, 255, 0.05), rgba(124, 58, 237, 0.05));
+        border-top: 1px solid rgba(0, 212, 255, 0.2);
+    }
+
+    &--minimal {
+        background: transparent;
+        border: none;
+    }
+
+    &--glass {
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(10px);
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    /* Height Variants */
+    &--compact {
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+
+    &--large {
+        padding-top: 1.25rem;
+        padding-bottom: 1.25rem;
+    }
+
+    /* Border Radius */
+    &--radius-sm {
+        border-radius: 4px;
+    }
+
+    &--radius-md {
+        border-radius: 8px;
+    }
+
+    &--radius-lg {
+        border-radius: 12px;
+    }
+
+    &--radius-xl {
+        border-radius: 16px;
+    }
+
+    &--radius-full {
+        border-radius: 9999px;
+    }
+
+    /* Alignment */
+    &--align-left &__content {
+        justify-content: flex-start;
+    }
+
+    &--align-right &__content {
+        justify-content: flex-end;
+    }
+
+    &--align-space-between &__content {
+        justify-content: space-between;
+    }
+
+    /* Sticky */
+    &--sticky {
+        position: sticky;
+        bottom: 0;
+        z-index: 100;
+    }
+
+    /* Light Theme */
+    &--light {
+
+        .ark-footer__paging-range,
+        .ark-footer__paging-total {
+            color: #1a1a2e;
+        }
+
+        .ark-footer__paging-btn {
+            border-color: rgba(0, 0, 0, 0.1);
+            color: #4a4a5a;
+        }
+
+        .ark-footer__paging-page {
+            color: #4a4a5a;
+        }
+
+        .ark-footer__page-size-select {
+            background: rgba(0, 0, 0, 0.05);
+            border-color: rgba(0, 0, 0, 0.1);
+            color: #1a1a2e;
+        }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .ark-footer__paging {
+            gap: 0.75rem;
+        }
+
+        .ark-footer__paging-info,
+        .ark-footer__page-size,
+        .ark-footer__paging-indicator {
+            display: none;
+        }
+
+        .ark-footer__paging-pages {
+            margin: 0;
+        }
+    }
+
+    @media (max-width: 480px) {
+
+        &--panel,
+        &--card,
+        &--grid {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        .ark-footer__paging-btn {
+            width: 28px;
+            height: 28px;
+            font-size: 0.875rem;
+        }
+
+        .ark-footer__paging-page {
+            min-width: 28px;
+            height: 28px;
+            font-size: 0.8125rem;
+        }
+    }
+}

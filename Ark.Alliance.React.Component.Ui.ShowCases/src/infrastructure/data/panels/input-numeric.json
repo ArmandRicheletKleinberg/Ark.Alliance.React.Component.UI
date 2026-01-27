@@ -1,0 +1,75 @@
+{
+    "id": "input-numeric",
+    "componentId": "NumericInput",
+    "title": "Numeric Input",
+    "description": "Input for numeric values with stepper controls and min/max validation.",
+    "defaultProps": {
+        "label": "Amount",
+        "value": 100,
+        "min": 0,
+        "max": 1000,
+        "step": 10,
+        "unit": "USD",
+        "decimals": 2,
+        "showStepper": true,
+        "size": "md",
+        "variant": "default"
+    },
+    "controls": [
+        {
+            "type": "text",
+            "propName": "label",
+            "label": "Label",
+            "defaultValue": "Amount"
+        },
+        {
+            "type": "text",
+            "propName": "unit",
+            "label": "Unit Suffix",
+            "defaultValue": "USD"
+        },
+        {
+            "type": "number",
+            "propName": "min",
+            "label": "Min Value",
+            "defaultValue": 0
+        },
+        {
+            "type": "number",
+            "propName": "max",
+            "label": "Max Value",
+            "defaultValue": 1000
+        },
+        {
+            "type": "number",
+            "propName": "step",
+            "label": "Step Size",
+            "defaultValue": 10
+        },
+        {
+            "type": "slider",
+            "propName": "decimals",
+            "label": "Decimals",
+            "defaultValue": 2,
+            "min": 0,
+            "max": 4
+        },
+        {
+            "type": "boolean",
+            "propName": "showStepper",
+            "label": "Show Stepper",
+            "defaultValue": true
+        },
+        {
+            "type": "select",
+            "propName": "size",
+            "label": "Size",
+            "defaultValue": "md",
+            "options": [
+                "sm",
+                "md",
+                "lg"
+            ]
+        }
+    ]
+}

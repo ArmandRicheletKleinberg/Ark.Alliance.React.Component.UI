@@ -1,6 +1,3 @@
-/**
- * @fileoverview Constants Module Barrel Export
- * @module core/constants
- */
-
 export * from './ColorConstants';
+export * from './SemanticColors';
+export * from './ThemeColors';

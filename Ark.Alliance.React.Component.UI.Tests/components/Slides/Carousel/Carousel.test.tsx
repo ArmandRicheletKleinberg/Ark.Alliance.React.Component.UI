@@ -3,9 +3,10 @@
  */
 
 import React from 'react';
-import { render, screen, fireEvent, act } from '@testing-library/react';
+import { screen, fireEvent, act } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { Carousel } from '../../../../Ark.Alliance.React.Component.UI/src/components/Slides/Carousel';
+import { renderWithProviders } from '../../../setup';
 
 describe('Carousel', () => {
     beforeEach(() => {
@@ -17,7 +18,7 @@ describe('Carousel', () => {
     });
 
     it('should render children slides', () => {
-        render(
+        renderWithProviders(
             <Carousel count={2}>
                 <div>Slide 1</div>
                 <div>Slide 2</div>
@@ -28,7 +29,7 @@ describe('Carousel', () => {
     });
 
     it('should navigate next/prev', () => {
-        render(
+        renderWithProviders(
             <Carousel count={2}>
                 <div>Slide 1</div>
                 <div>Slide 2</div>
@@ -52,7 +53,7 @@ describe('Carousel', () => {
     });
 
     it('should loop navigation', () => {
-        render(
+        renderWithProviders(
             <Carousel count={2} loop={true}>
                 <div>Slide 1</div>
                 <div>Slide 2</div>
@@ -71,7 +72,7 @@ describe('Carousel', () => {
     });
 
     it('should autoplay', () => {
-        render(
+        renderWithProviders(
             <Carousel count={2} autoplay={true} interval={1000}>
                 <div>Slide 1</div>
                 <div>Slide 2</div>
@@ -87,14 +88,14 @@ describe('Carousel', () => {
     });
 
     it('should pause on hover', () => {
-        render(
+        renderWithProviders(
             <Carousel count={2} autoplay={true} interval={1000} pauseOnHover={true}>
                 <div>Slide 1</div>
                 <div>Slide 2</div>
             </Carousel>
         );
 
-        const container = screen.getByLabelText('Carousel');
+        const container = screen.getByLabelText('Content carousel');
         fireEvent.mouseEnter(container);
 
         act(() => {

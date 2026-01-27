@@ -13,7 +13,7 @@ import { ConnectionIndicator, type ConnectionStatus } from '../primitives/Connec
 import type { TrendPrediction } from '../TrendPriceChart/TrendPriceChart.model';
 import { TREND_DIRECTION_COLORS } from '../TrendPriceChart/TrendPriceChart.model';
 import { FINANCIAL_CHART_COLORS } from './FinancialChart.model';
-import './FinancialChart.styles.css';
+import './FinancialChart.scss';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES
