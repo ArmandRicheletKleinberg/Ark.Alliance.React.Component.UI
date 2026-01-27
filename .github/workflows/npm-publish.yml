@@ -20,6 +20,11 @@ on:
           - minor
           - major
         default: 'patch'
+      publish_showcases:
+        description: 'Also publish ShowCases to npm'
+        required: false
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -28,6 +33,9 @@ permissions:
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest
+    outputs:
+      package_name: ${{ steps.package.outputs.name }}
+      package_version: ${{ steps.package.outputs.version }}
     
     steps:
       - name: Checkout Repository
@@ -94,18 +102,10 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       
-      - name: Update Package Link in README
-        if: success()
-        working-directory: ./Ark.Alliance.React.Component.UI
-        run: |
-          echo "📦 Package published: https://www.npmjs.com/package/${{ steps.package.outputs.name }}"
-          echo "🔖 Version: ${{ steps.package.outputs.version }}"
-          echo "📥 Install: npm install ${{ steps.package.outputs.name }}"
-      
-      - name: Post to Summary
+      - name: UI Library Summary
         if: success()
         run: |
-          echo "## 🎉 NPM Package Published Successfully!" >> $GITHUB_STEP_SUMMARY
+          echo "## 🎉 UI Library Published Successfully!" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "**Package:** [${{ steps.package.outputs.name }}](https://www.npmjs.com/package/${{ steps.package.outputs.name }})" >> $GITHUB_STEP_SUMMARY
           echo "**Version:** \`${{ steps.package.outputs.version }}\`" >> $GITHUB_STEP_SUMMARY
@@ -127,12 +127,25 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20.x'
+          registry-url: 'https://registry.npmjs.org'
           cache: 'npm'
           cache-dependency-path: './Ark.Alliance.React.Component.Ui.ShowCases/package-lock.json'
       
+      - name: Wait for NPM Registry Propagation
+        run: |
+          echo "Waiting for npm package to propagate..."
+          sleep 30
+          
+      - name: Update UI Library Reference to NPM Version
+        working-directory: ./Ark.Alliance.React.Component.Ui.ShowCases
+        run: |
+          echo "Updating ark-alliance-react-ui to version ${{ needs.build-and-publish.outputs.package_version }}"
+          npm pkg set dependencies.ark-alliance-react-ui="^${{ needs.build-and-publish.outputs.package_version }}"
+          cat package.json | grep ark-alliance-react-ui
+      
       - name: Install Dependencies (ShowCases)
         working-directory: ./Ark.Alliance.React.Component.Ui.ShowCases
-        run: npm ci
+        run: npm install
       
       - name: Build ShowCases
         working-directory: ./Ark.Alliance.React.Component.Ui.ShowCases
@@ -144,3 +157,29 @@ jobs:
           name: showcases-dist
           path: ./Ark.Alliance.React.Component.Ui.ShowCases/dist/
           retention-days: 30
+      
+      - name: Get ShowCases Package Info
+        id: showcases_package
+        working-directory: ./Ark.Alliance.React.Component.Ui.ShowCases
+        run: |
+          echo "name=$(node -p "require('./package.json').name")" >> $GITHUB_OUTPUT
+          echo "version=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
+      
+      - name: Publish ShowCases to NPM
+        if: |
+          (github.event_name == 'workflow_dispatch' && github.event.inputs.publish_showcases == 'true') ||
+          startsWith(github.ref, 'refs/tags/v')
+        working-directory: ./Ark.Alliance.React.Component.Ui.ShowCases
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      
+      - name: ShowCases Summary
+        if: success()
+        run: |
+          echo "## 📦 ShowCases Build Complete!" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Package:** ${{ steps.showcases_package.outputs.name }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Version:** \`${{ steps.showcases_package.outputs.version }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "**UI Library Version:** \`${{ needs.build-and-publish.outputs.package_version }}\`" >> $GITHUB_STEP_SUMMARY
+

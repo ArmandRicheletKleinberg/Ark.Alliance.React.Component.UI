@@ -344,6 +344,9 @@ flowchart TB
 
 </details>
 
+> 📚 **[View Complete Component Reference Table →](./COMPONENT_REFERENCE.md)**  
+> Comprehensive documentation with architecture details, enum consolidation status, and links to individual component READMEs.
+
 ### Visual Modes
 
 All components support multiple visual modes for consistent theming:

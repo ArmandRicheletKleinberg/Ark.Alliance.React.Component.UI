@@ -84,6 +84,8 @@ export const ButtonVariantSchema = z.enum([
     'success',
     'ghost',
     'outline',
+    'neon',
+    'link',
 ]);
 
 /**

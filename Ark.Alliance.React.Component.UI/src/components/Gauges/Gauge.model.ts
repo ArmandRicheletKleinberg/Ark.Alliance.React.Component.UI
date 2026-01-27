@@ -7,6 +7,7 @@
 
 import { z } from 'zod';
 import { extendSchema } from '../../core/base';
+import { ThemeColorSchema, BasicSizeSchema, type ThemeColor, type BasicSize } from '../../core/enums';
 import { GAUGE_COLORS, type GaugeColorType } from '../../core/constants';
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -14,17 +15,11 @@ import { GAUGE_COLORS, type GaugeColorType } from '../../core/constants';
 // ═══════════════════════════════════════════════════════════════════════════
 
 /**
- * Gauge color variants
- */
-export const GaugeColor = z.enum(['blue', 'green', 'red', 'cyan', 'yellow', 'purple']);
-
-/**
- * Gauge size variants
- */
-export const GaugeSize = z.enum(['sm', 'md', 'lg']);
-
-/**
  * Gauge model schema extending base model
+ * 
+ * Uses consolidated enums from @core/enums:
+ * - ThemeColorSchema (replaces custom GaugeColor)
+ * - BasicSizeSchema (replaces custom GaugeSize)
  */
 export const GaugeModelSchema = extendSchema({
     /** Current value */
@@ -45,11 +40,11 @@ export const GaugeModelSchema = extendSchema({
     /** Secondary label below the gauge */
     subLabel: z.string().optional(),
 
-    /** Color theme */
-    color: GaugeColor.default('blue'),
+    /** Color theme (from core/enums) */
+    color: ThemeColorSchema.default('cyan'),
 
-    /** Size variant */
-    size: GaugeSize.default('md'),
+    /** Size variant (from core/enums) */
+    size: BasicSizeSchema.default('md'),
 
     /** Show percentage instead of value */
     showPercentage: z.boolean().default(false),
@@ -71,8 +66,8 @@ export const GaugeModelSchema = extendSchema({
 // TYPE EXPORTS
 // ═══════════════════════════════════════════════════════════════════════════
 
-export type GaugeColorEnum = z.infer<typeof GaugeColor>;
-export type GaugeSizeType = z.infer<typeof GaugeSize>;
+export type GaugeColor = ThemeColor;
+export type GaugeSize = BasicSize;
 export type GaugeModel = z.infer<typeof GaugeModelSchema>;
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -134,7 +129,7 @@ export const defaultGaugeModel: Omit<GaugeModel, 'label'> & { label?: string } =
     min: 0,
     max: 100,
     label: undefined,
-    color: 'blue',
+    color: 'cyan',
     size: 'md',
     showPercentage: false,
     decimals: 0,

@@ -7,18 +7,17 @@
 
 import { z } from 'zod';
 import { extendSchema } from '../../core/base';
+import { SemanticStatusSchema } from '../../core/enums';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // SCHEMA DEFINITIONS
 // ═══════════════════════════════════════════════════════════════════════════
 
 /**
- * Card status variants
- */
-export const CardStatus = z.enum(['idle', 'success', 'warning', 'error', 'info']);
-
-/**
  * Card model schema extending base model
+ * 
+ * Uses consolidated enums from @core/enums:
+ * - SemanticStatusSchema (replaces custom CardStatus)
  */
 export const CardModelSchema = extendSchema({
     /** Card title */
@@ -27,8 +26,8 @@ export const CardModelSchema = extendSchema({
     /** Optional subtitle */
     subtitle: z.string().optional(),
 
-    /** Status for border/glow coloring */
-    status: CardStatus.default('idle'),
+    /** Status for border/glow coloring (from core/enums) */
+    status: SemanticStatusSchema.default('info'),
 
     /** 
      * Visual variant 
@@ -53,22 +52,21 @@ export const CardModelSchema = extendSchema({
 // TYPE EXPORTS
 // ═══════════════════════════════════════════════════════════════════════════
 
-export type CardStatusType = z.infer<typeof CardStatus>;
 export type CardModel = z.infer<typeof CardModelSchema>;
 
-// ═══════════════════════════════════════════════════════════════════════════
-// STATUS CONFIGURATION
+// ═══════════════════════════════════STATUS CONFIGURATION
 // ═══════════════════════════════════════════════════════════════════════════
 
 /**
  * Status color configuration for dark/light themes
+ * Note: 'info' is used as the default status (replaces 'idle')
  */
 export const CARD_STATUS_CONFIG = {
-    idle: {
-        borderDark: 'rgba(31, 41, 55, 1)',
-        borderLight: 'rgba(229, 231, 235, 1)',
-        glowDark: 'rgba(59, 130, 246, 0.15)',
-        glowLight: 'rgba(59, 130, 246, 0.1)',
+    info: {
+        borderDark: 'rgba(59, 130, 246, 0.3)',
+        borderLight: 'rgba(147, 197, 253, 1)',
+        glowDark: 'rgba(59, 130, 246, 0.20)',
+        glowLight: 'rgba(59, 130, 246, 0.15)',
     },
     success: {
         borderDark: 'rgba(34, 197, 94, 0.3)',
@@ -87,12 +85,6 @@ export const CARD_STATUS_CONFIG = {
         borderLight: 'rgba(252, 165, 165, 1)',
         glowDark: 'rgba(239, 68, 68, 0.15)',
         glowLight: 'rgba(239, 68, 68, 0.1)',
-    },
-    info: {
-        borderDark: 'rgba(59, 130, 246, 0.3)',
-        borderLight: 'rgba(147, 197, 253, 1)',
-        glowDark: 'rgba(59, 130, 246, 0.20)',
-        glowLight: 'rgba(59, 130, 246, 0.15)',
     },
 } as const;
 

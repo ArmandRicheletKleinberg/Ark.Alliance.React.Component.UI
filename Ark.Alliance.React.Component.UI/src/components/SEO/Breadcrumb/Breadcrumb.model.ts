@@ -5,6 +5,7 @@
 
 import { z } from 'zod';
 import { extendSEOSchema, defaultBaseSEOModel } from '../../../core/base/SEO';
+import { BasicSizeSchema } from '../../../core/enums';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // BREADCRUMB ITEM SCHEMA
@@ -31,6 +32,13 @@ export type BreadcrumbItemModel = z.infer<typeof BreadcrumbItemSchema>;
 // BREADCRUMB SCHEMA
 // ═══════════════════════════════════════════════════════════════════════════
 
+/**
+ * Breadcrumb schema extending SEO base
+ * 
+ * Uses consolidated enums from @core/enums:
+ * - BasicSizeSchema (replaces custom size enum)
+ * Note: 'variant' is component-specific (minimal, pills are breadcrumb-specific)
+ */
 export const BreadcrumbSchema = extendSEOSchema({
     /** Breadcrumb items */
     items: z.array(BreadcrumbItemSchema).min(1),
@@ -44,10 +52,10 @@ export const BreadcrumbSchema = extendSEOSchema({
     /** Show home icon for first item */
     showHomeIcon: z.boolean().default(false),
 
-    /** Size variant */
-    size: z.enum(['sm', 'md', 'lg']).default('md'),
+    /** Size variant (from core/enums) */
+    size: BasicSizeSchema.default('md'),
 
-    /** Visual variant */
+    /** Visual variant (breadcrumb-specific) */
     variant: z.enum(['default', 'minimal', 'pills']).default('default'),
 });
 
@@ -64,3 +72,4 @@ export const defaultBreadcrumbModel: Partial<BreadcrumbModel> = {
     size: 'md',
     variant: 'default',
 };
+
