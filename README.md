@@ -55,13 +55,13 @@
 
 | Feature | Description |
 |---------|-------------|
-| **40 Component Categories** | Comprehensive UI elements from buttons to 3D charts |
+| **47 Component Categories** | Comprehensive UI elements from buttons to 3D charts, org charts, carousels |
 | **MVVM Architecture** | Clear separation of concerns with Model, ViewModel, and View layers |
 | **Zod Validation** | Runtime type safety with schema-based validation |
 | **Premium Aesthetics** | Neon, minimal, and glassmorphism visual modes |
-| **100% Test Coverage** | 502 tests passing with comprehensive scenario-based testing |
-| **Enterprise Ready** | TypeScript strict mode, accessibility, responsive design |
-| **Interactive Showcase** | Component explorer at `localhost:5090` |
+| **Comprehensive Testing** | 782 tests passing (46 test files) with 100% scenario coverage |
+| **Enterprise Ready** | TypeScript strict mode, accessibility, responsive design, SEO optimized |
+| **Interactive Showcase** | Component explorer with live property controls at `localhost:5173` |
 
 ### Business Domains & Industry Verticals
 
@@ -84,10 +84,17 @@ While primarily designed for **large-scale trading and financial applications**,
 | 📑 **Content & Documents** | `Documents/`, `Slides/` | Document viewers, presentations, markdown rendering |
 | 🏢 **Corporate & CMS** *(v1.2.0)* | `Label/RoleBadge`, `Label/DepartmentBadge`, `TreeView/OrgChart` | Role management, org charts, team hierarchies |
 | 🔍 **SEO & AEO Optimization** *(v1.3.0)* | `SEO/Breadcrumb`, `SEO/StructuredDataScript`, `Helpers/seo` | Breadcrumb navigation with Schema.org JSON-LD, structured data injection, SEO helper utilities |
+| 🎨 **UI/UX Enhancements** *(v1.5.0)* | `Slides/Carousel`, `TreeView/OrgChart`, `Toast` | Touch gestures, keyboard nav, playback controls, 15 OrgChart tests |
 
 > 📝 **v1.2.0**: Added Corporate CMS components for organization management. See [Library README](./Ark.Alliance.React.Component.UI/README.md#rolebadge-v120) for detailed usage.
 
 > 🔍 **v1.3.0**: Added SEO/AEO components with Schema.org support for search engine optimization and answer engine optimization. Includes `Breadcrumb` with BreadcrumbList schema, `StructuredDataScript` for JSON-LD injection, and comprehensive SEO helpers. Full AI crawler compliance (GPTBot, ClaudeBot, PerplexityBot, Google-Extended). See [SEO Components](#seo--search-engine-optimization-v130) for details.
+
+> 🎨 **v1.5.0**: Major UI/UX enhancements including:
+> - **Enhanced Carousel**: Touch/swipe gestures, keyboard navigation (Arrow keys, Space, Escape, Home, End), playback controls with progress bar, loading skeleton, ARIA live announcements
+> - **OrgChart Completion**: Full MVVM implementation with 15 passing tests, custom primitives (OrgChartTree, OrgChartConnector), comprehensive 545-line README
+> - **Test Suite Improvements**: 782/783 tests passing with suppressed false-positive warnings, clean stderr output
+> - **Critical CI/CD Fix**: Removed overly broad `*.json` from .gitignore that was blocking package.json and breaking npm publishing workflow
 
 ---
 
@@ -96,7 +103,7 @@ While primarily designed for **large-scale trading and financial applications**,
 ```
 Ark.Alliance.React.Component.UI/                 # Repository Root
 │
-├── 📦 Ark.Alliance.React.Component.UI/          # Main Component Library
+├──│ 📦 Ark.Alliance.React.Component.UI/          # Main Component Library (npm: ark-alliance-react-ui@1.5.0)
 │   ├── src/
 │   │   ├── main.tsx                             # Application entry point
 │   │   ├── App.tsx                              # Root component (loads Showcase)
@@ -112,7 +119,7 @@ Ark.Alliance.React.Component.UI/                 # Repository Root
 │   │   │   ├── constants/                       # Application constants
 │   │   │   └── events/                          # Event bus system
 │   │   │
-│   │   ├── 🧩 components/                       # Component Library (40 categories)
+│   │   ├── 🧩 components/                       # Component Library (47 categories)
 │   │   │   ├── Buttons/                         # NeonButton
 │   │   │   ├── Cards/                           # GlowCard
 │   │   │   ├── Gauges/                          # 5 gauge types
@@ -139,16 +146,29 @@ Ark.Alliance.React.Component.UI/                 # Repository Root
 │   ├── README.md                                # Library documentation
 │   └── CONTRIBUTING.md                          # Contribution guidelines
 │
-├── 🧪 Ark.Alliance.React.Component.UI.Tests/    # Test Project
-│   ├── components/                              # Component test suites
+├── 🧪 Ark.Alliance.React.Component.UI.Tests/    # Test Project (782 tests passing)
+│   ├── components/                              # Component test suites (46 test files)
 │   ├── core/                                    # Core functionality tests
+│   ├── Helpers/                                 # Helper/utility tests
 │   ├── fixtures/                                # Test utilities & engine
+│   ├── setup.ts                                 # Global test setup with error suppression
 │   ├── vitest.config.ts                         # Vitest configuration
 │   └── README.md                                # Test documentation
 │
+├── 📱 Ark.Alliance.React.Component.Ui.ShowCases/ # Interactive Showcase Application  
+│   ├── src/
+│   │   ├── domain/                              # Configuration entities
+│   │   ├── infrastructure/                      # Config loader, component resolver
+│   │   │   ├── data/                            # Catalogue & panel configs (JSON)
+│   │   │   └── wrappers/                        # Component demo wrappers
+│   │   └── presentation/                        # UI (pages, components, layout)
+│   ├── vite.config.ts                          # Vite configuration
+│   └── README.md                                # Showcase documentation
+│
 ├── 📋 .github/
 │   ├── workflows/
-│   │   └── node.js.yml                          # CI/CD pipeline
+│   │   ├── node.js.yml                          # Node.js CI
+│   │   └── npm-publish.yml                     # NPM publish & release automation
 │   └── ISSUE_TEMPLATE/                          # Issue templates
 │
 └── 📄 LICENSE.txt                               # MIT License
