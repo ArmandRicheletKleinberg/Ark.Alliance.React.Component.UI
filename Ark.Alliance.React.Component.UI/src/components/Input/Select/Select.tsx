@@ -6,7 +6,7 @@
 import { forwardRef, memo } from 'react';
 import { useSelect, type UseSelectOptions } from './Select.viewmodel';
 import type { SelectOption } from './Select.model';
-import './Select.styles.css';
+import './Select.scss';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES

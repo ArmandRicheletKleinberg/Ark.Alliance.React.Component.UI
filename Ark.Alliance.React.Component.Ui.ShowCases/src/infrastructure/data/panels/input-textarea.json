@@ -19,19 +19,19 @@
     "controls": [
         {
             "type": "text",
-            "name": "label",
+            "propName": "label",
             "label": "Label",
             "defaultValue": "Description"
         },
         {
             "type": "text",
-            "name": "placeholder",
+            "propName": "placeholder",
             "label": "Placeholder",
             "defaultValue": "Enter detailed description..."
         },
         {
             "type": "slider",
-            "name": "rows",
+            "propName": "rows",
             "label": "Rows",
             "defaultValue": 4,
             "min": 2,
@@ -39,7 +39,7 @@
         },
         {
             "type": "select",
-            "name": "resize",
+            "propName": "resize",
             "label": "Resize Mode",
             "defaultValue": "vertical",
             "options": [
@@ -51,7 +51,7 @@
         },
         {
             "type": "number",
-            "name": "maxLength",
+            "propName": "maxLength",
             "label": "Max Length",
             "defaultValue": 500
         }

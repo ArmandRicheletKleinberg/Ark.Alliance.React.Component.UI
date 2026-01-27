@@ -1,0 +1,92 @@
+{
+    "id": "orders-grid",
+    "componentId": "OrdersGrid",
+    "title": "Orders Grid",
+    "description": "Open orders display with modify/cancel actions and real-time updates.",
+    "layout": {
+        "width": "100%",
+        "minWidth": "full",
+        "height": "500px"
+    },
+    "preview": {
+        "background": "dark"
+    },
+    "defaultProps": {
+        "title": "Open Orders",
+        "isDark": true,
+        "showTypeFilter": true,
+        "showSymbolFilter": true,
+        "showStatusFilter": false,
+        "enableSelection": false,
+        "enableBatchCancel": true,
+        "compact": false,
+        "orderCount": 15,
+        "instrumentType": "CRYPTO_PERP"
+    },
+    "controls": [
+        {
+            "propName": "title",
+            "type": "text",
+            "label": "Title",
+            "group": "content"
+        },
+        {
+            "propName": "showTypeFilter",
+            "type": "boolean",
+            "label": "Type Filter",
+            "group": "behavior"
+        },
+        {
+            "propName": "showSymbolFilter",
+            "type": "boolean",
+            "label": "Symbol Filter",
+            "group": "behavior"
+        },
+        {
+            "propName": "showStatusFilter",
+            "type": "boolean",
+            "label": "Status Filter",
+            "group": "behavior"
+        },
+        {
+            "propName": "enableSelection",
+            "type": "boolean",
+            "label": "Selection",
+            "group": "behavior"
+        },
+        {
+            "propName": "enableBatchCancel",
+            "type": "boolean",
+            "label": "Batch Cancel",
+            "group": "behavior"
+        },
+        {
+            "propName": "compact",
+            "type": "boolean",
+            "label": "Compact Mode",
+            "group": "style"
+        },
+        {
+            "propName": "orderCount",
+            "type": "slider",
+            "label": "Demo Orders",
+            "min": 5,
+            "max": 50,
+            "step": 5,
+            "group": "demo"
+        },
+        {
+            "propName": "instrumentType",
+            "type": "select",
+            "label": "Instrument",
+            "options": [
+                "CRYPTO_SPOT",
+                "CRYPTO_PERP",
+                "CRYPTO_FUTURES",
+                "OPTIONS",
+                "STOCK"
+            ],
+            "group": "demo"
+        }
+    ]
+}

@@ -1,0 +1,51 @@
+/**
+ * SpeedometerGauge Styles
+ * 
+ * Needle-style speedometer gauge.
+ */
+
+.ark-speedometer-gauge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    /* Info Container */
+    &__info {
+        text-align: center;
+        margin-top: 0.5rem;
+    }
+
+    /* Value */
+    &__value {
+        font-size: 1.5rem;
+        font-weight: 700;
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+
+    /* Label */
+    &__label {
+        font-size: 0.875rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    /* Sublabel */
+    &__sublabel {
+        font-size: 0.75rem;
+        margin-top: 0.125rem;
+    }
+}
+
+/* Theme Utilities (Mapped to Semantic Vars) */
+.text-gray-300 {
+    color: var(--ark-text-primary, #d1d5db);
+}
+
+.text-gray-500 {
+    color: var(--ark-text-muted, #6b7280);
+}
+
+.text-gray-700 {
+    color: var(--ark-text-primary-light, #374151);
+}

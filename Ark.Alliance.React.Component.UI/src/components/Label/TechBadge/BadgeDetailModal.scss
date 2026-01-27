@@ -1,0 +1,204 @@
+/**
+ * Badge Detail Modal Styles
+ * BEM naming convention: ark-badge-modal
+ */
+
+.ark-badge-modal {
+
+    /* Overlay */
+    &__overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.7);
+        animation: arkBadgeModalFadeIn 0.2s ease-out;
+
+        &--backdrop {
+            backdrop-filter: blur(4px);
+        }
+    }
+
+    /* Content */
+    &__content {
+        position: relative;
+        width: 100%;
+        max-width: 480px;
+        margin: 1rem;
+        padding: 1.5rem;
+        background: var(--ark-bg-secondary, rgb(30, 41, 59));
+        border: 1px solid var(--ark-border, rgb(51, 65, 85));
+        border-radius: 1rem;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        animation: arkBadgeModalSlideUp 0.3s ease-out;
+    }
+
+    /* Close Button */
+    &__close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        padding: 0;
+        color: var(--ark-text-muted, rgb(148, 163, 184));
+        background: rgba(100, 116, 139, 0.1);
+        border: none;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        transition: all 0.2s ease-out;
+
+        &:hover {
+            color: var(--ark-text-primary, rgb(241, 245, 249));
+            background: rgba(100, 116, 139, 0.2);
+        }
+    }
+
+    /* Header */
+    &__header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.25rem;
+    }
+
+    &__icon-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 56px;
+        height: 56px;
+        border-radius: 0.75rem;
+        border: 1px solid;
+        flex-shrink: 0;
+    }
+
+    &__title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--ark-text-primary, rgb(241, 245, 249));
+        margin: 0;
+    }
+
+    &__category {
+        display: inline-block;
+        margin-top: 0.25rem;
+        font-size: 0.75rem;
+        font-weight: 500;
+        color: var(--ark-text-muted, rgb(148, 163, 184));
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    /* Section */
+    &__section {
+        margin-bottom: 1rem;
+
+        p {
+            font-size: 0.875rem;
+            color: var(--ark-text-secondary, rgb(203, 213, 225));
+            line-height: 1.6;
+            margin: 0;
+        }
+    }
+
+    /* Badge Row */
+    &__badge-row {
+        margin-bottom: 1rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    &__version {
+        display: inline-block;
+        font-family: ui-monospace, SFMono-Regular, monospace;
+        font-size: 0.75rem;
+        font-weight: 600;
+        padding: 0.25rem 0.5rem;
+        background: rgba(59, 130, 246, 0.1);
+        border-radius: 0.25rem;
+    }
+
+    /* Metadata */
+    &__metadata {
+        margin-bottom: 1rem;
+        padding: 0.75rem;
+        background: rgba(30, 41, 59, 0.5);
+        border-radius: 0.5rem;
+    }
+
+    &__metadata-item {
+        display: flex;
+        gap: 0.5rem;
+        font-size: 0.875rem;
+        padding: 0.25rem 0;
+    }
+
+    &__metadata-key {
+        color: var(--ark-text-muted, rgb(148, 163, 184));
+    }
+
+    &__metadata-value {
+        color: var(--ark-text-secondary, rgb(203, 213, 225));
+    }
+
+    /* Links */
+    &__links {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid var(--ark-border, rgb(51, 65, 85));
+    }
+
+    &__link {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem;
+        color: var(--ark-text-secondary, rgb(203, 213, 225));
+        text-decoration: none;
+        border: 1px solid;
+        border-radius: 0.5rem;
+        transition: all 0.2s ease-out;
+
+        &:hover {
+            color: var(--ark-text-primary, rgb(241, 245, 249));
+            transform: translateX(4px);
+        }
+
+        span {
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+    }
+}
+
+@keyframes arkBadgeModalFadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes arkBadgeModalSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

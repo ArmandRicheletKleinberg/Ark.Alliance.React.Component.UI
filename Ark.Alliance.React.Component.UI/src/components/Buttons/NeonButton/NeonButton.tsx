@@ -9,7 +9,7 @@
 import { forwardRef, memo } from 'react';
 import { SIZE_CLASSES } from '../../../core/constants';
 import { useNeonButton, type UseNeonButtonOptions } from './NeonButton.viewmodel';
-import './NeonButton.styles.css';
+import './NeonButton.scss';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES
@@ -38,12 +38,12 @@ export interface NeonButtonProps extends UseNeonButtonOptions {
  * - Multiple color variants
  * - MVVM architecture
  * 
+ * 
  * @example
  * ```tsx
  * <NeonButton onClick={handleSubmit}>Submit</NeonButton>
- * <NeonButton variant="success" icon={<CheckIcon />}>Confirm</NeonButton>
- * <NeonButton variant="danger" fullWidth>Delete Account</NeonButton>
  * ```
+ * @deprecated Use `Button` with `variant="neon"` instead.
  */
 export const NeonButton = memo(forwardRef<HTMLButtonElement, NeonButtonProps>(
     function NeonButton(props, ref) {

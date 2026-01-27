@@ -1,0 +1,308 @@
+/**
+ * Header Component Styles
+ */
+
+@use 'sass:map';
+
+/* ─── Variables ─── */
+:root {
+    --header-height-compact: 48px;
+    --header-height-normal: 64px;
+    --header-height-large: 80px;
+    --header-bg-light: #ffffff;
+    --header-bg-dark: #121212;
+    --header-border-light: #e0e0e0;
+    --header-border-dark: #2d2d2d;
+    --header-text-light: #1f2937;
+    --header-text-dark: #f9fafb;
+    --header-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --header-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --header-z-index: 50;
+    --drawer-z-index: 100;
+    --drawer-width: 280px;
+}
+
+/* ─── Base Layout ─── */
+.ark-header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 0 var(--spacing-md, 1rem);
+    box-sizing: border-box;
+    z-index: var(--header-z-index);
+    transition: all var(--transition-normal, 0.2s) ease-in-out;
+
+    /* ─── Positioning ─── */
+    &--sticky {
+        position: sticky;
+        top: 0;
+        box-shadow: var(--header-shadow-sm);
+    }
+
+    /* ─── Heights ─── */
+    &--compact {
+        height: var(--header-height-compact);
+    }
+
+    &--normal {
+        height: var(--header-height-normal);
+    }
+
+    &--large {
+        height: var(--header-height-large);
+        padding-top: var(--spacing-sm, 0.5rem);
+        padding-bottom: var(--spacing-sm, 0.5rem);
+    }
+
+    /* ─── Themes ─── */
+    &--light {
+        background-color: var(--header-bg-light);
+        color: var(--header-text-light);
+        border-bottom: 1px solid var(--header-border-light);
+    }
+
+    &--dark {
+        background-color: var(--header-bg-dark);
+        color: var(--header-text-dark);
+        border-bottom: 1px solid var(--header-border-dark);
+    }
+
+    /* ─── Visual Modes ─── */
+    &--glass {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+
+        &.ark-header--dark {
+            background: rgba(18, 18, 18, 0.7);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+    }
+
+    &--neon {
+        border-bottom: 1px solid var(--primary-color, #00d4ff);
+        box-shadow: 0 0 10px rgba(0, 212, 255, 0.2);
+    }
+
+    &--minimal {
+        border-bottom: none;
+        background: transparent;
+        box-shadow: none;
+    }
+
+    /* ─── Radius ─── */
+    &--radius-sm {
+        border-radius: var(--border-radius-sm, 0.25rem);
+    }
+
+    &--radius-md {
+        border-radius: var(--border-radius-md, 0.375rem);
+    }
+
+    &--radius-lg {
+        border-radius: var(--border-radius-lg, 0.5rem);
+    }
+
+    &--radius-xl {
+        border-radius: var(--border-radius-xl, 0.75rem);
+    }
+
+    &--radius-full {
+        border-radius: 9999px;
+    }
+
+    /* ─── Alignments via modifier on parent ─── */
+    &--align-left .ark-header__content {
+        justify-content: flex-start;
+    }
+
+    &--align-center .ark-header__content {
+        justify-content: center;
+    }
+
+    &--align-right .ark-header__content {
+        justify-content: flex-end;
+    }
+
+    &--align-space-between .ark-header__content {
+        justify-content: space-between;
+    }
+}
+
+/* ─── Content Zones ─── */
+.ark-header__content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+}
+
+.ark-header__left,
+.ark-header__right {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md, 1rem);
+
+    @media (max-width: 768px) {
+        gap: var(--spacing-sm, 0.5rem);
+    }
+}
+
+/* ─── Title Group ─── */
+.ark-header__title-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.ark-header__title {
+    margin: 0;
+    line-height: 1.2;
+    font-weight: 600;
+}
+
+.ark-header__subtitle {
+    margin: 0;
+    font-size: 0.875rem;
+    opacity: 0.8;
+}
+
+.ark-header__description {
+    margin: 0;
+    font-size: 0.75rem;
+    opacity: 0.6;
+
+    @media (max-width: 768px) {
+        display: none;
+    }
+}
+
+/* ─── Search ─── */
+.ark-header__search-container {
+    position: relative;
+    width: 240px;
+    transition: width 0.3s ease;
+
+    &:focus-within {
+        width: 300px;
+    }
+
+    @media (max-width: 768px) {
+        display: none;
+    }
+}
+
+/* ─── Mobile Drawer ─── */
+.ark-header__mobile-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    color: inherit;
+    border-radius: 4px;
+
+    &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    @media (max-width: 768px) {
+        display: block;
+    }
+}
+
+.ark-header__drawer-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: var(--drawer-z-index);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+
+    &--open {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+.ark-header__drawer {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: var(--drawer-width);
+    height: 100vh;
+    background-color: var(--header-bg-light);
+    z-index: calc(var(--drawer-z-index) + 1);
+    transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 4px 0 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    padding: var(--spacing-lg, 1.5rem);
+
+    &--open {
+        left: 0;
+    }
+}
+
+.ark-header--dark .ark-header__drawer {
+    background-color: var(--header-bg-dark);
+    border-right: 1px solid var(--header-border-dark);
+}
+
+.ark-header__drawer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-xl, 2rem);
+}
+
+.ark-header__drawer-content {
+    flex: 1;
+    overflow-y: auto;
+}
+
+/* ─── Breadcrumbs ─── */
+.ark-header__breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs, 0.5rem);
+    font-size: 0.875rem;
+
+    @media (max-width: 768px) {
+        display: none;
+    }
+}
+
+.ark-breadcrumb-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: inherit;
+    opacity: 0.7;
+    text-decoration: none;
+    transition: opacity 0.2s;
+
+    &:hover {
+        opacity: 1;
+        text-decoration: underline;
+    }
+
+    &--active {
+        opacity: 1;
+        font-weight: 500;
+        cursor: default;
+        text-decoration: none !important;
+    }
+}
+
+.ark-breadcrumb-separator {
+    opacity: 0.4;
+    font-size: 0.75rem;
+}

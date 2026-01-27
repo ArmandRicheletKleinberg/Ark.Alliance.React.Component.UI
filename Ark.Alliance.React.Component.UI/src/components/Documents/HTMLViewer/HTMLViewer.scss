@@ -1,0 +1,288 @@
+/**
+ * HTMLViewer Component Styles
+ */
+
+/* Base Styles */
+.ark-html-viewer {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 8px;
+    overflow: hidden;
+    background: rgba(15, 23, 42, 0.95);
+
+    &--fullscreen {
+        position: fixed;
+        inset: 0;
+        border-radius: 0;
+        z-index: 10000;
+    }
+
+    /* Toolbar */
+    &__toolbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 8px 12px;
+        background: rgba(15, 23, 42, 0.95);
+        border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+    }
+
+    &__toolbar-left,
+    &__toolbar-center,
+    &__toolbar-right {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    &__toolbar-left {
+        flex: 1;
+    }
+
+    &__toolbar-right {
+        flex: 1;
+        justify-content: flex-end;
+    }
+
+    &__title {
+        color: #e2e8f0;
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    /* Buttons */
+    &__btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        padding: 0;
+        border: none;
+        border-radius: 4px;
+        background: transparent;
+        color: #94a3b8;
+        cursor: pointer;
+        transition: background 0.15s, color 0.15s;
+
+        &:hover:not(:disabled) {
+            background: rgba(148, 163, 184, 0.15);
+            color: #e2e8f0;
+        }
+
+        &:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+    }
+
+    /* Zoom Controls */
+    &__zoom-controls {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
+
+    &__zoom-value {
+        min-width: 60px;
+        padding: 4px 8px;
+        border: 1px solid rgba(0, 212, 255, 0.2);
+        border-radius: 4px;
+        background: transparent;
+        color: #e2e8f0;
+        font-size: 12px;
+        text-align: center;
+        cursor: pointer;
+        transition: background 0.15s;
+
+        &:hover {
+            background: rgba(0, 212, 255, 0.1);
+        }
+    }
+
+    /* Viewport */
+    &__viewport {
+        flex: 1;
+        overflow: auto;
+        background: rgba(10, 14, 39, 0.95);
+    }
+
+    /* Content Styling */
+    &__content {
+        padding: 24px;
+        color: #e2e8f0;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        line-height: 1.6;
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            color: #f1f5f9;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+
+        a {
+            color: #00d4ff;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+        }
+
+        th,
+        td {
+            border: 1px solid #475569;
+            padding: 8px 12px;
+        }
+
+        th {
+            background: rgba(0, 212, 255, 0.1);
+        }
+
+        code {
+            padding: 2px 6px;
+            background: rgba(0, 212, 255, 0.1);
+            border-radius: 4px;
+            font-family: 'Fira Code', monospace;
+        }
+
+        pre {
+            padding: 16px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 6px;
+            overflow-x: auto;
+        }
+    }
+
+    /* Loading & Error */
+    &__loading,
+    &__error {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        padding: 48px;
+        color: #94a3b8;
+    }
+
+    &__spinner {
+        animation: ark-viewer-spin 1s linear infinite;
+    }
+
+    &__error {
+        color: #ef4444;
+
+        button {
+            padding: 8px 16px;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 6px;
+            background: transparent;
+            color: #ef4444;
+            cursor: pointer;
+            transition: background 0.15s;
+
+            &:hover {
+                background: rgba(239, 68, 68, 0.1);
+            }
+        }
+    }
+
+    /* Visual Modes */
+
+    /* Light Mode */
+    &--light {
+        background: #ffffff;
+        border-color: rgba(0, 0, 0, 0.1);
+
+        .ark-html-viewer__toolbar {
+            background: #f8fafc;
+            border-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .ark-html-viewer__title {
+            color: #1e293b;
+        }
+
+        .ark-html-viewer__btn {
+            color: #64748b;
+        }
+
+        .ark-html-viewer__btn:hover:not(:disabled) {
+            background: rgba(0, 0, 0, 0.05);
+            color: #1e293b;
+        }
+
+        .ark-html-viewer__zoom-value {
+            border-color: rgba(0, 0, 0, 0.15);
+            color: #1e293b;
+        }
+
+        .ark-html-viewer__viewport {
+            background: #ffffff;
+        }
+
+        .ark-html-viewer__content {
+            color: #1e293b;
+
+            h1,
+            h2,
+            h3 {
+                color: #0f172a;
+            }
+
+            a {
+                color: #0284c7;
+            }
+
+            th,
+            td {
+                border-color: #e2e8f0;
+            }
+
+            th {
+                background: #f1f5f9;
+            }
+        }
+    }
+
+    /* Neon Mode */
+    &--neon {
+        border-color: rgba(0, 212, 255, 0.3);
+        box-shadow: 0 0 20px rgba(0, 212, 255, 0.05);
+
+        .ark-html-viewer__toolbar {
+            border-color: rgba(0, 212, 255, 0.2);
+        }
+    }
+
+    /* Minimal Mode */
+    &--minimal {
+        border-color: #334155;
+
+        .ark-html-viewer__toolbar {
+            background: #1e293b;
+            border-color: #334155;
+        }
+
+        .ark-html-viewer__viewport {
+            background: #1e293b;
+        }
+    }
+}
+
+@keyframes ark-viewer-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

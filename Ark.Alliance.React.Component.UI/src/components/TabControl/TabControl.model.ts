@@ -74,7 +74,7 @@ export const TabControlModelSchema = extendSchema({
     iconsOnly: z.boolean().default(false),
 
     /** Dark mode variant */
-    isDark: z.boolean().default(true),
+    isDark: z.boolean().optional(),
 });
 
 // ═══════════════════════════════════════════════════════════════════════════

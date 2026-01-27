@@ -1,0 +1,247 @@
+/**
+ * DataGrid Component Styles
+ */
+
+@use 'sass:map';
+
+/* ─── Variables ─── */
+.ark-data-grid {
+    --grid-bg: var(--ark-bg-secondary, #111827);
+    --grid-border: var(--ark-border-color, rgba(75, 85, 99, 0.3));
+    --grid-text: var(--ark-text-primary, #f0f0f0);
+    --grid-header-bg: rgba(31, 41, 55, 0.5);
+    --grid-row-hover: rgba(0, 212, 255, 0.05);
+    --grid-row-selected: rgba(0, 212, 255, 0.1);
+    --grid-accent: var(--ark-primary, #00d4ff);
+
+    border-radius: 0.5rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background: var(--grid-bg);
+    border: 1px solid var(--grid-border);
+    color: var(--grid-text);
+
+    /* Container Query Setup */
+    container-type: inline-size;
+    container-name: grid-container;
+
+    /* Light Theme Variant */
+    &--light {
+        --grid-bg: #ffffff;
+        --grid-border: #e5e7eb;
+        --grid-text: #1f2937;
+        --grid-header-bg: #f9fafb;
+        --grid-row-hover: #f9fafb;
+        --grid-row-selected: #eff6ff;
+        --grid-accent: #3b82f6;
+    }
+}
+
+/* ─── Header ─── */
+.ark-data-grid__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--grid-border);
+    background: var(--grid-header-bg);
+
+    @container grid-container (max-width: 500px) {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+
+        &-actions {
+            width: 100%;
+            justify-content: flex-end;
+        }
+    }
+
+    &-title h3 {
+        margin: 0;
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: var(--grid-text);
+    }
+
+    &-subtitle {
+        font-size: 0.75rem;
+        color: var(--ark-text-muted, #9ca3af);
+        margin-left: 0.5rem;
+    }
+
+    &-actions {
+        display: flex;
+        gap: 0.5rem;
+    }
+}
+
+.ark-data-grid__action-btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    border-radius: 0.25rem;
+    border: 1px solid color-mix(in srgb, var(--grid-accent), transparent 70%);
+    background: color-mix(in srgb, var(--grid-accent), transparent 90%);
+    color: var(--grid-accent);
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover:not(:disabled) {
+        background: color-mix(in srgb, var(--grid-accent), transparent 80%);
+    }
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+}
+
+/* ─── Filter Section ─── */
+.ark-data-grid__filters {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--grid-border);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+    background: var(--grid-header-bg);
+}
+
+/* ─── Table Wrapper ─── */
+.ark-data-grid__table-wrapper {
+    overflow: auto;
+    flex: 1;
+}
+
+/* ─── Table ─── */
+.ark-data-grid__table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8125rem;
+}
+
+/* ─── Header Cells ─── */
+.ark-data-grid__th {
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--grid-header-bg);
+    border-bottom: 1px solid var(--grid-border);
+    color: var(--ark-text-muted, #9ca3af);
+
+    &--sortable {
+        cursor: pointer;
+        user-select: none;
+
+        &:hover {
+            color: var(--grid-accent);
+        }
+    }
+
+    &--checkbox {
+        width: 40px;
+        text-align: center;
+    }
+}
+
+/* ─── Body Cells ─── */
+.ark-data-grid__td {
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid var(--grid-border);
+    color: var(--grid-text);
+
+    &--checkbox {
+        width: 40px;
+        text-align: center;
+    }
+}
+
+/* ─── Rows ─── */
+.ark-data-grid__tr {
+    transition: background 0.15s ease;
+    background-color: var(--grid-bg);
+
+    &:hover {
+        background: var(--grid-row-hover);
+    }
+
+    &--selected {
+        background: var(--grid-row-selected) !important;
+    }
+}
+
+/* ─── Loading/Empty ─── */
+.ark-data-grid__loading,
+.ark-data-grid__empty {
+    text-align: center;
+    padding: 2rem;
+    color: var(--ark-text-muted, #6b7280);
+    font-style: italic;
+}
+
+/* ─── Footer ─── */
+.ark-data-grid__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+    border-top: 1px solid var(--grid-border);
+    background: var(--grid-bg);
+
+    @container grid-container (max-width: 500px) {
+        flex-direction: column;
+        gap: 0.5rem;
+
+        .ark-data-grid__pagination {
+            width: 100%;
+            justify-content: space-between;
+        }
+    }
+}
+
+.ark-data-grid__count {
+    color: var(--ark-text-muted, #6b7280);
+}
+
+.ark-data-grid__pagination {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.ark-data-grid__page-btn {
+    width: 1.5rem;
+    height: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--grid-border);
+    border-radius: 0.25rem;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    transition: all 0.15s ease;
+
+    &:hover:not(:disabled) {
+        background: color-mix(in srgb, var(--grid-accent), transparent 90%);
+        border-color: var(--grid-accent);
+    }
+
+    &:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+    }
+}
+
+.ark-data-grid__page-info {
+    color: var(--ark-text-muted, #6b7280);
+}

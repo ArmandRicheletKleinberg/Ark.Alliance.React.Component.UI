@@ -23,6 +23,7 @@ export const ButtonVariant = z.enum([
     'danger',
     'success',
     'link',
+    'neon',
 ]);
 
 /**
@@ -72,6 +73,9 @@ export const ButtonModelSchema = extendSchema({
 
     /** Pill-shaped button (fully rounded) */
     pill: z.boolean().default(false),
+
+    /** Dark mode (optional, auto-detected if not provided) */
+    isDark: z.boolean().optional(),
 });
 
 // ═══════════════════════════════════════════════════════════════════════════

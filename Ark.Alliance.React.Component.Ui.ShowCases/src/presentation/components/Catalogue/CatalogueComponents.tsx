@@ -14,7 +14,7 @@ interface CatalogueComponentsProps {
 
 export const CatalogueComponents: React.FC<CatalogueComponentsProps> = ({ configs }) => {
     return (
-        <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 p-8 items-start">
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 px-6 py-4 items-start">
             {configs.map(config => {
                 const Component = resolveComponent(config.componentId);
                 // Determine column span based on minWidth

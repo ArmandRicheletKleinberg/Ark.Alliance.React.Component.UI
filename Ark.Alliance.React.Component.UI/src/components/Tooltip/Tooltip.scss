@@ -1,0 +1,120 @@
+/**
+ * Tooltip Styles
+ */
+
+.ark-tooltip-trigger {
+    display: inline-block;
+    position: relative;
+}
+
+.ark-tooltip {
+    position: fixed;
+    z-index: 9999;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    line-height: 1.4;
+    white-space: nowrap;
+    border-radius: 0.375rem;
+    pointer-events: none;
+    animation: ark-tooltip-fade-in var(--ark-transition-fast, 100ms) ease-out;
+
+    /* Dark theme default */
+    background: rgba(17, 24, 39, 0.95);
+    color: #f3f4f6;
+    border: 1px solid rgba(75, 85, 99, 0.5);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+
+    /* Light theme */
+    [data-theme="light"] & {
+        background: rgba(255, 255, 255, 0.98);
+        color: #1f2937;
+        border-color: #e5e7eb;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Position adjustments */
+    &--top {
+        transform: translate(-50%, -100%);
+    }
+
+    &--bottom {
+        transform: translate(-50%, 0);
+    }
+
+    &--left {
+        transform: translate(-100%, -50%);
+    }
+
+    &--right {
+        transform: translate(0, -50%);
+    }
+
+    /* Arrow */
+    &__arrow {
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        background: inherit;
+        border: inherit;
+        border-width: 0 1px 1px 0;
+        transform: rotate(45deg);
+    }
+
+    &--top &__arrow {
+        bottom: -5px;
+        left: 50%;
+        margin-left: -4px;
+        border-width: 0 1px 1px 0;
+    }
+
+    &--bottom &__arrow {
+        top: -5px;
+        left: 50%;
+        margin-left: -4px;
+        transform: rotate(-135deg);
+    }
+
+    &--left &__arrow {
+        right: -5px;
+        top: 50%;
+        margin-top: -4px;
+        transform: rotate(-45deg);
+    }
+
+    &--right &__arrow {
+        left: -5px;
+        top: 50%;
+        margin-top: -4px;
+        transform: rotate(135deg);
+    }
+}
+
+/* Animation */
+@keyframes ark-tooltip-fade-in {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -100%) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, -100%) scale(1);
+    }
+}
+
+.ark-tooltip--bottom {
+    animation-name: ark-tooltip-fade-in-bottom;
+}
+
+@keyframes ark-tooltip-fade-in-bottom {
+    from {
+        opacity: 0;
+        transform: translate(-50%, 0) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0) scale(1);
+    }
+}

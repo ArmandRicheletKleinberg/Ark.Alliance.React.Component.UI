@@ -1,0 +1,87 @@
+{
+    "id": "toast",
+    "componentId": "Toast",
+    "title": "Toast Notifications",
+    "description": "Non-blocking notification system with positions and stacking.",
+    "layout": {
+        "width": "100%",
+        "height": "400px"
+    },
+    "preview": {
+        "background": "dark"
+    },
+    "defaultProps": {
+        "position": "top-right",
+        "maxToasts": 5,
+        "stacked": true,
+        "gap": 12,
+        "animationDuration": 300,
+        "pauseOnHover": true,
+        "demoToastType": "success",
+        "demoToastMessage": "Operation completed successfully!"
+    },
+    "controls": [
+        {
+            "propName": "position",
+            "type": "select",
+            "label": "Position",
+            "options": [
+                "top-left",
+                "top-center",
+                "top-right",
+                "bottom-left",
+                "bottom-center",
+                "bottom-right"
+            ],
+            "group": "style"
+        },
+        {
+            "propName": "maxToasts",
+            "type": "slider",
+            "label": "Max Toasts",
+            "min": 1,
+            "max": 10,
+            "step": 1,
+            "group": "behavior"
+        },
+        {
+            "propName": "stacked",
+            "type": "boolean",
+            "label": "Stacked",
+            "group": "behavior"
+        },
+        {
+            "propName": "gap",
+            "type": "slider",
+            "label": "Gap (px)",
+            "min": 4,
+            "max": 24,
+            "step": 2,
+            "group": "style"
+        },
+        {
+            "propName": "pauseOnHover",
+            "type": "boolean",
+            "label": "Pause on Hover",
+            "group": "behavior"
+        },
+        {
+            "propName": "demoToastType",
+            "type": "select",
+            "label": "Demo Type",
+            "options": [
+                "success",
+                "error",
+                "warning",
+                "info"
+            ],
+            "group": "demo"
+        },
+        {
+            "propName": "demoToastMessage",
+            "type": "text",
+            "label": "Demo Message",
+            "group": "demo"
+        }
+    ]
+}

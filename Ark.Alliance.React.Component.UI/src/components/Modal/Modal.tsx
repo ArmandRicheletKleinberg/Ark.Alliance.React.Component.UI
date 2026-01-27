@@ -6,8 +6,9 @@
 import { forwardRef, memo, useEffect, useCallback, useMemo, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { useBaseViewModel } from '../../core/base';
+import { useTheme } from '../../core/theme/useTheme';
 import { ModalModelSchema, defaultModalModel, type ModalModel } from './Modal.model';
-import './Modal.styles.css';
+import './Modal.scss';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES
@@ -38,6 +39,9 @@ export const Modal = memo(forwardRef<HTMLDivElement, ModalProps>(
             eventChannel: 'modal',
         });
 
+        const { resolvedMode } = useTheme();
+        const isDark = base.model.isDark !== undefined ? base.model.isDark : resolvedMode === 'dark';
+
         // Escape key handler
         const handleKeyDown = useCallback((e: KeyboardEvent) => {
             if (e.key === 'Escape' && base.model.closeOnEscape) {
@@ -66,7 +70,7 @@ export const Modal = memo(forwardRef<HTMLDivElement, ModalProps>(
 
         const sizeClass = `ark-modal--${base.model.size}`;
         const variantClass = `ark-modal--${base.model.variant}`;
-        const themeClass = base.model.isDark ? 'ark-modal--dark' : 'ark-modal--light';
+        const themeClass = isDark ? 'ark-modal--dark' : 'ark-modal--light';
         const centeredClass = base.model.centered ? 'ark-modal--centered' : '';
 
         const modalContent = (

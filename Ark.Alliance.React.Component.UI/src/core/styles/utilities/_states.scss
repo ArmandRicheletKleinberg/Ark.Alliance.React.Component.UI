@@ -1,0 +1,42 @@
+@use '../abstracts/mixins' as *;
+
+// ═══════════════════════════════════════════════════════════════════════════
+// STATE UTILITIES
+// Common state patterns
+// ═══════════════════════════════════════════════════════════════════════════
+
+.ark-disabled {
+    @include disabled-state;
+}
+
+.ark-loading {
+    @include loading-state;
+}
+
+.ark-interactive {
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:active {
+        transform: translateY(1px);
+    }
+}
+
+.ark-scrollable {
+    overflow: auto;
+    scrollbar-width: thin;
+
+    &::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 3px;
+    }
+}
+
+.ark-glass {
+    @include glass-effect;
+}

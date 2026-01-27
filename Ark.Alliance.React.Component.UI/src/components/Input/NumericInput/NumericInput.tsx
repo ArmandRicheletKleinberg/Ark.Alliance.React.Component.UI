@@ -5,7 +5,7 @@
 
 import { forwardRef, memo } from 'react';
 import { useNumericInput, type UseNumericInputOptions } from './NumericInput.viewmodel';
-import './NumericInput.styles.css';
+import './NumericInput.scss';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES

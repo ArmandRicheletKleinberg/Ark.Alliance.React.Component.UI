@@ -8,6 +8,12 @@
 
 import { z } from 'zod';
 import { extendSchema } from '../../../core/base';
+import {
+    ExtendedSizeSchema,
+    RotationSchema,
+    FlipSchema,
+    HorizontalPositionSchema,
+} from '../../../core/enums';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // SCHEMA DEFINITIONS
@@ -24,19 +30,22 @@ export const FAIconStyle = z.enum(['solid', 'regular', 'brands']);
 export const FAIconPrefix = z.enum(['fas', 'far', 'fab']);
 
 /**
- * Icon size variants (matching base Icon)
+ * Icon size variants (matching base Icon + FA specific 3x-5x)
  */
-export const FAIconSize = z.enum(['xs', 'sm', 'md', 'lg', 'xl', '2xl', '3x', '4x', '5x']);
+export const FAIconSize = z.union([
+    ExtendedSizeSchema,
+    z.enum(['3x', '4x', '5x']),
+]);
 
 /**
  * Icon rotation angles
  */
-export const FAIconRotation = z.enum(['0', '90', '180', '270']);
+export const FAIconRotation = RotationSchema;
 
 /**
  * Icon flip directions
  */
-export const FAIconFlip = z.enum(['none', 'horizontal', 'vertical', 'both']);
+export const FAIconFlip = FlipSchema;
 
 /**
  * Font Awesome Icon model schema
@@ -73,7 +82,7 @@ export const FAIconModelSchema = extendSchema({
     border: z.boolean().default(false),
 
     /** Pull icon left or right (float behavior) */
-    pull: z.enum(['left', 'right']).optional(),
+    pull: HorizontalPositionSchema.optional(),
 
     /** Cursor style when interactive */
     cursor: z.enum(['default', 'pointer', 'not-allowed']).optional(),

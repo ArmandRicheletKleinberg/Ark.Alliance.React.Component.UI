@@ -1,0 +1,93 @@
+{
+    "id": "desktop-page",
+    "componentId": "DesktopPage",
+    "title": "Desktop Page",
+    "description": "Complete desktop OS simulation with icons, windows, and taskbar.",
+    "layout": {
+        "width": "100%",
+        "minWidth": "full",
+        "height": "800px"
+    },
+    "preview": {
+        "background": "none",
+        "fullscreen": true
+    },
+    "defaultProps": {
+        "wallpaper": "gradient",
+        "visualMode": "neon",
+        "showTaskbar": true,
+        "showStartMenu": false,
+        "showIcons": true,
+        "gridColumns": 10,
+        "gridRows": 6,
+        "iconSet": "default"
+    },
+    "controls": [
+        {
+            "propName": "wallpaper",
+            "type": "select",
+            "label": "Wallpaper",
+            "options": [
+                "gradient",
+                "dark",
+                "light",
+                "image"
+            ],
+            "group": "style"
+        },
+        {
+            "propName": "visualMode",
+            "type": "select",
+            "label": "Visual Mode",
+            "options": [
+                "normal",
+                "neon",
+                "minimal",
+                "glass"
+            ],
+            "group": "style"
+        },
+        {
+            "propName": "showTaskbar",
+            "type": "boolean",
+            "label": "Show Taskbar",
+            "group": "behavior"
+        },
+        {
+            "propName": "showIcons",
+            "type": "boolean",
+            "label": "Show Desktop Icons",
+            "group": "behavior"
+        },
+        {
+            "propName": "gridColumns",
+            "type": "slider",
+            "label": "Grid Columns",
+            "min": 4,
+            "max": 20,
+            "step": 1,
+            "group": "layout"
+        },
+        {
+            "propName": "gridRows",
+            "type": "slider",
+            "label": "Grid Rows",
+            "min": 2,
+            "max": 12,
+            "step": 1,
+            "group": "layout"
+        },
+        {
+            "propName": "iconSet",
+            "type": "select",
+            "label": "Icon Set",
+            "options": [
+                "default",
+                "trading",
+                "dev",
+                "productivity"
+            ],
+            "group": "content"
+        }
+    ]
+}

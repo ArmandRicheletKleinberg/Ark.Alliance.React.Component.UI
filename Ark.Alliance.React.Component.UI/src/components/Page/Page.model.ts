@@ -64,7 +64,7 @@ export const PageModelSchema = extendSchema({
     padding: PaddingSchema.default('md'),
 
     /** Dark mode */
-    isDark: z.boolean().default(true),
+    isDark: z.boolean().optional(),
 });
 
 // ═══════════════════════════════════════════════════════════════════════════

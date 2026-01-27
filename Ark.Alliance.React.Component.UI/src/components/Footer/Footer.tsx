@@ -5,7 +5,7 @@
 
 import { forwardRef, memo, type ReactNode } from 'react';
 import { useFooter, type UseFooterOptions } from './Footer.viewmodel';
-import './Footer.styles.css';
+import './Footer.scss';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES

@@ -10,6 +10,14 @@ import { extendSchema } from '../../core/base';
 import {
     FontWeightSchema,
     HorizontalPositionSchema,
+    BackgroundTypeSchema,
+    AnimationTypeSchema,
+    VisualModeSchema,
+    ExtendedSizeSchema,
+    ComponentSizeSchema,
+    ButtonVariantSchema,
+    TextAlignmentSchema,
+    HeightSchema,
     type FontWeight,
     type HorizontalPosition,
 } from '../../core/enums';
@@ -23,14 +31,14 @@ import {
  * (Background types are component-specific)
  */
 export const BackgroundConfigSchema = z.object({
-    type: z.enum(['solid', 'gradient', 'image', 'animated', 'pattern']).default('solid'),
+    type: BackgroundTypeSchema.default('solid'),
     color: z.string().optional(),
     gradientStart: z.string().optional(),
     gradientEnd: z.string().optional(),
     gradientAngle: z.number().default(135),
     imageUrl: z.string().optional(),
     imageOpacity: z.number().min(0).max(100).default(100),
-    animationType: z.enum(['waves', 'particles', 'gradient-shift', 'aurora']).optional(),
+    animationType: AnimationTypeSchema.optional(),
     overlay: z.boolean().default(false),
     overlayColor: z.string().default('rgba(0, 0, 0, 0.5)'),
     overlayOpacity: z.number().min(0).max(100).default(50),
@@ -41,13 +49,13 @@ export const BackgroundConfigSchema = z.object({
  */
 export const TypographyConfigSchema = z.object({
     titleFont: z.string().optional(),
-    titleSize: z.enum(['xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl']).default('md'),
+    titleSize: ExtendedSizeSchema.default('md'),
     titleWeight: FontWeightSchema.default('semibold'),
     titleColor: z.string().optional(),
     subtitleFont: z.string().optional(),
-    subtitleSize: z.enum(['xs', 'sm', 'md', 'lg']).default('sm'),
+    subtitleSize: ComponentSizeSchema.default('sm'),
     subtitleColor: z.string().optional(),
-    textAlign: z.enum(['left', 'center', 'right']).default('left'),
+    textAlign: TextAlignmentSchema.default('left'),
 });
 
 /**
@@ -78,7 +86,7 @@ export const ActionConfigSchema = z.object({
     id: z.string(),
     label: z.string().optional(),
     icon: z.string().optional(),
-    variant: z.enum(['primary', 'secondary', 'ghost', 'danger', 'outline']).default('secondary'),
+    variant: ButtonVariantSchema.default('secondary'),
     tooltip: z.string().optional(),
     disabled: z.boolean().default(false),
     // onClick is handled by React, not validated by Zod
@@ -91,7 +99,7 @@ export const ActionConfigSchema = z.object({
 /**
  * Visual mode enum (component-specific)
  */
-export const VisualMode = z.enum(['normal', 'neon', 'minimal', 'glass']);
+export const VisualMode = VisualModeSchema;
 
 /**
  * Header variant enum (component-specific)
@@ -110,14 +118,14 @@ export const HeaderModelSchema = extendSchema({
     // ─── Icon ─────────────────────────────────────────────────────────────
     icon: z.string().optional(),
     iconPosition: HorizontalPositionSchema.default('left'),
-    iconSize: z.enum(['sm', 'md', 'lg', 'xl']).default('md'),
+    iconSize: ComponentSizeSchema.default('md'),
 
     // ─── Visual Mode ──────────────────────────────────────────────────────
     visualMode: VisualMode.default('normal'),
     variant: HeaderVariant.default('panel'),
 
     // ─── Theme ────────────────────────────────────────────────────────────
-    isDark: z.boolean().default(true),
+    isDark: z.boolean().optional(),
 
     // ─── Background ───────────────────────────────────────────────────────
     background: BackgroundConfigSchema.optional(),
@@ -139,7 +147,7 @@ export const HeaderModelSchema = extendSchema({
 
     // ─── Layout ───────────────────────────────────────────────────────────
     sticky: z.boolean().default(false),
-    height: z.enum(['compact', 'normal', 'large']).default('normal'),
+    height: HeightSchema.default('normal'),
     alignment: z.enum(['left', 'center', 'right', 'space-between']).default('space-between'),
 });
 
@@ -169,7 +177,7 @@ export const defaultHeaderModel: Omit<HeaderModel, 'title'> & { title?: string }
     iconSize: 'md',
     visualMode: 'normal',
     variant: 'panel',
-    isDark: true,
+    isDark: undefined,
     background: undefined,
     typography: undefined,
     borderRadius: 'none',

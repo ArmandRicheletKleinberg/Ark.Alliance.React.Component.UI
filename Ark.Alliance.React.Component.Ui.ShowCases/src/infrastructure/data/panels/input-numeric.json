@@ -18,37 +18,37 @@
     "controls": [
         {
             "type": "text",
-            "name": "label",
+            "propName": "label",
             "label": "Label",
             "defaultValue": "Amount"
         },
         {
             "type": "text",
-            "name": "unit",
+            "propName": "unit",
             "label": "Unit Suffix",
             "defaultValue": "USD"
         },
         {
             "type": "number",
-            "name": "min",
+            "propName": "min",
             "label": "Min Value",
             "defaultValue": 0
         },
         {
             "type": "number",
-            "name": "max",
+            "propName": "max",
             "label": "Max Value",
             "defaultValue": 1000
         },
         {
             "type": "number",
-            "name": "step",
+            "propName": "step",
             "label": "Step Size",
             "defaultValue": 10
         },
         {
             "type": "slider",
-            "name": "decimals",
+            "propName": "decimals",
             "label": "Decimals",
             "defaultValue": 2,
             "min": 0,
@@ -56,13 +56,13 @@
         },
         {
             "type": "boolean",
-            "name": "showStepper",
+            "propName": "showStepper",
             "label": "Show Stepper",
             "defaultValue": true
         },
         {
             "type": "select",
-            "name": "size",
+            "propName": "size",
             "label": "Size",
             "defaultValue": "md",
             "options": [

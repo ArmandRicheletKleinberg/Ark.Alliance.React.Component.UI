@@ -9,7 +9,7 @@
 import React, { memo, forwardRef } from 'react';
 import { useDesktopIcon, type UseDesktopIconOptions } from './DesktopIcon.viewmodel';
 import { FAIcon, Icon } from '../../Icon';
-import './DesktopIcon.styles.css';
+import './DesktopIcon.scss';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES

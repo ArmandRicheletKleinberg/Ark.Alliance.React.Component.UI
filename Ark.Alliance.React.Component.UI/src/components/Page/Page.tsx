@@ -13,7 +13,7 @@
 
 import { forwardRef, memo, type ReactNode } from 'react';
 import { usePage, type UsePageOptions } from './Page.viewmodel';
-import './Page.styles.css';
+import './Page.scss';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES

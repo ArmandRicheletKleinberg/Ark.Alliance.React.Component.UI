@@ -1,0 +1,69 @@
+/**
+ * CandlestickRenderer Styles
+ * 
+ * Styles for the OHLCV candlestick chart primitive.
+ */
+
+/* Container */
+.ark-candlestick-renderer {
+    display: block;
+    width: 100%;
+    height: auto;
+
+    /* Candle Layer */
+    &__candle-layer {
+        /* Container for all candles */
+    }
+
+    &__candle {
+        transition: opacity 0.15s ease;
+
+        &:hover {
+            opacity: 0.8;
+
+            .ark-candlestick-renderer__body {
+                filter: brightness(1.1);
+            }
+        }
+    }
+
+    /* Wick */
+    &__wick {
+        stroke-linecap: round;
+    }
+
+    /* Body */
+    &__body {
+        transition: filter 0.15s ease;
+
+        &--doji {
+            stroke-linecap: round;
+        }
+    }
+
+    /* Volume */
+    &__volume-layer {
+        /* Container for volume bars */
+    }
+
+    &__volume-bar {
+        transition: opacity 0.15s ease;
+    }
+
+    &--with-volume &__volume-bar:hover {
+        opacity: 0.5;
+    }
+
+    /* Modifiers */
+    &__candle--bullish &__body {
+        /* Green candle styling handled via fill prop */
+    }
+
+    &__candle--bearish &__body {
+        /* Red candle styling handled via fill prop */
+    }
+
+    &__candle--doji &__wick {
+        stroke-width: 1.5px;
+    }
+}

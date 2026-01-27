@@ -6,7 +6,7 @@
  */
 
 import { memo } from 'react';
-import './ConnectionIndicator.styles.css';
+import './ConnectionIndicator.scss';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES
@@ -40,10 +40,10 @@ export interface ConnectionIndicatorProps {
 // ═══════════════════════════════════════════════════════════════════════════
 
 const STATUS_CONFIG: Record<ConnectionStatus, { label: string; color: string }> = {
-    connected: { label: 'LIVE', color: '#22c55e' },
-    disconnected: { label: 'DISCONNECTED', color: '#ef4444' },
-    connecting: { label: 'CONNECTING', color: '#eab308' },
-    error: { label: 'ERROR', color: '#ef4444' },
+    connected: { label: 'LIVE', color: 'var(--ark-success, #22c55e)' },
+    disconnected: { label: 'DISCONNECTED', color: 'var(--ark-error, #ef4444)' },
+    connecting: { label: 'CONNECTING', color: 'var(--ark-warning, #eab308)' },
+    error: { label: 'ERROR', color: 'var(--ark-error, #ef4444)' },
 };
 
 // ═══════════════════════════════════════════════════════════════════════════

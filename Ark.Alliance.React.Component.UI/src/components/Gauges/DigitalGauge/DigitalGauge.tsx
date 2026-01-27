@@ -8,7 +8,7 @@
 
 import { forwardRef, memo, useMemo } from 'react';
 import { useGauge, type UseGaugeOptions } from '../Gauge.viewmodel';
-import './DigitalGauge.styles.css';
+import './DigitalGauge.scss';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES

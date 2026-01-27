@@ -73,7 +73,7 @@ export const ProgressBarModelSchema = extendSchema({
     indeterminate: z.boolean().default(false),
 
     /** Dark mode */
-    isDark: z.boolean().default(true),
+    isDark: z.boolean().optional(),
 
     /** Color zones for dynamic color based on percentage */
     colorZones: z.array(ColorZoneSchema).optional(),
@@ -107,7 +107,7 @@ export const defaultProgressBarModel: ProgressBarModel = {
     color: 'cyan',
     animated: false,
     indeterminate: false,
-    isDark: true,
+    isDark: undefined,
     disabled: false,
     loading: false,
     clickable: false,

@@ -1,0 +1,105 @@
+/**
+ * TradingGridCard Styles
+ */
+
+.ark-trading-card {
+    border-radius: 0.75rem;
+    overflow: hidden;
+    transition: all 0.3s ease;
+
+    &--clickable {
+        cursor: pointer;
+    }
+
+    /* Header */
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.625rem 1rem;
+
+        &--dark {
+            border-bottom: 1px solid var(--ark-border-color);
+        }
+
+        &--light {
+            border-bottom: 1px solid var(--ark-border-color);
+        }
+    }
+
+    &__title-group {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    &__icon-wrapper {
+        position: relative;
+    }
+
+    &__icon-glow {
+        position: absolute;
+        inset: 0;
+        border-radius: 0.5rem;
+        filter: blur(8px);
+        opacity: 0.5;
+
+        &--idle {
+            background: color-mix(in srgb, var(--ark-primary), transparent 70%);
+        }
+
+        &--success {
+            background: color-mix(in srgb, var(--ark-success), transparent 70%);
+        }
+
+        &--warning {
+            background: color-mix(in srgb, var(--ark-warning), transparent 70%);
+        }
+
+        &--error {
+            background: color-mix(in srgb, var(--ark-error), transparent 70%);
+        }
+    }
+
+    &__icon {
+        position: relative;
+        color: var(--ark-text-muted);
+
+        &--dark {
+            color: var(--ark-text-secondary);
+        }
+    }
+
+    &__title {
+        margin: 0;
+        font-size: 0.875rem;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        color: var(--ark-text-primary);
+
+        &--dark {
+            color: var(--ark-text-primary);
+        }
+    }
+
+    &__subtitle {
+        margin: 0.125rem 0 0;
+        font-size: 0.75rem;
+        color: var(--ark-text-secondary);
+
+        &--dark {
+            color: var(--ark-text-secondary);
+        }
+    }
+
+    &__actions {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    /* Body */
+    &__body {
+        padding: 0.75rem 1rem;
+    }
+}

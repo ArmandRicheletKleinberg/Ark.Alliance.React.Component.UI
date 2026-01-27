@@ -8,6 +8,7 @@
 
 import { useMemo } from 'react';
 import { useBaseViewModel, type BaseViewModelResult } from '../../core/base';
+import { useTheme } from '../../core/theme/useTheme';
 import type { PageModel } from './Page.model';
 import { PageModelSchema, defaultPageModel } from './Page.model';
 
@@ -95,11 +96,15 @@ export function usePage(options: UsePageOptions = {}): UsePageResult {
         eventChannel: 'page',
     });
 
+    const { resolvedMode } = useTheme();
+    const isDark = base.model.isDark !== undefined ? base.model.isDark : resolvedMode === 'dark';
+
     // Computed CSS classes for page container
     const pageClasses = useMemo(() => {
         const classes = ['ark-page'];
         if (base.model.className) classes.push(base.model.className);
-        if (base.model.isDark) classes.push('ark-page--dark');
+        if (base.model.className) classes.push(base.model.className);
+        if (isDark) classes.push('ark-page--dark');
         else classes.push('ark-page--light');
         classes.push(`ark-page--layout-${base.model.layout}`);
         classes.push(`ark-page--padding-${base.model.padding}`);

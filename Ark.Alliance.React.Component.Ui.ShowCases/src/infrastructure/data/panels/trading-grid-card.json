@@ -1,0 +1,59 @@
+{
+    "id": "trading-grid-card",
+    "componentId": "TradingGridCard",
+    "title": "Trading Grid Card",
+    "description": "Container card for trading grids with header, status, and styling.",
+    "layout": {
+        "width": "100%",
+        "height": "auto"
+    },
+    "preview": {
+        "background": "dark"
+    },
+    "defaultProps": {
+        "title": "Trading Dashboard",
+        "status": "idle",
+        "compact": false,
+        "showHeader": true,
+        "isDark": true
+    },
+    "controls": [
+        {
+            "propName": "title",
+            "type": "text",
+            "label": "Title",
+            "group": "content"
+        },
+        {
+            "propName": "status",
+            "type": "select",
+            "label": "Status",
+            "options": [
+                "idle",
+                "loading",
+                "success",
+                "error",
+                "warning"
+            ],
+            "group": "behavior"
+        },
+        {
+            "propName": "compact",
+            "type": "boolean",
+            "label": "Compact",
+            "group": "style"
+        },
+        {
+            "propName": "showHeader",
+            "type": "boolean",
+            "label": "Show Header",
+            "group": "style"
+        },
+        {
+            "propName": "isDark",
+            "type": "boolean",
+            "label": "Dark Mode",
+            "group": "style"
+        }
+    ]
+}

@@ -1,0 +1,269 @@
+/**
+ * FinancialChart Component Styles
+ * 
+ * Styles for the complete financial chart visualization.
+ */
+
+@use 'sass:map';
+
+/* ─── Variables ─── */
+.ark-financial-chart {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: var(--ark-bg-primary, #111827);
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    color: var(--ark-text-primary, #f9fafb);
+
+    /* Light Theme Overrides (if not handled by global variables) */
+    @media (prefers-color-scheme: light) {
+        --ark-bg-primary: #ffffff;
+        --ark-text-primary: #111827;
+        /* Add other light mode maps if global tokens aren't sufficient */
+    }
+
+    [data-theme="light"] & {
+        --ark-bg-primary: #ffffff;
+        --ark-text-primary: #111827;
+    }
+}
+
+/* ─── Background Image ─── */
+.ark-financial-chart__bg-image {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-position: center;
+    background-size: cover;
+    transform-origin: center center;
+    transition: transform 0.2s ease-out;
+}
+
+/* ─── Header ─── */
+.ark-financial-chart__header {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1.5rem;
+    background: color-mix(in srgb, var(--ark-bg-primary), transparent 20%);
+    backdrop-filter: blur(4px);
+    border-bottom: 1px solid var(--ark-border-color, #374151);
+
+    &-left {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    &-right {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+}
+
+.ark-financial-chart__title {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--ark-text-primary);
+    letter-spacing: -0.025em;
+}
+
+.ark-financial-chart__symbol-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.5rem;
+    font-family: ui-monospace, monospace;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--ark-primary, #3b82f6);
+    background: var(--ark-bg-secondary, #1f2937);
+    border: 1px solid var(--ark-border-color, #374151);
+    border-radius: 4px;
+
+    .ark-financial-chart--connected & {
+        border-color: var(--ark-success, #10b981);
+    }
+}
+
+.ark-financial-chart__current-price {
+    font-family: ui-monospace, monospace;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--ark-text-muted, #9ca3af);
+}
+
+.ark-financial-chart__price-change {
+    font-family: ui-monospace, monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.125rem 0.375rem;
+    border-radius: 4px;
+
+    &--positive {
+        color: var(--ark-success, #10b981);
+        background: color-mix(in srgb, var(--ark-success, #10b981), transparent 90%);
+    }
+
+    &--negative {
+        color: var(--ark-error, #ef4444);
+        background: color-mix(in srgb, var(--ark-error, #ef4444), transparent 90%);
+    }
+}
+
+.ark-financial-chart__log-badge {
+    font-size: 0.625rem;
+    font-weight: 700;
+    color: var(--ark-warning, #f59e0b);
+    padding: 0.125rem 0.25rem;
+    border: 1px solid color-mix(in srgb, var(--ark-warning, #f59e0b), transparent 50%);
+    border-radius: 4px;
+}
+
+/* ─── Loading ─── */
+.ark-financial-chart__loading {
+    position: absolute;
+    inset: 0;
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    background: color-mix(in srgb, var(--ark-bg-primary), transparent 20%);
+    backdrop-filter: blur(4px);
+
+    &-spinner {
+        width: 2rem;
+        height: 2rem;
+        border: 3px solid var(--ark-primary, #3b82f6);
+        border-top-color: transparent;
+        border-radius: 50%;
+        animation: ark-financial-chart-spin 1s linear infinite;
+    }
+
+    span {
+        font-family: ui-monospace, monospace;
+        font-size: 0.875rem;
+        color: var(--ark-primary, #3b82f6);
+    }
+}
+
+@keyframes ark-financial-chart-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ─── Chart Container ─── */
+.ark-financial-chart__chart-container {
+    position: relative;
+    z-index: 10;
+    flex: 1;
+    width: 100%;
+    padding: 0.5rem;
+}
+
+.ark-financial-chart__svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* ─── Grid ─── */
+.ark-financial-chart__grid line {
+    stroke-opacity: 0.5;
+}
+
+/* ─── Price Line & Area ─── */
+.ark-financial-chart__price-line {
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.ark-financial-chart__area {
+    opacity: 0.8;
+}
+
+/* ─── Moving Averages ─── */
+.ark-financial-chart__ma-line {
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    opacity: 0.8;
+}
+
+/* ─── Threshold Lines ─── */
+.ark-financial-chart__threshold {
+    line {
+        stroke-width: 1;
+    }
+
+    text {
+        font-family: ui-monospace, monospace;
+    }
+}
+
+/* ─── Current Price Line ─── */
+.ark-financial-chart__current-price-line {
+    stroke-width: 1;
+}
+
+/* ─── Prediction Badges ─── */
+.ark-financial-chart__badge {
+    transition: transform 0.15s ease;
+
+    &:hover {
+        transform: scale(1.1);
+    }
+}
+
+/* ─── Legend ─── */
+.ark-financial-chart__legend {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.5rem 1rem;
+    background: color-mix(in srgb, var(--ark-bg-secondary, #1f2937), transparent 40%);
+    border-top: 1px solid var(--ark-border-color, #374151);
+
+    &-item {
+        display: flex;
+        align-items: center;
+        gap: 0.375rem;
+        font-size: 0.75rem;
+        color: var(--ark-text-muted, #9ca3af);
+    }
+
+    &-line {
+        display: inline-block;
+        width: 1rem;
+        height: 2px;
+        border-radius: 1px;
+    }
+
+    &-dot {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+
+        &--long {
+            background: var(--ark-success, #10b981);
+        }
+
+        &--short {
+            background: var(--ark-error, #ef4444);
+        }
+    }
+}
+
+/* ─── Modifiers ─── */
+.ark-financial-chart--streaming .ark-financial-chart__header {
+    border-bottom-color: var(--ark-success, #10b981);
+}

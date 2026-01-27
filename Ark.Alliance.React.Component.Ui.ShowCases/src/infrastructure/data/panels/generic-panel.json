@@ -1,0 +1,208 @@
+{
+    "id": "generic-panel",
+    "componentId": "GenericPanel",
+    "title": "Generic Panel",
+    "description": "Universal panel with glassmorphism, gradients, overlays, and layouts.",
+    "layout": {
+        "width": "100%",
+        "height": "400px"
+    },
+    "preview": {
+        "background": "dark"
+    },
+    "defaultProps": {
+        "title": "Advanced Panel",
+        "variant": "glass",
+        "padding": "md",
+        "collapsible": true,
+        "collapsed": false,
+        "glassBlur": 12,
+        "shadowIntensity": 30,
+        "borderRadius": 16,
+        "opacity": 90,
+        "useGradient": true,
+        "gradientStart": "#0f172a",
+        "gradientEnd": "#1e293b",
+        "gradientDirection": 135,
+        "showGrid": true,
+        "gridSize": 20,
+        "showGlow": true,
+        "glowColor": "#06b6d4",
+        "layout": "inline",
+        "scrollable": false
+    },
+    "controls": [
+        {
+            "propName": "title",
+            "type": "text",
+            "label": "Title",
+            "group": "content"
+        },
+        {
+            "propName": "variant",
+            "type": "select",
+            "label": "Variant",
+            "options": [
+                "default",
+                "glass",
+                "bordered",
+                "elevated"
+            ],
+            "group": "style"
+        },
+        {
+            "propName": "padding",
+            "type": "select",
+            "label": "Padding",
+            "options": [
+                "none",
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl"
+            ],
+            "group": "style"
+        },
+        {
+            "type": "divider",
+            "propName": "Collapsible"
+        },
+        {
+            "propName": "collapsible",
+            "type": "boolean",
+            "label": "Collapsible",
+            "group": "behavior"
+        },
+        {
+            "propName": "collapsed",
+            "type": "boolean",
+            "label": "Collapsed",
+            "group": "behavior"
+        },
+        {
+            "type": "divider",
+            "propName": "Glass Effect"
+        },
+        {
+            "propName": "glassBlur",
+            "type": "slider",
+            "label": "Blur",
+            "min": 0,
+            "max": 40,
+            "step": 2,
+            "group": "style"
+        },
+        {
+            "propName": "shadowIntensity",
+            "type": "slider",
+            "label": "Shadow",
+            "min": 0,
+            "max": 100,
+            "step": 5,
+            "group": "style"
+        },
+        {
+            "propName": "borderRadius",
+            "type": "slider",
+            "label": "Radius",
+            "min": 0,
+            "max": 50,
+            "step": 2,
+            "group": "style"
+        },
+        {
+            "propName": "opacity",
+            "type": "slider",
+            "label": "Opacity",
+            "min": 0,
+            "max": 100,
+            "step": 5,
+            "group": "style"
+        },
+        {
+            "type": "divider",
+            "propName": "Gradient"
+        },
+        {
+            "propName": "useGradient",
+            "type": "boolean",
+            "label": "Use Gradient",
+            "group": "style"
+        },
+        {
+            "propName": "gradientStart",
+            "type": "color",
+            "label": "Gradient Start",
+            "group": "style"
+        },
+        {
+            "propName": "gradientEnd",
+            "type": "color",
+            "label": "Gradient End",
+            "group": "style"
+        },
+        {
+            "propName": "gradientDirection",
+            "type": "slider",
+            "label": "Direction",
+            "min": 0,
+            "max": 360,
+            "step": 15,
+            "group": "style"
+        },
+        {
+            "type": "divider",
+            "propName": "Overlays"
+        },
+        {
+            "propName": "showGrid",
+            "type": "boolean",
+            "label": "Show Grid",
+            "group": "style"
+        },
+        {
+            "propName": "gridSize",
+            "type": "slider",
+            "label": "Grid Size",
+            "min": 10,
+            "max": 50,
+            "step": 5,
+            "group": "style"
+        },
+        {
+            "propName": "showGlow",
+            "type": "boolean",
+            "label": "Show Glow",
+            "group": "style"
+        },
+        {
+            "propName": "glowColor",
+            "type": "color",
+            "label": "Glow Color",
+            "group": "style"
+        },
+        {
+            "type": "divider",
+            "propName": "Layout"
+        },
+        {
+            "propName": "layout",
+            "type": "select",
+            "label": "Layout",
+            "options": [
+                "inline",
+                "sidebar-left",
+                "sidebar-right",
+                "fullscreen"
+            ],
+            "group": "layout"
+        },
+        {
+            "propName": "scrollable",
+            "type": "boolean",
+            "label": "Scrollable",
+            "group": "behavior"
+        }
+    ]
+}

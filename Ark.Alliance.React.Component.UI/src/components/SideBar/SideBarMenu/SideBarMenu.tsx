@@ -8,7 +8,7 @@
 import { forwardRef, memo } from 'react';
 import { useSideBarMenu, type UseSideBarMenuOptions } from './SideBarMenu.viewmodel';
 import type { MenuItem, MenuCategory } from './SideBarMenu.model';
-import './SideBarMenu.styles.css';
+import './SideBarMenu.scss';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES

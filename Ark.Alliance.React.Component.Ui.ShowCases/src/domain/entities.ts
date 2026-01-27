@@ -9,19 +9,72 @@ import { ComponentType } from 'react';
 // CONFIGURATION TYPES (JSON Schema)
 // ═══════════════════════════════════════════════════════════════════════════
 
-export type ControlType = 'text' | 'number' | 'boolean' | 'select' | 'color' | 'slider' | 'icon';
+export type ControlType = 'text' | 'number' | 'boolean' | 'select' | 'color' | 'slider' | 'icon' | 'divider';
 
 export interface ControlDefinition {
     propName: string;
     type: ControlType;
     label?: string;
     description?: string;
-    group?: 'content' | 'style' | 'behavior';
+    group?: 'content' | 'style' | 'behavior' | 'data' | 'demo';
     // Specific options
     options?: string[]; // For select
-    min?: number;       // For slider
-    max?: number;       // For slider
-    step?: number;      // For slider
+    min?: number;       // For slider/number
+    max?: number;       // For slider/number
+    step?: number;      // For slider/number
+    defaultValue?: any;
+}
+
+export interface EnhancedControlDefinition extends ControlDefinition {
+    // Advanced control types
+    conditional?: {
+        dependsOn: string;
+        showWhen: any;
+    };
+    validation?: {
+        required?: boolean;
+        pattern?: RegExp;
+        min?: number;
+        max?: number;
+    };
+    // Code generation hints
+    codeTemplate?: string;
+}
+
+export interface ComponentDocumentation {
+    overview: string;
+    features: string[];
+    useCases: string[];
+    apiReference: {
+        props: PropDefinition[];
+        methods?: MethodDefinition[];
+        events?: EventDefinition[];
+    };
+    examples: CodeExample[];
+}
+
+export interface PropDefinition {
+    name: string;
+    type: string;
+    description: string;
+    defaultValue?: string;
+}
+
+export interface MethodDefinition {
+    name: string;
+    description: string;
+    signature: string;
+}
+
+export interface EventDefinition {
+    name: string;
+    description: string;
+}
+
+export interface CodeExample {
+    title: string;
+    description: string;
+    code: string;
 }
 
 export interface ComponentPanelConfig {
@@ -37,11 +90,24 @@ export interface ComponentPanelConfig {
     };
 
     preview: {
-        background?: 'light' | 'dark' | 'checker' | string;
+        background?: 'light' | 'dark' | 'checker' | 'none' | string;
+        fullscreen?: boolean;
     };
 
     controls: ControlDefinition[];
     defaultProps: Record<string, any>;
+}
+
+export interface EnhancedComponentPanelConfig extends ComponentPanelConfig {
+    documentation?: ComponentDocumentation;
+    mockDataGenerators?: Record<string, () => any>;
+    variants?: VariantConfig[];
+    relatedComponents?: string[];
+}
+
+export interface VariantConfig {
+    name: string;
+    props: Record<string, any>;
 }
 
 export interface CategoryConfig {

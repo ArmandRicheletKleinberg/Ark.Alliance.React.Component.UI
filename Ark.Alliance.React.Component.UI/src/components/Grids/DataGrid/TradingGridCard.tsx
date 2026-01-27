@@ -8,7 +8,7 @@
 
 import { forwardRef, memo, type ReactNode } from 'react';
 import { useTradingGridCard, type UseTradingGridCardOptions } from './TradingGridCard.viewmodel';
-import './TradingGridCard.styles.css';
+import './TradingGridCard.scss';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES

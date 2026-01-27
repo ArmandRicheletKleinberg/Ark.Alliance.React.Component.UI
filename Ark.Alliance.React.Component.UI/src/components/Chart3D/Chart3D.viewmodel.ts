@@ -5,7 +5,7 @@
 
 import { useMemo, useCallback, useState, useEffect } from 'react';
 import { useBaseViewModel, type BaseViewModelResult } from '../../core/base';
-import type { Chart3DModel, DataPoint } from './Chart3D.model';
+import type { Chart3DModel, DataPoint, PriceThreshold, ChartEventMarker, PriceRange } from './Chart3D.model';
 import { Chart3DModelSchema, defaultChart3DModel } from './Chart3D.model';
 import { generateInitialData, updateDataStream } from './services/dataService';
 
@@ -13,13 +13,27 @@ import { generateInitialData, updateDataStream } from './services/dataService';
 // TYPES
 // ═══════════════════════════════════════════════════════════════════════════
 
+/**
+ * Options for the useChart3D hook.
+ */
 export interface UseChart3DOptions extends Partial<Chart3DModel> {
     /** External data source (optional) */
     externalData?: DataPoint[];
+    /** Price thresholds for indicator lines */
+    thresholds?: PriceThreshold[];
+    /** Event markers (3D bubbles) */
+    eventMarkers?: ChartEventMarker[];
+    /** Price range for Y-axis normalization */
+    priceRange?: PriceRange;
     /** Config change handler */
     onConfigChange?: (config: Chart3DModel) => void;
+    /** Marker selection handler */
+    onMarkerSelect?: (marker: ChartEventMarker | null) => void;
 }
 
+/**
+ * Result returned by the useChart3D hook.
+ */
 export interface UseChart3DResult extends BaseViewModelResult<Chart3DModel> {
     /** Chart data points */
     data: DataPoint[];
@@ -35,14 +49,47 @@ export interface UseChart3DResult extends BaseViewModelResult<Chart3DModel> {
     toggleStreaming: () => void;
     /** Wrapper classes */
     wrapperClasses: string;
+    /** Price thresholds */
+    thresholds: PriceThreshold[];
+    /** Event markers */
+    eventMarkers: ChartEventMarker[];
+    /** Price range */
+    priceRange: PriceRange | undefined;
+    /** Currently selected marker */
+    selectedMarker: ChartEventMarker | null;
+    /** Set selected marker */
+    setSelectedMarker: (marker: ChartEventMarker | null) => void;
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
 // HOOK
 // ═══════════════════════════════════════════════════════════════════════════
 
+/**
+ * Hook for Chart3D logic and state management.
+ * 
+ * @param options - Configuration options for the chart
+ * @returns Chart3D state and handlers
+ * 
+ * @example
+ * ```tsx
+ * const vm = useChart3D({
+ *     shape: 'Candle',
+ *     thresholds: [{ label: 'Target', price: 45000, color: '#22c55e' }],
+ *     priceRange: { min: 40000, max: 50000 },
+ * });
+ * ```
+ */
 export function useChart3D(options: UseChart3DOptions): UseChart3DResult {
-    const { externalData, onConfigChange, ...modelData } = options;
+    const {
+        externalData,
+        thresholds: externalThresholds = [],
+        eventMarkers: externalMarkers = [],
+        priceRange: externalPriceRange,
+        onConfigChange,
+        onMarkerSelect,
+        ...modelData
+    } = options;
 
     // Parse model
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -58,6 +105,15 @@ export function useChart3D(options: UseChart3DOptions): UseChart3DResult {
     // State
     const [data, setData] = useState<DataPoint[]>([]);
     const [hoveredPoint, setHoveredPoint] = useState<DataPoint | null>(null);
+    const [selectedMarker, setSelectedMarkerState] = useState<ChartEventMarker | null>(null);
+
+    /**
+     * Sets the selected marker and notifies parent.
+     */
+    const setSelectedMarker = useCallback((marker: ChartEventMarker | null) => {
+        setSelectedMarkerState(marker);
+        onMarkerSelect?.(marker);
+    }, [onMarkerSelect]);
 
     // Initialize data
     useEffect(() => {
@@ -118,6 +174,11 @@ export function useChart3D(options: UseChart3DOptions): UseChart3DResult {
         resetData,
         toggleStreaming,
         wrapperClasses,
+        thresholds: externalThresholds,
+        eventMarkers: externalMarkers,
+        priceRange: externalPriceRange,
+        selectedMarker,
+        setSelectedMarker,
     };
 }
 

@@ -19,13 +19,13 @@
     "controls": [
         {
             "type": "text",
-            "name": "placeholder",
+            "propName": "placeholder",
             "label": "Placeholder",
             "defaultValue": "Start writing..."
         },
         {
             "type": "select",
-            "name": "visualMode",
+            "propName": "visualMode",
             "label": "Visual Mode",
             "defaultValue": "neon",
             "options": [
@@ -36,7 +36,7 @@
         },
         {
             "type": "select",
-            "name": "toolbarPosition",
+            "propName": "toolbarPosition",
             "label": "Toolbar Pos",
             "defaultValue": "top",
             "options": [
@@ -46,7 +46,7 @@
         },
         {
             "type": "slider",
-            "name": "minHeight",
+            "propName": "minHeight",
             "label": "Min Height",
             "defaultValue": 300,
             "min": 150,
@@ -54,24 +54,24 @@
         },
         {
             "type": "divider",
-            "name": "div1",
+            "propName": "div1",
             "label": "Features"
         },
         {
             "type": "boolean",
-            "name": "showToolbar",
+            "propName": "showToolbar",
             "label": "Show Toolbar",
             "defaultValue": true
         },
         {
             "type": "boolean",
-            "name": "showWordCount",
+            "propName": "showWordCount",
             "label": "Word Count",
             "defaultValue": true
         },
         {
             "type": "boolean",
-            "name": "enableAI",
+            "propName": "enableAI",
             "label": "AI Features",
             "defaultValue": false
         }

@@ -7,7 +7,7 @@
 
 import { forwardRef, memo } from 'react';
 import { useProgressBar, type UseProgressBarOptions } from './ProgressBar.viewmodel';
-import './ProgressBar.styles.css';
+import './ProgressBar.scss';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES

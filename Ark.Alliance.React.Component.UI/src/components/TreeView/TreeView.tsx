@@ -8,7 +8,7 @@ import { useTreeView, type UseTreeViewOptions } from './TreeView.viewmodel';
 import { TreeViewContext } from './TreeView.context';
 import { TreeNode } from './TreeNode/TreeNode';
 import { TreeNodeItem } from './TreeNode/TreeNode.model';
-import './TreeView.styles.css';
+import './TreeView.scss';
 
 export interface TreeViewProps extends UseTreeViewOptions {
     className?: string;

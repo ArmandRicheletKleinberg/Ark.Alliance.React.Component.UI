@@ -7,9 +7,9 @@ import React, { useState, useMemo } from 'react';
 import { ComponentPanelConfig, ControlDefinition } from '@/domain/entities';
 import { PropControl } from './PropControl';
 import { generateCode } from '@/Helpers/codeGenerator';
-import { Copy, Check, Code, Eye, BookOpen, Smartphone, Monitor, SlidersHorizontal } from 'lucide-react';
+import { Copy, Check, Code, Eye, BookOpen, Smartphone, Monitor } from 'lucide-react';
 import clsx from 'clsx';
-import { useTheme } from '@/presentation/context/ThemeContext';
+// import { useTheme } from '@/presentation/context/ThemeContext';
 
 interface ComponentPanelProps {
     config: ComponentPanelConfig;
@@ -17,7 +17,7 @@ interface ComponentPanelProps {
 }
 
 export const ComponentPanel: React.FC<ComponentPanelProps> = ({ config, ComponentToRender }) => {
-    const { mode } = useTheme();
+    // const { mode } = useTheme(); // Unused
     const [props, setProps] = useState(config.defaultProps);
     const [mainTab, setMainTab] = useState<'preview' | 'code' | 'docs'>('preview');
     const [codeLang, setCodeLang] = useState<'ts' | 'js' | 'go' | 'blazor'>('ts');

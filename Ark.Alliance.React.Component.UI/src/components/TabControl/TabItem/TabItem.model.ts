@@ -8,7 +8,7 @@
 
 import { z } from 'zod';
 import { extendSchema } from '../../../core/base';
-import { HorizontalPositionSchema, ComponentSizeSchema } from '../../../core/enums';
+import { HorizontalPositionSchema, ComponentSizeSchema, SemanticVariantSchema } from '../../../core/enums';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // SCHEMA DEFINITIONS
@@ -42,7 +42,7 @@ export const TabItemModelSchema = extendSchema({
     badge: z.union([z.string(), z.number()]).optional(),
 
     /** Badge variant for styling */
-    badgeVariant: z.enum(['default', 'primary', 'success', 'warning', 'error']).default('default'),
+    badgeVariant: z.union([z.literal('default'), SemanticVariantSchema]).default('default'),
 
     /** Whether the tab can be closed */
     closeable: z.boolean().default(false),

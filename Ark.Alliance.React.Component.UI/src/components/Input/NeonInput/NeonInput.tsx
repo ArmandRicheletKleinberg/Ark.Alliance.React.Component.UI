@@ -7,14 +7,14 @@
 
 import { forwardRef, memo, useState } from 'react';
 import { BaseInput } from '../BaseInput';
-import { useInput, type UseInputOptions } from '../Base/Input/Input.viewmodel';
-import './NeonInput.styles.css';
+import { useBaseInput, type UseBaseInputOptions } from '../BaseInput/BaseInput.viewmodel';
+import './NeonInput.scss';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES
 // ═══════════════════════════════════════════════════════════════════════════
 
-export interface NeonInputProps extends UseInputOptions {
+export interface NeonInputProps extends UseBaseInputOptions {
     /** Glow color */
     glowColor?: 'cyan' | 'blue' | 'purple' | 'green' | 'red';
     /** Name attribute */
@@ -52,17 +52,17 @@ export const NeonInput = memo(forwardRef<HTMLInputElement, NeonInputProps>(
             ...inputOptions
         } = props;
 
-        const vm = useInput(inputOptions);
+        const vm = useBaseInput(inputOptions);
         const [localFocused, setLocalFocused] = useState(false);
 
-        const handleFocus = () => {
+        const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
             setLocalFocused(true);
-            vm.handleFocus();
+            vm.handleFocus(e);
         };
 
-        const handleBlur = () => {
+        const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
             setLocalFocused(false);
-            vm.handleBlur();
+            vm.handleBlur(e);
         };
 
         const wrapperClasses = [

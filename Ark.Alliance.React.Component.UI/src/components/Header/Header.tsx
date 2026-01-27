@@ -9,7 +9,7 @@ import { useHeader, type UseHeaderOptions } from './Header.viewmodel';
 import { Icon } from '../Icon';
 import { Input } from '../Input';
 import { Button } from '../Buttons/Button';
-import './Header.styles.css';
+import './Header.scss';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES

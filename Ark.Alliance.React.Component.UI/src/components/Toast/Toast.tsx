@@ -15,7 +15,7 @@ import {
     TOAST_TYPE_ICONS,
 } from './Toast.model';
 import { type UseToastResult } from './Toast.viewmodel';
-import './Toast.styles.css';
+import './Toast.scss';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES

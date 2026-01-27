@@ -1,0 +1,89 @@
+{
+    "id": "toggle",
+    "componentId": "Toggle",
+    "title": "Toggle Switch",
+    "description": "On/off switch with customizable colors and labels.",
+    "layout": {
+        "width": "auto",
+        "height": "auto"
+    },
+    "preview": {
+        "background": "dark"
+    },
+    "defaultProps": {
+        "checked": true,
+        "onColor": "#10b981",
+        "offColor": "#4b5563",
+        "size": "md",
+        "label": "Enable Feature",
+        "labelPosition": "right",
+        "onLabel": "ON",
+        "offLabel": "OFF",
+        "disabled": false
+    },
+    "controls": [
+        {
+            "propName": "checked",
+            "type": "boolean",
+            "label": "Checked",
+            "group": "behavior"
+        },
+        {
+            "propName": "onColor",
+            "type": "color",
+            "label": "On Color",
+            "group": "style"
+        },
+        {
+            "propName": "offColor",
+            "type": "color",
+            "label": "Off Color",
+            "group": "style"
+        },
+        {
+            "propName": "size",
+            "type": "select",
+            "label": "Size",
+            "options": [
+                "sm",
+                "md",
+                "lg"
+            ],
+            "group": "style"
+        },
+        {
+            "propName": "label",
+            "type": "text",
+            "label": "Label",
+            "group": "content"
+        },
+        {
+            "propName": "labelPosition",
+            "type": "select",
+            "label": "Label Position",
+            "options": [
+                "left",
+                "right"
+            ],
+            "group": "style"
+        },
+        {
+            "propName": "onLabel",
+            "type": "text",
+            "label": "On Label",
+            "group": "content"
+        },
+        {
+            "propName": "offLabel",
+            "type": "text",
+            "label": "Off Label",
+            "group": "content"
+        },
+        {
+            "propName": "disabled",
+            "type": "boolean",
+            "label": "Disabled",
+            "group": "behavior"
+        }
+    ]
+}

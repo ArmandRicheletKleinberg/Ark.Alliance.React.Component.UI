@@ -1,0 +1,96 @@
+{
+    "id": "carousel",
+    "componentId": "Carousel",
+    "title": "Carousel",
+    "description": "Image/content slider with autoplay, gestures, and keyboard navigation.",
+    "layout": {
+        "width": "100%",
+        "minWidth": "full"
+    },
+    "preview": {
+        "background": "dark"
+    },
+    "defaultProps": {
+        "autoplay": true,
+        "interval": 5000,
+        "loop": true,
+        "showControls": true,
+        "showIndicators": true,
+        "showProgress": true,
+        "showPlayback": true,
+        "pauseOnHover": true,
+        "enableGestures": true,
+        "enableKeyboard": true,
+        "effect": "slide",
+        "slideSet": "hero"
+    },
+    "controls": [
+        {
+            "propName": "autoplay",
+            "type": "boolean",
+            "label": "Autoplay",
+            "group": "behavior"
+        },
+        {
+            "propName": "interval",
+            "type": "slider",
+            "label": "Interval (ms)",
+            "min": 1000,
+            "max": 10000,
+            "step": 500,
+            "group": "behavior"
+        },
+        {
+            "propName": "loop",
+            "type": "boolean",
+            "label": "Loop",
+            "group": "behavior"
+        },
+        {
+            "propName": "showControls",
+            "type": "boolean",
+            "label": "Show Arrows",
+            "group": "style"
+        },
+        {
+            "propName": "showIndicators",
+            "type": "boolean",
+            "label": "Show Dots",
+            "group": "style"
+        },
+        {
+            "propName": "showProgress",
+            "type": "boolean",
+            "label": "Show Progress",
+            "group": "style"
+        },
+        {
+            "propName": "showPlayback",
+            "type": "boolean",
+            "label": "Show Play/Pause",
+            "group": "style"
+        },
+        {
+            "propName": "pauseOnHover",
+            "type": "boolean",
+            "label": "Pause on Hover",
+            "group": "behavior"
+        },
+        {
+            "propName": "enableGestures",
+            "type": "boolean",
+            "label": "Touch Gestures",
+            "group": "behavior"
+        },
+        {
+            "propName": "effect",
+            "type": "select",
+            "label": "Effect",
+            "options": [
+                "slide",
+                "fade"
+            ],
+            "group": "style"
+        }
+    ]
+}

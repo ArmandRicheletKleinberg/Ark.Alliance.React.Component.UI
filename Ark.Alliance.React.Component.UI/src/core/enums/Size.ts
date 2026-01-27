@@ -66,6 +66,13 @@ export const ProgressSizeSchema = z.enum(['xs', 'sm', 'md', 'lg']);
  */
 export const ExtendedSizeSchema = z.enum(['xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl']);
 
+/**
+ * Height variant options.
+ * 
+ * Used for headers, footers, rows.
+ */
+export const HeightSchema = z.enum(['compact', 'normal', 'large']);
+
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPE EXPORTS
 // ═══════════════════════════════════════════════════════════════════════════
@@ -84,6 +91,9 @@ export type ProgressSize = z.infer<typeof ProgressSizeSchema>;
 
 /** Extended size type with 2xl/3xl */
 export type ExtendedSize = z.infer<typeof ExtendedSizeSchema>;
+
+/** Height variant type */
+export type Height = z.infer<typeof HeightSchema>;
 
 // ═══════════════════════════════════════════════════════════════════════════
 // CONSTANTS

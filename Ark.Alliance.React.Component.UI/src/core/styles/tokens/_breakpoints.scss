@@ -1,0 +1,23 @@
+// Breakpoints
+$breakpoints: (
+    'phone': (max: 599px),
+    'tablet': (min: 600px, max: 1023px),
+    'desktop': (min: 1024px),
+    'large': (min: 1440px),
+    'ultra': (min: 1920px),
+);
+
+// Mobile-first breakpoints
+$bp-sm: 640px;
+$bp-md: 768px;
+$bp-lg: 1024px;
+$bp-xl: 1280px;
+$bp-2xl: 1536px;
+
+:root {
+    --ark-bp-sm: #{$bp-sm};
+    --ark-bp-md: #{$bp-md};
+    --ark-bp-lg: #{$bp-lg};
+    --ark-bp-xl: #{$bp-xl};
+    --ark-bp-2xl: #{$bp-2xl};
+}

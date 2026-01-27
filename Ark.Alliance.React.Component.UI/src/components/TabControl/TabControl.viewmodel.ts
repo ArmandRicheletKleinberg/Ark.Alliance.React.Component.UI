@@ -8,6 +8,7 @@
 
 import { useState, useCallback, useMemo, useRef, useEffect } from 'react';
 import { useBaseViewModel, type BaseViewModelResult } from '../../core/base';
+import { useTheme } from '../../core/theme/useTheme';
 import {
     TabControlModelSchema,
     type TabControlModel,
@@ -103,6 +104,9 @@ export function useTabControl(options: UseTabControlOptions = {}): UseTabControl
     // Tab refs for focus management
     const tabRefs = useRef<Map<string, React.RefObject<HTMLButtonElement>>>(new Map());
 
+    const { resolvedMode } = useTheme();
+    const isDark = base.model.isDark !== undefined ? base.model.isDark : resolvedMode === 'dark';
+
     // Internal state (uncontrolled mode)
     const [internalActiveKey, setInternalActiveKey] = useState<string | undefined>(
         controlledActiveKey || base.model.defaultActiveKey || base.model.items[0]?.tabKey
@@ -132,10 +136,10 @@ export function useTabControl(options: UseTabControlOptions = {}): UseTabControl
         classes.push(`ark-tab-control--${base.model.size}`);
         if (base.model.fill) classes.push('ark-tab-control--fill');
         if (base.model.scrollable) classes.push('ark-tab-control--scrollable');
-        if (base.model.isDark) classes.push('ark-tab-control--dark');
+        if (isDark) classes.push('ark-tab-control--dark');
         if (base.model.className) classes.push(base.model.className);
         return classes.join(' ');
-    }, [base.model.variant, base.model.orientation, base.model.size, base.model.fill, base.model.scrollable, base.model.isDark, base.model.className]);
+    }, [base.model.variant, base.model.orientation, base.model.size, base.model.fill, base.model.scrollable, isDark, base.model.className]);
 
     const tablistClasses = useMemo(() => {
         const classes = ['ark-tab-control__list'];

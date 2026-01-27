@@ -15,25 +15,25 @@
     "controls": [
         {
             "type": "text",
-            "name": "label",
+            "propName": "label",
             "label": "Label",
             "defaultValue": "Asset"
         },
         {
             "type": "text",
-            "name": "placeholder",
+            "propName": "placeholder",
             "label": "Placeholder",
             "defaultValue": "Select an asset..."
         },
         {
             "type": "text",
-            "name": "helperText",
+            "propName": "helperText",
             "label": "Helper Text",
             "defaultValue": "Select base currency"
         },
         {
             "type": "select",
-            "name": "optionSet",
+            "propName": "optionSet",
             "label": "Data Source",
             "defaultValue": "crypto",
             "options": [
@@ -45,7 +45,7 @@
         },
         {
             "type": "select",
-            "name": "size",
+            "propName": "size",
             "label": "Size",
             "defaultValue": "md",
             "options": [
@@ -56,7 +56,7 @@
         },
         {
             "type": "boolean",
-            "name": "searchable",
+            "propName": "searchable",
             "label": "Searchable",
             "defaultValue": false
         }

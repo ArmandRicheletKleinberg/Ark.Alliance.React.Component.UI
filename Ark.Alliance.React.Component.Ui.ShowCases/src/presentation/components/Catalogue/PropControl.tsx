@@ -27,7 +27,7 @@ export const PropControl: React.FC<PropControlProps> = ({ definition, value, onC
 
         if (definition.type === 'boolean') {
             val = (e.target as HTMLInputElement).checked;
-        } else if (definition.type === 'slider') {
+        } else if (definition.type === 'slider' || definition.type === 'number') {
             const num = parseFloat(e.target.value);
             val = isNaN(num) ? (definition.min || 0) : num;
         }
@@ -123,7 +123,26 @@ export const PropControl: React.FC<PropControlProps> = ({ definition, value, onC
                 </div>
             );
         case 'icon':
-            const iconOptions = ['check', 'plus', 'minus', 'xmark', 'user', 'house', 'gear', 'bell', 'magnifying-glass', 'trash', 'pen', 'arrow-right', 'arrow-left', 'download', 'upload', 'share'];
+            const iconOptions = [
+                // Navigation
+                'house', 'arrow-left', 'arrow-right', 'arrow-up', 'arrow-down', 'chevron-left', 'chevron-right',
+                // Actions  
+                'check', 'xmark', 'plus', 'minus', 'pen', 'trash', 'download', 'upload', 'share', 'copy',
+                // UI
+                'gear', 'bell', 'user', 'magnifying-glass', 'bars', 'ellipsis-vertical',
+                // Status
+                'circle-check', 'circle-xmark', 'triangle-exclamation', 'circle-info',
+                // Media
+                'play', 'pause', 'stop', 'volume-high', 'volume-low', 'volume-xmark',
+                // Finance
+                'chart-line', 'chart-bar', 'wallet', 'credit-card', 'dollar-sign',
+                // Files
+                'file', 'folder', 'image', 'file-pdf', 'file-code',
+                // Communication
+                'envelope', 'comment', 'phone', 'video',
+                // Misc
+                'bolt', 'star', 'heart', 'bookmark', 'clock', 'calendar', 'lock', 'unlock'
+            ];
             return (
                 <div className="flex flex-col space-y-1.5 group">
                     <label className="text-[10px] font-bold text-ark-text-muted uppercase tracking-wider group-hover:text-ark-primary transition-colors">{definition.name}</label>
@@ -142,6 +161,31 @@ export const PropControl: React.FC<PropControlProps> = ({ definition, value, onC
                             <svg className="w-3 h-3 text-ark-text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
                         </div>
                     </div>
+                </div>
+            );
+        case 'number':
+            return (
+                <div className="flex flex-col space-y-1.5 group">
+                    <label className="text-[10px] font-bold text-ark-text-muted uppercase tracking-wider group-hover:text-ark-primary transition-colors">
+                        {definition.name}
+                    </label>
+                    <input
+                        type="number"
+                        min={definition.min}
+                        max={definition.max}
+                        step={definition.step || 1}
+                        value={value}
+                        onChange={handleChange}
+                        className="block w-full rounded-lg border border-ark-border bg-ark-bg-tertiary/30 py-2 px-3 text-xs text-ark-text-primary focus:border-ark-primary focus:ring-1 focus:ring-ark-primary outline-none transition-all placeholder-ark-text-muted/50 hover:bg-ark-bg-tertiary/50"
+                    />
+                </div>
+            );
+        case 'divider':
+            return (
+                <div className="flex items-center space-x-2 text-ark-text-muted pt-4 pb-2">
+                    <div className="h-px flex-1 bg-ark-border/50"></div>
+                    <span className="text-[10px] font-bold uppercase tracking-widest">{definition.name}</span>
+                    <div className="h-px flex-1 bg-ark-border/50"></div>
                 </div>
             );
         default:

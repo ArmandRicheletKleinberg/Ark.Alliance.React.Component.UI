@@ -18,31 +18,31 @@
     "controls": [
         {
             "type": "text",
-            "name": "label",
+            "propName": "label",
             "label": "Label",
             "defaultValue": "Upload Document"
         },
         {
             "type": "text",
-            "name": "placeholder",
+            "propName": "placeholder",
             "label": "Placeholder",
             "defaultValue": "Drag & Drop..."
         },
         {
             "type": "text",
-            "name": "accept",
+            "propName": "accept",
             "label": "Accept Types",
             "defaultValue": "image/*,.pdf"
         },
         {
             "type": "boolean",
-            "name": "showPreview",
+            "propName": "showPreview",
             "label": "Show Preview",
             "defaultValue": true
         },
         {
             "type": "select",
-            "name": "size",
+            "propName": "size",
             "label": "Size",
             "defaultValue": "md",
             "options": [

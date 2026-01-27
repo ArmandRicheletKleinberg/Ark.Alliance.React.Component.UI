@@ -2,8 +2,10 @@
  * @fileoverview Carousel Component Model
  * @module components/Slides/Carousel
  * 
- * Defines the data structure for the Carousel component,
- * handling slide items, autoplay configuration, and navigation state.
+ * Enhanced carousel model with slide data structure, touch gestures,
+ * keyboard navigation, playback controls, and accessibility features.
+ * 
+ * @author Armand Richelet-Kleinberg with the assistance of Anthropic Claude Opus 4.5
  */
 
 import { z } from 'zod';
@@ -15,22 +17,40 @@ import { ComponentSizeSchema } from '../../../core/enums';
 // ═══════════════════════════════════════════════════════════════════════════
 
 /**
- * Single Slide Item Schema
- * (Can be generic content, but usually we map children to slides)
- * But here we define props-based items if user wants data-driven slides.
- * Or we can use children-based approach.
- * For MVVM model, usually data-driven is preferred, or mixed.
- * Let's support both: array of items OR rendered children managed by index.
- * We'll track state mostly.
+ * Carousel Slide Schema
+ * Defines the structure for individual slides with rich content support
  */
-export const CarouselItemSchema = z.object({
-    key: z.string(),
-    content: z.any(), // ReactNode usually, but Zod treats as any/unknown
-    label: z.string().optional(), // For accessibility
+export const CarouselSlideSchema = z.object({
+    /** Unique identifier for the slide */
+    id: z.string(),
+
+    /** Main slide title */
+    title: z.string(),
+
+    /** Optional subtitle/category */
+    subtitle: z.string().optional(),
+
+    /** Slide description/body text */
+    description: z.string().optional(),
+
+    /** Background image URL */
+    imageUrl: z.string().optional(),
+
+    /** Call-to-action link */
+    ctaLink: z.string().optional(),
+
+    /** Call-to-action button label */
+    ctaLabel: z.string().optional(),
+
+    /** Accessibility label override */
+    ariaLabel: z.string().optional(),
 });
+
+export type CarouselSlide = z.infer<typeof CarouselSlideSchema>;
 
 /**
  * Carousel Model Schema
+ * Enhanced with gesture support, playback controls, and accessibility features
  */
 export const CarouselModelSchema = extendSchema({
     /** Active Slide Index (0-based) */
@@ -51,11 +71,32 @@ export const CarouselModelSchema = extendSchema({
     /** Show pagination indicators (dots) */
     showIndicators: z.boolean().default(true),
 
+    /** Show progress bar during autoplay */
+    showProgress: z.boolean().default(true),
+
+    /** Show play/pause button */
+    showPlayback: z.boolean().default(true),
+
     /** Pause autoplay on hover */
     pauseOnHover: z.boolean().default(true),
 
+    /** Pause on any interaction (hover, focus, touch) */
+    pauseOnInteraction: z.boolean().default(true),
+
+    /** Enable touch/swipe gestures */
+    enableGestures: z.boolean().default(true),
+
+    /** Enable keyboard navigation */
+    enableKeyboard: z.boolean().default(true),
+
+    /** Minimum swipe distance (px) */
+    swipeThreshold: z.number().default(50),
+
     /** Animation effect */
     effect: z.enum(['slide', 'fade']).default('slide'),
+
+    /** Loading state */
+    isLoading: z.boolean().default(false),
 
     /** Component size */
     size: ComponentSizeSchema.default('md'),
@@ -65,7 +106,6 @@ export const CarouselModelSchema = extendSchema({
 });
 
 export type CarouselModel = z.infer<typeof CarouselModelSchema>;
-export type CarouselItem = z.infer<typeof CarouselItemSchema>;
 
 // ═══════════════════════════════════════════════════════════════════════════
 // FACTORY
@@ -73,4 +113,8 @@ export type CarouselItem = z.infer<typeof CarouselItemSchema>;
 
 export function createCarouselModel(data: Partial<CarouselModel>): CarouselModel {
     return CarouselModelSchema.parse(data);
+}
+
+export function createCarouselSlide(data: CarouselSlide): CarouselSlide {
+    return CarouselSlideSchema.parse(data);
 }

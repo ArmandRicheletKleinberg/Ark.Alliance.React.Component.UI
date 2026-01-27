@@ -1,0 +1,41 @@
+/**
+ * NeonToggle Styles
+ * Premium toggle switch with neon glow styling.
+ */
+
+.ark-neon-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    &__track {
+        position: relative;
+        display: inline-block;
+        padding: 0;
+        background: transparent;
+        outline: none;
+
+        &:focus-visible {
+            outline: 2px solid currentColor;
+            outline-offset: 2px;
+        }
+    }
+
+    &__glow {
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+
+    &__knob {
+        pointer-events: none;
+    }
+
+    &__label {
+        font-size: 0.875rem;
+        font-weight: 500;
+        user-select: none;
+    }
+}

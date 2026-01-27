@@ -8,7 +8,7 @@
 
 import { forwardRef, memo } from 'react';
 import { useBadgeDetailModal, type UseBadgeDetailModalOptions } from './BadgeDetailModal.viewmodel';
-import './BadgeDetailModal.styles.css';
+import './BadgeDetailModal.scss';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES

@@ -6,7 +6,7 @@
 import { forwardRef, memo, ReactNode } from 'react';
 import { useTreeNode, type UseTreeNodeOptions } from './TreeNode.viewmodel';
 import { Icon } from '../../Icon';
-import './TreeNode.styles.css';
+import './TreeNode.scss';
 
 export interface TreeNodeProps extends Omit<UseTreeNodeOptions, 'id'> {
     className?: string;

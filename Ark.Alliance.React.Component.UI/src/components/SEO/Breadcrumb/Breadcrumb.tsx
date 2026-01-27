@@ -20,7 +20,7 @@
 import { forwardRef, memo } from 'react';
 import { useBreadcrumb, type UseBreadcrumbOptions } from './Breadcrumb.viewmodel';
 import { Icon } from '../../Icon';
-import './Breadcrumb.styles.css';
+import './Breadcrumb.scss';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES

@@ -1,6 +1,40 @@
 import React, { useMemo } from 'react';
 import { DataGrid } from 'ark-alliance-react-ui';
-import { GridModel } from 'ark-alliance-react-ui/dist/components/Grids/DataGrid/DataGrid.model';
+// GridModel type - defining locally to avoid deep imports
+type GridHeaderAction = {
+    key: string;
+    label: string;
+    action: 'refresh' | 'add' | 'exportExcel' | 'exportCsv' | 'custom';
+};
+type GridHeaderModel = {
+    title: string;
+    subtitle?: string;
+    actions?: GridHeaderAction[];
+};
+type GridSelectionModel = {
+    enabled?: boolean;
+    multi?: boolean;
+};
+type GridPagingModel = {
+    pageSize?: number;
+    pageSizes?: number[];
+};
+type FieldModel = {
+    fieldKey: string;
+    displayName: string;
+    dataType: 'string' | 'integer' | 'decimal' | 'currency' | 'date' | 'datetime' | 'time' | 'boolean' | 'json' | 'xml' | 'guid' | 'url' | 'email' | 'gauge' | 'timeseries' | 'image' | 'icon' | 'badge' | 'pnl' | 'actions';
+    width?: number;
+    sortable?: boolean;
+    filterable?: boolean;
+};
+type GridModel = {
+    gridId: string;
+    primaryKey: string;
+    fields: FieldModel[];
+    header: GridHeaderModel;
+    selection?: GridSelectionModel;
+    paging?: GridPagingModel;
+};
 
 interface DataGridWrapperProps {
     title: string;
@@ -58,8 +92,8 @@ export const DataGridWrapper: React.FC<DataGridWrapperProps> = ({
             { fieldKey: 'name', displayName: 'Name', dataType: 'string', sortable: true, filterable: true },
             { fieldKey: 'status', displayName: 'Status', dataType: 'string', width: 120, sortable: true },
             { fieldKey: 'category', displayName: 'Category', dataType: 'string', width: 120, sortable: true, filterable: true },
-            { fieldKey: 'price', displayName: 'Price', dataType: 'number', width: 100, sortable: true },
-            { fieldKey: 'lastUpdated', displayName: 'Last Updated', dataType: 'date', width: 150, sortable: true }
+            { fieldKey: 'price', displayName: 'Price', dataType: 'decimal', width: 100, sortable: true },
+            { fieldKey: 'lastUpdated', displayName: 'Last Updated', dataType: 'string', width: 150, sortable: true }
         ]
     }), [title, subtitle, pageSize, selectionEnabled, multiSelection]);
 

@@ -7,7 +7,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTheme } from '@/presentation/context/ThemeContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faPalette, faBolt, faGhost, faCube, faSun } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faBolt, faGhost, faCube, faSun } from '@fortawesome/free-solid-svg-icons';
 import { ThemeMode } from '@/presentation/context/ThemeContext';
 
 export const Header: React.FC = () => {

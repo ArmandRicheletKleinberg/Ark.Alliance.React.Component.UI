@@ -11,7 +11,7 @@
 import { forwardRef, memo, type ReactNode } from 'react';
 import { useControlPanel, type UseControlPanelOptions } from './ControlPanel.viewmodel';
 import type { HeaderAction } from './ControlPanel.model';
-import './ControlPanel.styles.css';
+import './ControlPanel.scss';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES

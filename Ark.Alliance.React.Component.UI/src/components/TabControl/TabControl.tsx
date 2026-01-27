@@ -9,7 +9,7 @@ import { forwardRef, memo, useMemo, type ReactNode } from 'react';
 import { TabItem } from './TabItem';
 import { useTabControl, type UseTabControlOptions } from './TabControl.viewmodel';
 import { type TabItemModel } from './TabControl.model';
-import './TabControl.styles.css';
+import './TabControl.scss';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES

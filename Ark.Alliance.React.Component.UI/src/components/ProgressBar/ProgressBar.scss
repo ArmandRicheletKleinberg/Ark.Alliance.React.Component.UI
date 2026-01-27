@@ -1,0 +1,168 @@
+/**
+ * ProgressBar Component Styles
+ */
+
+.ark-progress {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+    width: 100%;
+
+    /* Header */
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &__label {
+        font-size: 0.8125rem;
+        font-weight: 500;
+        color: var(--ark-text-secondary, #a0a0c0);
+    }
+
+    &__value {
+        font-size: 0.75rem;
+        font-weight: 600;
+        font-family: 'JetBrains Mono', monospace;
+        color: var(--ark-text-muted, #707090);
+    }
+
+    /* Track */
+    &__track {
+        position: relative;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 999px;
+        overflow: hidden;
+    }
+
+    &--dark &__track {
+        background: rgba(0, 212, 255, 0.1);
+    }
+
+    /* Bar */
+    &__bar {
+        height: 100%;
+        border-radius: 999px;
+        transition: width 0.3s ease;
+    }
+
+    /* Sizes */
+    &--xs &__track {
+        height: 4px;
+    }
+
+    &--sm &__track {
+        height: 6px;
+    }
+
+    &--md &__track {
+        height: 8px;
+    }
+
+    &--lg &__track {
+        height: 12px;
+    }
+
+    /* Colors */
+    &--cyan &__bar {
+        background: linear-gradient(90deg, #00d4ff, #00a3cc);
+    }
+
+    &--blue &__bar {
+        background: linear-gradient(90deg, #3b82f6, #2563eb);
+    }
+
+    &--green &__bar {
+        background: linear-gradient(90deg, #10b981, #059669);
+    }
+
+    &--red &__bar {
+        background: linear-gradient(90deg, #ef4444, #dc2626);
+    }
+
+    &--purple &__bar {
+        background: linear-gradient(90deg, #8b5cf6, #7c3aed);
+    }
+
+    &--yellow &__bar {
+        background: linear-gradient(90deg, #f59e0b, #d97706);
+    }
+
+    /* Neon variant */
+    &--neon {
+        &.ark-progress--cyan .ark-progress__bar {
+            box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+        }
+
+        &.ark-progress--blue .ark-progress__bar {
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+        }
+
+        &.ark-progress--green .ark-progress__bar {
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+        }
+
+        &.ark-progress--red .ark-progress__bar {
+            box-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
+        }
+
+        &.ark-progress--purple .ark-progress__bar {
+            box-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
+        }
+
+        &.ark-progress--yellow .ark-progress__bar {
+            box-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
+        }
+    }
+
+    /* Gradient variant */
+    &--gradient &__bar {
+        background: linear-gradient(90deg, #00d4ff, #7c3aed, #ec4899);
+    }
+
+    /* Striped variant */
+    &--striped &__bar {
+        background-image: linear-gradient(45deg,
+                rgba(255, 255, 255, 0.15) 25%,
+                transparent 25%,
+                transparent 50%,
+                rgba(255, 255, 255, 0.15) 50%,
+                rgba(255, 255, 255, 0.15) 75%,
+                transparent 75%,
+                transparent);
+        background-size: 1rem 1rem;
+    }
+
+    /* Animated */
+    &--animated &__bar {
+        animation: progressStripes 1s linear infinite;
+    }
+
+    /* Indeterminate */
+    &--indeterminate &__bar {
+        width: 30% !important;
+        animation: progressIndeterminate 1.5s ease-in-out infinite;
+    }
+}
+
+@keyframes progressStripes {
+    from {
+        background-position: 1rem 0;
+    }
+
+    to {
+        background-position: 0 0;
+    }
+}
+
+@keyframes progressIndeterminate {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(400%);
+    }
+}

@@ -1,0 +1,131 @@
+@use 'sass:map';
+@use '../tokens' as *;
+
+// ═══════════════════════════════════════════════════════════════════════════
+// LAYOUT MIXINS
+// ═══════════════════════════════════════════════════════════════════════════
+
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin flex-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@mixin flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// STATE MIXINS
+// ═══════════════════════════════════════════════════════════════════════════
+
+@mixin disabled-state {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+@mixin focus-ring($color: var(--ark-primary)) {
+    &:focus-visible {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba($color, 0.4);
+    }
+}
+
+@mixin loading-state {
+    position: relative;
+    color: transparent !important;
+    pointer-events: none;
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 1em;
+        height: 1em;
+        margin-top: -0.5em;
+        margin-left: -0.5em;
+        border: 2px solid currentColor;
+        border-radius: 50%;
+        border-right-color: transparent;
+        animation: ark-spin 0.75s linear infinite;
+    }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// VISUAL EFFECT MIXINS
+// ═══════════════════════════════════════════════════════════════════════════
+
+@mixin glass-effect($blur: 12px, $opacity: 0.85) {
+    background: rgba(15, 23, 42, $opacity);
+    backdrop-filter: blur($blur);
+    -webkit-backdrop-filter: blur($blur);
+}
+
+@mixin neon-glow($color: var(--ark-primary), $intensity: 0.3) {
+    box-shadow:
+        0 0 10px rgba($color, $intensity),
+        0 0 20px rgba($color, calc($intensity * 0.5));
+}
+
+@mixin elevated($level: 1) {
+    box-shadow: var(--ark-shadow-#{$level});
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// RESPONSIVE MIXINS
+// ═══════════════════════════════════════════════════════════════════════════
+
+@mixin respond-to($breakpoint) {
+    @if $breakpoint =='phone' {
+        @media (max-width: 599px) {
+            @content;
+        }
+    }
+
+    @else if $breakpoint =='tablet' {
+        @media (min-width: 600px) and (max-width: 1023px) {
+            @content;
+        }
+    }
+
+    @else if $breakpoint =='desktop' {
+        @media (min-width: 1024px) {
+            @content;
+        }
+    }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// CONTAINER QUERY MIXINS
+// ═══════════════════════════════════════════════════════════════════════════
+
+@mixin container-query($name, $min-width) {
+    @container #{$name} (min-width: #{$min-width}) {
+        @content;
+    }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// ACCESSIBILITY
+// ═══════════════════════════════════════════════════════════════════════════
+
+@mixin reduced-motion {
+    @media (prefers-reduced-motion: reduce) {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+@mixin touch-target($min-size: 44px) {
+    min-width: $min-size;
+    min-height: $min-size;
+}

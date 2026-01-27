@@ -1,0 +1,196 @@
+/**
+ * StartMenu Component Styles
+ * Neon-themed Windows-like start menu
+ */
+
+.ark-start-menu {
+    position: absolute;
+    bottom: 56px;
+    left: 8px;
+    display: flex;
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    border-radius: 12px;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+    overflow: hidden;
+    z-index: 9999;
+    animation: ark-start-menu-open 0.2s ease-out;
+
+    /* Sidebar */
+    &__sidebar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 48px;
+        padding: 12px 0;
+        background: rgba(2, 6, 23, 0.6);
+        border-right: 1px solid rgba(0, 212, 255, 0.15);
+    }
+
+    &__sidebar-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        padding: 0;
+        border: none;
+        border-radius: 8px;
+        background: transparent;
+        color: var(--ark-text-muted, #94a3b8);
+        cursor: pointer;
+        transition: background 0.15s, color 0.15s;
+        margin-bottom: 4px;
+
+        &:hover {
+            background: rgba(148, 163, 184, 0.15);
+            color: var(--ark-cyan, #00d4ff);
+        }
+
+        &--power:hover {
+            background: rgba(239, 68, 68, 0.2);
+            color: var(--ark-error, #ef4444);
+        }
+    }
+
+    &__sidebar-spacer {
+        flex: 1;
+    }
+
+    /* Content */
+    &__content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding: 8px;
+        overflow: hidden;
+    }
+
+    /* Search */
+    &__search {
+        margin-bottom: 12px;
+    }
+
+    &__search-input {
+        width: 100%;
+        padding: 10px 12px;
+        border: 1px solid rgba(0, 212, 255, 0.3);
+        border-radius: 8px;
+        background: rgba(15, 23, 42, 0.8);
+        color: var(--ark-text-primary, #e2e8f0);
+        font-size: 13px;
+        outline: none;
+        transition: border-color 0.15s, box-shadow 0.15s;
+
+        &::placeholder {
+            color: var(--ark-text-muted, #64748b);
+        }
+
+        &:focus {
+            border-color: rgba(0, 212, 255, 0.6);
+            box-shadow: 0 0 12px rgba(0, 212, 255, 0.2);
+        }
+    }
+
+    /* Section */
+    &__section {
+        margin-bottom: 8px;
+    }
+
+    &__section-title {
+        padding: 6px 12px;
+        font-size: 10px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--ark-text-muted, #64748b);
+    }
+
+    /* Apps */
+    &__apps {
+        flex: 1;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+    }
+
+    &__app {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        width: 100%;
+        padding: 10px 12px;
+        border: none;
+        border-radius: 8px;
+        background: transparent;
+        color: var(--ark-text-primary, #e2e8f0);
+        cursor: pointer;
+        text-align: left;
+        transition: background 0.15s;
+
+        &:hover {
+            background: rgba(0, 212, 255, 0.15);
+        }
+    }
+
+    &__app-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        background: rgba(30, 41, 59, 0.8);
+        border: 1px solid rgba(0, 212, 255, 0.15);
+        font-size: 18px;
+        transition: background 0.15s, border-color 0.15s;
+    }
+
+    &__app:hover &__app-icon {
+        background: rgba(30, 41, 59, 1);
+        border-color: rgba(0, 212, 255, 0.3);
+    }
+
+    &__app-title {
+        font-size: 13px;
+        font-weight: 500;
+    }
+
+    /* Visual Modes */
+    &--neon {
+        background: rgba(15, 23, 42, 0.95);
+        border-color: rgba(0, 212, 255, 0.3);
+    }
+
+    &--glass {
+        background: rgba(15, 23, 42, 0.8);
+        border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    &--minimal {
+        background: #1e293b;
+        border-color: #334155;
+        backdrop-filter: none;
+    }
+
+    &--normal {
+        background: #0f172a;
+        border-color: #334155;
+        backdrop-filter: none;
+    }
+}
+
+@keyframes ark-start-menu-open {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

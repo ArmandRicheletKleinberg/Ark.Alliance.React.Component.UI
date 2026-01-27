@@ -9,7 +9,7 @@
 
 import { type ReactNode } from 'react';
 import { useTooltip, type UseTooltipOptions } from './Tooltip.viewmodel';
-import './Tooltip.styles.css';
+import './Tooltip.scss';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES

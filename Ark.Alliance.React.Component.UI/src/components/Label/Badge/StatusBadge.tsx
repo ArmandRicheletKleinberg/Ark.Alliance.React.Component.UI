@@ -7,7 +7,7 @@
 
 import { forwardRef, memo } from 'react';
 import { useBadge, type UseBadgeOptions } from './Badge.viewmodel';
-import './StatusBadge.styles.css';
+import './StatusBadge.scss';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES
