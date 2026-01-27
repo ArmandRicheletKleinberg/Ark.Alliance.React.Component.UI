@@ -29,6 +29,10 @@ export default defineConfig({
     },
     resolve: {
         alias: {
+            // Intercept @testing-library/react imports to use our wrapped version
+            // This ensures ALL tests automatically get ThemeProvider context
+            '@testing-library/react': resolve(__dirname, './test-utils.ts'),
+
             // Ensure single React instance across test project and UI library
             'react': resolve(__dirname, 'node_modules/react'),
             'react-dom': resolve(__dirname, 'node_modules/react-dom'),
