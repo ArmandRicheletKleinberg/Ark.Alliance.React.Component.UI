@@ -5,8 +5,9 @@
 
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { RoleBadge } from './RoleBadge';
-import { ROLE_CONFIG, ROLES } from './RoleBadge.model';
+import { RoleBadge } from '../../../Ark.Alliance.React.Component.UI/src/components/Label/RoleBadge/RoleBadge';
+import { ROLE_CONFIG, ROLES } from '../../../Ark.Alliance.React.Component.UI/src/components/Label/RoleBadge/RoleBadge.model';
+
 
 describe('RoleBadge', () => {
     describe('Rendering', () => {

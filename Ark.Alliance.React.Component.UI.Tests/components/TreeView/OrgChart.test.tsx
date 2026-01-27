@@ -5,9 +5,11 @@
 
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { OrgChart } from './OrgChart';
-import { OrgChartNode } from './OrgChartNode';
-import type { OrgChartNodeData } from './OrgChart.model';
+import React from 'react';
+import { OrgChart } from '../../../Ark.Alliance.React.Component.UI/src/components/TreeView/OrgChart/OrgChart';
+import { OrgChartNode } from '../../../Ark.Alliance.React.Component.UI/src/components/TreeView/OrgChart/OrgChartNode';
+import type { OrgChartNodeData } from '../../../Ark.Alliance.React.Component.UI/src/components/TreeView/OrgChart/OrgChart.model';
+
 
 // Mock data
 const mockNode: OrgChartNodeData = {
@@ -108,34 +110,34 @@ describe('OrgChartNode', () => {
 describe('OrgChart', () => {
     describe('Empty state', () => {
         it('renders empty message when no nodes', () => {
-            render(<OrgChart rootNodes={[]} />);
+            render(React.createElement(OrgChart, { rootNodes: [] }));
             expect(screen.getByText('No team members to display')).toBeInTheDocument();
         });
 
         it('has correct role for empty state', () => {
-            render(<OrgChart rootNodes={[]} />);
+            render(React.createElement(OrgChart, { rootNodes: [] }));
             expect(screen.getByRole('img')).toHaveAttribute('aria-label', 'Empty organization chart');
         });
     });
 
     describe('Rendering', () => {
         it('renders root nodes', () => {
-            render(<OrgChart rootNodes={mockOrgData} />);
+            render(React.createElement(OrgChart, { rootNodes: mockOrgData }));
             expect(screen.getByText('CEO')).toBeInTheDocument();
         });
 
         it('displays team member count', () => {
-            render(<OrgChart rootNodes={mockOrgData} />);
+            render(React.createElement(OrgChart, { rootNodes: mockOrgData }));
             expect(screen.getByText('4 team members')).toBeInTheDocument();
         });
 
         it('uses totalCount when provided', () => {
-            render(<OrgChart rootNodes={mockOrgData} totalCount={10} />);
+            render(React.createElement(OrgChart, { rootNodes: mockOrgData, totalCount: 10 }));
             expect(screen.getByText('10 team members')).toBeInTheDocument();
         });
 
         it('has correct aria-label with organization name', () => {
-            render(<OrgChart rootNodes={mockOrgData} organizationName="M2H" />);
+            render(React.createElement(OrgChart, { rootNodes: mockOrgData, organizationName: 'M2H' }));
             expect(screen.getByRole('tree')).toHaveAttribute('aria-label', 'Organization chart for M2H');
         });
     });
@@ -143,10 +145,11 @@ describe('OrgChart', () => {
     describe('Interactions', () => {
         it('calls onNodeClick with node id', () => {
             const onNodeClick = vi.fn();
-            render(<OrgChart rootNodes={mockOrgData} onNodeClick={onNodeClick} />);
+            render(React.createElement(OrgChart, { rootNodes: mockOrgData, onNodeClick }));
 
             fireEvent.click(screen.getByText('CEO'));
             expect(onNodeClick).toHaveBeenCalledWith('1');
         });
     });
 });
+

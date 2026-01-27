@@ -5,8 +5,9 @@
 
 import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import { DepartmentBadge } from './DepartmentBadge';
-import { DEPARTMENT_ICONS } from './DepartmentBadge.model';
+import { DepartmentBadge } from '../../../Ark.Alliance.React.Component.UI/src/components/Label/DepartmentBadge/DepartmentBadge';
+import { DEPARTMENT_ICONS } from '../../../Ark.Alliance.React.Component.UI/src/components/Label/DepartmentBadge/DepartmentBadge.model';
+
 
 describe('DepartmentBadge', () => {
     describe('Rendering', () => {

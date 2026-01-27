@@ -58,10 +58,11 @@ export const OrgChart = memo(forwardRef<HTMLDivElement, OrgChartProps>(
     function OrgChart(props, ref) {
         const { onNodeClick, className = '', ...chartOptions } = props;
 
+
         const vm = useOrgChart(chartOptions);
 
         // Render a tree node recursively
-        const renderNode = useCallback((node: OrgChartNodeData): React.ReactNode => {
+        const renderNode = useCallback((node: OrgChartNodeData) => {
             const hasChildren = node.children && node.children.length > 0;
 
             const nodeElement = (
@@ -79,10 +80,11 @@ export const OrgChart = memo(forwardRef<HTMLDivElement, OrgChartProps>(
 
             return (
                 <TreeNode key={node.id} label={nodeElement}>
-                    {node.children!.map(child => renderNode(child))}
+                    {node.children.map(child => renderNode(child))}
                 </TreeNode>
             );
-        }, [onNodeClick, vm]);
+        }, [onNodeClick, vm.isNodeSelected, vm.model.compact]);
+
 
         // Empty state
         if (vm.isEmpty) {

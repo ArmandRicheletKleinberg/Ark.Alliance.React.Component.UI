@@ -12,7 +12,8 @@ import React from 'react';
 
 // Import real component (GlowCard is the main Card component)
 import { GlowCard as Card } from '@components/Cards';
-import { CardModelSchema, CardStatus, CARD_STATUS_CONFIG } from '@components/Cards/Card.model';
+import { CardModelSchema, CARD_STATUS_CONFIG } from '@components/Cards/Card.model';
+
 import { loadCardScenario, SCENARIO_IDS } from '../../fixtures/TestScenarioLoader';
 
 // ═══════════════════════════════════════════════════════════════════════════
