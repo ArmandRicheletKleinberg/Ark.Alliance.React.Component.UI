@@ -103,6 +103,17 @@ export interface FieldModel {
     /** Sparkline configuration */
     miniChartConfig?: MiniChartConfig;
 
+    // Custom Formatting
+    /**
+     * Custom formatter function for cell values
+     * @param value - The cell value to format
+     * @param row - Optional full row data for context-aware formatting
+     * @returns Formatted string or React node
+     * @example
+     * formatter: (value) => formatCurrency(value as number, { currency: 'USD' })
+     */
+    formatter?: (value: unknown, row?: Record<string, unknown>) => string | React.ReactNode;
+
     // Access Control
     /** Required permissions to view column */
     requiredPermissions?: string[];
