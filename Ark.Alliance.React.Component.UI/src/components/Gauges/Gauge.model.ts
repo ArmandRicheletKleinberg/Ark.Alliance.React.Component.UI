@@ -130,6 +130,7 @@ export const defaultGaugeModel: Omit<GaugeModel, 'label'> & { label?: string } =
     max: 100,
     label: undefined,
     color: 'cyan',
+    variant: 'default',
     size: 'md',
     showPercentage: false,
     decimals: 0,

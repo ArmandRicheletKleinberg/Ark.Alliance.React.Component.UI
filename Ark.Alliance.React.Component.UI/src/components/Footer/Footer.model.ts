@@ -80,6 +80,7 @@ export const defaultFooterModel: FooterModel = {
     paging: undefined,
     visualMode: 'normal',
     variant: 'panel',
+    size: 'md',
     isDark: true,
     background: undefined,
     borderRadius: 'none',

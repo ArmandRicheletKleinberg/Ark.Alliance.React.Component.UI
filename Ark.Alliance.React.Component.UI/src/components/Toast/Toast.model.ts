@@ -104,6 +104,7 @@ export const TOAST_TYPE_ICONS: Record<ToastTypeValue, string> = {
     error: 'x-circle',
     warning: 'alert-triangle',
     info: 'info',
+    neutral: 'circle',
 };
 
 /**

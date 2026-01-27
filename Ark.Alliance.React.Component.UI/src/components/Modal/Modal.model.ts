@@ -42,6 +42,7 @@ export const defaultModalModel: ModalModel = {
     isOpen: false,
     title: undefined,
     subtitle: undefined,
+    variant: 'default',
     size: 'md',
     showClose: true,
     closeOnBackdrop: true,

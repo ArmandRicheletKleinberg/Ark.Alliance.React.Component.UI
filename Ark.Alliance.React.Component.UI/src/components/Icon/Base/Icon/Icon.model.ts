@@ -112,6 +112,7 @@ export interface IconDefinition {
  */
 export const defaultIconModel: Omit<IconModel, 'name'> & { name?: string } = {
     name: undefined,
+    variant: 'default',
     size: 'md',
     rotation: '0',
     flip: 'none',
@@ -154,4 +155,5 @@ export const ICON_SIZE_MAP: Record<IconSizeType, number> = {
     lg: 24,
     xl: 32,
     '2xl': 48,
+    '3xl': 64,
 };

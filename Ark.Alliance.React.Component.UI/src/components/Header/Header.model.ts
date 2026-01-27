@@ -177,6 +177,7 @@ export const defaultHeaderModel: Omit<HeaderModel, 'title'> & { title?: string }
     iconSize: 'md',
     visualMode: 'normal',
     variant: 'panel',
+    size: 'md',
     isDark: undefined,
     background: undefined,
     typography: undefined,

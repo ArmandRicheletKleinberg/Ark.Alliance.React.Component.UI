@@ -88,16 +88,16 @@ export interface DateRange {
 // ═══════════════════════════════════════════════════════════════════════════
 
 export const defaultTradeColumns: TradeColumnConfig[] = [
-    { key: 'timestamp', label: 'Time', width: 100, align: 'left' },
-    { key: 'symbol', label: 'Symbol', width: 90, align: 'left' },
-    { key: 'side', label: 'Side', width: 60, align: 'center' },
-    { key: 'orderType', label: 'Type', width: 80, align: 'center' },
-    { key: 'price', label: 'Price', width: 100, align: 'right' },
-    { key: 'quantity', label: 'Qty', width: 80, align: 'right' },
-    { key: 'commission', label: 'Fee', width: 80, align: 'right' },
-    { key: 'realizedPnl', label: 'PnL', width: 90, align: 'right' },
-    { key: 'netProfit', label: 'Net', width: 90, align: 'right' },
-    { key: 'role', label: 'Role', width: 70, align: 'center' },
+    { key: 'timestamp', label: 'Time', width: 100, align: 'left', sortable: true, visible: true },
+    { key: 'symbol', label: 'Symbol', width: 90, align: 'left', sortable: true, visible: true },
+    { key: 'side', label: 'Side', width: 60, align: 'center', sortable: true, visible: true },
+    { key: 'orderType', label: 'Type', width: 80, align: 'center', sortable: true, visible: true },
+    { key: 'price', label: 'Price', width: 100, align: 'right', sortable: true, visible: true },
+    { key: 'quantity', label: 'Qty', width: 80, align: 'right', sortable: true, visible: true },
+    { key: 'commission', label: 'Fee', width: 80, align: 'right', sortable: true, visible: true },
+    { key: 'realizedPnl', label: 'PnL', width: 90, align: 'right', sortable: true, visible: true },
+    { key: 'netProfit', label: 'Net', width: 90, align: 'right', sortable: true, visible: true },
+    { key: 'role', label: 'Role', width: 70, align: 'center', sortable: true, visible: true },
 ];
 
 export function createTradeHistoryGridModel(partial?: Partial<TradeHistoryGridModel>): TradeHistoryGridModel {

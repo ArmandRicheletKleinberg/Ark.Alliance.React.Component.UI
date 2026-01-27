@@ -43,6 +43,7 @@ const TRADING_STATUS_COLORS = {
         warning: { border: 'rgba(245, 158, 11, 0.4)', glow: 'rgba(245, 158, 11, 0.2)' },
         error: { border: 'rgba(239, 68, 68, 0.4)', glow: 'rgba(239, 68, 68, 0.2)' },
         info: { border: 'rgba(59, 130, 246, 0.4)', glow: 'rgba(59, 130, 246, 0.2)' },
+        neutral: { border: 'rgba(107, 114, 128, 0.4)', glow: 'rgba(107, 114, 128, 0.2)' },
     },
     light: {
         idle: { border: 'rgba(0, 170, 200, 0.25)', glow: 'rgba(0, 170, 200, 0.08)' },
@@ -50,6 +51,7 @@ const TRADING_STATUS_COLORS = {
         warning: { border: 'rgba(220, 140, 10, 0.3)', glow: 'rgba(220, 140, 10, 0.1)' },
         error: { border: 'rgba(220, 60, 60, 0.3)', glow: 'rgba(220, 60, 60, 0.1)' },
         info: { border: 'rgba(59, 130, 246, 0.3)', glow: 'rgba(59, 130, 246, 0.1)' },
+        neutral: { border: 'rgba(107, 114, 128, 0.3)', glow: 'rgba(107, 114, 128, 0.1)' },
     },
 } as const;
 
