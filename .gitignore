@@ -25,4 +25,6 @@ dist-ssr
 /.vs/Ark.Alliance.React.Component.UI/CopilotIndices/18.0.981.45449
 /.vs
 /Ark.Alliance.React.Component.UI/DOCS/error.txt
-*.json
+# Uncomment specific JSON files to ignore if needed
+# *.local.json
+# config.json
