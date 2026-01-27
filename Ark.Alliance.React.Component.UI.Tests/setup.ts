@@ -7,7 +7,7 @@
 
 import '@testing-library/jest-dom/vitest';
 import { cleanup } from '@testing-library/react';
-import { afterEach, vi } from 'vitest';
+import { afterEach, beforeAll, afterAll, vi } from 'vitest';
 
 // Cleanup after each test
 afterEach(() => {
@@ -47,5 +47,24 @@ class IntersectionObserverMock {
 
 window.IntersectionObserver = IntersectionObserverMock as unknown as typeof IntersectionObserver;
 
-// Suppress console errors in tests (optional, remove if you want to see them)
-// vi.spyOn(console, 'error').mockImplementation(() => {});
+// Suppress React act() warnings from @testing-library/user-event
+// These warnings are false positives in React 19 + @testing-library/user-event v14+
+// userEvent already wraps actions in act(), but React still emits warnings for async updates
+const originalError = console.error;
+beforeAll(() => {
+    console.error = (...args: unknown[]) => {
+        const message = args[0];
+        if (
+            typeof message === 'string' &&
+            (message.includes('Warning: An update to') ||
+                message.includes('not wrapped in act(...)'))
+        ) {
+            return; // Suppress act() warnings
+        }
+        originalError.call(console, ...args);
+    };
+});
+
+afterAll(() => {
+    console.error = originalError;
+});
