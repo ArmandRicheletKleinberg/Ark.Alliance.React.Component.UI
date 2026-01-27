@@ -33,14 +33,6 @@
         justify-content: center;
         width: 100%;
         max-width: 100%;
-
-        /* Center the root node (top card) */
-        >div {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-        }
     }
 
     /* Empty state */
@@ -60,43 +52,6 @@
         font-size: 3rem;
         display: block;
         margin-bottom: 0.5rem;
-    }
-
-    /* Target the library's internal <ul> for children rows */
-    ul {
-        display: flex;
-        flex-wrap: nowrap;
-        justify-content: space-evenly !important;
-        /* Maximize horizontal spacing */
-        align-items: flex-start;
-        width: 100%;
-        padding: 0;
-        margin: 0;
-        list-style: none;
-        gap: 1rem;
-        /* Minimum gap between nodes */
-    }
-
-    /* Target individual tree node containers (li elements) */
-    li {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        flex: 1;
-        /* Allow nodes to grow and fill available space */
-        max-width: 300px;
-        /* Prevent nodes from becoming too wide */
-        text-align: center;
-
-        >ul {
-            width: 100%;
-        }
-
-        &::before,
-        &::after {
-            content: '';
-            flex-shrink: 0;
-        }
     }
 }
 

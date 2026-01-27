@@ -116,6 +116,7 @@ export type UniversalIconModel = z.infer<typeof UniversalIconModelSchema>;
 
 export const defaultUniversalIconModel: Omit<UniversalIconModel, 'name'> & { name?: string } = {
     name: undefined,
+    variant: 'default',
     source: 'auto',
     iconStyle: 'solid',
     size: 'md',

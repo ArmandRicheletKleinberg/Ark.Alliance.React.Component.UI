@@ -308,7 +308,8 @@ export interface ToastProviderProps extends UseToastOptions {
  * }
  * ```
  */
-export function ToastProvider({ children, ...options }: ToastProviderProps): JSX.Element {
+export function ToastProvider({ children, ...options }: ToastProviderProps): React.ReactElement {
+
     const toast = useToast(options);
 
     return (

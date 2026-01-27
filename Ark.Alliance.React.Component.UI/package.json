@@ -51,7 +51,8 @@
         "lint": "eslint .",
         "preview": "vite preview",
         "prepublishOnly": "npm run build:lib",
-        "test": "vitest"
+        "test": "vitest",
+        "generate:manifest": "tsx scripts/generate-component-manifest.ts"
     },
     "peerDependencies": {
         "react": "^18.0.0 || ^19.0.0",
@@ -94,6 +95,8 @@
         "react-dom": "^19.2.0",
         "sass": "^1.97.1",
         "tailwindcss": "^4.1.18",
+        "ts-morph": "^27.0.2",
+        "tsx": "^4.21.0",
         "typescript": "~5.9.3",
         "typescript-eslint": "^8.46.4",
         "vite": "^7.2.4",

@@ -46,14 +46,14 @@ export const validateEmail: Validator<string> = (value) => {
     const result = EmailSchema.safeParse(value);
     return result.success
         ? { isValid: true }
-        : { isValid: false, errorMessage: result.error.errors[0].message };
+        : { isValid: false, errorMessage: result.error.issues[0].message };
 };
 
 export const validatePhone: Validator<string> = (value) => {
     const result = PhoneSchema.safeParse(value);
     return result.success
         ? { isValid: true }
-        : { isValid: false, errorMessage: result.error.errors[0].message };
+        : { isValid: false, errorMessage: result.error.issues[0].message };
 };
 
 export const validateRequired: Validator<any> = (value) => {

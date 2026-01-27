@@ -2,7 +2,7 @@
  * @fileoverview OrgChart Component
  * @module components/TreeView/OrgChart
  * 
- * Renders organizational hierarchy using react-organizational-chart.
+ * Renders organizational hierarchy using custom tree primitives.
  * 
  * @example
  * ```tsx
@@ -22,11 +22,9 @@
  * ```
  */
 
-import { forwardRef, memo, useCallback } from 'react';
-import { Tree, TreeNode } from 'react-organizational-chart';
+import { forwardRef, memo } from 'react';
 import { useOrgChart, type UseOrgChartOptions } from './OrgChart.viewmodel';
-import { OrgChartNode } from './OrgChartNode';
-import type { OrgChartNodeData } from './OrgChart.model';
+import { OrgChartTree } from './primitives/OrgChartTree';
 import './OrgChart.scss';
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -48,41 +46,18 @@ export interface OrgChartProps extends UseOrgChartOptions {
  * OrgChart - Organizational hierarchy visualization
  * 
  * Features:
- * - Tree-based hierarchy display
+ * - Tree-based hierarchy display with custom primitives
  * - Customizable line colors and widths
  * - Node selection support
  * - Compact mode for mobile
  * - Accessible with keyboard navigation
+ * - React 18+ compatible
  */
 export const OrgChart = memo(forwardRef<HTMLDivElement, OrgChartProps>(
     function OrgChart(props, ref) {
         const { onNodeClick, className = '', ...chartOptions } = props;
 
         const vm = useOrgChart(chartOptions);
-
-        // Render a tree node recursively
-        const renderNode = useCallback((node: OrgChartNodeData): React.ReactNode => {
-            const hasChildren = node.children && node.children.length > 0;
-
-            const nodeElement = (
-                <OrgChartNode
-                    node={node}
-                    onClick={() => onNodeClick?.(node.id)}
-                    isSelected={vm.isNodeSelected(node.id)}
-                    compact={vm.model.compact}
-                />
-            );
-
-            if (!hasChildren) {
-                return <TreeNode key={node.id} label={nodeElement} />;
-            }
-
-            return (
-                <TreeNode key={node.id} label={nodeElement}>
-                    {node.children!.map(child => renderNode(child))}
-                </TreeNode>
-            );
-        }, [onNodeClick, vm]);
 
         // Empty state
         if (vm.isEmpty) {
@@ -119,21 +94,15 @@ export const OrgChart = memo(forwardRef<HTMLDivElement, OrgChartProps>(
                 <div className="ark-org-chart__content">
                     {vm.model.rootNodes.map((rootNode) => (
                         <div key={rootNode.id} className="ark-org-chart__tree">
-                            <Tree
-                                lineWidth={vm.lineStyle.width}
+                            <OrgChartTree
+                                node={rootNode}
+                                level={0}
                                 lineColor={vm.lineStyle.color}
-                                lineBorderRadius="8px"
-                                label={
-                                    <OrgChartNode
-                                        node={rootNode}
-                                        onClick={() => onNodeClick?.(rootNode.id)}
-                                        isSelected={vm.isNodeSelected(rootNode.id)}
-                                        compact={vm.model.compact}
-                                    />
-                                }
-                            >
-                                {rootNode.children?.map(child => renderNode(child))}
-                            </Tree>
+                                lineWidth={vm.lineStyle.width}
+                                selectedId={vm.model.selectedId}
+                                compact={vm.model.compact}
+                                onNodeClick={onNodeClick}
+                            />
                         </div>
                     ))}
                 </div>

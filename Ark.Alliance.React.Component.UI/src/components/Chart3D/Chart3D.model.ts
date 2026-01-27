@@ -130,7 +130,7 @@ export const ChartEventMarkerSchema = z.object({
     /** Optional symbol/instrument identifier */
     symbol: z.string().optional(),
     /** Extensible metadata for custom event data */
-    metadata: z.record(z.unknown()).optional(),
+    metadata: z.record(z.string(), z.unknown()).optional(),
 });
 
 export type ChartEventMarker = z.infer<typeof ChartEventMarkerSchema>;
@@ -224,6 +224,8 @@ export const Chart3DModelSchema = extendSchema({
 export type Chart3DModel = z.infer<typeof Chart3DModelSchema>;
 
 export const defaultChart3DModel: Chart3DModel = {
+    variant: 'default',
+    size: 'md',
     shape: 'Cuboid',
     showSurface: true,
     showGrid: true,

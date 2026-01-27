@@ -120,6 +120,7 @@ export type FAIconModel = z.infer<typeof FAIconModelSchema>;
  */
 export const defaultFAIconModel: Omit<FAIconModel, 'name'> & { name?: string } = {
     name: undefined,
+    variant: 'default',
     iconStyle: 'solid',
     size: 'md',
     rotation: '0',
@@ -167,6 +168,7 @@ export const FA_SIZE_MAP: Record<FAIconSizeType, string | undefined> = {
     lg: 'lg',
     xl: 'xl',
     '2xl': '2xl',
+    '3xl': '3xl',
     '3x': '3x',
     '4x': '4x',
     '5x': '5x',

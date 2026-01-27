@@ -84,15 +84,16 @@ export const Chart3DControlPanel = memo<Chart3DControlPanelProps>(function Chart
         {
             id: 'stream',
             label: config.isStreaming ? 'Pause' : 'Play',
-            icon: <FAIcon name={config.isStreaming ? 'pause' : 'play'} size="sm" />,
+            icon: config.isStreaming ? 'pause' : 'play',
             variant: config.isStreaming ? 'danger' : 'success',
             active: config.isStreaming,
         },
         {
             id: 'reset',
             label: 'Reset Data',
-            icon: <FAIcon name="rotate" size="sm" />,
+            icon: 'rotate',
             variant: 'default',
+            active: false,
         },
     ];
 
@@ -111,7 +112,7 @@ export const Chart3DControlPanel = memo<Chart3DControlPanelProps>(function Chart
     return (
         <BaseControlPanel
             title="Control Panel"
-            titleIcon={<FAIcon name="sliders" size="sm" color="#94a3b8" />}
+            titleIcon="sliders"
             collapsible
             headerActions={headerActions}
             onActionClick={handleActionClick}

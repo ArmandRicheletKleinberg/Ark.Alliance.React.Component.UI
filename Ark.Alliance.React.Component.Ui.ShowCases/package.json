@@ -1,8 +1,36 @@
 {
-  "name": "ark-alliance-react-component-ui-showcases",
-  "private": true,
-  "version": "0.0.0",
+  "name": "ark-alliance-react-ui-showcases",
+  "version": "1.0.0",
+  "description": "ShowCases and demonstration application for the Ark Alliance React UI component library",
+  "author": {
+    "name": "Armand Richelet-Kleinberg",
+    "email": "contact@m2h.io",
+    "url": "https://github.com/ArmandRicheletKleinberg"
+  },
+  "license": "MIT",
+  "keywords": [
+    "react",
+    "ui",
+    "components",
+    "showcases",
+    "demo",
+    "ark-alliance"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ArmandRicheletKleinberg/Ark.Alliance.React.Component.UI.git",
+    "directory": "Ark.Alliance.React.Component.Ui.ShowCases"
+  },
+  "homepage": "https://github.com/ArmandRicheletKleinberg/Ark.Alliance.React.Component.UI#readme",
+  "bugs": {
+    "url": "https://github.com/ArmandRicheletKleinberg/Ark.Alliance.React.Component.UI/issues"
+  },
   "type": "module",
+  "main": "./dist/index.js",
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",

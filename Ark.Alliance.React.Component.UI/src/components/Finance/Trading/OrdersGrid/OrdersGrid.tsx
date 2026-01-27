@@ -109,7 +109,7 @@ export const OrdersGrid = memo(function OrdersGrid(props: OrdersGridProps) {
         <TradingGridCard
             title={vm.model.title}
             subtitle={vm.model.subtitle || `${vm.totalCount} order${vm.totalCount !== 1 ? 's' : ''}`}
-            status="idle"
+            status="info"
             isDark={vm.model.isDark}
             className={`ark-orders-grid ${className}`}
             headerActions={

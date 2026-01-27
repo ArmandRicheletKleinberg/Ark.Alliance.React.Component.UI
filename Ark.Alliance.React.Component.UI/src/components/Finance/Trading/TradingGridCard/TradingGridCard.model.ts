@@ -36,7 +36,7 @@ export type TradingGridCardModel = z.infer<typeof TradingGridCardModelSchema>;
  */
 export const defaultTradingGridCardModel: Omit<TradingGridCardModel, 'title'> & { title?: string } = {
     title: undefined,
-    status: 'idle',
+    status: 'info',
     compact: false,
     showHeader: true,
     disabled: false,

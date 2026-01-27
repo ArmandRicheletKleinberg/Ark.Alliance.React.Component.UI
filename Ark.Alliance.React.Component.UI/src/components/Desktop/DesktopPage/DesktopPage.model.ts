@@ -74,7 +74,12 @@ export const DesktopPageModelSchema = extendSchema({
     visualMode: DesktopVisualMode.default('neon'),
 
     /** Background configuration */
-    background: BackgroundConfigSchema.default({}),
+    background: BackgroundConfigSchema.default({
+        type: 'gradient',
+        color: '#0a0e27',
+        showAnimation: true,
+        overlayOpacity: 0.1,
+    }),
 
     /** Registered applications */
     apps: z.array(AppConfigSchema).default([]),

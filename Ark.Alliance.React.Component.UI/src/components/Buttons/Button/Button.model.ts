@@ -7,39 +7,30 @@
 
 import { z } from 'zod';
 import { extendSchema } from '../../../core/base';
+import {
+    ButtonVariantSchema,
+    ComponentSizeSchema,
+    type ButtonVariant,
+    type ComponentSize,
+} from '../../../core/enums';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // SCHEMA DEFINITION
 // ═══════════════════════════════════════════════════════════════════════════
 
 /**
- * Button variants for different visual styles
- */
-export const ButtonVariant = z.enum([
-    'primary',
-    'secondary',
-    'ghost',
-    'outline',
-    'danger',
-    'success',
-    'link',
-    'neon',
-]);
-
-/**
- * Button sizes
- */
-export const ButtonSize = z.enum(['xs', 'sm', 'md', 'lg', 'xl']);
-
-/**
  * Button model schema extending base model
+ * 
+ * Uses consolidated enums from @core/enums:
+ * - ButtonVariantSchema (replaces custom ButtonVariant)
+ * - ComponentSizeSchema (replaces custom ButtonSize)
  */
 export const ButtonModelSchema = extendSchema({
-    /** Visual variant */
-    variant: ButtonVariant.default('primary'),
+    /** Visual variant (from core/enums) */
+    variant: ButtonVariantSchema.default('primary'),
 
-    /** Size of the button */
-    size: ButtonSize.default('md'),
+    /** Size of the button (from core/enums) */
+    size: ComponentSizeSchema.default('md'),
 
     /** Button type attribute */
     type: z.enum(['button', 'submit', 'reset']).default('button'),
@@ -82,8 +73,9 @@ export const ButtonModelSchema = extendSchema({
 // TYPE EXPORTS
 // ═══════════════════════════════════════════════════════════════════════════
 
-export type ButtonVariantType = z.infer<typeof ButtonVariant>;
-export type ButtonSizeType = z.infer<typeof ButtonSize>;
+export type ButtonVariantType = ButtonVariant;
+export type ButtonSizeType = ComponentSize;
+export type ButtonTypeType = z.infer<typeof ButtonModelSchema>['type'];
 export type ButtonModel = z.infer<typeof ButtonModelSchema>;
 
 // ═══════════════════════════════════════════════════════════════════════════
