@@ -20,6 +20,13 @@ export default defineConfig({
             ],
         },
     },
+    css: {
+        preprocessorOptions: {
+            scss: {
+                api: 'modern-compiler',
+            },
+        },
+    },
     resolve: {
         alias: {
             // Ensure single React instance across test project and UI library

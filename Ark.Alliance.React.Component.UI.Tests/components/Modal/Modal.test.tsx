@@ -3,9 +3,10 @@
  */
 
 import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { screen, fireEvent, waitFor } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { Modal } from '../../../Ark.Alliance.React.Component.UI/src/components/Modal/Modal';
+import { renderWithProviders } from '../../setup';
 
 // Mock createPortal since it's not supported in standard JSDOM render without setup
 // But testing-library handles it reasonably well usually. If issues arise, we can mock it.
@@ -13,18 +14,18 @@ import { Modal } from '../../../Ark.Alliance.React.Component.UI/src/components/M
 
 describe('Modal Component', () => {
     it('should not render when isOpen is false', () => {
-        render(<Modal isOpen={false} onClose={() => { }}>Content</Modal>);
+        renderWithProviders(<Modal isOpen={false} onClose={() => { }}>Content</Modal>);
         expect(screen.queryByText('Content')).not.toBeInTheDocument();
     });
 
     it('should render content when isOpen is true', () => {
-        render(<Modal isOpen={true} onClose={() => { }}>Content</Modal>);
+        renderWithProviders(<Modal isOpen={true} onClose={() => { }}>Content</Modal>);
         expect(screen.getByText('Content')).toBeInTheDocument();
         expect(screen.getByRole('dialog')).toBeInTheDocument();
     });
 
     it('should render title and subtitle', () => {
-        render(
+        renderWithProviders(
             <Modal
                 isOpen={true}
                 onClose={() => { }}
@@ -39,7 +40,7 @@ describe('Modal Component', () => {
     });
 
     it('should apply variant classes', () => {
-        const { rerender } = render(
+        const { rerender } = renderWithProviders(
             <Modal isOpen={true} onClose={() => { }} variant="glass" testId="modal-test">
                 Content
             </Modal>
@@ -57,7 +58,7 @@ describe('Modal Component', () => {
     });
 
     it('should apply size classes', () => {
-        render(
+        renderWithProviders(
             <Modal isOpen={true} onClose={() => { }} size="lg" testId="modal-size-test">
                 Content
             </Modal>
@@ -68,7 +69,7 @@ describe('Modal Component', () => {
 
     it('should call onClose when close button is clicked', () => {
         const onClose = vi.fn();
-        render(<Modal isOpen={true} onClose={onClose}>Content</Modal>);
+        renderWithProviders(<Modal isOpen={true} onClose={onClose}>Content</Modal>);
         const closeBtn = screen.getByLabelText('Close modal');
         fireEvent.click(closeBtn);
         expect(onClose).toHaveBeenCalledTimes(1);
@@ -76,7 +77,7 @@ describe('Modal Component', () => {
 
     it('should call onClose when backdrop is clicked (if enabled)', () => {
         const onClose = vi.fn();
-        render(<Modal isOpen={true} onClose={onClose} closeOnBackdrop={true}>Content</Modal>);
+        renderWithProviders(<Modal isOpen={true} onClose={onClose} closeOnBackdrop={true}>Content</Modal>);
         // The backdrop is the outer div with role="dialog"
         const backdrop = screen.getByRole('dialog');
         fireEvent.click(backdrop);
@@ -85,7 +86,7 @@ describe('Modal Component', () => {
 
     it('should NOT call onClose when backdrop is clicked if disabled', () => {
         const onClose = vi.fn();
-        render(<Modal isOpen={true} onClose={onClose} closeOnBackdrop={false}>Content</Modal>);
+        renderWithProviders(<Modal isOpen={true} onClose={onClose} closeOnBackdrop={false}>Content</Modal>);
         const backdrop = screen.getByRole('dialog');
         fireEvent.click(backdrop);
         expect(onClose).not.toHaveBeenCalled();
@@ -93,7 +94,7 @@ describe('Modal Component', () => {
 
     it('should call onClose when Escape key is pressed', () => {
         const onClose = vi.fn();
-        render(<Modal isOpen={true} onClose={onClose} closeOnEscape={true}>Content</Modal>);
+        renderWithProviders(<Modal isOpen={true} onClose={onClose} closeOnEscape={true}>Content</Modal>);
         fireEvent.keyDown(document, { key: 'Escape' });
         expect(onClose).toHaveBeenCalledTimes(1);
     });
