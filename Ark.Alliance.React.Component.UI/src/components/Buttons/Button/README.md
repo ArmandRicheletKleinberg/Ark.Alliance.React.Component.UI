@@ -252,6 +252,29 @@ Automatically adapts via `isDark` prop or theme context. Classes: `ark-btn--dark
 - Focusable when not disabled
 - Focus/blur events tracked and emitted
 
+### WCAG 2.1 AA Touch Target Compliance
+
+**Minimum Size Requirement:** 44x44 pixels
+
+All buttons enforce a baseline `min-width: 44px` and `min-height: 44px` to meet WCAG 2.1 Level AA success criterion [2.5.5 Target Size](https://www.w3.org/WAI/WCAG21/Understanding/target-size.html).
+
+#### Size Compliance
+
+| Size | Dimensions | Touch Compliant | Desktop Only |
+|------|-----------|----------------|--------------|
+| `xs` | 12px padding | ⚠️ 44px enforced | Desktop recommended |
+| `sm` | 16px padding | ⚠️ 44px enforced | Desktop recommended |
+| `md` | 20px padding | ⚠️ 44px enforced | Desktop recommended |
+| `lg` | 24px (48px min) | ✅ Yes | All contexts |
+| `xl` | 32px (56px min) | ✅ Yes | All contexts |
+
+**Recommendations:**
+- **Touch Interfaces** (mobile, tablets): Use `size="lg"` or `size="xl"`
+- **Desktop Only** (data tables, dense toolbars): `xs`, `sm`, `md` acceptable
+- **Hybrid Apps**: Default to `size="lg"` for primary actions
+
+**Note:** The 44px baseline ensures even small buttons meet minimum touch target requirements, but larger sizes provide better usability on touch devices.
+
 ---
 
 ## Browser Support
