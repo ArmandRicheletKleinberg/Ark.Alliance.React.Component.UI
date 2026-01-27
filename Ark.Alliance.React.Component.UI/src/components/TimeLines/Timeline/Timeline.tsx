@@ -9,7 +9,7 @@ import { forwardRef, memo } from 'react';
 import { useTimeline, type UseTimelineOptions } from './Timeline.viewmodel';
 import type { TimelineItem } from './Timeline.model';
 import { Icon } from '../../Icon';
-import './Timeline.styles.css';
+import './Timeline.scss';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES

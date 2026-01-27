@@ -27,7 +27,7 @@ import { Tree, TreeNode } from 'react-organizational-chart';
 import { useOrgChart, type UseOrgChartOptions } from './OrgChart.viewmodel';
 import { OrgChartNode } from './OrgChartNode';
 import type { OrgChartNodeData } from './OrgChart.model';
-import './OrgChart.styles.css';
+import './OrgChart.scss';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES

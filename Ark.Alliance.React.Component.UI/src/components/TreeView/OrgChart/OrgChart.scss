@@ -1,0 +1,249 @@
+/**
+ * OrgChart Styles
+ */
+
+/* Container */
+.ark-org-chart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    overflow-x: auto;
+    min-height: 300px;
+
+    &__stats {
+        font-size: 0.875rem;
+        color: var(--text-secondary, #6b7280);
+        padding: 0.5rem 1rem;
+        background: var(--surface-elevated, rgba(0, 0, 0, 0.05));
+        border-radius: 9999px;
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+        width: 100%;
+    }
+
+    &__tree {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        max-width: 100%;
+
+        /* Center the root node (top card) */
+        >div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+    }
+
+    /* Empty state */
+    &--empty {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 300px;
+    }
+
+    &__empty-message {
+        text-align: center;
+        color: var(--text-secondary, #6b7280);
+    }
+
+    &__empty-icon {
+        font-size: 3rem;
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+
+    /* Target the library's internal <ul> for children rows */
+    ul {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-evenly !important;
+        /* Maximize horizontal spacing */
+        align-items: flex-start;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        gap: 1rem;
+        /* Minimum gap between nodes */
+    }
+
+    /* Target individual tree node containers (li elements) */
+    li {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex: 1;
+        /* Allow nodes to grow and fill available space */
+        max-width: 300px;
+        /* Prevent nodes from becoming too wide */
+        text-align: center;
+
+        >ul {
+            width: 100%;
+        }
+
+        &::before,
+        &::after {
+            content: '';
+            flex-shrink: 0;
+        }
+    }
+}
+
+/* OrgChartNode styles */
+.ark-org-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    background: var(--surface-elevated, #ffffff);
+    border: 2px solid var(--border-color, #e5e7eb);
+    border-radius: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-width: 140px;
+    max-width: 180px;
+
+    &:hover {
+        border-color: var(--primary-color, #3b82f6);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    &:focus {
+        outline: 2px solid var(--primary-color, #3b82f6);
+        outline-offset: 2px;
+    }
+
+    &--selected {
+        border-color: var(--primary-color, #3b82f6);
+        background: var(--primary-color-alpha, rgba(59, 130, 246, 0.1));
+    }
+
+    /* Node content */
+    &__avatar {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        object-fit: cover;
+        background: var(--surface-tertiary, #f3f4f6);
+    }
+
+    &__avatar-fallback {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background: var(--primary-color, #3b82f6);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        font-size: 1.25rem;
+    }
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 0.125rem;
+    }
+
+    &__name {
+        font-weight: 600;
+        font-size: 0.9rem;
+        color: var(--text-primary, #111827);
+    }
+
+    &__position {
+        font-size: 0.8rem;
+        color: var(--text-secondary, #6b7280);
+    }
+
+    /* Compact mode */
+    &--compact {
+        flex-direction: row;
+        min-width: 120px;
+        max-width: 160px;
+        padding: 0.5rem;
+        gap: 0.5rem;
+
+        .ark-org-node__avatar,
+        .ark-org-node__avatar-fallback {
+            width: 40px;
+            height: 40px;
+            font-size: 0.875rem;
+        }
+
+        .ark-org-node__info {
+            align-items: flex-start;
+            text-align: left;
+        }
+
+        .ark-org-node__name {
+            font-size: 0.8rem;
+        }
+
+        .ark-org-node__position {
+            font-size: 0.7rem;
+        }
+    }
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .ark-org-chart ul {
+        gap: 0.75rem;
+    }
+
+    .ark-org-chart li {
+        max-width: 200px;
+    }
+}
+
+@media (max-width: 768px) {
+    .ark-org-chart {
+        padding: 1rem;
+    }
+
+    .ark-org-node {
+        min-width: 110px;
+        padding: 0.5rem;
+    }
+
+    .ark-org-chart ul {
+        flex-wrap: wrap;
+        /* Allow wrapping on mobile */
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    .ark-org-chart li {
+        flex: 0 0 auto;
+        /* Don't grow on mobile, maintain natural size */
+        max-width: 150px;
+    }
+}
+
+@media (max-width: 480px) {
+    .ark-org-chart ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .ark-org-chart li {
+        max-width: 100%;
+    }
+}

@@ -8,7 +8,7 @@
 
 import { forwardRef, memo, type ReactNode } from 'react';
 import { useCard, type UseCardOptions } from '../Card.viewmodel';
-import './GlowCard.styles.css';
+import './GlowCard.scss';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES

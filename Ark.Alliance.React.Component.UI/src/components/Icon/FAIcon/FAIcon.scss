@@ -1,0 +1,53 @@
+/**
+ * @fileoverview FAIcon Component Styles
+ * @module components/Icon/FAIcon
+ */
+
+.ark-fa-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    vertical-align: middle;
+    transition: color 0.15s ease, opacity 0.15s ease, transform 0.15s ease;
+
+    /* Interactive State */
+    &--interactive {
+        cursor: pointer;
+
+        &:hover {
+            opacity: 0.8;
+
+            svg {
+                filter: brightness(1.2);
+            }
+        }
+
+        &:active {
+            transform: scale(0.95);
+        }
+
+        &:focus {
+            outline: 2px solid rgba(0, 212, 255, 0.5);
+            outline-offset: 2px;
+            border-radius: 2px;
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--ark-cyan, #00d4ff);
+            outline-offset: 2px;
+        }
+    }
+
+    /* Disabled State */
+    &--disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+
+    /* Custom Animations */
+    &--glow svg {
+        filter: drop-shadow(0 0 4px currentColor);
+    }
+}

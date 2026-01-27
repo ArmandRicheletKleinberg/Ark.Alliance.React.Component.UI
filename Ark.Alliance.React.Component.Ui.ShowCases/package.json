@@ -13,7 +13,7 @@
     "@fortawesome/fontawesome-svg-core": "^7.1.0",
     "@fortawesome/free-solid-svg-icons": "^7.1.0",
     "@fortawesome/react-fontawesome": "^3.1.1",
-    "ark-alliance-react-ui": "file:../Ark.Alliance.React.Component.UI/Ark.Alliance.React.Component.UI",
+    "ark-alliance-react-ui": "file:../Ark.Alliance.React.Component.UI",
     "clsx": "^2.1.1",
     "framer-motion": "^12.23.26",
     "lucide-react": "^0.562.0",

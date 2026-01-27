@@ -1,0 +1,99 @@
+/**
+ * NeonInput Styles
+ * 
+ * Cyberpunk-styled neon glow input styles.
+ */
+
+.ark-neon-input {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+
+    &__label {
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: var(--ark-text-primary, #e5e7eb);
+    }
+
+    &__required {
+        color: var(--ark-error, #ef4444);
+        margin-left: 0.125rem;
+    }
+
+    &__container {
+        position: relative;
+    }
+
+    &__glow {
+        position: absolute;
+        inset: -2px;
+        border-radius: 0.5rem;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    /* Glow colors */
+    &--cyan &__glow {
+        box-shadow: 0 0 15px rgba(0, 212, 255, 0.4), inset 0 0 10px rgba(0, 212, 255, 0.1);
+    }
+
+    &--blue &__glow {
+        box-shadow: 0 0 15px rgba(59, 130, 246, 0.4), inset 0 0 10px rgba(59, 130, 246, 0.1);
+    }
+
+    &--purple &__glow {
+        box-shadow: 0 0 15px rgba(168, 85, 247, 0.4), inset 0 0 10px rgba(168, 85, 247, 0.1);
+    }
+
+    &--green &__glow {
+        box-shadow: 0 0 15px rgba(16, 185, 129, 0.4), inset 0 0 10px rgba(16, 185, 129, 0.1);
+    }
+
+    &--red &__glow {
+        box-shadow: 0 0 15px rgba(239, 68, 68, 0.4), inset 0 0 10px rgba(239, 68, 68, 0.1);
+    }
+
+    /* Focus state - show glow */
+    &--focused &__glow {
+        opacity: 1;
+    }
+
+    /* Border colors when focused */
+    &--cyan#{&}--focused .ark-base-input {
+        border-color: var(--ark-cyan, #00d4ff);
+    }
+
+    &--blue#{&}--focused .ark-base-input {
+        border-color: var(--ark-primary, #3b82f6);
+    }
+
+    &--purple#{&}--focused .ark-base-input {
+        border-color: var(--ark-purple, #a855f7);
+    }
+
+    &--green#{&}--focused .ark-base-input {
+        border-color: var(--ark-success, #10b981);
+    }
+
+    &--red#{&}--focused .ark-base-input {
+        border-color: var(--ark-error, #ef4444);
+    }
+
+    /* Override base input box-shadow in NeonInput */
+    .ark-base-input--focused {
+        box-shadow: none;
+    }
+
+    &__error {
+        font-size: 0.75rem;
+        color: var(--ark-error, #ef4444);
+        margin: 0.25rem 0 0;
+    }
+
+    &__helper {
+        font-size: 0.75rem;
+        color: var(--ark-text-muted, #6b7280);
+        margin: 0.25rem 0 0;
+    }
+}

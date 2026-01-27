@@ -1,0 +1,84 @@
+/**
+ * CircularGauge Styles
+ */
+
+@use 'sass:map';
+
+.ark-circular-gauge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+
+    &__svg-container {
+        position: relative;
+    }
+
+    &__svg {
+        transform: rotate(-90deg);
+    }
+
+    &__track {
+        fill: none;
+        stroke: var(--ark-gauge-track, rgba(100, 100, 100, 0.15));
+
+        .ark-circular-gauge--light & {
+            stroke: var(--ark-gauge-track-light, rgba(150, 150, 150, 0.2));
+        }
+    }
+
+    &__progress {
+        fill: none;
+        stroke-linecap: round;
+        transition: stroke-dashoffset 0.5s ease-out;
+    }
+
+    &__value {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__number {
+        font-weight: 700;
+        font-family: ui-monospace, monospace;
+    }
+
+    &__unit {
+        font-size: 0.75rem;
+        color: var(--ark-text-muted, #6b7280);
+        margin-top: 0.125rem;
+
+        .ark-circular-gauge--light & {
+            color: var(--ark-text-muted-light, #4b5563);
+        }
+    }
+
+    &__label {
+        font-size: 0.75rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--ark-text-secondary, #9ca3af);
+
+        .ark-circular-gauge--light & {
+            color: var(--ark-text-secondary-light, #6b7280);
+        }
+    }
+}
+
+/* Text size utilities */
+.text-lg {
+    font-size: 1.125rem;
+}
+
+.text-2xl {
+    font-size: 1.5rem;
+}
+
+.text-3xl {
+    font-size: 1.875rem;
+}

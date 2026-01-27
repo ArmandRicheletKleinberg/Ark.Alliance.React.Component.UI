@@ -9,7 +9,7 @@
 import { forwardRef, memo } from 'react';
 import { useCandlestickRenderer, type UseCandlestickRendererOptions } from './CandlestickRenderer.viewmodel';
 import type { CandlestickDataPoint } from './CandlestickRenderer.model';
-import './CandlestickRenderer.styles.css';
+import './CandlestickRenderer.scss';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES

@@ -178,6 +178,37 @@ $btn-sizes: (
         }
     }
 
+    &--neon {
+        position: relative;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        transition: all 0.2s ease-out;
+
+        // Default neon color (primary based)
+        --neon-color: var(--ark-primary, #3b82f6);
+        --neon-glow: var(--ark-primary-glow, rgba(59, 130, 246, 0.5));
+
+        background: transparent;
+        border: 1px solid var(--neon-color);
+        color: var(--neon-color);
+        box-shadow: 0 0 5px var(--neon-glow), inset 0 0 5px var(--neon-glow);
+        text-shadow: 0 0 5px var(--neon-glow);
+
+        &:hover:not(:disabled) {
+            background: var(--neon-color);
+            color: #fff; // Assuming white text on neon bg
+            box-shadow: 0 0 15px var(--neon-glow), 0 0 30px var(--neon-glow), inset 0 0 10px rgba(255, 255, 255, 0.2);
+            text-shadow: none;
+            transform: translateY(-1px);
+        }
+
+        &:active:not(:disabled) {
+            transform: translateY(1px);
+            box-shadow: 0 0 5px var(--neon-glow);
+        }
+    }
+
     // ═══════════════════════════════════════════════════════════════════════
     // MODIFIERS
     // ═══════════════════════════════════════════════════════════════════════

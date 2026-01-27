@@ -33,13 +33,13 @@
     "controls": [
         {
             "type": "text",
-            "name": "headerTitle",
+            "propName": "headerTitle",
             "label": "Chart Title",
             "defaultValue": "BTC/USD"
         },
         {
             "type": "select",
-            "name": "chartType",
+            "propName": "chartType",
             "label": "Type",
             "defaultValue": "candlestick",
             "options": [
@@ -50,7 +50,7 @@
         },
         {
             "type": "select",
-            "name": "interval",
+            "propName": "interval",
             "label": "Time Interval",
             "defaultValue": "1m",
             "options": [
@@ -63,24 +63,24 @@
         },
         {
             "type": "boolean",
-            "name": "useLogScale",
+            "propName": "useLogScale",
             "label": "Log Scale",
             "defaultValue": false
         },
         {
             "type": "divider",
-            "name": "div1",
+            "propName": "div1",
             "label": "Fast MA"
         },
         {
             "type": "boolean",
-            "name": "fastMA_enabled",
+            "propName": "fastMA_enabled",
             "label": "Enable Fast MA",
             "defaultValue": true
         },
         {
             "type": "slider",
-            "name": "fastMA_period",
+            "propName": "fastMA_period",
             "label": "Fast Period",
             "defaultValue": 7,
             "min": 2,
@@ -88,24 +88,24 @@
         },
         {
             "type": "color",
-            "name": "fastMA_color",
+            "propName": "fastMA_color",
             "label": "Fast Color",
             "defaultValue": "#22c55e"
         },
         {
             "type": "divider",
-            "name": "div2",
+            "propName": "div2",
             "label": "Slow MA"
         },
         {
             "type": "boolean",
-            "name": "slowMA_enabled",
+            "propName": "slowMA_enabled",
             "label": "Enable Slow MA",
             "defaultValue": true
         },
         {
             "type": "slider",
-            "name": "slowMA_period",
+            "propName": "slowMA_period",
             "label": "Slow Period",
             "defaultValue": 25,
             "min": 10,
@@ -113,18 +113,18 @@
         },
         {
             "type": "color",
-            "name": "slowMA_color",
+            "propName": "slowMA_color",
             "label": "Slow Color",
             "defaultValue": "#ef4444"
         },
         {
             "type": "divider",
-            "name": "div3",
+            "propName": "div3",
             "label": "Simulation"
         },
         {
             "type": "slider",
-            "name": "volatility",
+            "propName": "volatility",
             "label": "Volatility",
             "defaultValue": 50,
             "min": 10,
@@ -132,7 +132,7 @@
         },
         {
             "type": "select",
-            "name": "trend",
+            "propName": "trend",
             "label": "Trend",
             "defaultValue": "up",
             "options": [
@@ -143,12 +143,12 @@
         },
         {
             "type": "divider",
-            "name": "div4",
+            "propName": "div4",
             "label": "Style"
         },
         {
             "type": "slider",
-            "name": "borderWidth",
+            "propName": "borderWidth",
             "label": "Border Width",
             "defaultValue": 1,
             "min": 0,
@@ -156,7 +156,7 @@
         },
         {
             "type": "slider",
-            "name": "borderRadius",
+            "propName": "borderRadius",
             "label": "Border Radius",
             "defaultValue": 12,
             "min": 0,
@@ -164,7 +164,7 @@
         },
         {
             "type": "slider",
-            "name": "boxShadowIntensity",
+            "propName": "boxShadowIntensity",
             "label": "Shadow Int.",
             "defaultValue": 10,
             "min": 0,
@@ -172,7 +172,7 @@
         },
         {
             "type": "color",
-            "name": "borderColor",
+            "propName": "borderColor",
             "label": "Border Color",
             "defaultValue": "#475569"
         }

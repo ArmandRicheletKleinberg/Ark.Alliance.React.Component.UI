@@ -1,0 +1,54 @@
+{
+    "id": "tooltip",
+    "componentId": "Tooltip",
+    "title": "Tooltip",
+    "description": "Contextual hover information with multiple positions.",
+    "layout": {
+        "width": "auto",
+        "height": "200px"
+    },
+    "preview": {
+        "background": "dark"
+    },
+    "defaultProps": {
+        "content": "This is helpful information",
+        "position": "top",
+        "delay": 300,
+        "triggerText": "Hover over me"
+    },
+    "controls": [
+        {
+            "propName": "content",
+            "type": "text",
+            "label": "Content",
+            "group": "content"
+        },
+        {
+            "propName": "position",
+            "type": "select",
+            "label": "Position",
+            "options": [
+                "top",
+                "bottom",
+                "left",
+                "right"
+            ],
+            "group": "style"
+        },
+        {
+            "propName": "delay",
+            "type": "slider",
+            "label": "Delay (ms)",
+            "min": 0,
+            "max": 1000,
+            "step": 50,
+            "group": "behavior"
+        },
+        {
+            "propName": "triggerText",
+            "type": "text",
+            "label": "Trigger Text",
+            "group": "content"
+        }
+    ]
+}

@@ -1,0 +1,54 @@
+/**
+ * TreeView Styles
+ */
+
+.ark-tree-view {
+    display: flex;
+    flex-direction: column;
+    padding: var(--ark-tree-padding, 8px);
+    background: var(--ark-tree-bg, transparent);
+    border-radius: var(--ark-border-radius, 8px);
+    overflow: auto;
+
+    /* Sizes */
+    &--sm {
+        font-size: 0.875rem;
+        --ark-tree-node-padding-y: 2px;
+    }
+
+    &--md {
+        font-size: 1rem;
+        --ark-tree-node-padding-y: 4px;
+    }
+
+    &--lg {
+        font-size: 1.125rem;
+        --ark-tree-node-padding-y: 6px;
+    }
+
+    /* Dark Mode (handled by variables usually, but class override if needed) */
+    &--dark {
+        --ark-tree-bg: #111827;
+        color: #e5e7eb;
+    }
+
+    &:not(&--dark) {
+        --ark-tree-bg: #ffffff;
+        color: #374151;
+    }
+
+    /* Light Theme Override */
+    :global([data-theme="light"]) & {
+        --ark-tree-bg: #ffffff;
+        color: #374151;
+    }
+}
+
+/* Lines connecting nodes */
+.ark-tree-view--show-lines .ark-tree-node__content::before {
+    /* Implementation for connecting lines would go here */
+    /* Usually involves pseudo-elements and complex positioning based on level */
+    /* Placeholder for now */
+    content: '';
+    display: none;
+}

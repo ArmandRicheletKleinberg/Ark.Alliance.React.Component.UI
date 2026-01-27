@@ -23,7 +23,7 @@
 
 import { forwardRef, memo } from 'react';
 import { useRoleBadge, type UseRoleBadgeOptions } from './RoleBadge.viewmodel';
-import './RoleBadge.styles.css';
+import './RoleBadge.scss';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES

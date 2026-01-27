@@ -13,7 +13,7 @@
 
 import { forwardRef, memo } from 'react';
 import { useDepartmentBadge, type UseDepartmentBadgeOptions } from './DepartmentBadge.viewmodel';
-import './DepartmentBadge.styles.css';
+import './DepartmentBadge.scss';
 
 export interface DepartmentBadgeProps extends UseDepartmentBadgeOptions {
     className?: string;

@@ -7,7 +7,7 @@
 
 import { forwardRef, memo, type ReactNode } from 'react';
 import { useDataGrid, type UseDataGridOptions } from './DataGrid.viewmodel';
-import './DataGrid.styles.css';
+import './DataGrid.scss';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES

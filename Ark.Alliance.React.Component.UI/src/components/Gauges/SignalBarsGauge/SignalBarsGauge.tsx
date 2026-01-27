@@ -8,7 +8,7 @@
 
 import { forwardRef, memo, useMemo } from 'react';
 import { useGauge, type UseGaugeOptions } from '../Gauge.viewmodel';
-import './SignalBarsGauge.styles.css';
+import './SignalBarsGauge.scss';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES

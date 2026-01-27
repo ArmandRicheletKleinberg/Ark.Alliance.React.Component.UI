@@ -18,19 +18,19 @@
     "controls": [
         {
             "type": "text",
-            "name": "label",
+            "propName": "label",
             "label": "Label",
             "defaultValue": "Leverage"
         },
         {
             "type": "text",
-            "name": "unit",
+            "propName": "unit",
             "label": "Unit",
             "defaultValue": "x"
         },
         {
             "type": "select",
-            "name": "color",
+            "propName": "color",
             "label": "Color Theme",
             "defaultValue": "cyan",
             "options": [
@@ -44,7 +44,7 @@
         },
         {
             "type": "slider",
-            "name": "min",
+            "propName": "min",
             "label": "Min Value",
             "defaultValue": 1,
             "min": 0,
@@ -52,7 +52,7 @@
         },
         {
             "type": "slider",
-            "name": "max",
+            "propName": "max",
             "label": "Max Value",
             "defaultValue": 100,
             "min": 50,
@@ -60,24 +60,24 @@
         },
         {
             "type": "divider",
-            "name": "div1",
+            "propName": "div1",
             "label": "Display"
         },
         {
             "type": "boolean",
-            "name": "showValue",
+            "propName": "showValue",
             "label": "Show Value",
             "defaultValue": true
         },
         {
             "type": "boolean",
-            "name": "showRange",
+            "propName": "showRange",
             "label": "Show Min/Max",
             "defaultValue": true
         },
         {
             "type": "select",
-            "name": "size",
+            "propName": "size",
             "label": "Size",
             "defaultValue": "md",
             "options": [

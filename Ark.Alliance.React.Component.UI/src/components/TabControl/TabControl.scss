@@ -1,0 +1,200 @@
+/**
+ * @fileoverview TabControl Component Styles
+ * @module components/TabControl
+ */
+
+/* CSS Custom Properties */
+.ark-tab-control {
+    --ark-tab-bg: transparent;
+    --ark-tab-bg-hover: rgba(255, 255, 255, 0.08);
+    --ark-tab-bg-active: rgba(59, 130, 246, 0.15);
+    --ark-tab-text: rgba(255, 255, 255, 0.7);
+    --ark-tab-text-active: var(--ark-primary);
+    --ark-tab-border: var(--ark-border);
+    --ark-tab-border-active: var(--ark-primary);
+    --ark-tab-radius: 8px;
+    --ark-tab-indicator: var(--ark-primary);
+
+    /* Container */
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    &--vertical {
+        flex-direction: row;
+    }
+
+    /* Tab List */
+    &__list {
+        display: flex;
+        align-items: center;
+        position: relative;
+    }
+
+    &--horizontal &__list {
+        flex-direction: row;
+        border-bottom: 1px solid var(--ark-tab-border);
+    }
+
+    &--vertical &__list {
+        flex-direction: column;
+        border-right: 1px solid var(--ark-tab-border);
+    }
+
+    /* Alignment */
+    &__list--start {
+        justify-content: flex-start;
+    }
+
+    &__list--center {
+        justify-content: center;
+    }
+
+    &__list--end {
+        justify-content: flex-end;
+    }
+
+    &__list--stretch {
+        justify-content: stretch;
+
+        .ark-tab-item {
+            flex: 1;
+        }
+    }
+
+    /* Fill */
+    &--fill &__list {
+        width: 100%;
+    }
+
+    &--fill .ark-tab-item {
+        flex: 1;
+        justify-content: center;
+    }
+
+    /* Variant Styles */
+
+    /* Default Variant */
+    &--default .ark-tab-item {
+        border-radius: 0;
+        border-bottom: 2px solid transparent;
+        margin-bottom: -1px;
+
+        &--active {
+            border-bottom-color: var(--ark-tab-indicator);
+            background: transparent;
+        }
+    }
+
+    /* Pills Variant */
+    &--pills &__list {
+        border-bottom: none;
+        gap: 4px;
+        padding: 4px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: var(--ark-tab-radius);
+    }
+
+    &--pills .ark-tab-item {
+        border-radius: calc(var(--ark-tab-radius) - 2px);
+
+        &--active {
+            background: var(--ark-tab-bg-active);
+        }
+    }
+
+    /* Underline Variant */
+    &--underline .ark-tab-item {
+        border-radius: 0;
+        background: transparent;
+        border-bottom: 2px solid transparent;
+        margin-bottom: -1px;
+
+        &:hover:not(:disabled) {
+            background: transparent;
+            border-bottom-color: rgba(255, 255, 255, 0.2);
+        }
+
+        &--active {
+            border-bottom-color: var(--ark-tab-indicator);
+        }
+    }
+
+    /* Boxed Variant */
+    &--boxed &__list {
+        border: 1px solid var(--ark-tab-border);
+        border-radius: var(--ark-tab-radius);
+        background: rgba(0, 0, 0, 0.2);
+        padding: 4px;
+        gap: 4px;
+    }
+
+    &--boxed .ark-tab-item {
+        border: 1px solid transparent;
+        border-radius: calc(var(--ark-tab-radius) - 2px);
+
+        &--active {
+            background: var(--ark-tab-bg-active);
+            border-color: var(--ark-tab-border-active);
+        }
+    }
+
+    /* Compact Variant */
+    &--compact .ark-tab-item {
+        padding: 4px 10px;
+        font-size: 0.8125rem;
+    }
+
+    /* Panels Container */
+    &__panels {
+        flex: 1;
+        min-width: 0;
+        min-height: 0;
+    }
+
+    &__panel {
+        display: none;
+
+        &[aria-hidden="false"],
+        &:not([hidden]) {
+            display: block;
+        }
+    }
+
+    /* Scrollable */
+    &--scrollable &__list {
+        overflow-x: auto;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+
+        &::-webkit-scrollbar {
+            height: 4px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+        }
+    }
+
+    /* Light Theme Override */
+    &--light {
+        --ark-tab-bg-hover: rgba(0, 0, 0, 0.05);
+        --ark-tab-bg-active: rgba(59, 130, 246, 0.1);
+        --ark-tab-text: rgba(0, 0, 0, 0.6);
+        --ark-tab-text-active: #2563eb;
+        --ark-tab-border: rgba(0, 0, 0, 0.1);
+
+        &.ark-tab-control--pills .ark-tab-control__list {
+            background: rgba(0, 0, 0, 0.03);
+        }
+
+        &.ark-tab-control--boxed .ark-tab-control__list {
+            background: rgba(0, 0, 0, 0.02);
+        }
+    }
+}

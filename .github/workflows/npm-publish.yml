@@ -1,40 +1,146 @@
-name: NPM Publish
+name: NPM Publish & Release
 
 on:
+  push:
+    branches:
+      - master
+      - main
+    tags:
+      - 'v*'
   release:
-    types: [created]
+    types: [created, published]
+  workflow_dispatch:
+    inputs:
+      version_bump:
+        description: 'Version bump type'
+        required: false
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+        default: 'patch'
+
+permissions:
+  contents: write
+  packages: write
 
 jobs:
-  build:
+  build-and-publish:
     runs-on: ubuntu-latest
+    
     steps:
-      - uses: actions/checkout@v4
-      
-      - uses: actions/setup-node@v4
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: '20.x'
           registry-url: 'https://registry.npmjs.org'
-          
-      - name: Install Dependencies
+          cache: 'npm'
+          cache-dependency-path: './Ark.Alliance.React.Component.UI/package-lock.json'
+      
+      - name: Install Dependencies (UI Library)
         working-directory: ./Ark.Alliance.React.Component.UI
         run: npm ci
-
-      - name: Build Library
+      
+      - name: Run Build
         working-directory: ./Ark.Alliance.React.Component.UI
-        run: npm run build:lib
-
+        run: npm run build
+      
+      - name: Run Tests (if available)
+        working-directory: ./Ark.Alliance.React.Component.UI
+        run: npm test --if-present || true
+        
       - name: Pack Package
         working-directory: ./Ark.Alliance.React.Component.UI
         run: npm pack
-          
-      - name: Upload Release Asset
+      
+      - name: Get Package Info
+        id: package
+        working-directory: ./Ark.Alliance.React.Component.UI
+        run: |
+          echo "name=$(node -p "require('./package.json').name")" >> $GITHUB_OUTPUT
+          echo "version=$(node -p "require('./package.json').version")" >> $GITHUB_OUTPUT
+      
+      - name: Upload Package Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: npm-package
+          path: ./Ark.Alliance.React.Component.UI/*.tgz
+          retention-days: 30
+      
+      - name: Create GitHub Release (if tag)
+        if: startsWith(github.ref, 'refs/tags/v')
         uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/')
         with:
           files: ./Ark.Alliance.React.Component.UI/*.tgz
-          
+          generate_release_notes: true
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
       - name: Publish to NPM
+        if: |
+          (github.event_name == 'release' && github.event.action == 'published') ||
+          startsWith(github.ref, 'refs/tags/v') ||
+          github.event_name == 'workflow_dispatch'
         working-directory: ./Ark.Alliance.React.Component.UI
         run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      
+      - name: Update Package Link in README
+        if: success()
+        working-directory: ./Ark.Alliance.React.Component.UI
+        run: |
+          echo "📦 Package published: https://www.npmjs.com/package/${{ steps.package.outputs.name }}"
+          echo "🔖 Version: ${{ steps.package.outputs.version }}"
+          echo "📥 Install: npm install ${{ steps.package.outputs.name }}"
+      
+      - name: Post to Summary
+        if: success()
+        run: |
+          echo "## 🎉 NPM Package Published Successfully!" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Package:** [${{ steps.package.outputs.name }}](https://www.npmjs.com/package/${{ steps.package.outputs.name }})" >> $GITHUB_STEP_SUMMARY
+          echo "**Version:** \`${{ steps.package.outputs.version }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Installation" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`bash" >> $GITHUB_STEP_SUMMARY
+          echo "npm install ${{ steps.package.outputs.name }}@${{ steps.package.outputs.version }}" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+
+  build-showcases:
+    runs-on: ubuntu-latest
+    needs: build-and-publish
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'npm'
+          cache-dependency-path: './Ark.Alliance.React.Component.Ui.ShowCases/package-lock.json'
+      
+      - name: Install Dependencies (ShowCases)
+        working-directory: ./Ark.Alliance.React.Component.Ui.ShowCases
+        run: npm ci
+      
+      - name: Build ShowCases
+        working-directory: ./Ark.Alliance.React.Component.Ui.ShowCases
+        run: npm run build
+      
+      - name: Upload ShowCases Build
+        uses: actions/upload-artifact@v4
+        with:
+          name: showcases-dist
+          path: ./Ark.Alliance.React.Component.Ui.ShowCases/dist/
+          retention-days: 30

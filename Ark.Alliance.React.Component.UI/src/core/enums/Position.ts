@@ -59,6 +59,17 @@ export const VerticalPositionSchema = z.enum(['top', 'bottom']);
  */
 export const ToolbarPositionSchema = z.enum(['top', 'bottom', 'floating']);
 
+/**
+ * Toast notification position options.
+ * 
+ * grid of 9 positions.
+ */
+export const ToastPositionSchema = z.enum([
+    'top-left', 'top-center', 'top-right',
+    'center-left', 'center-center', 'center-right',
+    'bottom-left', 'bottom-center', 'bottom-right',
+]);
+
 // ═══════════════════════════════════════════════════════════════════════════
 // ORIENTATION SCHEMAS
 // ═══════════════════════════════════════════════════════════════════════════
@@ -76,6 +87,16 @@ export const OrientationSchema = z.enum(['vertical', 'horizontal']);
  * Used for tabs, buttons, content alignment.
  */
 export const AlignmentSchema = z.enum(['start', 'center', 'end', 'stretch']);
+
+/**
+ * Rotation options (degrees).
+ */
+export const RotationSchema = z.enum(['0', '90', '180', '270']);
+
+/**
+ * Flip direction options.
+ */
+export const FlipSchema = z.enum(['none', 'horizontal', 'vertical', 'both']);
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPE EXPORTS
@@ -101,6 +122,15 @@ export type Orientation = z.infer<typeof OrientationSchema>;
 
 /** Alignment type */
 export type Alignment = z.infer<typeof AlignmentSchema>;
+
+/** Rotation type */
+export type Rotation = z.infer<typeof RotationSchema>;
+
+/** Flip type */
+export type Flip = z.infer<typeof FlipSchema>;
+
+/** Toast position type */
+export type ToastPosition = z.infer<typeof ToastPositionSchema>;
 
 // ═══════════════════════════════════════════════════════════════════════════
 // CONSTANTS

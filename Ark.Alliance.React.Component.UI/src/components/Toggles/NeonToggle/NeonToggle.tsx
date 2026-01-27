@@ -8,7 +8,7 @@
 
 import { forwardRef, memo } from 'react';
 import { useToggle, type UseToggleOptions } from '../Toggle.viewmodel';
-import './NeonToggle.styles.css';
+import './NeonToggle.scss';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES

@@ -1,0 +1,131 @@
+/**
+ * Breadcrumb Component Styles
+ * SEO-optimized breadcrumb navigation
+ */
+
+.ark-breadcrumb {
+    --ark-breadcrumb-color: var(--ark-text-secondary, #6b7280);
+    --ark-breadcrumb-color-hover: var(--ark-text-primary, #111827);
+    --ark-breadcrumb-color-current: var(--ark-text-primary, #111827);
+    --ark-breadcrumb-separator-color: var(--ark-text-tertiary, #9ca3af);
+    --ark-breadcrumb-spacing: 0.5rem;
+
+    &__list {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: var(--ark-breadcrumb-spacing);
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    &__item {
+        display: flex;
+        align-items: center;
+        gap: var(--ark-breadcrumb-spacing);
+
+        &--current .ark-breadcrumb__link {
+            color: var(--ark-breadcrumb-color-current);
+            font-weight: 500;
+            cursor: default;
+            pointer-events: none;
+        }
+    }
+
+    &__separator {
+        color: var(--ark-breadcrumb-separator-color);
+        user-select: none;
+    }
+
+    &__link,
+    &__text {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.375rem;
+        color: var(--ark-breadcrumb-color);
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
+
+    &__link:hover,
+    &__link:focus {
+        color: var(--ark-breadcrumb-color-hover);
+        text-decoration: underline;
+    }
+
+    &__text--current {
+        color: var(--ark-breadcrumb-color-current);
+        font-weight: 500;
+        cursor: default;
+        pointer-events: none;
+    }
+
+    &__icon {
+        flex-shrink: 0;
+    }
+
+    &__label {
+        white-space: nowrap;
+    }
+
+    /* Size Variants */
+    &--sm {
+        font-size: 0.875rem;
+
+        .ark-breadcrumb__icon {
+            font-size: 0.75rem;
+        }
+    }
+
+    &--md {
+        font-size: 1rem;
+    }
+
+    &--lg {
+        font-size: 1.125rem;
+    }
+
+    /* Visual Variants */
+    &--minimal .ark-breadcrumb__link {
+        padding: 0;
+    }
+
+    &--pills {
+
+        .ark-breadcrumb__link,
+        .ark-breadcrumb__text {
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            background-color: var(--ark-bg-secondary, #f3f4f6);
+        }
+
+        .ark-breadcrumb__link:hover {
+            background-color: var(--ark-bg-tertiary, #e5e7eb);
+        }
+
+        .ark-breadcrumb__text--current {
+            background-color: var(--ark-primary, #3b82f6);
+            color: white;
+        }
+    }
+
+    /* States */
+    &--disabled {
+        opacity: 0.5;
+        pointer-events: none;
+    }
+
+    &--loading {
+        opacity: 0.7;
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+        &__label {
+            max-width: 120px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+}

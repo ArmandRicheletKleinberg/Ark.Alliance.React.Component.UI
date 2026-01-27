@@ -56,6 +56,10 @@ export const FONT_URLS: Record<string, string> = {
 // SHAPE ICONS
 // ═══════════════════════════════════════════════════════════════════════════
 
+/**
+ * Emoji icons for shapes (legacy, for fallback)
+ * @deprecated Use SHAPE_FA_ICONS instead
+ */
 export const SHAPE_ICONS = {
     'Cuboid': '📦',
     'Cylinder': '🔩',
@@ -64,3 +68,29 @@ export const SHAPE_ICONS = {
     'Lines Only': '📈',
     'Surface': '🌊',
 };
+
+/**
+ * FontAwesome icon names for shape types.
+ * Used with FAIcon component for consistent library styling.
+ */
+export const SHAPE_FA_ICONS = {
+    'Cuboid': 'cube',
+    'Cylinder': 'database',
+    'Bubble': 'circle',
+    'Candle': 'chart-bar',
+    'Lines Only': 'chart-line',
+    'Surface': 'water',
+} as const;
+
+/**
+ * Shape type short labels for UI display.
+ */
+export const SHAPE_LABELS = {
+    'Cuboid': 'Box',
+    'Cylinder': 'Cyl',
+    'Bubble': 'Bub',
+    'Candle': 'Cdl',
+    'Lines Only': 'Lines',
+    'Surface': 'Surf',
+} as const;
+

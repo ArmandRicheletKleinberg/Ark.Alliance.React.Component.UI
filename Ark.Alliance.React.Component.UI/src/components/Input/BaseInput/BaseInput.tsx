@@ -9,7 +9,8 @@
 
 import { forwardRef, memo } from 'react';
 import { useBaseInput, type UseBaseInputOptions } from './BaseInput.viewmodel';
-import './BaseInput.styles.css';
+// Styles are imported via core/styles/main.scss
+import { InputBase } from '../primitives/InputBase';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES
@@ -111,28 +112,37 @@ export const BaseInput = memo(forwardRef<HTMLInputElement, BaseInputProps>(
         });
 
         return (
-            <input
+            <InputBase
                 ref={ref}
-                {...htmlProps}
-                className={`${vm.inputClasses} ${className}`}
-                type={vm.model.type}
+                className={className}
+                // Model pass-through
+                size={vm.model.size}
+                variant={vm.model.variant}
+                fullWidth={vm.model.fullWidth}
+                hasError={vm.model.hasError}
                 value={vm.value}
-                onChange={vm.handleChange}
-                onFocus={vm.handleFocus}
-                onBlur={vm.handleBlur}
+                type={vm.model.type}
+                placeholder={vm.model.placeholder}
                 disabled={vm.model.disabled}
                 readOnly={vm.model.readOnly}
                 required={vm.model.required}
-                placeholder={vm.model.placeholder}
                 maxLength={vm.model.maxLength}
                 minLength={vm.model.minLength}
                 pattern={vm.model.pattern}
-                autoComplete={vm.model.autoComplete}
                 autoFocus={vm.model.autoFocus}
+                autoComplete={vm.model.autoComplete}
                 name={vm.model.name}
-                aria-label={vm.model.ariaLabel}
-                aria-invalid={vm.model.hasError}
-                data-testid={vm.model.testId}
+                id={vm.model.id}
+                ariaLabel={vm.model.ariaLabel}
+                testId={vm.model.testId}
+
+                // Event Handlers
+                onChange={vm.handleChange}
+                onFocus={vm.handleFocus}
+                onBlur={vm.handleBlur}
+
+                // Pass rest of html props if needed (InputBase handles this via ...rest)
+                {...htmlProps}
             />
         );
     }

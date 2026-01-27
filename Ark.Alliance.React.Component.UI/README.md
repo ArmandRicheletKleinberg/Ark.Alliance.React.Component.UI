@@ -17,14 +17,15 @@ A comprehensive, institutional-quality UI component library built with React, Ty
 1. [Overview](#overview)
 2. [MVVM Architecture](#mvvm-architecture)
 3. [Project Structure](#project-structure)
-4. [Component Categories](#component-categories)
-5. [SEO Components (v1.3.0)](#seo-components-v130)
-6. [Installation](#installation)
-7. [Usage Examples](#usage-examples)
-8. [Testing](#testing)
-9. [Dependencies](#dependencies)
-10. [Contributing](#contributing)
-11. [Author](#author)
+4. [Complete Component Catalog](#complete-component-catalog)
+5. [Core Systems](#core-systems)
+6. [SEO Components](#seo-components-v130)
+7. [Installation](#installation)
+8. [Usage Examples](#usage-examples)
+9. [Testing](#testing)
+10. [Dependencies](#dependencies)
+11. [Contributing](#contributing)
+12. [Author](#author)
 
 ---
 
@@ -37,6 +38,8 @@ Ark.Alliance.React.Component.UI is a professionally crafted component library fe
 - **Premium Aesthetics**: Neon, minimal, and glass visual modes
 - **Enterprise Ready**: TypeScript strict mode, accessibility, responsive design
 - **Comprehensive Testing**: Vitest + React Testing Library
+- **47 Component Folders**: Organized in logical categories
+- **104 Model Schemas**: Fully validated with Zod
 
 ---
 
@@ -93,25 +96,18 @@ Ark.Alliance.React.Component.UI/
 │   │
 │   ├── core/                       # Foundation
 │   │   ├── base/                   # BaseModel, BaseViewModel
-│   │   ├── enums/                  # Centralized enums (Color, Size, Status, Variant)
+│   │   ├── enums/                  # 8 Centralized enum categories
 │   │   ├── events/                 # Event bus system
-│   │   ├── services/               # Utility services
+│   │   ├── services/               # Utility services (DataProvider)
+│   │   ├── constants/              # Color constants
 │   │   └── theme/                  # Theme configuration
 │   │
-│   ├── components/                 # Component library
-│   │   ├── Buttons/                # Button, NeonButton
-│   │   ├── Input/                  # NeonInput, NumericInput, Select, Slider, TextArea, FileUpload, TextEditor
-│   │   ├── Gauges/                 # CircularGauge, SpeedometerGauge, DigitalGauge, BatteryGauge, SignalBarsGauge
-│   │   ├── Charts/                 # FinancialChart, TrendPriceChart
-│   │   ├── Grids/                  # DataGrid, ProjectGrid
-│   │   ├── Panel/                  # Container panel
-│   │   ├── Modal/                  # Modal dialog
-│   │   ├── Label/                  # StatusBadge
-│   │   ├── TimeLines/              # Timeline, TestTimeline
-│   │   └── ...                     # Additional component families
-│   │
-│   ├── Helpers/                    # Utility functions
+│   ├── components/ (47 folders)    # Component library
+│   ├── Helpers/                    # Utility functions & validators
 │   └── test/                       # Test setup
+│
+├── DOCS/                           # Documentation
+│   └── Analysis_ConsolidateEnhancementImproveUILIBRARY.md  # Audit document
 │
 ├── vite.config.ts                  # Vite config with library build
 ├── tsconfig.json                   # TypeScript config
@@ -121,31 +117,143 @@ Ark.Alliance.React.Component.UI/
 
 ---
 
-## Component Categories
+## Complete Component Catalog
 
-### Core Components
+This library contains **47 component folders** organized in logical categories. Each component follows MVVM architecture with Model, ViewModel, and View files.
 
-| Category | Components | Description |
-|----------|------------|-------------|
-| **Buttons** | `Button`, `NeonButton` | Premium buttons with glow effects |
-| **Input** | `NeonInput`, `NumericInput`, `Select`, `Slider`, `TextArea`, `FileUpload`, `TextEditor` | Form inputs with validation |
-| **Gauges** | `CircularGauge`, `SpeedometerGauge`, `DigitalGauge`, `BatteryGauge`, `SignalBarsGauge` | Data visualization gauges |
-| **Charts** | `FinancialChart`, `TrendPriceChart` | Financial data visualization |
-| **Grids** | `DataGrid`, `ProjectGrid` | Data tables and grids |
-| **Panel** | `Panel` | Container with header/footer slots |
-| **Modal** | `Modal` | Dialog with portal, backdrop, escape |
-| **Label** | `StatusBadge`, `RoleBadge`, `DepartmentBadge` | Status indicators, role badges, department tags |
-| **TimeLines** | `Timeline` | Event timeline display |
-| **TreeView** | `TreeView`, `OrgChart`, `OrgChartNode` | Tree structures and organizational charts |
+### Primitive Components
 
-### Visual Modes
+| Folder | Components | Description | Documentation |
+|--------|------------|-------------|---------------|
+| **Icon** | `FAIcon` | FontAwesome icon wrapper with size/color variants | - |
+| **Label** | `Badge`, `StatusBadge`, `RoleBadge`, `DepartmentBadge`, `TechBadge` | Status indicators, role badges, department tags, technology badges | - |
+| **Tooltip** | `Tooltip` | Configurable tooltip with positioning | - |
 
-| Mode | Description |
-|------|-------------|
-| `normal` | Standard appearance |
-| `neon` | Glowing borders and gradients |
-| `minimal` | Reduced visual weight |
-| `glass` | Glassmorphism with backdrop blur |
+### Interactive Controls
+
+| Folder | Components | Description | Documentation |
+|--------|------------|-------------|---------------|
+| **Buttons** | `Button`, `NeonButton` | Standard and neon-styled buttons with multiple variants | - |
+| **Input** | `BaseInput`, `NeonInput`, `NumericInput`, `Select`, `Slider`, `TextArea`, `FileUpload`, `TextEditor` | Comprehensive form input suite with validation | - |
+| **Toggles** | `Toggle` | Toggle switch component | - |
+| **Slides** | `Carousel` | Image/content carousel | - |
+| **DatePicker** | - | Date selection component | - |
+| **Calendars** | - | Calendar display components | - |
+
+### Layout & Containers
+
+| Folder | Components | Description | Documentation |
+|--------|------------|-------------|---------------|
+| **Page** | `Page` | Full page container with meta tags | - |
+| **Header** | `Header` | Page header component | - |
+| **Footer** | `Footer` | Page footer component | - |
+| **Panel** | `Panel` | Container panel with header/footer slots | - |
+| **GenericPanel** | `GenericPanel` | Flexible panel container | - |
+| **ControlPanel** | `ControlPanel` | Control panel with collapsible sections | - |
+| **SideBar** | `SideBarMenu` | Sidebar navigation menu | - |
+| **Modal** | `Modal` | Dialog with portal, backdrop, escape | - |
+
+### Navigation
+
+| Folder | Components | Description | Documentation |
+|--------|------------|-------------|---------------|
+| **Menu** | - | Navigation menu components | - |
+| **TabControl** | `TabControl`, `TabItem` | Tabbed interface | - |
+| **TreeView** | `TreeView`, `TreeNode`, `OrgChart`, `OrgChartNode` | Tree structures and organizational charts | - |
+| **SEO** | `Breadcrumb`, `StructuredDataScript` | SEO breadcrumbs with Schema.org JSON-LD | [SEO/README.md](src/components/SEO/README.md) |
+
+### Data Display
+
+| Folder | Components | Description | Documentation |
+|--------|------------|-------------|---------------|
+| **Grids** | `DataGrid`, `ProjectGrid`, `TradingGridCard` | Data tables with sorting, filtering, editing | [DataGrid/README.md](src/components/Grids/DataGrid/README.md) |
+| **TimeLines** | `Timeline`, `TestTimeline` | Event timeline display | - |
+| **ProgressBar** | `ProgressBar` | Progress indicators | - |
+| **Gauges** | `CircularGauge`, `SpeedometerGauge`, `DigitalGauge`, `BatteryGauge`, `SignalBarsGauge` | Data visualization gauges | - |
+| **Documents** | `HTMLViewer`, `MarkdownRenderer` | Document rendering components | - |
+| **Viewers** | - | Content viewers | - |
+
+### Data Visualization
+
+| Folder | Components | Description | Documentation |
+|--------|------------|-------------|---------------|
+| **Charts** | `FinancialChart`, `TrendPriceChart`, `TestChart`, Primitives: `CandlestickRenderer` | Financial data visualization with technical indicators | - |
+| **Chart3D** | `Chart3D` | 3D chart visualization | - |
+| **Diagram** | - | Diagram components | - |
+| **FlowChart** | - | Flow chart components | - |
+
+### Domain-Specific Components
+
+| Folder | Components | Description | Documentation |
+|--------|------------|-------------|---------------|
+| **Finance** | `Trading/PositionsGrid`, `Trading/OrdersGrid`, `Trading/TradeHistoryGrid`, `Trading/TradingGridCard` | Financial trading grids for positions, orders, and trade history | [Trading/README.md](src/components/Finance/Trading/README.md) |
+| **Logistic** | - | Logistics management components | - |
+| **Medical** | - | Medical/healthcare components | - |
+| **Ia** (AI) | - | AI-related components | - |
+| **SocialMedia** | - | Social media integration components | - |
+| **Basket** | - | Shopping basket components | - |
+| **Catalogue** | - | Product catalog components | - |
+| **PaymentsForm** | - | Payment form components | - |
+| **Login** | - | Authentication components | - |
+
+### Media Components
+
+| Folder | Components | Description | Documentation |
+|--------|------------|-------------|---------------|
+| **Music** | - | Music player components | - |
+| **Video** | - | Video player components | - |
+| **Sound** | - | Sound/audio components | - |
+| **Chat** | - | Chat/messaging components | - |
+
+### Desktop OS Components
+
+| Folder | Components | Description | Documentation |
+|--------|------------|-------------|---------------|
+| **Desktop** | `DesktopPage`, `DesktopIcon`, `WindowPanel`, `Taskbar`, `StartMenu` | Complete desktop OS simulation | - |
+
+---
+
+## Core Systems
+
+### Enums (8 Categories)
+
+Located in `src/core/enums/`:
+
+| File | Exports | Purpose |
+|------|---------|---------|
+| **Size.ts** | `ComponentSizeSchema`, `BasicSizeSchema`, `ModalSizeSchema`, `ProgressSizeSchema`, `ExtendedSizeSchema` | Sizing variants (xs, sm, md, lg, xl, 2xl, 3xl) |
+| **Variant.ts** | `ComponentVariantSchema`, `BasicVariantSchema`, `InputVariantSchema`, `PanelVariantSchema`, `ButtonVariantSchema`, `TabVariantSchema` | Visual style variants (primary, secondary, success, danger, warning, info, dark, light) |
+| **Position.ts** | `PositionSchema`, `ExtendedPositionSchema`, `HorizontalPositionSchema`, `VerticalPositionSchema`, `ToolbarPositionSchema`, `OrientationSchema`, `AlignmentSchema` | Positioning (top, bottom, left, right, center) |
+| **Status.ts** | `ConnectionStatusSchema`, `ProcessStatusSchema`, `TestStatusSchema`, `SemanticStatusSchema` | Status indicators (idle, success, warning, error, info, pending, running) |
+| **Color.ts** | `ThemeColorSchema`, `ExtendedColorSchema`, `THEME_COLOR_VALUES`, `THEME_COLOR_RGB` | Theme colors with RGB values |
+| **Typography.ts** | `FontWeightSchema`, `BasicFontWeightSchema`, `TextTransformSchema`, `TextAlignmentSchema` | Typography settings |
+| **Styles.ts** | `LineStyleSchema`, `PaddingSchema`, `ResizeModeSchema`, `BackgroundTypeSchema`, `AnimationTypeSchema`, `LayoutModeSchema` | Style configurations |
+| **InputFormat.ts** | `InputFormatSchema`, `InputValidationConfigSchema` | Input validation formats (email, phone, url, number, text) |
+
+### Constants
+
+Located in `src/core/constants/`:
+
+| File | Exports | Purpose |
+|------|---------|---------|
+| **ColorConstants.ts** | Color hex values and RGB tuples | Centralized color definitions |
+
+### Services
+
+Located in `src/core/services/`:
+
+| File | Exports | Purpose |
+|------|---------|---------|
+| **useDataProvider.ts** | `useDataProvider` hook | Data provider service for components |
+
+### Helpers
+
+Located in `src/Helpers/`:
+
+| Folder | Purpose |
+|--------|---------|
+| **seo/** | Schema.org JSON-LD generators (Organization, Website, Person, Article, FAQ, Breadcrumb) |
+| **Validators/** | Input validation utilities and types |
 
 ---
 
@@ -180,31 +288,6 @@ Located in `Helpers/seo`:
 ✅ **Google-Extended** - Gemini training  
 ✅ **PerplexityBot** - Perplexity AI  
 ✅ **Googlebot/Bingbot** - Traditional search
-
-### Usage Example
-
-```tsx
-import { Breadcrumb, StructuredDataScript } from 'ark-alliance-react-ui';
-import { generateOrganizationSchema } from 'ark-alliance-react-ui/helpers';
-
-<Breadcrumb
-  items={[
-    { key: '1', label: 'Home', href: '/', position: 1 },
-    { key: '2', label: 'Products', href: '/products', position: 2 },
-    { key: '3', label: 'Details', current: true, position: 3 }
-  ]}
-  baseUrl="https://example.com"
-  generateSchema={true}
-/>
-
-<StructuredDataScript
-  schema={generateOrganizationSchema({
-    name: 'Your Company',
-    url: 'https://example.com',
-    logo: 'https://example.com/logo.png'
-  })}
-/>
-```
 
 ---
 
@@ -241,10 +324,10 @@ git clone https://github.com/ArmandRicheletKleinberg/Ark.Alliance.React.Componen
 cd Ark.Alliance.React.Component.UI/Ark.Alliance.React.Component.UI
 
 # Install dependencies
-npm install
+pnpm install
 
 # Build library
-npm run build:lib
+pnpm build
 ```
 
 ---
@@ -328,10 +411,10 @@ import { OrgChart } from 'ark-alliance-react-ui';
 
 ```bash
 # Run tests
-npm test
+pnpm test
 
 # Run tests with coverage
-npm test -- --coverage
+pnpm test -- --coverage
 ```
 
 The library uses **Vitest** with **React Testing Library** for component testing.

@@ -8,7 +8,7 @@
 
 import { memo, useState, useCallback, type ChangeEvent } from 'react';
 import type { FinancialThreshold, ChartType } from './FinancialChart.model';
-import './FinancialChartControls.styles.css';
+import './FinancialChartControls.scss';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES

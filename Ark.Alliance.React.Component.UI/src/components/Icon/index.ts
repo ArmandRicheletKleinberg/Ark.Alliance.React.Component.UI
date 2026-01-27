@@ -82,3 +82,31 @@ export {
     getFAIconCategories,
 } from './icons/FAIconCatalog';
 export type { FAIconMeta } from './icons/FAIconCatalog';
+
+// ═══════════════════════════════════════════════════════════════════════════
+// UNIVERSAL ICON (RECOMMENDED)
+// ═══════════════════════════════════════════════════════════════════════════
+
+export { UniversalIcon } from './UniversalIcon';
+export type { UniversalIconProps } from './UniversalIcon';
+
+export {
+    UniversalIconModelSchema,
+    UniversalIconSizeSchema,
+    IconSourceSchema,
+    IconStyleSchema,
+    defaultUniversalIconModel,
+    createUniversalIconModel,
+} from './UniversalIcon.model';
+export type {
+    UniversalIconModel,
+    UniversalIconSize,
+    IconSource,
+    IconStyle,
+} from './UniversalIcon.model';
+
+export { useUniversalIcon } from './UniversalIcon.viewmodel';
+export type { UseUniversalIconOptions, UseUniversalIconResult } from './UniversalIcon.viewmodel';
+
+export { UniversalRegistry } from './UniversalRegistry';
+export type { UniversalIconDefinition } from './UniversalRegistry';

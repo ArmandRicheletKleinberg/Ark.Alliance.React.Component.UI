@@ -7,7 +7,7 @@
 
 import { forwardRef, memo } from 'react';
 import { useTechBadge, type UseTechBadgeOptions } from './TechBadge.viewmodel';
-import './TechBadge.styles.css';
+import './TechBadge.scss';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES

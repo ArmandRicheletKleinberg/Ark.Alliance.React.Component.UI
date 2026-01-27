@@ -10,45 +10,58 @@
 // VARIANT COLORS
 // ═══════════════════════════════════════════════════════════════════════════
 
+import { THEME_COLORS } from './ThemeColors';
+import { SEMANTIC_COLORS } from './SemanticColors';
+
+// ═══════════════════════════════════════════════════════════════════════════
+// VARIANT COLORS
+// ═══════════════════════════════════════════════════════════════════════════
+
 /**
  * Primary variant colors with glow support
  */
 export const VARIANT_COLORS = {
     primary: {
-        base: '#00d4ff',
-        glow: 'rgba(0, 212, 255, 0.6)',
-        bgDark: 'rgba(0, 212, 255, 0.1)',
-        bgLight: 'rgba(0, 212, 255, 0.08)',
+        base: THEME_COLORS.primary.hex,
+        glow: `rgba(${THEME_COLORS.primary.rgb.join(', ')}, 0.6)`,
+        bgDark: `rgba(${THEME_COLORS.primary.rgb.join(', ')}, 0.1)`,
+        bgLight: `rgba(${THEME_COLORS.primary.rgb.join(', ')}, 0.08)`,
+        cssVar: THEME_COLORS.primary.cssVar,
     },
     secondary: {
-        base: '#8b5cf6',
-        glow: 'rgba(139, 92, 246, 0.6)',
-        bgDark: 'rgba(139, 92, 246, 0.1)',
-        bgLight: 'rgba(139, 92, 246, 0.08)',
+        base: THEME_COLORS.secondary.hex,
+        glow: `rgba(${THEME_COLORS.secondary.rgb.join(', ')}, 0.6)`,
+        bgDark: `rgba(${THEME_COLORS.secondary.rgb.join(', ')}, 0.1)`,
+        bgLight: `rgba(${THEME_COLORS.secondary.rgb.join(', ')}, 0.08)`,
+        cssVar: THEME_COLORS.secondary.cssVar,
     },
     success: {
-        base: '#10b981',
-        glow: 'rgba(16, 185, 129, 0.6)',
-        bgDark: 'rgba(16, 185, 129, 0.1)',
-        bgLight: 'rgba(16, 185, 129, 0.08)',
+        base: SEMANTIC_COLORS.success.hex,
+        glow: `rgba(${SEMANTIC_COLORS.success.rgb.join(', ')}, 0.6)`,
+        bgDark: `rgba(${SEMANTIC_COLORS.success.rgb.join(', ')}, 0.1)`,
+        bgLight: `rgba(${SEMANTIC_COLORS.success.rgb.join(', ')}, 0.08)`,
+        cssVar: SEMANTIC_COLORS.success.cssVar,
     },
     danger: {
-        base: '#ef4444',
-        glow: 'rgba(239, 68, 68, 0.6)',
-        bgDark: 'rgba(239, 68, 68, 0.1)',
-        bgLight: 'rgba(239, 68, 68, 0.08)',
+        base: SEMANTIC_COLORS.error.hex,
+        glow: `rgba(${SEMANTIC_COLORS.error.rgb.join(', ')}, 0.6)`,
+        bgDark: `rgba(${SEMANTIC_COLORS.error.rgb.join(', ')}, 0.1)`,
+        bgLight: `rgba(${SEMANTIC_COLORS.error.rgb.join(', ')}, 0.08)`,
+        cssVar: SEMANTIC_COLORS.error.cssVar,
     },
     warning: {
-        base: '#f59e0b',
-        glow: 'rgba(245, 158, 11, 0.6)',
-        bgDark: 'rgba(245, 158, 11, 0.1)',
-        bgLight: 'rgba(245, 158, 11, 0.08)',
+        base: SEMANTIC_COLORS.warning.hex,
+        glow: `rgba(${SEMANTIC_COLORS.warning.rgb.join(', ')}, 0.6)`,
+        bgDark: `rgba(${SEMANTIC_COLORS.warning.rgb.join(', ')}, 0.1)`,
+        bgLight: `rgba(${SEMANTIC_COLORS.warning.rgb.join(', ')}, 0.08)`,
+        cssVar: SEMANTIC_COLORS.warning.cssVar,
     },
     info: {
-        base: '#3b82f6',
-        glow: 'rgba(59, 130, 246, 0.6)',
-        bgDark: 'rgba(59, 130, 246, 0.1)',
-        bgLight: 'rgba(59, 130, 246, 0.08)',
+        base: SEMANTIC_COLORS.info.hex,
+        glow: `rgba(${SEMANTIC_COLORS.info.rgb.join(', ')}, 0.6)`,
+        bgDark: `rgba(${SEMANTIC_COLORS.info.rgb.join(', ')}, 0.1)`,
+        bgLight: `rgba(${SEMANTIC_COLORS.info.rgb.join(', ')}, 0.08)`,
+        cssVar: SEMANTIC_COLORS.info.cssVar,
     },
     ghost: {
         base: '#9ca3af',
@@ -68,12 +81,36 @@ export type VariantType = keyof typeof VARIANT_COLORS;
  * Gauge and chart color gradients
  */
 export const GAUGE_COLORS = {
-    blue: { start: '#3b82f6', end: '#60a5fa', glow: 'rgba(59, 130, 246, 0.5)' },
-    green: { start: '#10b981', end: '#34d399', glow: 'rgba(16, 185, 129, 0.5)' },
-    red: { start: '#ef4444', end: '#f87171', glow: 'rgba(239, 68, 68, 0.5)' },
-    cyan: { start: '#06b6d4', end: '#22d3ee', glow: 'rgba(34, 211, 238, 0.5)' },
-    yellow: { start: '#f59e0b', end: '#fbbf24', glow: 'rgba(245, 158, 11, 0.5)' },
-    purple: { start: '#8b5cf6', end: '#a78bfa', glow: 'rgba(139, 92, 246, 0.5)' },
+    blue: {
+        start: 'var(--ark-gauge-blue-start, #3b82f6)',
+        end: 'var(--ark-gauge-blue-end, #60a5fa)',
+        glow: 'var(--ark-gauge-blue-glow, rgba(59, 130, 246, 0.5))'
+    },
+    green: {
+        start: 'var(--ark-gauge-green-start, #10b981)',
+        end: 'var(--ark-gauge-green-end, #34d399)',
+        glow: 'var(--ark-gauge-green-glow, rgba(16, 185, 129, 0.5))'
+    },
+    red: {
+        start: 'var(--ark-gauge-red-start, #ef4444)',
+        end: 'var(--ark-gauge-red-end, #f87171)',
+        glow: 'var(--ark-gauge-red-glow, rgba(239, 68, 68, 0.5))'
+    },
+    cyan: {
+        start: 'var(--ark-gauge-cyan-start, #06b6d4)',
+        end: 'var(--ark-gauge-cyan-end, #22d3ee)',
+        glow: 'var(--ark-gauge-cyan-glow, rgba(34, 211, 238, 0.5))'
+    },
+    yellow: {
+        start: 'var(--ark-gauge-yellow-start, #f59e0b)',
+        end: 'var(--ark-gauge-yellow-end, #fbbf24)',
+        glow: 'var(--ark-gauge-yellow-glow, rgba(245, 158, 11, 0.5))'
+    },
+    purple: {
+        start: 'var(--ark-gauge-purple-start, #8b5cf6)',
+        end: 'var(--ark-gauge-purple-end, #a78bfa)',
+        glow: 'var(--ark-gauge-purple-glow, rgba(139, 92, 246, 0.5))'
+    },
 } as const;
 
 export type GaugeColorType = keyof typeof GAUGE_COLORS;
@@ -154,6 +191,25 @@ export const STATUS_COLORS = {
         bg: 'rgba(107, 114, 128, 0.15)',
         text: '#9ca3af',
         border: 'rgba(107, 114, 128, 0.4)',
+    },
+    // Extended statuses
+    active: {
+        label: 'Active',
+        bg: 'rgba(59, 130, 246, 0.15)',
+        text: '#3b82f6',
+        border: 'rgba(59, 130, 246, 0.4)',
+    },
+    completed: {
+        label: 'Completed',
+        bg: 'rgba(16, 185, 129, 0.15)',
+        text: '#10b981',
+        border: 'rgba(16, 185, 129, 0.4)',
+    },
+    maintenance: {
+        label: 'Maintenance',
+        bg: 'rgba(168, 85, 247, 0.15)',
+        text: '#a855f7',
+        border: 'rgba(168, 85, 247, 0.4)',
     },
 } as const;
 

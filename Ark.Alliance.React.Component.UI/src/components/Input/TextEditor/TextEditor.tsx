@@ -9,7 +9,7 @@ import React, { memo, forwardRef, useCallback, useState } from 'react';
 import { useTextEditor, type UseTextEditorOptions } from './TextEditor.viewmodel';
 import { EditorToolbar } from './EditorToolbar';
 import { EditorMenuBar } from './EditorMenuBar';
-import './TextEditor.styles.css';
+import './TextEditor.scss';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES

@@ -7,7 +7,7 @@
  */
 
 import { forwardRef, memo, useRef, useState, useEffect, useCallback, type ReactNode } from 'react';
-import './FullscreenContainer.styles.css';
+import './FullscreenContainer.scss';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES

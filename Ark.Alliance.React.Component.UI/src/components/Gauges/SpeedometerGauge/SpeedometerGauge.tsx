@@ -7,7 +7,7 @@
 
 import { forwardRef, memo } from 'react';
 import { useGauge, type UseGaugeOptions } from '../Gauge.viewmodel';
-import './SpeedometerGauge.styles.css';
+import './SpeedometerGauge.scss';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES
@@ -49,8 +49,8 @@ export const SpeedometerGauge = memo(forwardRef<HTMLDivElement, SpeedometerGauge
         // Theme-aware colors
         const labelTextColor = isDark ? 'text-gray-300' : 'text-gray-700';
         const subLabelTextColor = isDark ? 'text-gray-500' : 'text-gray-500';
-        const trackColor = isDark ? 'rgba(100,100,100,0.15)' : 'rgba(150,150,150,0.25)';
-        const centerDotColor = isDark ? '#0a0e27' : '#f8fafc';
+        const trackColor = isDark ? 'var(--ark-gauge-track, rgba(100,100,100,0.15))' : 'var(--ark-gauge-track-light, rgba(150,150,150,0.25))';
+        const centerDotColor = isDark ? 'var(--ark-bg-base, #0a0e27)' : 'var(--ark-bg-base-light, #f8fafc)';
 
         // Generate tick marks
         const ticks = [];

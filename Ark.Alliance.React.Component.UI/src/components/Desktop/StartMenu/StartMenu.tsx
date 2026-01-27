@@ -7,7 +7,7 @@
 
 import React, { memo, forwardRef } from 'react';
 import { useStartMenu, type UseStartMenuOptions } from './StartMenu.viewmodel';
-import './StartMenu.styles.css';
+import './StartMenu.scss';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES

@@ -1,0 +1,521 @@
+/**
+ * Enhanced Carousel Styles
+ * @author Armand Richelet-Kleinberg with the assistance of Anthropic Claude Opus 4.5
+ * 
+ * Premium carousel with touch gestures, keyboard navigation, playback controls,
+ * progress bar, loading skeleton, and accessibility features.
+ */
+
+@use '../../../core/styles/abstracts' as *;
+@use '../../../core/styles/tokens' as *;
+
+// ═══════════════════════════════════════════════════════════════════════════
+// MAIN CONTAINER
+// ═══════════════════════════════════════════════════════════════════════════
+
+.ark-carousel {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: var(--ark-bg-card);
+    border-radius: var(--ark-border-radius-lg);
+    outline: none; // Keyboard focus handled by custom indicator
+
+    // Touch optimization
+    touch-action: pan-y pinch-zoom;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+
+    // Theme variants
+    &--dark {
+        --carousel-control-bg: rgba(255, 255, 255, 0.1);
+        --carousel-control-color: #{$color-text-primary-dark};
+        --carousel-progress-bg: rgba(255, 255, 255, 0.2);
+    }
+
+    &:not(&--dark) {
+        --carousel-control-bg: rgba(0, 0, 0, 0.1);
+        --carousel-control-color: #{$color-text-primary-light};
+        --carousel-progress-bg: rgba(0, 0, 0, 0.1);
+    }
+
+    // Keyboard focus indicator
+    &:focus-visible {
+        box-shadow: 0 0 0 3px var(--ark-accent-500);
+    }
+
+    // Loading state
+    &--loading {
+        pointer-events: none;
+    }
+
+    // Playing state
+    &--playing {
+        // Can add subtle animation if desired
+    }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// VIEWPORT & TRACK
+// ═══════════════════════════════════════════════════════════════════════════
+
+.ark-carousel__viewport {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    min-height: 300px; // Prevent collapse
+
+    @media (prefers-reduced-motion: reduce) {
+        * {
+            animation: none !important;
+            transition: none !important;
+        }
+    }
+}
+
+.ark-carousel__track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    will-change: transform;
+
+    // Smooth slide animation
+    &:not(.no-transition) {
+        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// SLIDE ITEMS
+// ═══════════════════════════════════════════════════════════════════════════
+
+.ark-carousel__item {
+    flex: 0 0 100%;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+// Fade effect
+.ark-carousel--fade {
+    .ark-carousel__track {
+        display: block;
+    }
+
+    .ark-carousel__item {
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        z-index: 1;
+        transition: opacity 0.5s ease-in-out;
+
+        &.active {
+            opacity: 1;
+            z-index: 2;
+            position: relative;
+        }
+    }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// SLIDE CONTENT (Data-Driven Mode)
+// ═══════════════════════════════════════════════════════════════════════════
+
+.ark-carousel__slide-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: $spacing-6;
+}
+
+.ark-carousel__bg {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    z-index: 0;
+
+    &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to right,
+                rgba(0, 0, 0, 0.8) 0%,
+                rgba(0, 0, 0, 0.4) 50%,
+                transparent 100%);
+    }
+}
+
+.ark-carousel__bg-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.ark-carousel__content {
+    position: relative;
+    z-index: 1;
+    max-width: 600px;
+    color: var(--ark-text-primary);
+}
+
+.ark-carousel__subtitle {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ark-accent-400);
+    margin-bottom: $spacing-2;
+}
+
+.ark-carousel__title {
+    font-size: clamp(1.75rem, 4vw, 3rem);
+    font-weight: $font-weight-bold;
+    line-height: 1.2;
+    margin-bottom: $spacing-4;
+
+    .ark-carousel__title-highlight {
+        color: var(--ark-accent-400);
+    }
+}
+
+.ark-carousel__description {
+    font-size: $font-size-base;
+    line-height: 1.6;
+    color: var(--ark-text-secondary);
+    margin-bottom: $spacing-6;
+}
+
+.ark-carousel__cta {
+    @include button-base;
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-2;
+    padding: $spacing-3 $spacing-6;
+    background: var(--ark-accent-500);
+    color: white;
+    font-weight: $font-weight-semibold;
+    border-radius: var(--ark-border-radius-md);
+    text-decoration: none;
+    transition: all 0.2s;
+
+    &:hover {
+        background: var(--ark-accent-600);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// NAVIGATION CONTROLS
+// ═══════════════════════════════════════════════════════════════════════════
+
+.ark-carousel__control {
+    @include button-base;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--carousel-control-bg);
+    backdrop-filter: blur(10px);
+    color: var(--carousel-control-color);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.2s;
+    opacity: 0.9;
+
+    &:hover {
+        background: var(--ark-accent-500);
+        color: white;
+        opacity: 1;
+        transform: translateY(-50%) scale(1.1);
+    }
+
+    &:active {
+        transform: translateY(-50%) scale(0.95);
+    }
+
+    &--prev {
+        left: $spacing-4;
+    }
+
+    &--next {
+        right: $spacing-4;
+    }
+
+    // Hide on mobile to avoid crowding
+    @include breakpoint-down(md) {
+        width: 36px;
+        height: 36px;
+
+        &--prev {
+            left: $spacing-2;
+        }
+
+        &--next {
+            right: $spacing-2;
+        }
+    }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// INDICATORS (DOTS)
+// ═══════════════════════════════════════════════════════════════════════════
+
+.ark-carousel__indicators {
+    position: absolute;
+    bottom: $spacing-4;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: $spacing-2;
+    z-index: 10;
+    padding: $spacing-2 $spacing-3;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    border-radius: var(--ark-border-radius-full);
+}
+
+.ark-carousel__indicator {
+    @include button-base;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.7);
+        transform: scale(1.2);
+    }
+
+    &--active {
+        background: var(--ark-accent-400);
+        width: 24px;
+        border-radius: 12px;
+        transform: scale(1);
+    }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// PLAYBACK CONTROLS
+// ═══════════════════════════════════════════════════════════════════════════
+
+.ark-carousel__playback {
+    position: absolute;
+    bottom: $spacing-4;
+    right: $spacing-4;
+    z-index: 10;
+}
+
+.ark-carousel__playback-btn {
+    @include button-base;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &:hover {
+        background: var(--ark-accent-500);
+        transform: scale(1.1);
+    }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// PROGRESS BAR
+// ═══════════════════════════════════════════════════════════════════════════
+
+.ark-carousel__progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--carousel-progress-bg);
+    z-index: 11;
+    overflow: hidden;
+}
+
+.ark-carousel__progress-bar {
+    height: 100%;
+    background: var(--ark-accent-500);
+    transform-origin: left;
+    animation: carouselProgress linear forwards;
+}
+
+@keyframes carouselProgress {
+    from {
+        transform: scaleX(0);
+    }
+
+    to {
+        transform: scaleX(1);
+    }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// LOADING SKELETON
+// ═══════════════════════════════════════════════════════════════════════════
+
+.ark-carousel__skeleton {
+    width: 100%;
+    height: 100%;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: $spacing-6;
+}
+
+.ark-carousel__skeleton-content {
+    max-width: 600px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-4;
+}
+
+.ark-carousel__skeleton-subtitle {
+    width: 120px;
+    height: 16px;
+}
+
+.ark-carousel__skeleton-title {
+    width: 80%;
+    height: 48px;
+}
+
+.ark-carousel__skeleton-description {
+    width: 100%;
+    height: 20px;
+
+    &:last-of-type {
+        width: 70%;
+    }
+}
+
+.ark-carousel__skeleton-button {
+    width: 140px;
+    height: 44px;
+    border-radius: var(--ark-border-radius-md);
+}
+
+// Skeleton shimmer animation
+.skeleton {
+    background: linear-gradient(90deg,
+            rgba(255, 255, 255, 0.05) 0%,
+            rgba(255, 255, 255, 0.15) 50%,
+            rgba(255, 255, 255, 0.05) 100%);
+    background-size: 200% 100%;
+    animation: skeleton-shimmer 1.5s ease-in-out infinite;
+    border-radius: var(--ark-border-radius-sm);
+}
+
+@keyframes skeleton-shimmer {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// ACCESSIBILITY
+// ═══════════════════════════════════════════════════════════════════════════
+
+.ark-carousel__announcer {
+    @include visually-hidden;
+}
+
+// High contrast mode
+@media (prefers-contrast: high) {
+
+    .ark-carousel__control,
+    .ark-carousel__indicator,
+    .ark-carousel__playback-btn {
+        border-width: 2px;
+    }
+}
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+
+    .ark-carousel__track,
+    .ark-carousel__item,
+    .ark-carousel__control,
+    .ark-carousel__indicator,
+    .ark-carousel__progress-bar {
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// SIZE VARIANTS
+// ═══════════════════════════════════════════════════════════════════════════
+
+.ark-carousel--sm {
+    min-height: 250px;
+
+    .ark-carousel__viewport {
+        min-height: 250px;
+    }
+
+    .ark-carousel__title {
+        font-size: clamp(1.25rem, 3vw, 2rem);
+    }
+}
+
+.ark-carousel--lg {
+    min-height: 500px;
+
+    .ark-carousel__viewport {
+        min-height: 500px;
+    }
+
+    .ark-carousel__title {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+    }
+}
+
+.ark-carousel--xl {
+    min-height: 600px;
+
+    .ark-carousel__viewport {
+        min-height: 600px;
+    }
+
+    .ark-carousel__title {
+        font-size: clamp(3rem, 6vw, 5rem);
+    }
+}

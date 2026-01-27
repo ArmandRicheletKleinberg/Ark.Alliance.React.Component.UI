@@ -7,6 +7,7 @@
 
 import { useMemo } from 'react';
 import { useBaseViewModel, type BaseViewModelResult } from '../../core/base';
+import { useTheme } from '../../core/theme/useTheme';
 import type { ProgressBarModel } from './ProgressBar.model';
 import { defaultProgressBarModel, ProgressBarModelSchema } from './ProgressBar.model';
 
@@ -85,6 +86,9 @@ export function useProgressBar(options: UseProgressBarOptions = {}): UseProgress
         eventChannel: 'progressbar',
     });
 
+    const { resolvedMode } = useTheme();
+    const isDark = base.model.isDark !== undefined ? base.model.isDark : resolvedMode === 'dark';
+
     // ═══════════════════════════════════════════════════════════════════════
     // COMPUTED VALUES
     // ═══════════════════════════════════════════════════════════════════════
@@ -107,7 +111,7 @@ export function useProgressBar(options: UseProgressBarOptions = {}): UseProgress
     const sizeClass = `ark-progress--${base.model.size}`;
     const variantClass = `ark-progress--${base.model.variant}`;
     const colorClass = `ark-progress--${effectiveColor}`;
-    const themeClass = base.model.isDark ? 'ark-progress--dark' : 'ark-progress--light';
+    const themeClass = isDark ? 'ark-progress--dark' : 'ark-progress--light';
 
     const stateClasses = [
         base.model.animated && 'ark-progress--animated',

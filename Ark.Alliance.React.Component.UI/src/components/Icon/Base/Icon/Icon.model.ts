@@ -8,6 +8,7 @@
 
 import { z } from 'zod';
 import { extendSchema } from '../../../../core/base';
+import { ExtendedSizeSchema, RotationSchema, FlipSchema } from '../../../../core/enums';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // SCHEMA DEFINITIONS
@@ -16,17 +17,17 @@ import { extendSchema } from '../../../../core/base';
 /**
  * Icon size variants
  */
-export const IconSize = z.enum(['xs', 'sm', 'md', 'lg', 'xl', '2xl']);
+export const IconSize = ExtendedSizeSchema;
 
 /**
  * Icon rotation angles
  */
-export const IconRotation = z.enum(['0', '90', '180', '270']);
+export const IconRotation = RotationSchema;
 
 /**
  * Icon flip directions
  */
-export const IconFlip = z.enum(['none', 'horizontal', 'vertical', 'both']);
+export const IconFlip = FlipSchema;
 
 /**
  * Icon model schema extending base model

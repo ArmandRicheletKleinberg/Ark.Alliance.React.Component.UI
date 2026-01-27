@@ -7,7 +7,7 @@
 
 import { forwardRef, memo, type ReactNode } from 'react';
 import { usePanel, type UsePanelOptions } from './Panel.viewmodel';
-import './Panel.styles.css';
+import './Panel.scss';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES

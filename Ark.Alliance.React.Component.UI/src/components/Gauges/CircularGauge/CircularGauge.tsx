@@ -7,7 +7,7 @@
 
 import { forwardRef, memo, useId } from 'react';
 import { useGauge, type UseGaugeOptions } from '../Gauge.viewmodel';
-import './CircularGauge.styles.css';
+import './CircularGauge.scss';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES

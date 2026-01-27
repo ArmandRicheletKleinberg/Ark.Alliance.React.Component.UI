@@ -1,0 +1,90 @@
+{
+    "id": "sidebar-menu",
+    "componentId": "SideBarMenu",
+    "title": "Sidebar Menu",
+    "description": "Collapsible navigation sidebar with categories, icons, and badges.",
+    "layout": {
+        "width": "auto",
+        "height": "600px"
+    },
+    "preview": {
+        "background": "dark"
+    },
+    "defaultProps": {
+        "title": "Navigation",
+        "variant": "default",
+        "position": "left",
+        "collapsed": false,
+        "expandedWidth": 280,
+        "collapsedWidth": 60,
+        "showHamburger": true,
+        "isDark": true,
+        "categorySet": "default"
+    },
+    "controls": [
+        {
+            "propName": "title",
+            "type": "text",
+            "label": "Menu Title",
+            "group": "content"
+        },
+        {
+            "propName": "variant",
+            "type": "select",
+            "label": "Variant",
+            "options": [
+                "default",
+                "glass",
+                "bordered",
+                "elevated"
+            ],
+            "group": "style"
+        },
+        {
+            "propName": "position",
+            "type": "select",
+            "label": "Position",
+            "options": [
+                "left",
+                "right"
+            ],
+            "group": "style"
+        },
+        {
+            "propName": "collapsed",
+            "type": "boolean",
+            "label": "Collapsed",
+            "group": "behavior"
+        },
+        {
+            "propName": "expandedWidth",
+            "type": "slider",
+            "label": "Expanded Width",
+            "min": 200,
+            "max": 400,
+            "step": 20,
+            "group": "style"
+        },
+        {
+            "propName": "collapsedWidth",
+            "type": "slider",
+            "label": "Collapsed Width",
+            "min": 40,
+            "max": 100,
+            "step": 10,
+            "group": "style"
+        },
+        {
+            "propName": "showHamburger",
+            "type": "boolean",
+            "label": "Show Toggle",
+            "group": "behavior"
+        },
+        {
+            "propName": "isDark",
+            "type": "boolean",
+            "label": "Dark Mode",
+            "group": "style"
+        }
+    ]
+}

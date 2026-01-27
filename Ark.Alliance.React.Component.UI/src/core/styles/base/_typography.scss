@@ -1,0 +1,15 @@
+// Typography
+
+:root {
+    --ark-font-sans: system-ui, -apple-system, sans-serif;
+    --ark-font-mono: ui-monospace, SFMono-Regular, monospace;
+
+    // Base sizes (non-fluid for now, will enhance in Phase 5)
+    --ark-text-xs: 0.75rem;
+    --ark-text-sm: 0.875rem;
+    --ark-text-base: 1rem;
+    --ark-text-lg: 1.125rem;
+    --ark-text-xl: 1.25rem;
+    --ark-text-2xl: 1.5rem;
+    --ark-text-3xl: 1.875rem;
+}

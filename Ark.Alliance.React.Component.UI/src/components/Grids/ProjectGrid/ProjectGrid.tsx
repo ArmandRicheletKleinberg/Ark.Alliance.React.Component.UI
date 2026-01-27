@@ -8,7 +8,7 @@
 import { forwardRef, memo } from 'react';
 import { useProjectGrid, type UseProjectGridOptions } from './ProjectGrid.viewmodel';
 import { ProjectCard } from './ProjectCard';
-import './ProjectGrid.styles.css';
+import './ProjectGrid.scss';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES

@@ -8,7 +8,7 @@
 
 import React, { memo, useState, useCallback, useRef, useEffect } from 'react';
 import { Header } from '../../../Header';
-import './EditorMenuBar.styles.css';
+import './EditorMenuBar.scss';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES

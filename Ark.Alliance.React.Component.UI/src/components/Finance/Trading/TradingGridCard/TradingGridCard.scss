@@ -1,0 +1,126 @@
+/**
+ * TradingGridCard Styles
+ */
+
+.ark-trading-card {
+    /* Variables */
+    --card-bg: var(--ark-bg-secondary, #1f2937);
+    --card-border: var(--ark-border-color, rgba(75, 85, 99, 0.3));
+    --title-color: var(--ark-text-primary, #ffffff);
+    --subtitle-color: var(--ark-text-muted, #9ca3af);
+    --icon-color: var(--ark-text-muted, #9ca3af);
+
+    /* Semantic Colors */
+    --status-success: var(--ark-success, #10b981);
+    --status-warning: var(--ark-warning, #f59e0b);
+    --status-error: var(--ark-error, #ef4444);
+    --status-info: var(--ark-info, #00d4ff);
+
+    border-radius: 0.75rem;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+
+    &--clickable {
+        cursor: pointer;
+
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+    }
+
+    /* Header */
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.625rem 1rem;
+        border-bottom: 1px solid var(--card-border);
+
+        &--dark {
+            --card-border: rgba(75, 85, 99, 0.3);
+        }
+
+        &--light {
+            --card-border: rgba(229, 231, 235, 0.6);
+        }
+    }
+
+    &__title-group {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    &__icon-wrapper {
+        position: relative;
+    }
+
+    &__icon-glow {
+        position: absolute;
+        inset: 0;
+        border-radius: 0.5rem;
+        filter: blur(8px);
+        opacity: 0.5;
+
+        &--idle {
+            background: color-mix(in srgb, var(--status-info), transparent 70%);
+        }
+
+        &--success {
+            background: color-mix(in srgb, var(--status-success), transparent 70%);
+        }
+
+        &--warning {
+            background: color-mix(in srgb, var(--status-warning), transparent 70%);
+        }
+
+        &--error {
+            background: color-mix(in srgb, var(--status-error), transparent 70%);
+        }
+    }
+
+    &__icon {
+        position: relative;
+        color: var(--icon-color);
+
+        &--dark {
+            --icon-color: #d1d5db;
+        }
+    }
+
+    &__title {
+        margin: 0;
+        font-size: 0.875rem;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        color: var(--title-color);
+
+        &--dark {
+            --title-color: #ffffff;
+        }
+    }
+
+    &__subtitle {
+        margin: 0.125rem 0 0;
+        font-size: 0.75rem;
+        color: var(--subtitle-color);
+
+        &--dark {
+            --subtitle-color: #9ca3af;
+        }
+    }
+
+    &__actions {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    /* Body */
+    &__body {
+        padding: 0.75rem 1rem;
+    }
+}

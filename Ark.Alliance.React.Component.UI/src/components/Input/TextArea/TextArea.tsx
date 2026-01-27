@@ -6,7 +6,7 @@
 import { forwardRef, memo, useMemo } from 'react';
 import { useBaseViewModel } from '../../../core/base';
 import { TextAreaModelSchema, defaultTextAreaModel, type TextAreaModel } from './TextArea.model';
-import './TextArea.styles.css';
+import './TextArea.scss';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES

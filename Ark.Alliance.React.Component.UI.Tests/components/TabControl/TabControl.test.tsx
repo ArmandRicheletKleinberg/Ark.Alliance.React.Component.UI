@@ -15,6 +15,7 @@ import { renderHook } from '@testing-library/react';
 import { TabControl, TabItem } from '@components/TabControl';
 import { TabControlModelSchema, TabItemModelSchema, createTabControlModel, createTabItemModel } from '@components/TabControl';
 import { useTabControl, useTabItem } from '@components/TabControl';
+import { ThemeProvider } from '@core/theme';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // SETUP
@@ -251,10 +252,15 @@ describe('useTabControl hook', () => {
         { tabKey: 'tab-3', label: 'Tab 3' },
     ];
 
+    // ThemeProvider wrapper required because useTabControl uses useTheme internally
+    const ThemeWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+        React.createElement(ThemeProvider, null, children)
+    );
+
     it('should initialize with first tab active', () => {
         const { result } = renderHook(() => useTabControl({
             items: defaultItems,
-        }));
+        }), { wrapper: ThemeWrapper });
 
         expect(result.current.activeKey).toBe('tab-1');
         expect(result.current.activeIndex).toBe(0);
@@ -264,7 +270,7 @@ describe('useTabControl hook', () => {
         const { result } = renderHook(() => useTabControl({
             items: defaultItems,
             defaultActiveKey: 'tab-2',
-        }));
+        }), { wrapper: ThemeWrapper });
 
         expect(result.current.activeKey).toBe('tab-2');
         expect(result.current.activeIndex).toBe(1);
@@ -273,7 +279,7 @@ describe('useTabControl hook', () => {
     it('should change active tab via setActiveTab', () => {
         const { result } = renderHook(() => useTabControl({
             items: defaultItems,
-        }));
+        }), { wrapper: ThemeWrapper });
 
         act(() => {
             result.current.setActiveTab('tab-3');
@@ -288,7 +294,7 @@ describe('useTabControl hook', () => {
         const { result } = renderHook(() => useTabControl({
             items: defaultItems,
             onTabChange,
-        }));
+        }), { wrapper: ThemeWrapper });
 
         act(() => {
             result.current.setActiveTab('tab-2');
@@ -303,7 +309,7 @@ describe('useTabControl hook', () => {
                 { tabKey: 'tab-1', label: 'Tab 1' },
                 { tabKey: 'tab-2', label: 'Tab 2', disabled: true },
             ],
-        }));
+        }), { wrapper: ThemeWrapper });
 
         act(() => {
             result.current.setActiveTab('tab-2');
@@ -317,7 +323,7 @@ describe('useTabControl hook', () => {
             items: defaultItems,
             variant: 'pills',
             orientation: 'vertical',
-        }));
+        }), { wrapper: ThemeWrapper });
 
         expect(result.current.containerClasses).toContain('ark-tab-control');
         expect(result.current.containerClasses).toContain('ark-tab-control--pills');
@@ -328,7 +334,7 @@ describe('useTabControl hook', () => {
         const { result } = renderHook(() => useTabControl({
             items: defaultItems,
             defaultActiveKey: 'tab-1',
-        }));
+        }), { wrapper: ThemeWrapper });
 
         const tab1AriaProps = result.current.getTabAriaProps(defaultItems[0], 0);
         const tab2AriaProps = result.current.getTabAriaProps(defaultItems[1], 1);
@@ -345,7 +351,7 @@ describe('useTabControl hook', () => {
         const { result } = renderHook(() => useTabControl({
             items: defaultItems,
             defaultActiveKey: 'tab-1',
-        }));
+        }), { wrapper: ThemeWrapper });
 
         const panel1Props = result.current.getPanelAriaProps('tab-1');
         const panel2Props = result.current.getPanelAriaProps('tab-2');
@@ -418,9 +424,11 @@ describe('TabControl Component', () => {
 
     it('should render all tabs', () => {
         render(
-            React.createElement(TabControl, {
-                items: tabs,
-            })
+            React.createElement(ThemeProvider, null,
+                React.createElement(TabControl, {
+                    items: tabs,
+                })
+            )
         );
 
         expect(screen.getByText('Overview')).toBeInTheDocument();
@@ -430,9 +438,11 @@ describe('TabControl Component', () => {
 
     it('should have tablist role', () => {
         render(
-            React.createElement(TabControl, {
-                items: tabs,
-            })
+            React.createElement(ThemeProvider, null,
+                React.createElement(TabControl, {
+                    items: tabs,
+                })
+            )
         );
 
         expect(screen.getByRole('tablist')).toBeInTheDocument();
@@ -440,10 +450,12 @@ describe('TabControl Component', () => {
 
     it('should render with correct variant class', () => {
         const { container } = render(
-            React.createElement(TabControl, {
-                items: tabs,
-                variant: 'pills',
-            })
+            React.createElement(ThemeProvider, null,
+                React.createElement(TabControl, {
+                    items: tabs,
+                    variant: 'pills',
+                })
+            )
         );
 
         const tabControl = container.querySelector('.ark-tab-control');
@@ -455,10 +467,12 @@ describe('TabControl Component', () => {
         const user = userEvent.setup();
 
         render(
-            React.createElement(TabControl, {
-                items: tabs,
-                onTabChange,
-            })
+            React.createElement(ThemeProvider, null,
+                React.createElement(TabControl, {
+                    items: tabs,
+                    onTabChange,
+                })
+            )
         );
 
         await user.click(screen.getByText('Settings'));

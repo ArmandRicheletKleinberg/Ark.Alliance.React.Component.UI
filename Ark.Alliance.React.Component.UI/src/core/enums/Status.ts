@@ -84,6 +84,19 @@ export const SemanticStatusSchema = z.enum([
     'neutral',
 ]);
 
+/**
+ * Service/System status options.
+ * 
+ * Used for service health, daemons, background tasks.
+ */
+export const ServiceStatusSchema = z.enum([
+    'running',
+    'stopped',
+    'paused',
+    'idle',
+    'maintenance',
+]);
+
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPE EXPORTS
 // ═══════════════════════════════════════════════════════════════════════════
@@ -99,6 +112,9 @@ export type TestStatus = z.infer<typeof TestStatusSchema>;
 
 /** Semantic status type */
 export type SemanticStatus = z.infer<typeof SemanticStatusSchema>;
+
+/** Service status type */
+export type ServiceStatus = z.infer<typeof ServiceStatusSchema>;
 
 // ═══════════════════════════════════════════════════════════════════════════
 // CONSTANTS

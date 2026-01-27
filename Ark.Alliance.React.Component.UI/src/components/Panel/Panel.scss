@@ -1,0 +1,103 @@
+/**
+ * Panel Component Styles
+ */
+
+.ark-panel {
+    border-radius: 0.5rem;
+    overflow: hidden;
+
+    /* Variants */
+    &--default {
+        background: var(--ark-panel-bg, #1f2937);
+        border: 1px solid var(--ark-border, #374151);
+    }
+
+    &--glass {
+        background: rgba(31, 41, 55, 0.7);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(75, 85, 99, 0.5);
+    }
+
+    &--bordered {
+        background: transparent;
+        border: 2px solid var(--ark-border, #374151);
+    }
+
+    &--elevated {
+        background: var(--ark-panel-bg, #1f2937);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+
+    /* Header */
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.75rem 1rem;
+        font-weight: 600;
+        border-bottom: 1px solid var(--ark-border, #374151);
+        color: var(--ark-text-primary, #f3f4f6);
+    }
+
+    &--collapsed &__header {
+        border-bottom: none;
+    }
+
+    &__header-content {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    &__collapse-btn {
+        background: transparent;
+        border: none;
+        color: var(--ark-text-muted, #6b7280);
+        cursor: pointer;
+        padding: 0.25rem 0.5rem;
+        margin-left: 0.5rem;
+        border-radius: 0.25rem;
+        font-size: 0.75rem;
+        transition: transform var(--ark-transition-normal, 200ms) var(--ark-easing-smooth, ease),
+            background-color var(--ark-transition-fast, 100ms) ease;
+
+        &:hover {
+            background-color: rgba(107, 114, 128, 0.2);
+        }
+
+        &:focus {
+            outline: 2px solid var(--ark-primary, #3b82f6);
+            outline-offset: 2px;
+        }
+    }
+
+    /* Body padding */
+    &__body {
+        &--none {
+            padding: 0;
+        }
+
+        &--sm {
+            padding: 0.5rem;
+        }
+
+        &--md {
+            padding: 1rem;
+        }
+
+        &--lg {
+            padding: 1.5rem;
+        }
+    }
+
+    /* Footer */
+    &__footer {
+        padding: 0.75rem 1rem;
+        border-top: 1px solid var(--ark-border, #374151);
+    }
+
+    /* Light Theme Overrides (if variables are not fully covering logic or specific overrides needed) */
+    /* Ideally controlled by variables, but keeping for compatibility if specific logic existed */
+    /* Assuming --ark-panel-bg handles light/dark switch via root variables */
+}

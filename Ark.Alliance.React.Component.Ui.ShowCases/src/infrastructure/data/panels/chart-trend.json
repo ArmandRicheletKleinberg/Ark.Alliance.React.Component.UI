@@ -27,19 +27,19 @@
     "controls": [
         {
             "type": "text",
-            "name": "title",
+            "propName": "title",
             "label": "Chart Title",
             "defaultValue": "ETH/USDT Real-time"
         },
         {
             "type": "text",
-            "name": "symbol",
+            "propName": "symbol",
             "label": "Symbol",
             "defaultValue": "ETHUSDT"
         },
         {
             "type": "select",
-            "name": "precision",
+            "propName": "precision",
             "label": "Precision",
             "defaultValue": "1s",
             "options": [
@@ -50,59 +50,59 @@
         },
         {
             "type": "divider",
-            "name": "div1",
+            "propName": "div1",
             "label": "Toggles"
         },
         {
             "type": "boolean",
-            "name": "showGrid",
+            "propName": "showGrid",
             "label": "Show Grid",
             "defaultValue": true
         },
         {
             "type": "boolean",
-            "name": "showVolume",
+            "propName": "showVolume",
             "label": "Show Volume",
             "defaultValue": true
         },
         {
             "type": "boolean",
-            "name": "showForecastHorizon",
+            "propName": "showForecastHorizon",
             "label": "Show Forecast",
             "defaultValue": true
         },
         {
             "type": "boolean",
-            "name": "showLegend",
+            "propName": "showLegend",
             "label": "Show Legend",
             "defaultValue": true
         },
         {
             "type": "boolean",
-            "name": "animateNewPoints",
+            "propName": "animateNewPoints",
             "label": "Animate Points",
             "defaultValue": true
         },
         {
             "type": "boolean",
-            "name": "isStreaming",
+            "propName": "isStreaming",
             "label": "Simulate Stream",
             "defaultValue": false
         },
         {
             "type": "divider",
-            "name": "div2",
+            "propName": "div2",
             "label": "Axis"
         },
         {
             "type": "boolean",
-            "name": "autoScaleY",
+            "propName": "autoScaleY",
             "label": "Auto Scale Y",
             "defaultValue": true
         },
         {
             "type": "slider",
-            "name": "yAxisPadding",
+            "propName": "yAxisPadding",
             "label": "Y Padding (x100)",
             "defaultValue": 0.05,
             "min": 0,
@@ -111,12 +111,12 @@
         },
         {
             "type": "divider",
-            "name": "div3",
+            "propName": "div3",
             "label": "Simulation"
         },
         {
             "type": "slider",
-            "name": "dataPoints",
+            "propName": "dataPoints",
             "label": "Data Points",
             "defaultValue": 100,
             "min": 50,
@@ -124,7 +124,7 @@
         },
         {
             "type": "slider",
-            "name": "volatility",
+            "propName": "volatility",
             "label": "Sim Volatility",
             "defaultValue": 10,
             "min": 1,

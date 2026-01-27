@@ -1,0 +1,73 @@
+@use '../abstracts/mixins' as *;
+
+// ═══════════════════════════════════════════════════════════════════════════
+// LAYOUT UTILITIES
+// Common layout patterns to avoid duplication
+// ═══════════════════════════════════════════════════════════════════════════
+
+.ark-flex {
+    display: flex;
+}
+
+.ark-flex-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.ark-flex-center {
+    @include flex-center;
+}
+
+.ark-flex-between {
+    @include flex-between;
+}
+
+.ark-items-center {
+    align-items: center;
+}
+
+.ark-justify-center {
+    justify-content: center;
+}
+
+.ark-w-full {
+    width: 100%;
+}
+
+.ark-h-full {
+    height: 100%;
+}
+
+// Spacing Utilities (simplified subset)
+.ark-gap-xs {
+    gap: 0.25rem;
+}
+
+.ark-gap-sm {
+    gap: 0.5rem;
+}
+
+.ark-gap-md {
+    gap: 1rem;
+}
+
+.ark-gap-lg {
+    gap: 1.5rem;
+}
+
+// Visibility
+.ark-hidden {
+    display: none !important;
+}
+
+.ark-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}

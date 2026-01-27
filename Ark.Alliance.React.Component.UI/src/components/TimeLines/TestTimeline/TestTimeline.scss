@@ -1,0 +1,266 @@
+/**
+ * @fileoverview TestTimeline Styles
+ * @module components/TimeLines/TestTimeline
+ * 
+ * Styles for test step timeline with status indicators.
+ */
+
+/* Container */
+.ark-test-timeline {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 0.5rem;
+
+    &--horizontal {
+        flex-direction: row;
+        overflow-x: auto;
+    }
+
+    &--compact .ark-test-timeline__step {
+        padding-bottom: 0.5rem;
+    }
+
+    /* Step */
+    &__step {
+        display: flex;
+        position: relative;
+        padding-bottom: 1.25rem;
+        transition: opacity 0.2s;
+    }
+
+    &--horizontal &__step {
+        flex-direction: column;
+        padding-bottom: 0;
+        padding-right: 1.5rem;
+        min-width: 120px;
+    }
+
+    /* Marker */
+    &__marker {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        width: 2rem;
+        height: 2rem;
+        margin-right: 0.75rem;
+        z-index: 1;
+    }
+
+    &__dot {
+        width: 1rem;
+        height: 1rem;
+        border-radius: 50%;
+        background: #4b5563;
+        border: 2px solid #374151;
+        transition: all 0.3s ease;
+    }
+
+    /* Status colors */
+    &__step--pending &__dot {
+        background: #4b5563;
+        border-color: #374151;
+    }
+
+    &__step--running &__dot {
+        background: #00d4ff;
+        border-color: #00d4ff;
+        box-shadow: 0 0 12px rgba(0, 212, 255, 0.6);
+        animation: pulse-running 1.5s infinite;
+    }
+
+    &__step--passed &__dot {
+        background: #10b981;
+        border-color: #10b981;
+        box-shadow: 0 0 8px rgba(16, 185, 129, 0.4);
+    }
+
+    &__step--failed &__dot {
+        background: #ef4444;
+        border-color: #ef4444;
+        box-shadow: 0 0 8px rgba(239, 68, 68, 0.4);
+    }
+
+    &__step--skipped &__dot {
+        background: #6b7280;
+        border-color: #4b5563;
+    }
+
+    &__icon {
+        font-size: 0.875rem;
+    }
+
+    /* Content */
+    &__content {
+        flex: 1;
+        min-width: 0;
+    }
+
+    &__header {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 0.25rem;
+    }
+
+    &__title {
+        margin: 0;
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: #f3f4f6;
+    }
+
+    &__step--passed &__title {
+        color: #10b981;
+    }
+
+    &__step--failed &__title {
+        color: #ef4444;
+    }
+
+    &__description {
+        margin: 0;
+        font-size: 0.75rem;
+        color: #9ca3af;
+        line-height: 1.4;
+    }
+
+    &__duration {
+        font-size: 0.625rem;
+        color: #6b7280;
+        font-family: monospace;
+        padding: 0.125rem 0.375rem;
+        background: rgba(75, 85, 99, 0.3);
+        border-radius: 4px;
+    }
+
+    /* Assertions */
+    &__assertions {
+        margin-top: 0.5rem;
+        padding: 0.5rem;
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 4px;
+        font-size: 0.75rem;
+    }
+
+    &__assertion {
+        display: flex;
+        align-items: center;
+        gap: 0.375rem;
+        padding: 0.125rem 0;
+
+        &-icon {
+            font-size: 0.625rem;
+        }
+
+        &-text {
+            color: #9ca3af;
+        }
+
+        &--passed {
+            color: #10b981;
+        }
+
+        &--failed {
+            color: #ef4444;
+        }
+    }
+
+    /* Connector */
+    &--connectors &__connector {
+        position: absolute;
+        left: 0.9375rem;
+        top: 2rem;
+        bottom: 0;
+        width: 2px;
+        background: #374151;
+    }
+
+    &--connectors &__step--passed &__connector {
+        background: linear-gradient(180deg, #10b981, #374151);
+    }
+
+    &--connectors &__step--failed &__connector {
+        background: linear-gradient(180deg, #ef4444, #374151);
+    }
+
+    /* Progress Bar */
+    &__progress {
+        margin-bottom: 1rem;
+        padding: 0.5rem;
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 8px;
+    }
+
+    &__progress-bar {
+        height: 4px;
+        background: #374151;
+        border-radius: 2px;
+        overflow: hidden;
+    }
+
+    &__progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #10b981, #00d4ff);
+        border-radius: 2px;
+        transition: width 0.3s ease;
+
+        &--failed {
+            background: linear-gradient(90deg, #ef4444, #f97316);
+        }
+    }
+
+    &__progress-stats {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 0.375rem;
+        font-size: 0.625rem;
+        color: #9ca3af;
+    }
+}
+
+// Special case: when BOTH horizontal AND connectors modifiers are present
+.ark-test-timeline--horizontal.ark-test-timeline--connectors {
+    .ark-test-timeline__connector {
+        left: 2rem;
+        top: 0.9375rem;
+        bottom: auto;
+        right: 0;
+        width: auto;
+        height: 2px;
+    }
+}
+
+/* Animations */
+@keyframes pulse-running {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.2);
+        opacity: 0.7;
+    }
+}
+
+/* Light Theme Override */
+:global([data-theme="light"]) {
+    .ark-test-timeline {
+        &__title {
+            color: #1f2937;
+        }
+
+        &__dot {
+            background: #d1d5db;
+            border-color: #9ca3af;
+        }
+
+        &__connector {
+            background: #d1d5db;
+        }
+    }
+}

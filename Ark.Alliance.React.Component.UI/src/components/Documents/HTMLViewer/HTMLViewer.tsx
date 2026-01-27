@@ -7,7 +7,7 @@
 
 import React, { memo, forwardRef } from 'react';
 import { useHTMLViewer, type UseHTMLViewerOptions } from './HTMLViewer.viewmodel';
-import './HTMLViewer.styles.css';
+import './HTMLViewer.scss';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES

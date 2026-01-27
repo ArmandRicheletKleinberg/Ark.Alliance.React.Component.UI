@@ -7,7 +7,7 @@
  */
 
 import { z } from 'zod';
-import { extendSchema } from '../../../core/base';
+import { extendFormInputSchema, defaultFormInputModel } from '../../../core/base';
 import {
     BasicSizeSchema,
     InputVariantSchema,
@@ -36,16 +36,16 @@ export const InputSize = BasicSizeSchema;
 export const InputVariant = InputVariantSchema;
 
 /**
- * BaseInput model schema extending base model
+ * BaseInput model schema extending FormInputModel
  */
-export const BaseInputModelSchema = extendSchema({
+export const BaseInputModelSchema = extendFormInputSchema({
     /** Size variant */
     size: BasicSizeSchema.default('md'),
 
     /** Style variant */
     variant: InputVariantSchema.default('default'),
 
-    /** Error state */
+    /** Error state (overrides validationState if needed) */
     hasError: z.boolean().default(false),
 
     /** Focus state */
@@ -63,11 +63,9 @@ export const BaseInputModelSchema = extendSchema({
     /** Input type */
     type: z.string().default('text'),
 
-    /** Name attribute for forms */
-    name: z.string().optional(),
-
-    /** Whether input is required */
-    required: z.boolean().default(false),
+    // Inherited from FormInputModel:
+    // label, helpText, errorMessage, required, touched, validationState, 
+    // name, readOnly, autoComplete, inputRestriction
 
     /** Maximum length */
     maxLength: z.number().optional(),
@@ -78,35 +76,20 @@ export const BaseInputModelSchema = extendSchema({
     /** Pattern for validation */
     pattern: z.string().optional(),
 
-    /** Autocomplete hint */
-    autoComplete: z.string().optional(),
-
     /** Auto focus on mount */
     autoFocus: z.boolean().default(false),
 
-    /** Read-only state */
-    readOnly: z.boolean().default(false),
-
     // ═══════════════════════════════════════════════════════════════════════
-    // VALIDATION PROPERTIES
+    // VALIDATION PROPERTIES (Legacy/Specific)
     // ═══════════════════════════════════════════════════════════════════════
 
     /**
      * Expected input format for validation.
-     * Set to 'none' for free text without format validation.
-     * 
-     * @example
-     * ```tsx
-     * <BaseInput validationFormat="email" />
-     * <BaseInput validationFormat="iban" />
-     * <BaseInput validationFormat="none" /> // Free text
-     * ```
      */
     validationFormat: InputFormatSchema.default('none'),
 
     /**
      * Optional validation configuration.
-     * Used to customize validation behavior (min/max, decimals, etc.)
      */
     validationConfig: InputValidationConfigSchema,
 
@@ -122,6 +105,7 @@ export const BaseInputModelSchema = extendSchema({
 
     /**
      * Current validation error message (set after validation).
+     * @deprecated Use errorMessage from FormInputModel
      */
     validationError: z.string().optional(),
 });
@@ -146,6 +130,7 @@ export { type InputFormat, type InputValidationConfig };
  * Default BaseInput model values
  */
 export const defaultBaseInputModel: BaseInputModel = {
+    ...defaultFormInputModel,
     size: 'md',
     variant: 'default',
     hasError: false,
@@ -153,9 +138,8 @@ export const defaultBaseInputModel: BaseInputModel = {
     fullWidth: false,
     value: '',
     type: 'text',
-    required: false,
+    // required, readOnly, name, autoComplete inherited from defaultFormInputModel
     autoFocus: false,
-    readOnly: false,
     disabled: false,
     loading: false,
     clickable: false,

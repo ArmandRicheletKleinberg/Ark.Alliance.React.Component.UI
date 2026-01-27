@@ -1,0 +1,109 @@
+{
+    "id": "window-panel",
+    "componentId": "WindowPanel",
+    "title": "Window Panel",
+    "description": "Draggable, resizable window with title bar, controls, and content.",
+    "layout": {
+        "width": "100%",
+        "height": "500px"
+    },
+    "preview": {
+        "background": "dark"
+    },
+    "defaultProps": {
+        "title": "My Application",
+        "isOpen": true,
+        "isMinimized": false,
+        "isMaximized": false,
+        "width": 600,
+        "height": 400,
+        "x": 100,
+        "y": 50,
+        "resizable": true,
+        "draggable": true,
+        "showClose": true,
+        "showMinimize": true,
+        "showMaximize": true,
+        "visualMode": "neon"
+    },
+    "controls": [
+        {
+            "propName": "title",
+            "type": "text",
+            "label": "Title",
+            "group": "content"
+        },
+        {
+            "propName": "isMaximized",
+            "type": "boolean",
+            "label": "Maximized",
+            "group": "behavior"
+        },
+        {
+            "propName": "isMinimized",
+            "type": "boolean",
+            "label": "Minimized",
+            "group": "behavior"
+        },
+        {
+            "propName": "width",
+            "type": "slider",
+            "label": "Width",
+            "min": 200,
+            "max": 1200,
+            "step": 50,
+            "group": "layout"
+        },
+        {
+            "propName": "height",
+            "type": "slider",
+            "label": "Height",
+            "min": 150,
+            "max": 800,
+            "step": 50,
+            "group": "layout"
+        },
+        {
+            "propName": "resizable",
+            "type": "boolean",
+            "label": "Resizable",
+            "group": "behavior"
+        },
+        {
+            "propName": "draggable",
+            "type": "boolean",
+            "label": "Draggable",
+            "group": "behavior"
+        },
+        {
+            "propName": "showClose",
+            "type": "boolean",
+            "label": "Show Close",
+            "group": "style"
+        },
+        {
+            "propName": "showMinimize",
+            "type": "boolean",
+            "label": "Show Minimize",
+            "group": "style"
+        },
+        {
+            "propName": "showMaximize",
+            "type": "boolean",
+            "label": "Show Maximize",
+            "group": "style"
+        },
+        {
+            "propName": "visualMode",
+            "type": "select",
+            "label": "Visual Mode",
+            "options": [
+                "normal",
+                "neon",
+                "minimal",
+                "glass"
+            ],
+            "group": "style"
+        }
+    ]
+}

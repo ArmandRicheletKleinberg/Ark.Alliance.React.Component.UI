@@ -6,3 +6,5 @@
  */
 
 export * from './Math';
+export * from './Storage';
+

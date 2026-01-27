@@ -179,7 +179,7 @@ export function useBaseInput(options: UseBaseInputOptions): UseBaseInputResult {
             decimals: base.model.validationConfig?.decimals,
             acceptedFileExtensions: base.model.validationConfig?.acceptedFileExtensions,
             allowSpecialChars: base.model.validationConfig?.allowSpecialChars,
-            customErrorMessage: base.model.validationConfig?.customErrorMessage,
+            customErrorMessage: base.model.errorMessage || base.model.validationConfig?.customErrorMessage, // Prefer model error message override
         };
 
         const result = validateInput(base.model.value, inputType, config);
@@ -189,13 +189,15 @@ export function useBaseInput(options: UseBaseInputOptions): UseBaseInputResult {
             setValidationError(result.errorMessage);
             base.updateModel({
                 hasError: true,
-                validationError: result.errorMessage
+                validationError: result.errorMessage,
+                validationState: 'invalid', // Sync with FormInputModel state
             } as Partial<BaseInputModel>);
         } else {
             setValidationError(undefined);
             base.updateModel({
                 hasError: false,
-                validationError: undefined
+                validationError: undefined,
+                validationState: 'valid', // Sync with FormInputModel state
             } as Partial<BaseInputModel>);
         }
 
@@ -212,7 +214,8 @@ export function useBaseInput(options: UseBaseInputOptions): UseBaseInputResult {
         setValidationError(undefined);
         base.updateModel({
             hasError: false,
-            validationError: undefined
+            validationError: undefined,
+            validationState: 'none'
         } as Partial<BaseInputModel>);
     }, [base]);
 
@@ -222,7 +225,10 @@ export function useBaseInput(options: UseBaseInputOptions): UseBaseInputResult {
 
     const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         const newValue = e.target.value;
-        base.updateModel({ value: newValue } as Partial<BaseInputModel>);
+        base.updateModel({
+            value: newValue,
+            touched: true // Mark as touched on change
+        } as Partial<BaseInputModel>);
         onChange?.(e);
 
         // Validate on change if configured
@@ -240,7 +246,10 @@ export function useBaseInput(options: UseBaseInputOptions): UseBaseInputResult {
 
     const handleBlur = useCallback((e: React.FocusEvent<HTMLInputElement>) => {
         setLocalFocused(false);
-        base.updateModel({ isFocused: false } as Partial<BaseInputModel>);
+        base.updateModel({
+            isFocused: false,
+            touched: true // Mark as touched on blur
+        } as Partial<BaseInputModel>);
         onBlur?.(e);
 
         // Validate on blur if configured
@@ -258,22 +267,21 @@ export function useBaseInput(options: UseBaseInputOptions): UseBaseInputResult {
     // COMPUTED STYLES
     // ═══════════════════════════════════════════════════════════════════════
 
-    const inputClasses = useMemo(() => {
-        const classes = [
-            'ark-base-input',
-            `ark-base-input--${base.model.size}`,
-            `ark-base-input--${base.model.variant}`,
-        ];
+    // ═══════════════════════════════════════════════════════════════════════════
+    // COMPUTED STYLES
+    // ═══════════════════════════════════════════════════════════════════════════
 
-        if (base.model.hasError || validationError) classes.push('ark-base-input--error');
-        if (isFocused) classes.push('ark-base-input--focused');
-        if (base.model.fullWidth) classes.push('ark-base-input--full-width');
-        if (base.model.disabled) classes.push('ark-base-input--disabled');
-        if (base.model.readOnly) classes.push('ark-base-input--readonly');
+    const inputClasses = useMemo(() => {
+        // Primitive InputBase handles variants, sizes, and states.
+        // We only pass the strict base class for backward compatibility selectors if needed.
+        // But optimally, we should rely on InputBase classes.
+        // We'll keep 'ark-base-input' as a marker class for now.
+        const classes = ['ark-base-input'];
+
         if (base.model.className) classes.push(base.model.className);
 
         return classes.join(' ');
-    }, [base.model, isFocused, validationError]);
+    }, [base.model.className]);
 
     // ═══════════════════════════════════════════════════════════════════════
     // RETURN

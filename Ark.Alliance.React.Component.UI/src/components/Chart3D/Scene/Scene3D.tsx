@@ -9,21 +9,40 @@ import { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, PerspectiveCamera, Stars, Sparkles, Environment } from '@react-three/drei';
 import { EffectComposer, Bloom } from '@react-three/postprocessing';
-import type { DataPoint, Chart3DModel } from '../Chart3D.model';
+import type { DataPoint, Chart3DModel, PriceThreshold, ChartEventMarker, PriceRange } from '../Chart3D.model';
 import { AxisSystem } from './AxisSystem';
 import { ChartShapes } from './ChartShapes';
 import { SurfaceRibbon } from './SurfaceRibbon';
-import './Scene3D.styles.css';
+import { ThresholdLines } from './ThresholdLines';
+import { EventMarkers } from './EventMarkers';
+import './Scene3D.scss';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES
 // ═══════════════════════════════════════════════════════════════════════════
 
-interface Scene3DProps {
+/**
+ * Props for the Scene3D component.
+ */
+export interface Scene3DProps {
+    /** 3D data points to visualize */
     data: DataPoint[];
+    /** Chart configuration */
     config: Chart3DModel;
+    /** Callback when a point is hovered */
     onHoverPoint: (point: DataPoint | null) => void;
+    /** Currently hovered point */
     hoveredPoint: DataPoint | null;
+    /** Optional price thresholds for indicator lines */
+    thresholds?: PriceThreshold[];
+    /** Optional event markers (3D bubbles) */
+    eventMarkers?: ChartEventMarker[];
+    /** Optional price range for Y-axis normalization */
+    priceRange?: PriceRange;
+    /** Currently selected marker */
+    selectedMarker?: ChartEventMarker | null;
+    /** Callback when a marker is selected */
+    onMarkerSelect?: (marker: ChartEventMarker | null) => void;
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -34,7 +53,12 @@ export const Scene3D: React.FC<Scene3DProps> = ({
     data,
     config,
     onHoverPoint,
-    hoveredPoint
+    hoveredPoint,
+    thresholds = [],
+    eventMarkers = [],
+    priceRange,
+    selectedMarker = null,
+    onMarkerSelect,
 }) => {
     return (
         <div className="ark-scene3d">
@@ -85,6 +109,25 @@ export const Scene3D: React.FC<Scene3DProps> = ({
                         />
 
                         <SurfaceRibbon data={data} config={config} />
+
+                        {/* Threshold Lines (price indicators) */}
+                        {thresholds.length > 0 && priceRange && (
+                            <ThresholdLines
+                                thresholds={thresholds}
+                                priceRange={priceRange}
+                            />
+                        )}
+
+                        {/* Event Markers (3D bubbles) */}
+                        {eventMarkers.length > 0 && priceRange && (
+                            <EventMarkers
+                                markers={eventMarkers}
+                                priceRange={priceRange}
+                                dataLength={data.length}
+                                selectedMarkerId={selectedMarker?.id || null}
+                                onMarkerSelect={onMarkerSelect}
+                            />
+                        )}
                     </group>
 
                     {/* Post Processing */}
@@ -103,6 +146,15 @@ export const Scene3D: React.FC<Scene3DProps> = ({
             {hoveredPoint && (
                 <div className="ark-scene3d__tooltip">
                     <h3 className="ark-scene3d__tooltip-title">Data Point</h3>
+                    {/* Price display for trading data */}
+                    {hoveredPoint.price !== undefined && (
+                        <div className="ark-scene3d__tooltip-row">
+                            <span>Price:</span>
+                            <span className="ark-scene3d__tooltip-price">
+                                ${hoveredPoint.price.toFixed(4)}
+                            </span>
+                        </div>
+                    )}
                     <div className="ark-scene3d__tooltip-row">
                         <span>Value (Y):</span>
                         <span className="ark-scene3d__tooltip-value">{hoveredPoint.y.toFixed(4)}</span>
@@ -126,6 +178,13 @@ export const Scene3D: React.FC<Scene3DProps> = ({
                                 <span>{hoveredPoint.close?.toFixed(2)}</span>
                             </div>
                         </>
+                    )}
+                    {/* Timestamp display */}
+                    {hoveredPoint.timestamp !== undefined && (
+                        <div className="ark-scene3d__tooltip-row ark-scene3d__tooltip-time">
+                            <span>Time:</span>
+                            <span>{new Date(hoveredPoint.timestamp).toLocaleTimeString()}</span>
+                        </div>
                     )}
                 </div>
             )}

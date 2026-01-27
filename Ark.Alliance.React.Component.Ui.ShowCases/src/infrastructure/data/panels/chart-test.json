@@ -21,19 +21,19 @@
     "controls": [
         {
             "type": "text",
-            "name": "title",
+            "propName": "title",
             "label": "Chart Title",
             "defaultValue": "Scenario Execution 001"
         },
         {
             "type": "number",
-            "name": "entryPrice",
+            "propName": "entryPrice",
             "label": "Entry Price",
             "defaultValue": 1000
         },
         {
             "type": "slider",
-            "name": "currentIndex",
+            "propName": "currentIndex",
             "label": "Current Cursor",
             "defaultValue": 40,
             "min": 0,
@@ -41,30 +41,30 @@
         },
         {
             "type": "divider",
-            "name": "div1",
+            "propName": "div1",
             "label": "Options"
         },
         {
             "type": "boolean",
-            "name": "showGrid",
+            "propName": "showGrid",
             "label": "Show Grid",
             "defaultValue": true
         },
         {
             "type": "boolean",
-            "name": "showLegend",
+            "propName": "showLegend",
             "label": "Show Legend",
             "defaultValue": true
         },
         {
             "type": "boolean",
-            "name": "animate",
+            "propName": "animate",
             "label": "Animate",
             "defaultValue": true
         },
         {
             "type": "slider",
-            "name": "pointCount",
+            "propName": "pointCount",
             "label": "Points",
             "defaultValue": 80,
             "min": 20,
@@ -72,7 +72,7 @@
         },
         {
             "type": "slider",
-            "name": "volatility",
+            "propName": "volatility",
             "label": "Volatility",
             "defaultValue": 5,
             "min": 1,

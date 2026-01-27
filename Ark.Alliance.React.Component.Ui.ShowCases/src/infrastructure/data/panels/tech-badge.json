@@ -1,0 +1,69 @@
+{
+    "id": "tech-badge",
+    "componentId": "TechBadge",
+    "title": "Technology Badge",
+    "description": "Technology/framework indicator with icon and brand colors.",
+    "layout": {
+        "width": "auto",
+        "height": "auto"
+    },
+    "preview": {
+        "background": "dark"
+    },
+    "defaultProps": {
+        "techKey": "react",
+        "size": "md",
+        "showIcon": true,
+        "active": false
+    },
+    "controls": [
+        {
+            "propName": "techKey",
+            "type": "select",
+            "label": "Technology",
+            "options": [
+                "react",
+                "typescript",
+                "javascript",
+                "nodejs",
+                "python",
+                "go",
+                "rust",
+                "docker",
+                "kubernetes",
+                "aws",
+                "azure",
+                "graphql",
+                "postgresql",
+                "mongodb",
+                "redis",
+                "tailwind",
+                "vite"
+            ],
+            "group": "content"
+        },
+        {
+            "propName": "size",
+            "type": "select",
+            "label": "Size",
+            "options": [
+                "sm",
+                "md",
+                "lg"
+            ],
+            "group": "style"
+        },
+        {
+            "propName": "showIcon",
+            "type": "boolean",
+            "label": "Show Icon",
+            "group": "style"
+        },
+        {
+            "propName": "active",
+            "type": "boolean",
+            "label": "Active",
+            "group": "behavior"
+        }
+    ]
+}

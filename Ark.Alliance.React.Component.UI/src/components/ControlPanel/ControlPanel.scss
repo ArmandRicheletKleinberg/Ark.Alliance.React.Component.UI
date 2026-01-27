@@ -1,0 +1,330 @@
+/**
+ * ControlPanel Component Styles
+ * 
+ * Standardized styles for the ControlPanel primitive.
+ * Consolidates patterns from FinancialChartControls and Chart3D/ControlPanel.
+ */
+
+/* Container */
+.ark-control-panel {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 12px;
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    color: #e2e8f0;
+    font-size: 0.875rem;
+    overflow: hidden;
+    transition: all 0.2s ease;
+
+    &--hidden {
+        display: none;
+    }
+
+    &--collapsed {
+        /* Collapsed state */
+    }
+
+    &--loading {
+        pointer-events: none;
+    }
+
+    /* Position variants */
+    &--floating {
+        position: absolute;
+        z-index: 100;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    &--left {
+        border-right-width: 2px;
+        border-radius: 0 12px 12px 0;
+    }
+
+    &--right {
+        border-left-width: 2px;
+        border-radius: 12px 0 0 12px;
+    }
+
+    &--top {
+        border-bottom-width: 2px;
+        border-radius: 0 0 12px 12px;
+    }
+
+    &--bottom {
+        border-top-width: 2px;
+        border-radius: 12px 12px 0 0;
+    }
+
+    /* Header */
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.75rem 1rem;
+        background: rgba(15, 23, 42, 0.6);
+        border-bottom: 1px solid #334155;
+        user-select: none;
+
+        &--collapsible {
+            cursor: pointer;
+        }
+    }
+
+    &__title {
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: #f8fafc;
+        letter-spacing: -0.01em;
+    }
+
+    &__title-icon {
+        font-size: 1rem;
+    }
+
+    &__header-actions {
+        display: flex;
+        align-items: center;
+        gap: 0.375rem;
+    }
+
+    /* Action Buttons */
+    &__action,
+    &__collapse-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 28px;
+        height: 28px;
+        padding: 0;
+        background: rgba(51, 65, 85, 0.5);
+        border: 1px solid #475569;
+        border-radius: 6px;
+        color: #94a3b8;
+        font-size: 0.875rem;
+        cursor: pointer;
+        transition: all 0.15s ease;
+
+        &:hover {
+            background: #475569;
+            color: #e2e8f0;
+        }
+
+        &--active {
+            background: #6366f1;
+            border-color: #6366f1;
+            color: white;
+        }
+
+        &--primary {
+            background: #3b82f6;
+            border-color: #3b82f6;
+            color: white;
+
+            &:hover {
+                background: #2563eb;
+            }
+        }
+
+        &--success {
+            background: #22c55e;
+            border-color: #22c55e;
+            color: white;
+
+            &:hover {
+                background: #16a34a;
+            }
+        }
+
+        &--danger {
+            background: #ef4444;
+            border-color: #ef4444;
+            color: white;
+
+            &:hover {
+                background: #dc2626;
+            }
+        }
+    }
+
+    /* Content */
+    &__content {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        padding: 1rem;
+        overflow-y: auto;
+        max-height: calc(100vh - 200px);
+
+        &--collapsed {
+            display: none;
+        }
+    }
+
+    /* Sections */
+    &__section {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    &__section-title {
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 0.375rem;
+        font-size: 0.6875rem;
+        font-weight: 600;
+        color: #94a3b8;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    &__section-icon {
+        font-size: 0.875rem;
+    }
+
+    &__section-content {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    /* Rows */
+    &__row {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    &__row-label {
+        flex: 0 0 80px;
+        font-size: 0.75rem;
+        color: #94a3b8;
+    }
+
+    &__row-control {
+        flex: 1;
+        min-width: 0;
+    }
+
+    &__row-value {
+        flex: 0 0 40px;
+        text-align: right;
+        font-family: ui-monospace, monospace;
+        font-size: 0.75rem;
+        color: #64748b;
+    }
+
+    /* Footer */
+    &__footer {
+        padding: 0.75rem 1rem;
+        border-top: 1px solid #334155;
+        background: rgba(15, 23, 42, 0.4);
+    }
+
+    /* Status Indicator */
+    &__status {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+        border-top: 1px solid #334155;
+        font-size: 0.75rem;
+        color: #94a3b8;
+    }
+
+    &__status-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #64748b;
+
+        &--connected {
+            background: #22c55e;
+            animation: ark-cp-pulse 1.5s ease-in-out infinite;
+        }
+
+        &--disconnected {
+            background: #ef4444;
+        }
+
+        &--connecting {
+            background: #eab308;
+            animation: ark-cp-pulse 0.75s ease-in-out infinite;
+        }
+
+        &--error {
+            background: #ef4444;
+            animation: ark-cp-pulse 0.5s ease-in-out infinite;
+        }
+    }
+
+    &__status-label {
+        font-size: 0.6875rem;
+        text-transform: uppercase;
+        letter-spacing: 0.025em;
+    }
+
+    /* Loading Overlay */
+    &__loading {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(15, 23, 42, 0.8);
+        z-index: 10;
+    }
+
+    &__loading-spinner {
+        width: 24px;
+        height: 24px;
+        border: 2px solid #6366f1;
+        border-top-color: transparent;
+        border-radius: 50%;
+        animation: ark-cp-spin 0.8s linear infinite;
+    }
+}
+
+/* Animations */
+@keyframes ark-cp-pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+@keyframes ark-cp-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    .ark-control-panel {
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+
+        &__row-label {
+            flex: 0 0 60px;
+        }
+
+        &__row-value {
+            flex: 0 0 30px;
+        }
+    }
+}

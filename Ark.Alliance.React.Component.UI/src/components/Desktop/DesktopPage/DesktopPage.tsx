@@ -13,7 +13,7 @@ import { DesktopIcon } from '../DesktopIcon';
 import { Taskbar } from '../Taskbar';
 import { StartMenu } from '../StartMenu';
 import type { AppConfig, DesktopIconConfig, Position } from '../types';
-import './DesktopPage.styles.css';
+import './DesktopPage.scss';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES

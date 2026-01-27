@@ -128,7 +128,9 @@ describe('PageModelSchema', () => {
     it('should use defaults for missing properties', () => {
         const result = PageModelSchema.parse({ title: 'Test' });
 
-        expect(result.isDark).toBe(true); // default dark mode
+        // isDark is optional with no default - component derives from theme context
+        expect(result.isDark).toBeUndefined();
+        // showBackButton and layout have defaults in schema
         expect(result.showBackButton).toBe(false);
         expect(result.layout).toBe('default');
     });

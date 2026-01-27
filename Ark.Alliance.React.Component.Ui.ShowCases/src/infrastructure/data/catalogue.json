@@ -20,7 +20,28 @@
             "description": "Interactive elements that trigger actions.",
             "componentIds": [
                 "btn-standard",
-                "btn-neon"
+                "btn-neon",
+                "toggle"
+            ]
+        },
+        {
+            "name": "Navigation & UI",
+            "icon": "compass",
+            "description": "Navigation bars, tabs, and carousels.",
+            "componentIds": [
+                "sidebar-menu",
+                "tab-control",
+                "carousel"
+            ]
+        },
+        {
+            "name": "Overlays",
+            "icon": "layer-group",
+            "description": "Modals, toasts, and popups.",
+            "componentIds": [
+                "modal",
+                "toast",
+                "tooltip"
             ]
         },
         {
@@ -29,7 +50,43 @@
             "description": "Visualize data sets and timelines.",
             "componentIds": [
                 "timeline-vertical",
-                "grid-project"
+                "grid-project",
+                "progress-bar",
+                "tree-view",
+                "tech-badge"
+            ]
+        },
+        {
+            "name": "Desktop OS",
+            "icon": "desktop",
+            "description": "Complete desktop operating system simulation.",
+            "componentIds": [
+                "desktop-page",
+                "window-panel",
+                "desktop-icon",
+                "taskbar",
+                "start-menu"
+            ]
+        },
+        {
+            "name": "Finance & Trading",
+            "icon": "chart-line",
+            "description": "Professional trading grid components.",
+            "componentIds": [
+                "orders-grid",
+                "positions-grid",
+                "trade-history-grid",
+                "trading-grid-card"
+            ]
+        },
+        {
+            "name": "Advanced Panels",
+            "icon": "window-maximize",
+            "description": "Feature-rich panel and container components.",
+            "componentIds": [
+                "generic-panel",
+                "control-panel",
+                "panel-basic"
             ]
         },
         {
@@ -37,7 +94,6 @@
             "icon": "box",
             "description": "Wrappers and layout elements.",
             "componentIds": [
-                "panel-basic",
                 "card-basic"
             ]
         },
@@ -63,16 +119,15 @@
         },
         {
             "name": "Grids",
-            "icon": "layer-group",
+            "icon": "list",
             "description": "Structured layouts for collections.",
             "componentIds": [
-                "grid-project",
                 "grid-data"
             ]
         },
         {
             "name": "Charts",
-            "icon": "chart-line",
+            "icon": "chart-area",
             "description": "Visual data representation.",
             "componentIds": [
                 "chart-financial",

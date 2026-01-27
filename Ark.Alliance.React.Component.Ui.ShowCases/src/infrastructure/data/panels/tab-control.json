@@ -1,0 +1,96 @@
+{
+    "id": "tab-control",
+    "componentId": "TabControl",
+    "title": "Tab Control",
+    "description": "Tabbed navigation with multiple variants and orientations.",
+    "layout": {
+        "width": "100%",
+        "height": "400px"
+    },
+    "preview": {
+        "background": "dark"
+    },
+    "defaultProps": {
+        "variant": "default",
+        "orientation": "horizontal",
+        "alignment": "start",
+        "size": "md",
+        "fill": false,
+        "scrollable": false,
+        "closeable": false,
+        "iconsOnly": false,
+        "tabSet": "dashboard"
+    },
+    "controls": [
+        {
+            "propName": "variant",
+            "type": "select",
+            "label": "Variant",
+            "options": [
+                "default",
+                "pills",
+                "underline",
+                "boxed"
+            ],
+            "group": "style"
+        },
+        {
+            "propName": "orientation",
+            "type": "select",
+            "label": "Orientation",
+            "options": [
+                "horizontal",
+                "vertical"
+            ],
+            "group": "style"
+        },
+        {
+            "propName": "alignment",
+            "type": "select",
+            "label": "Alignment",
+            "options": [
+                "start",
+                "center",
+                "end"
+            ],
+            "group": "style"
+        },
+        {
+            "propName": "size",
+            "type": "select",
+            "label": "Size",
+            "options": [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl"
+            ],
+            "group": "style"
+        },
+        {
+            "propName": "fill",
+            "type": "boolean",
+            "label": "Fill Width",
+            "group": "style"
+        },
+        {
+            "propName": "scrollable",
+            "type": "boolean",
+            "label": "Scrollable",
+            "group": "behavior"
+        },
+        {
+            "propName": "closeable",
+            "type": "boolean",
+            "label": "Closeable Tabs",
+            "group": "behavior"
+        },
+        {
+            "propName": "iconsOnly",
+            "type": "boolean",
+            "label": "Icons Only",
+            "group": "style"
+        }
+    ]
+}

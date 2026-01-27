@@ -35,8 +35,8 @@ export const CataloguePage: React.FC = () => {
     }
 
     return (
-        <div className="container mx-auto max-w-7xl">
-            <div className="p-8 pb-0">
+        <div className="w-full">
+            <div className="px-6 pb-0 pt-8">
                 <div className="flex items-center mb-2">
                     <div className="w-10 h-10 rounded-lg bg-ark-primary/10 flex items-center justify-center text-ark-primary mr-4">
                         <FontAwesomeIcon icon={family.icon as any} size="lg" />

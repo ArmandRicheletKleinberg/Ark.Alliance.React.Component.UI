@@ -7,10 +7,14 @@
 // BASE INPUT COMPONENTS
 // ═══════════════════════════════════════════════════════════════════════════
 
-export * from './Base/Input/Input.model';
-export * from './Base/Input/Input.viewmodel';
-export { Input, type InputProps } from './Base/Input/Input';
+// BaseInput is the foundation primitive
 export * from './BaseInput';
+export { BaseInput } from './BaseInput'; // Named export
+export { BaseInput as Input } from './BaseInput/BaseInput'; // Backward compatibility alias (direct from component file)
+
+// InputBase primitive (new)
+export * from './primitives/InputBase.model';
+export { InputBase, type InputBaseProps } from './primitives/InputBase';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // SPECIALIZED INPUT COMPONENTS

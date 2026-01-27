@@ -8,7 +8,16 @@
 import { z } from 'zod';
 import { extendSchema } from '../../../core/base';
 import { STATUS_COLORS, type StatusType } from '../../../core/constants';
-import { BasicSizeSchema, type BasicSize } from '../../../core/enums';
+import {
+    BasicSizeSchema,
+    ServiceStatusSchema,
+    ProcessStatusSchema,
+    SemanticStatusSchema,
+    type BasicSize,
+    type ServiceStatus,
+    type ProcessStatus,
+    type SemanticStatus,
+} from '../../../core/enums';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // SCHEMA DEFINITIONS
@@ -18,11 +27,11 @@ import { BasicSizeSchema, type BasicSize } from '../../../core/enums';
  * Badge status variants (component-specific)
  * Includes both system statuses (running, stopped, etc.) and priority indicators (success, warning, etc.)
  */
-export const BadgeStatus = z.enum([
-    // System statuses
-    'running', 'stopped', 'error', 'pending', 'paused', 'idle',
-    // Priority indicators (for feature toggles)
-    'success', 'warning', 'danger', 'info', 'neutral'
+export const BadgeStatus = z.union([
+    ServiceStatusSchema,
+    ProcessStatusSchema,
+    SemanticStatusSchema,
+    z.literal('danger'), // Backwards compatibility
 ]);
 
 /**
@@ -61,7 +70,7 @@ export const BadgeModelSchema = extendSchema({
 // TYPE EXPORTS
 // ═══════════════════════════════════════════════════════════════════════════
 
-export type BadgeStatusType = z.infer<typeof BadgeStatus>;
+export type BadgeStatusType = ServiceStatus | ProcessStatus | SemanticStatus | 'danger';
 export type BadgeSizeType = BasicSize;
 export type BadgeModel = z.infer<typeof BadgeModelSchema>;
 
