@@ -17,10 +17,10 @@ import {
     faKey,
     faServer,
     faShieldHalved,
-    faMicrosoft,
     faExclamationCircle,
     faTimes,
 } from '@fortawesome/free-solid-svg-icons';
+import { faMicrosoft } from '@fortawesome/free-brands-svg-icons';
 import { useLoginPanel, type UseLoginPanelOptions } from './LoginPanel.viewmodel';
 import { AuthProviderType, AUTH_PROVIDER_LABELS } from './LoginPanel.model';
 import './LoginPanel.scss';
