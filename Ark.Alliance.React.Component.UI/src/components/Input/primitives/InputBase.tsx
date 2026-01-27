@@ -19,6 +19,7 @@ export interface InputBaseProps extends Partial<InputBaseModel> {
     style?: React.CSSProperties;
     startAdornment?: React.ReactNode;
     endAdornment?: React.ReactNode;
+    testId?: string;
 }
 
 /**
@@ -59,6 +60,9 @@ export const InputBase = forwardRef<HTMLInputElement, InputBaseProps>((props, re
 
         // A11y
         ariaLabel,
+
+        // Test ID (extract to avoid spreading to DOM)
+        testId,
 
         ...rest
     } = props;
@@ -107,6 +111,7 @@ export const InputBase = forwardRef<HTMLInputElement, InputBaseProps>((props, re
                 aria-label={ariaLabel}
                 aria-invalid={hasError}
                 aria-disabled={disabled}
+                data-testid={testId}
                 {...rest}
             />
 
