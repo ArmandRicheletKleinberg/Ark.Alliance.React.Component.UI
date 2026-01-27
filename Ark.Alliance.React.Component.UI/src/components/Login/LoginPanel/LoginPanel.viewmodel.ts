@@ -41,6 +41,8 @@ export interface UseLoginPanelResult extends BaseViewModelResult<LoginPanelModel
     rememberMe: boolean;
     isSubmitting: boolean;
     error: string | null;
+    isPasswordRecovery: boolean;
+    recoveryEmail: string;
 
     // Actions
     setActiveProvider: (provider: AuthProviderType) => void;
@@ -50,12 +52,16 @@ export interface UseLoginPanelResult extends BaseViewModelResult<LoginPanelModel
     setDomain: (value: string) => void;
     setApiKey: (value: string) => void;
     setRememberMe: (value: boolean) => void;
+    setRecoveryEmail: (value: string) => void;
+    togglePasswordRecovery: () => void;
     handleSubmit: (e: React.FormEvent) => Promise<void>;
+    handlePasswordRecoverySubmit: (e: React.FormEvent) => Promise<void>;
     handleOAuthLogin: (provider: AuthProviderType) => void;
     clearError: () => void;
 
     // Computed
     canSubmit: boolean;
+    canSubmitRecovery: boolean;
     isLocalAuth: boolean;
     isLdapAuth: boolean;
     isApiKeyAuth: boolean;
@@ -89,6 +95,8 @@ export function useLoginPanel(options: UseLoginPanelOptions): UseLoginPanelResul
     const [rememberMe, setRememberMe] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const [isPasswordRecovery, setIsPasswordRecovery] = useState(false);
+    const [recoveryEmail, setRecoveryEmail] = useState('');
 
     // ───────────────────────────────────────────────────────────────────────
     // Computed Values
@@ -125,6 +133,10 @@ export function useLoginPanel(options: UseLoginPanelOptions): UseLoginPanelResul
         }
     }, [isSubmitting, activeProvider, email, password, username, apiKey]);
 
+    const canSubmitRecovery = useMemo(() => {
+        return !isSubmitting && recoveryEmail.trim() !== '' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(recoveryEmail);
+    }, [isSubmitting, recoveryEmail]);
+
     // ───────────────────────────────────────────────────────────────────────
     // Event Handlers
     // ───────────────────────────────────────────────────────────────────────
@@ -132,6 +144,46 @@ export function useLoginPanel(options: UseLoginPanelOptions): UseLoginPanelResul
     const clearError = useCallback(() => {
         setError(null);
     }, []);
+
+    const togglePasswordRecovery = useCallback(() => {
+        setIsPasswordRecovery((prev) => !prev);
+        setError(null);
+        // Clear recovery email when switching back to login
+        if (isPasswordRecovery) {
+            setRecoveryEmail('');
+        }
+    }, [isPasswordRecovery]);
+
+    const handlePasswordRecoverySubmit = useCallback(async (e: React.FormEvent) => {
+        e.preventDefault();
+
+        if (!canSubmitRecovery || !options.onPasswordRecovery) return;
+
+        setIsSubmitting(true);
+        setError(null);
+
+        try {
+            // Option 1: If onPasswordRecovery accepts email parameter
+            if (options.onPasswordRecovery.length > 0) {
+                await Promise.resolve(options.onPasswordRecovery(recoveryEmail as never));
+            } else {
+                // Option 2: If onPasswordRecovery is just navigation
+                options.onPasswordRecovery();
+            }
+
+            base.emit('password-recovery:initiated', { email: recoveryEmail });
+
+            // Optionally reset form after successful submission
+            setRecoveryEmail('');
+            setIsPasswordRecovery(false);
+        } catch (err) {
+            const message = err instanceof Error ? err.message : 'Password recovery failed';
+            setError(message);
+            base.emit('password-recovery:error', { error: message });
+        } finally {
+            setIsSubmitting(false);
+        }
+    }, [canSubmitRecovery, options, recoveryEmail, base]);
 
     const handleSubmit = useCallback(async (e: React.FormEvent) => {
         e.preventDefault();
@@ -211,6 +263,8 @@ export function useLoginPanel(options: UseLoginPanelOptions): UseLoginPanelResul
         rememberMe,
         isSubmitting,
         error,
+        isPasswordRecovery,
+        recoveryEmail,
         setActiveProvider,
         setEmail,
         setPassword,
@@ -218,10 +272,14 @@ export function useLoginPanel(options: UseLoginPanelOptions): UseLoginPanelResul
         setDomain,
         setApiKey,
         setRememberMe,
+        setRecoveryEmail,
+        togglePasswordRecovery,
         handleSubmit,
+        handlePasswordRecoverySubmit,
         handleOAuthLogin,
         clearError,
         canSubmit,
+        canSubmitRecovery,
         isLocalAuth,
         isLdapAuth,
         isApiKeyAuth,
