@@ -30,6 +30,21 @@ import {
 // MOCK SETUP
 // ═══════════════════════════════════════════════════════════════════════════
 
+// Mock matchMedia for ThemeProvider (used by our global renderHook wrapper)
+Object.defineProperty(window, 'matchMedia', {
+    writable: true,
+    value: vi.fn().mockImplementation((query: string) => ({
+        matches: false,
+        media: query,
+        onchange: null,
+        addListener: vi.fn(),
+        removeListener: vi.fn(),
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn(),
+        dispatchEvent: vi.fn(),
+    })),
+});
+
 describe('CookieHelper', () => {
     let cookieStore: Record<string, string> = {};
     let localStorageStore: Record<string, string> = {};
@@ -243,6 +258,21 @@ describe('usePersistentState', () => {
     beforeEach(() => {
         localStorageStore = {};
 
+        // Mock matchMedia for ThemeProvider (used by global renderHook wrapper)
+        Object.defineProperty(window, 'matchMedia', {
+            writable: true,
+            value: vi.fn().mockImplementation((query: string) => ({
+                matches: false,
+                media: query,
+                onchange: null,
+                addListener: vi.fn(),
+                removeListener: vi.fn(),
+                addEventListener: vi.fn(),
+                removeEventListener: vi.fn(),
+                dispatchEvent: vi.fn(),
+            })),
+        });
+
         const localStorageMock = {
             getItem: vi.fn((key: string) => localStorageStore[key] ?? null),
             setItem: vi.fn((key: string, value: string) => { localStorageStore[key] = value; }),
@@ -334,6 +364,21 @@ describe('Grid-Specific Hooks', () => {
 
     beforeEach(() => {
         localStorageStore = {};
+
+        // Mock matchMedia for ThemeProvider (used by global renderHook wrapper)
+        Object.defineProperty(window, 'matchMedia', {
+            writable: true,
+            value: vi.fn().mockImplementation((query: string) => ({
+                matches: false,
+                media: query,
+                onchange: null,
+                addListener: vi.fn(),
+                removeListener: vi.fn(),
+                addEventListener: vi.fn(),
+                removeEventListener: vi.fn(),
+                dispatchEvent: vi.fn(),
+            })),
+        });
 
         const localStorageMock = {
             getItem: vi.fn((key: string) => localStorageStore[key] ?? null),
