@@ -110,9 +110,11 @@ beforeAll(() => {
         if (
             typeof message === 'string' &&
             (message.includes('Warning: An update to') ||
-                message.includes('not wrapped in act(...)'))
+                message.includes('not wrapped in act(...)') ||
+                message.includes('useToastContext must be used within a ToastProvider') ||
+                message.includes('Uncaught [Error: useToastContext must be used within a ToastProvider]'))
         ) {
-            return; // Suppress act() warnings
+            return; // Suppress act() warnings and expected Toast context errors
         }
         originalError.call(console, ...args);
     };

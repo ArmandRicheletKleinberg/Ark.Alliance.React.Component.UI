@@ -25,6 +25,14 @@ dist-ssr
 /.vs/Ark.Alliance.React.Component.UI/CopilotIndices/18.0.981.45449
 /.vs
 /Ark.Alliance.React.Component.UI/DOCS/error.txt
-# Uncomment specific JSON files to ignore if needed
-# *.local.json
-# config.json
+
+# JSON files - IMPORTANT: Do NOT use *.json here
+# We need package.json, package-lock.json, and tsconfig.json for CI/CD
+# Ignore specific JSON files if needed:
+# example-config.local.json
+# private-data.json
+
+# Keep these JSON files tracked:
+# !package.json
+# !package-lock.json
+# !tsconfig*.json
