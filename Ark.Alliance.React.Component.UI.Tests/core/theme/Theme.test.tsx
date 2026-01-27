@@ -120,13 +120,17 @@ describe('ThemeProvider', () => {
 });
 
 describe('useTheme Hook', () => {
-    it('should throw error if used outside provider', () => {
+    it('should throw error if used outside provider', async () => {
+        // Import bare renderHook from the library directly to bypass our global wrapper
+        // This test specifically needs to test behavior OUTSIDE of ThemeProvider
+        const { renderHook: bareRenderHook } = await import('./node_modules/@testing-library/react/dist/pure.js');
+
         // Suppress console.error for expected error
         const consoleError = console.error;
         console.error = vi.fn();
 
         expect(() => {
-            renderHook(() => useTheme());
+            bareRenderHook(() => useTheme());
         }).toThrow('useTheme must be used within a ThemeProvider');
 
         console.error = consoleError;
