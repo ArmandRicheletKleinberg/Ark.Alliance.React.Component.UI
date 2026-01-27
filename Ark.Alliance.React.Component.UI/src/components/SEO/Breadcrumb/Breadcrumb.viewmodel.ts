@@ -99,11 +99,28 @@ export function useBreadcrumb(options: UseBreadcrumbOptions = {}) {
     };
 
     // ========================================================================
+    // Sanitization
+    // ========================================================================
+
+    const sanitizedModel = useMemo(() => ({
+        ...base.model,
+        items: base.model.items.map(item => {
+            if (item.href && item.href.trim().toLowerCase().startsWith('javascript:')) {
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                const { href, ...safeItem } = item;
+                return safeItem;
+            }
+            return item;
+        })
+    }), [base.model]);
+
+    // ========================================================================
     // Return
     // ========================================================================
 
     return {
         ...base,
+        model: sanitizedModel,
         jsonLdSchema,
         breadcrumbClasses,
         separatorDisplay,

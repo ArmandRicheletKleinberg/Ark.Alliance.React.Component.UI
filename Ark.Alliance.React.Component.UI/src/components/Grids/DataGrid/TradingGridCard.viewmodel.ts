@@ -38,7 +38,6 @@ export interface UseTradingGridCardResult extends UseCardResult {
 
 const TRADING_STATUS_COLORS = {
     dark: {
-        idle: { border: 'rgba(0, 212, 255, 0.3)', glow: 'rgba(0, 212, 255, 0.15)' },
         success: { border: 'rgba(16, 185, 129, 0.4)', glow: 'rgba(16, 185, 129, 0.2)' },
         warning: { border: 'rgba(245, 158, 11, 0.4)', glow: 'rgba(245, 158, 11, 0.2)' },
         error: { border: 'rgba(239, 68, 68, 0.4)', glow: 'rgba(239, 68, 68, 0.2)' },
@@ -46,7 +45,6 @@ const TRADING_STATUS_COLORS = {
         neutral: { border: 'rgba(107, 114, 128, 0.4)', glow: 'rgba(107, 114, 128, 0.2)' },
     },
     light: {
-        idle: { border: 'rgba(0, 170, 200, 0.25)', glow: 'rgba(0, 170, 200, 0.08)' },
         success: { border: 'rgba(16, 160, 110, 0.3)', glow: 'rgba(16, 160, 110, 0.1)' },
         warning: { border: 'rgba(220, 140, 10, 0.3)', glow: 'rgba(220, 140, 10, 0.1)' },
         error: { border: 'rgba(220, 60, 60, 0.3)', glow: 'rgba(220, 60, 60, 0.1)' },

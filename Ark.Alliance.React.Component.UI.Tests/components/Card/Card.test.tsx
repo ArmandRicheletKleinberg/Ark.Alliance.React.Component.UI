@@ -120,14 +120,14 @@ describe('CardModelSchema', () => {
             title: 'Minimal Card',
         });
 
-        expect(result.status).toBe('idle');
+        expect(result.status).toBe('info');
         expect(result.compact).toBe(false);
         expect(result.clickable).toBe(false);
         expect(result.showHeader).toBe(true);
     });
 
     it('should accept all status variants', () => {
-        const statuses = ['idle', 'success', 'warning', 'error', 'info'];
+        const statuses = ['success', 'warning', 'error', 'info'];
 
         statuses.forEach(status => {
             const result = CardModelSchema.parse({ title: 'Card', status });
@@ -148,7 +148,6 @@ describe('CardModelSchema', () => {
 
 describe('CARD_STATUS_CONFIG', () => {
     it('should have configuration for all status types', () => {
-        expect(CARD_STATUS_CONFIG.idle).toBeDefined();
         expect(CARD_STATUS_CONFIG.success).toBeDefined();
         expect(CARD_STATUS_CONFIG.warning).toBeDefined();
         expect(CARD_STATUS_CONFIG.error).toBeDefined();

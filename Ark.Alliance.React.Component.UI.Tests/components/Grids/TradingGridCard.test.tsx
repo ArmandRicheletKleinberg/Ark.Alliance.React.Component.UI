@@ -48,7 +48,7 @@ describe('TradingGridCardModelSchema', () => {
         });
 
         // Verify Card defaults
-        expect(result.status).toBe('idle');
+        expect(result.status).toBe('info');
         expect(result.compact).toBe(false);
         expect(result.showHeader).toBe(true);
 
@@ -58,7 +58,7 @@ describe('TradingGridCardModelSchema', () => {
     });
 
     it('should accept all status variants including info', () => {
-        const statuses = ['idle', 'success', 'warning', 'error', 'info'];
+        const statuses = ['success', 'warning', 'error', 'info'];
 
         statuses.forEach(status => {
             const result = TradingGridCardModelSchema.parse({
@@ -76,7 +76,7 @@ describe('TradingGridCardModelSchema', () => {
     });
 
     it('should use default model values', () => {
-        expect(defaultTradingGridCardModel.status).toBe('idle');
+        expect(defaultTradingGridCardModel.status).toBe('info');
         expect(defaultTradingGridCardModel.tooltipPosition).toBe('top');
         expect(defaultTradingGridCardModel.tooltipDelay).toBe(300);
     });
@@ -88,18 +88,6 @@ describe('TradingGridCardModelSchema', () => {
 
 describe('TradingGridCard Component', () => {
     describe('TRADING-CARD-001: Status Color Rendering', () => {
-        it('should render with idle status', () => {
-            const { container } = render(
-                React.createElement(TradingGridCard, {
-                    title: 'Idle Card',
-                    status: 'idle',
-                    children: 'Content',
-                })
-            );
-
-            const card = container.querySelector('.ark-trading-card');
-            expect(card).not.toBeNull();
-        });
 
         it('should render with success status', () => {
             const { container } = render(
