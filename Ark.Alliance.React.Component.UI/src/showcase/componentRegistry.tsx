@@ -23,6 +23,10 @@ import { StatusBadge } from '../components/Label';
 import { Chart3D } from '../components/Chart3D';
 import { GenericPanel } from '../components/GenericPanel';
 import { FAIcon } from '../components/Icon';
+import { TabControl } from '../components/TabControl';
+import { TreeView } from '../components/TreeView';
+import { Carousel } from '../components/Slides';
+import { Timeline } from '../components/TimeLines';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // BUTTON PRESETS
@@ -517,6 +521,26 @@ export const componentCategories: ComponentCategory[] = [
                     { name: 'Neon', props: { title: 'Neon Header', visualMode: 'neon', icon: '✨' } },
                     { name: 'With Search', props: { title: 'Data Grid', showSearch: true, variant: 'grid' } },
                     { name: 'Glass', props: { title: 'Glass Header', visualMode: 'glass', icon: '🔮' } },
+                    {
+                        name: 'With Breadcrumbs',
+                        props: {
+                            title: 'Deep Page',
+                            breadcrumbs: [
+                                { key: 'home', label: 'Home', href: '#' },
+                                { key: 'section', label: 'Section', href: '#' },
+                                { key: 'current', label: 'Current', active: true }
+                            ]
+                        }
+                    },
+                    {
+                        name: 'Mobile Ready',
+                        props: {
+                            title: 'Mobile App',
+                            mobile: { enabled: true },
+                            showSearch: true,
+                            icon: 'bars'
+                        }
+                    },
                 ],
             },
             {
@@ -694,6 +718,124 @@ export const componentCategories: ComponentCategory[] = [
                     { name: 'GitHub', props: { name: 'github', iconStyle: 'brands', color: '#f3f4f6', size: '2x' } },
                     { name: 'Warning', props: { name: 'triangle-exclamation', color: '#f59e0b', size: '2x' } },
                     { name: 'Arrow Right', props: { name: 'arrow-right', color: '#00d4ff', size: '2x', bounce: true } },
+                ],
+            },
+        ],
+    },
+    {
+        name: 'Tabs',
+        icon: '📑',
+        description: 'Tab navigation with keyboard support and multiple variants',
+        components: [
+            {
+                name: 'TabControl',
+                description: 'Tab navigation with Icon and Label primitives, keyboard nav, closeable tabs',
+                component: TabControl,
+                defaultProps: {
+                    items: [
+                        { tabKey: 'tab1', label: 'Dashboard', icon: 'chart-line' },
+                        { tabKey: 'tab2', label: 'Settings', icon: 'cog' },
+                        { tabKey: 'tab3', label: 'Profile', icon: 'user' },
+                    ],
+                    activeKey: 'tab1'
+                },
+                propDefs: [
+                    { name: 'activeKey', type: 'string', default: '', description: 'Active tab key' },
+                    { name: 'variant', type: 'select', default: 'underlined', options: ['underlined', 'pills', 'boxed'] },
+                    { name: 'orientation', type: 'select', default: 'horizontal', options: ['horizontal', 'vertical'] },
+                    { name: 'size', type: 'select', default: 'md', options: ['sm', 'md', 'lg'] },
+                ],
+                presets: [
+                    { name: 'Default', props: { items: [{ tabKey: 't1', label: 'Tab 1' }, { tabKey: 't2', label: 'Tab 2' }], activeKey: 't1' } },
+                    { name: 'Pills', props: { variant: 'pills', items: [{ tabKey: 't1', label: 'Home' }] } },
+                    { name: 'Vertical', props: { orientation: 'vertical', items: [{ tabKey: 't1', label: 'Menu' }] } },
+                ],
+            },
+        ],
+    },
+    {
+        name: 'Trees',
+        icon: '🌳',
+        description: 'Hierarchical tree navigation with expand/collapse and selection',
+        components: [
+            {
+                name: 'TreeView',
+                description: 'Recursive tree structure with Icon primitives, context-based state, keyboard nav',
+                component: TreeView,
+                defaultProps: {
+                    items: [
+                        {
+                            key: 'root', label: 'Root', children: [
+                                { key: 'child1', label: 'Child 1' },
+                                { key: 'child2', label: 'Child 2', children: [{ key: 'grandchild', label: 'Grandchild' }] },
+                            ]
+                        },
+                    ]
+                },
+                propDefs: [
+                    { name: 'selectionMode', type: 'select', default: 'single', options: ['none', 'single', 'multiple'] },
+                    { name: 'showLines', type: 'boolean', default: false },
+                    { name: 'size', type: 'select', default: 'md', options: ['sm', 'md', 'lg'] },
+                ],
+                presets: [
+                    { name: 'Default', props: { items: [{ key: 'n1', label: 'Node 1', children: [{ key: 'n1a', label: 'Node 1a' }] }] } },
+                    { name: 'Multi-Select', props: { selectionMode: 'multiple' } },
+                ],
+            },
+        ],
+    },
+    {
+        name: 'Slides',
+        icon: '🎠',
+        description: 'Carousel and slideshow components with autoplay and navigation',
+        components: [
+            {
+                name: 'Carousel',
+                description: 'Slide carousel with autoplay, loop, navigation arrows and indicators',
+                component: Carousel,
+                defaultProps: { autoplay: false, showControls: true, showIndicators: true },
+                propDefs: [
+                    { name: 'autoplay', type: 'boolean', default: false },
+                    { name: 'interval', type: 'number', default: 5000 },
+                    { name: 'loop', type: 'boolean', default: true },
+                    { name: 'showControls', type: 'boolean', default: true },
+                    { name: 'showIndicators', type: 'boolean', default: true },
+                    { name: 'effect', type: 'select', default: 'slide', options: ['slide', 'fade'] },
+                ],
+                presets: [
+                    { name: 'Default', props: { showControls: true } },
+                    { name: 'Autoplay', props: { autoplay: true, interval: 3000 } },
+                    { name: 'Fade Effect', props: { effect: 'fade' } },
+                ],
+            },
+        ],
+    },
+    {
+        name: 'Timelines',
+        icon: '📅',
+        description: 'Event timeline with filtering, categories, and admin controls',
+        components: [
+            {
+                name: 'Timeline',
+                description: 'Event timeline with category filtering, text search, admin edit mode',
+                component: Timeline,
+                defaultProps: {
+                    items: [
+                        { id: '1', title: 'Event 1', date: '2024-01-01', status: 'completed', category: 'Work' },
+                        { id: '2', title: 'Event 2', date: '2024-02-15', status: 'active', category: 'Personal' },
+                    ]
+                },
+                propDefs: [
+                    { name: 'orientation', type: 'select', default: 'vertical', options: ['vertical', 'horizontal'] },
+                    { name: 'showConnectors', type: 'boolean', default: true },
+                    { name: 'adminMode', type: 'boolean', default: false },
+                    { name: 'filter', type: 'string', default: '' },
+                    { name: 'selectedCategory', type: 'string', default: '' },
+                ],
+                presets: [
+                    { name: 'Default', props: { items: [{ id: '1', title: 'Start', status: 'completed' }] } },
+                    { name: 'Admin Mode', props: { adminMode: true } },
+                    { name: 'Horizontal', props: { orientation: 'horizontal' } },
                 ],
             },
         ],

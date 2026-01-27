@@ -172,8 +172,10 @@ export const Button = memo(forwardRef<HTMLButtonElement, ButtonProps>(
                 {vm.state.isLoading && renderSpinner()}
 
                 {/* Left icon */}
-                {vm.model.iconLeft && !vm.state.isLoading && !vm.model.iconCenter && (
-                    renderIcon(vm.model.iconLeft, 'left')
+                {!vm.state.isLoading && !vm.model.iconCenter && (
+                    vm.model.iconLeftElement
+                        ? <span className="ark-btn__icon ark-btn__icon--left">{vm.model.iconLeftElement}</span>
+                        : vm.model.iconLeft ? renderIcon(vm.model.iconLeft, 'left') : null
                 )}
 
                 {/* Center icon (for icon-only buttons) */}
@@ -189,8 +191,10 @@ export const Button = memo(forwardRef<HTMLButtonElement, ButtonProps>(
                 )}
 
                 {/* Right icon */}
-                {vm.model.iconRight && !vm.state.isLoading && (
-                    renderIcon(vm.model.iconRight, 'right')
+                {!vm.state.isLoading && (
+                    vm.model.iconRightElement
+                        ? <span className="ark-btn__icon ark-btn__icon--right">{vm.model.iconRightElement}</span>
+                        : vm.model.iconRight ? renderIcon(vm.model.iconRight, 'right') : null
                 )}
             </button>
         );

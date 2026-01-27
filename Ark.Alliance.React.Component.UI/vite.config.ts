@@ -12,6 +12,9 @@ export default defineConfig({
     dts({
       include: ['src'],
       outDir: 'dist',
+      insertTypesEntry: true,
+      tsconfigPath: './tsconfig.json',
+      copyDtsFiles: true,
     }),
   ],
   build: {

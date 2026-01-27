@@ -8,7 +8,7 @@
 ![Tailwind](https://img.shields.io/badge/Tailwind-4.x-38bdf8?style=for-the-badge&logo=tailwindcss)
 ![Zod](https://img.shields.io/badge/Zod-4.x-3E67B1?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
-![Tests](https://img.shields.io/badge/Tests-258%2F258-success?style=for-the-badge)
+![Tests](https://img.shields.io/badge/Tests-502%2F502-success?style=for-the-badge)
 
 **Enterprise-Grade React Component Library with MVVM Architecture**
 
@@ -55,7 +55,7 @@
 | **MVVM Architecture** | Clear separation of concerns with Model, ViewModel, and View layers |
 | **Zod Validation** | Runtime type safety with schema-based validation |
 | **Premium Aesthetics** | Neon, minimal, and glassmorphism visual modes |
-| **100% Test Coverage** | 233 tests passing with comprehensive scenario-based testing |
+| **100% Test Coverage** | 502 tests passing with comprehensive scenario-based testing |
 | **Enterprise Ready** | TypeScript strict mode, accessibility, responsive design |
 | **Interactive Showcase** | Component explorer at `localhost:5090` |
 
@@ -282,6 +282,9 @@ flowchart TB
 | **TimeLines** | `Timeline` | Event timeline with customizable display |
 | **Tooltip** | `Tooltip`, `withTooltip` | Tooltip component and HOC |
 | **Icon** | Icon components | FontAwesome integration |
+| **TabControl** | `TabControl`, `TabItem` | Tab navigation with keyboard support |
+| **TreeView** | `TreeView`, `TreeNode` | Hierarchical tree with expand/collapse |
+| **Carousel** | `Carousel` | Slide carousel with autoplay and navigation |
 
 <details>
 <summary><strong>📋 Full Component Category List (40 categories)</strong></summary>
@@ -320,10 +323,10 @@ flowchart TB
 | 30 | PaymentsForm | 🔄 Planned |
 | 31 | ProgressBar | ✅ Implemented |
 | 32 | SideBar | ✅ Implemented |
-| 33 | Slides | 🔄 Planned |
+| 33 | Slides | ✅ Implemented |
 | 34 | SocialMedia | 🔄 Planned |
 | 35 | Sound | 🔄 Planned |
-| 36 | TimeLines | ✅ Implemented |
+| 36 | TimeLines | ✅ Implemented (Enhanced) |
 | 37 | Toggles | ✅ Implemented |
 | 38 | Tooltip | ✅ Implemented |
 | 39 | Video | 🔄 Planned |

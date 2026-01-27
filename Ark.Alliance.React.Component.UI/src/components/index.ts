@@ -13,32 +13,53 @@
  * - Basket, PaymentsForm, Login
  */
 
-// Available components
-export * from './Buttons';
-export * from './Documents';
-export * from './Toggles';
-export * from './Cards';
-export * from './Gauges';
+// Primitive Components
+export * from './Icon';
 export * from './Label';
-export * from './Input';
 export * from './Tooltip';
+
+// Interactive Components
+export * from './Buttons';
+export * from './Toggles';
+export * from './Input';
+
+// Cards & Panels
+export * from './Cards';
+export * from './Panel';
+export * from './GenericPanel';
+export * from './ControlPanel';
+
+// Layout Components
+export * from './Page';
+export * from './Header';
+export * from './Footer';
+export * from './SideBar';
+export * from './Modal';
+
+// Navigation Components
+export * from './TabControl';
+
+// Data Display
+export * from './TimeLines';
+export * from './ProgressBar';
+export * from './Grids';
+export * from './Documents';
+export * from './Gauges';
+
+// Visualizations
+export * from './Charts';
+export * from './Chart3D';
+
+// Notifications
+export * from './Toast';
+
+// Desktop OS Components
+export * from './Desktop';
 
 // Placeholder exports for categories (uncomment as implemented)
 // export * from './Slides';
 // export * from './DatePicker';
 // export * from './Calendars';
-export * from './TimeLines';
-export * from './ProgressBar';
-export * from './Modal';
-export * from './Panel';
-export * from './GenericPanel';
-export * from './ControlPanel';
-export * from './Page';
-export * from './Header';
-export * from './Footer';
-export * from './Grids';
-export * from './Charts';
-export * from './Chart3D';
 // export * from './Diagram';
 // export * from './FlowChart';
 // export * from './Viewers';
@@ -51,12 +72,8 @@ export * from './Chart3D';
 // export * from './Logistic';
 // export * from './Medical';
 // export * from './Ia';
-export * from './SideBar';
 // export * from './Menu';
 // export * from './Catalogue';
 // export * from './Basket';
 // export * from './PaymentsForm';
 // export * from './Login';
-
-// Desktop OS Components
-export * from './Desktop';

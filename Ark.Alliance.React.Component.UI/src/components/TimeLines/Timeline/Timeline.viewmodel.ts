@@ -15,6 +15,10 @@ import { defaultTimelineModel, TimelineModelSchema } from './Timeline.model';
 export interface UseTimelineOptions extends Partial<TimelineModel> { }
 
 export interface UseTimelineResult extends BaseViewModelResult<TimelineModel> {
+    /** Items after filtering */
+    filteredItems: TimelineItem[];
+    /** Handle item edit */
+    handleItemEdit: (item: TimelineItem) => void;
     /** Current timeline items */
     items: TimelineItem[];
     /** CSS classes for the timeline container */
@@ -117,23 +121,64 @@ export function useTimeline(options: UseTimelineOptions = {}): UseTimelineResult
         setNewItemIds(new Set());
     }, []);
 
+    // ═══════════════════════════════════════════════════════════════════════════
+    // FILTERING LOGIC
+    // ═══════════════════════════════════════════════════════════════════════════
+
+    const filteredItems = useMemo(() => {
+        let result = items;
+
+        // Filter by category
+        if (base.model.selectedCategory) {
+            result = result.filter(item => item.category === base.model.selectedCategory);
+        }
+
+        // Filter by text search (title, description, tags)
+        if (base.model.filter) {
+            const query = base.model.filter.toLowerCase();
+            result = result.filter(item =>
+                item.title.toLowerCase().includes(query) ||
+                item.description?.toLowerCase().includes(query) ||
+                item.tags?.some(tag => tag.toLowerCase().includes(query))
+            );
+        }
+
+        return result;
+    }, [items, base.model.selectedCategory, base.model.filter]);
+
+    /**
+     * Handle item edit (passthrough)
+     */
+    const handleItemEdit = useCallback((item: TimelineItem) => {
+        // Typically passed via options/props, but we expose a handler here
+        // The View will call this, and we might emit an event or call a callback from options if we stored it
+        // Since options are not stored in full in base (only model), we need to access via closure if stable,
+        // or just return a placeholder if we expect the View to handle the prop directly.
+        // However, standard MVVM usually wraps it.
+        // For now, let's emit an event.
+        base.emit('edit', { item });
+    }, [base]);
+
     const timelineClasses = useMemo(() => {
         const classes = ['ark-timeline', `ark-timeline--${base.model.orientation}`];
         if (base.model.showConnectors) classes.push('ark-timeline--connectors');
         if (base.model.animateNewItems) classes.push('ark-timeline--animated');
+        if (base.model.adminMode) classes.push('ark-timeline--admin');
         if (base.model.className) classes.push(base.model.className);
         return classes.join(' ');
     }, [base.model]);
 
     return {
         ...base,
-        items,
+        items, // Raw items
+        filteredItems, // Display items
         timelineClasses,
         newItemIds,
         addItem,
         addItems,
         removeItem,
         clearItems,
+        handleItemEdit
     };
 }
 

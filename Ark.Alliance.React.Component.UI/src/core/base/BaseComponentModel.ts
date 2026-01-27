@@ -26,6 +26,18 @@ export const BaseModelSchema = z.object({
     /** Whether the component is in a loading state */
     loading: z.boolean().default(false),
 
+    /** 
+     * Visual variant of the component.
+     * Specific components should narrow this type using extendSchema.
+     */
+    variant: z.string().default('default'),
+
+    /**
+     * Size of the component.
+     * Specific components should narrow this type using extendSchema.
+     */
+    size: z.string().default('md'),
+
     // ─────────────────────────────────────────────────────────────────────────
     // INTERACTION PROPERTIES
     // ─────────────────────────────────────────────────────────────────────────

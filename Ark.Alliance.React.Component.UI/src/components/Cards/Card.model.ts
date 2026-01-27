@@ -30,6 +30,12 @@ export const CardModelSchema = extendSchema({
     /** Status for border/glow coloring */
     status: CardStatus.default('idle'),
 
+    /** 
+     * Visual variant 
+     * Extending PanelVariantSchema with specific card variants
+     */
+    variant: z.enum(['default', 'glass', 'bordered', 'elevated', 'scanner', 'hologram']).default('default'),
+
     /** Whether card is compact (reduced padding) */
     compact: z.boolean().default(false),
 
