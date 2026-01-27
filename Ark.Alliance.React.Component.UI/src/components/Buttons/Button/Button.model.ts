@@ -7,7 +7,12 @@
 
 import { z } from 'zod';
 import { extendSchema } from '../../../core/base';
-import { ButtonVariantSchema, ComponentSizeSchema } from '../../../core/enums';
+import {
+    ButtonVariantSchema,
+    ComponentSizeSchema,
+    type ButtonVariant,
+    type ComponentSize,
+} from '../../../core/enums';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // SCHEMA DEFINITION

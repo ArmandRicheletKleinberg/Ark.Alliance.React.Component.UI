@@ -120,10 +120,12 @@ export type GaugeColorType = keyof typeof GAUGE_COLORS;
 // ═══════════════════════════════════════════════════════════════════════════
 
 /**
- * Status indicator colors
+ * Detailed status indicator colors with label, background, text, and border
  * Includes both system statuses and priority indicators
+ *
+ * NOTE: For simple color mappings, use STATUS_COLORS from core/enums/Status
  */
-export const STATUS_COLORS = {
+export const DETAILED_STATUS_COLORS = {
     // System statuses
     running: {
         label: 'Running',
@@ -213,7 +215,7 @@ export const STATUS_COLORS = {
     },
 } as const;
 
-export type StatusType = keyof typeof STATUS_COLORS;
+export type DetailedStatusType = keyof typeof DETAILED_STATUS_COLORS;
 
 // ═══════════════════════════════════════════════════════════════════════════
 // CARD STATUS COLORS
@@ -298,10 +300,10 @@ export function getGaugeColor(color: GaugeColorType) {
 }
 
 /**
- * Get status color configuration
+ * Get detailed status color configuration
  */
-export function getStatusColor(status: StatusType) {
-    return STATUS_COLORS[status];
+export function getStatusColor(status: DetailedStatusType) {
+    return DETAILED_STATUS_COLORS[status];
 }
 
 /**
@@ -318,7 +320,7 @@ export function getCardStatusColor(status: CardStatusColorType, isDark = true) {
 export default {
     VARIANT_COLORS,
     GAUGE_COLORS,
-    STATUS_COLORS,
+    DETAILED_STATUS_COLORS,
     CARD_STATUS_COLORS,
     SIZE_CLASSES,
     getVariantColor,

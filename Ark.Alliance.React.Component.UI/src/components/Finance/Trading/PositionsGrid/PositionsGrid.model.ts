@@ -180,51 +180,51 @@ export function validateClosePositionRequest(
  * Default columns for futures/perpetual positions.
  */
 export const defaultFuturesColumns: PositionColumnConfig[] = [
-    { key: 'symbol', label: 'Symbol', width: 100, align: 'left', formatPreset: 'text' },
-    { key: 'side', label: 'Side', width: 70, align: 'center', formatPreset: 'side' },
-    { key: 'quantity', label: 'Size', width: 90, align: 'right', formatPreset: 'number' },
-    { key: 'leverage', label: 'Lev', width: 50, align: 'center', formatPreset: 'leverage' },
-    { key: 'entryPrice', label: 'Entry', width: 100, align: 'right', formatPreset: 'currency' },
-    { key: 'markPrice', label: 'Mark', width: 100, align: 'right', formatPreset: 'currency' },
-    { key: 'liquidationPrice', label: 'Liq.', width: 100, align: 'right', formatPreset: 'currency' },
-    { key: 'unrealizedPnl', label: 'PnL', width: 100, align: 'right', formatPreset: 'pnl' },
-    { key: 'roe', label: 'ROE%', width: 80, align: 'right', formatPreset: 'percent' },
-    { key: 'marginType', label: 'Margin', width: 70, align: 'center', formatPreset: 'margin' },
-    { key: 'actions', label: '', width: 120, align: 'center', sortable: false },
+    { key: 'symbol', label: 'Symbol', width: 100, align: 'left', formatPreset: 'text', sortable: true, visible: true },
+    { key: 'side', label: 'Side', width: 70, align: 'center', formatPreset: 'side', sortable: true, visible: true },
+    { key: 'quantity', label: 'Size', width: 90, align: 'right', formatPreset: 'number', sortable: true, visible: true },
+    { key: 'leverage', label: 'Lev', width: 50, align: 'center', formatPreset: 'leverage', sortable: true, visible: true },
+    { key: 'entryPrice', label: 'Entry', width: 100, align: 'right', formatPreset: 'currency', sortable: true, visible: true },
+    { key: 'markPrice', label: 'Mark', width: 100, align: 'right', formatPreset: 'currency', sortable: true, visible: true },
+    { key: 'liquidationPrice', label: 'Liq.', width: 100, align: 'right', formatPreset: 'currency', sortable: true, visible: true },
+    { key: 'unrealizedPnl', label: 'PnL', width: 100, align: 'right', formatPreset: 'pnl', sortable: true, visible: true },
+    { key: 'roe', label: 'ROE%', width: 80, align: 'right', formatPreset: 'percent', sortable: true, visible: true },
+    { key: 'marginType', label: 'Margin', width: 70, align: 'center', formatPreset: 'margin', sortable: true, visible: true },
+    { key: 'actions', label: '', width: 120, align: 'center', sortable: false, visible: true },
 ];
 
 /**
  * Default columns for options positions.
  */
 export const defaultOptionsColumns: PositionColumnConfig[] = [
-    { key: 'symbol', label: 'Contract', width: 150, align: 'left', formatPreset: 'text' },
-    { key: 'optionType', label: 'Type', width: 60, align: 'center' },
-    { key: 'strikePrice', label: 'Strike', width: 90, align: 'right', formatPreset: 'currency' },
-    { key: 'expirationDate', label: 'Expiry', width: 100, align: 'center', formatPreset: 'date' },
-    { key: 'side', label: 'Side', width: 70, align: 'center', formatPreset: 'side' },
-    { key: 'quantity', label: 'Qty', width: 70, align: 'right', formatPreset: 'number' },
-    { key: 'entryPrice', label: 'Entry', width: 90, align: 'right', formatPreset: 'currency' },
-    { key: 'markPrice', label: 'Mark', width: 90, align: 'right', formatPreset: 'currency' },
-    { key: 'delta', label: 'Δ', width: 60, align: 'right', formatPreset: 'greeks' },
-    { key: 'gamma', label: 'Γ', width: 60, align: 'right', formatPreset: 'greeks' },
-    { key: 'theta', label: 'Θ', width: 60, align: 'right', formatPreset: 'greeks' },
-    { key: 'unrealizedPnl', label: 'PnL', width: 100, align: 'right', formatPreset: 'pnl' },
-    { key: 'actions', label: '', width: 100, align: 'center', sortable: false },
+    { key: 'symbol', label: 'Contract', width: 150, align: 'left', formatPreset: 'text', sortable: true, visible: true },
+    { key: 'optionType', label: 'Type', width: 60, align: 'center', sortable: true, visible: true },
+    { key: 'strikePrice', label: 'Strike', width: 90, align: 'right', formatPreset: 'currency', sortable: true, visible: true },
+    { key: 'expirationDate', label: 'Expiry', width: 100, align: 'center', formatPreset: 'date', sortable: true, visible: true },
+    { key: 'side', label: 'Side', width: 70, align: 'center', formatPreset: 'side', sortable: true, visible: true },
+    { key: 'quantity', label: 'Qty', width: 70, align: 'right', formatPreset: 'number', sortable: true, visible: true },
+    { key: 'entryPrice', label: 'Entry', width: 90, align: 'right', formatPreset: 'currency', sortable: true, visible: true },
+    { key: 'markPrice', label: 'Mark', width: 90, align: 'right', formatPreset: 'currency', sortable: true, visible: true },
+    { key: 'delta', label: 'Δ', width: 60, align: 'right', formatPreset: 'greeks', sortable: true, visible: true },
+    { key: 'gamma', label: 'Γ', width: 60, align: 'right', formatPreset: 'greeks', sortable: true, visible: true },
+    { key: 'theta', label: 'Θ', width: 60, align: 'right', formatPreset: 'greeks', sortable: true, visible: true },
+    { key: 'unrealizedPnl', label: 'PnL', width: 100, align: 'right', formatPreset: 'pnl', sortable: true, visible: true },
+    { key: 'actions', label: '', width: 100, align: 'center', sortable: false, visible: true },
 ];
 
 /**
  * Default columns for spot/stock positions.
  */
 export const defaultSpotColumns: PositionColumnConfig[] = [
-    { key: 'symbol', label: 'Symbol', width: 100, align: 'left', formatPreset: 'text' },
-    { key: 'quantity', label: 'Holdings', width: 100, align: 'right', formatPreset: 'number' },
-    { key: 'entryPrice', label: 'Avg Cost', width: 100, align: 'right', formatPreset: 'currency' },
-    { key: 'markPrice', label: 'Price', width: 100, align: 'right', formatPreset: 'currency' },
-    { key: 'cost', label: 'Cost', width: 100, align: 'right', formatPreset: 'currency' },
-    { key: 'marketValue', label: 'Value', width: 100, align: 'right', formatPreset: 'currency' },
-    { key: 'unrealizedPnl', label: 'P&L', width: 100, align: 'right', formatPreset: 'pnl' },
-    { key: 'unrealizedPnlPercent', label: 'P&L%', width: 80, align: 'right', formatPreset: 'percent' },
-    { key: 'actions', label: '', width: 100, align: 'center', sortable: false },
+    { key: 'symbol', label: 'Symbol', width: 100, align: 'left', formatPreset: 'text', sortable: true, visible: true },
+    { key: 'quantity', label: 'Holdings', width: 100, align: 'right', formatPreset: 'number', sortable: true, visible: true },
+    { key: 'entryPrice', label: 'Avg Cost', width: 100, align: 'right', formatPreset: 'currency', sortable: true, visible: true },
+    { key: 'markPrice', label: 'Price', width: 100, align: 'right', formatPreset: 'currency', sortable: true, visible: true },
+    { key: 'cost', label: 'Cost', width: 100, align: 'right', formatPreset: 'currency', sortable: true, visible: true },
+    { key: 'marketValue', label: 'Value', width: 100, align: 'right', formatPreset: 'currency', sortable: true, visible: true },
+    { key: 'unrealizedPnl', label: 'P&L', width: 100, align: 'right', formatPreset: 'pnl', sortable: true, visible: true },
+    { key: 'unrealizedPnlPercent', label: 'P&L%', width: 80, align: 'right', formatPreset: 'percent', sortable: true, visible: true },
+    { key: 'actions', label: '', width: 100, align: 'center', sortable: false, visible: true },
 ];
 
 // ═══════════════════════════════════════════════════════════════════════════

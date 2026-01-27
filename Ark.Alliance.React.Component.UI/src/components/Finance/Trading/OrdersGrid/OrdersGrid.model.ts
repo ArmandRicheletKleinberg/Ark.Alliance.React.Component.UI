@@ -185,17 +185,18 @@ export function validateModifyOrderRequest(
  * Default columns for orders grid.
  */
 export const defaultOrderColumns: OrderColumnConfig[] = [
-    { key: 'symbol', label: 'Symbol', width: 100, align: 'left', formatPreset: 'text' },
-    { key: 'type', label: 'Type', width: 90, align: 'center', formatPreset: 'orderType' },
-    { key: 'side', label: 'Side', width: 60, align: 'center', formatPreset: 'side' },
-    { key: 'price', label: 'Price', width: 100, align: 'right', formatPreset: 'currency', editable: true },
-    { key: 'stopPrice', label: 'Trigger', width: 100, align: 'right', formatPreset: 'currency', visible: false },
-    { key: 'quantity', label: 'Qty', width: 80, align: 'right', formatPreset: 'number', editable: true },
-    { key: 'executedQty', label: 'Filled', width: 80, align: 'right', formatPreset: 'number' },
-    { key: 'status', label: 'Status', width: 100, align: 'center', formatPreset: 'orderStatus' },
-    { key: 'category', label: 'Category', width: 80, align: 'center', formatPreset: 'category' },
-    { key: 'createdAt', label: 'Time', width: 90, align: 'right', formatPreset: 'datetime' },
-    { key: 'actions', label: '', width: 130, align: 'center', sortable: false },
+
+    { key: 'symbol', label: 'Symbol', width: 100, align: 'left', formatPreset: 'text', sortable: true, visible: true, editable: false },
+    { key: 'type', label: 'Type', width: 90, align: 'center', formatPreset: 'orderType', sortable: true, visible: true, editable: false },
+    { key: 'side', label: 'Side', width: 60, align: 'center', formatPreset: 'side', sortable: true, visible: true, editable: false },
+    { key: 'price', label: 'Price', width: 100, align: 'right', formatPreset: 'currency', editable: true, sortable: true, visible: true },
+    { key: 'stopPrice', label: 'Trigger', width: 100, align: 'right', formatPreset: 'currency', visible: false, sortable: true, editable: false },
+    { key: 'quantity', label: 'Qty', width: 80, align: 'right', formatPreset: 'number', editable: true, sortable: true, visible: true },
+    { key: 'executedQty', label: 'Filled', width: 80, align: 'right', formatPreset: 'number', sortable: true, visible: true, editable: false },
+    { key: 'status', label: 'Status', width: 100, align: 'center', formatPreset: 'orderStatus', sortable: true, visible: true, editable: false },
+    { key: 'category', label: 'Category', width: 80, align: 'center', formatPreset: 'category', sortable: true, visible: true, editable: false },
+    { key: 'createdAt', label: 'Time', width: 90, align: 'right', formatPreset: 'datetime', sortable: true, visible: true, editable: false },
+    { key: 'actions', label: '', width: 130, align: 'center', sortable: false, visible: true, editable: false },
 ];
 
 /**

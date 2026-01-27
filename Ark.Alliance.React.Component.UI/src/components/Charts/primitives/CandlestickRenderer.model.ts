@@ -52,7 +52,12 @@ export const CandlestickRendererModelSchema = extendSchema({
     data: z.array(CandlestickDataPointSchema).default([]),
 
     /** Color configuration */
-    colors: CandlestickColorsSchema.default({}),
+    colors: CandlestickColorsSchema.default({
+        bullish: '#22c55e',
+        bearish: '#ef4444',
+        doji: '#94a3b8',
+        wick: '#64748b',
+    }),
 
     /** Width of each candle body in pixels */
     candleWidth: z.number().min(1).max(50).default(8),

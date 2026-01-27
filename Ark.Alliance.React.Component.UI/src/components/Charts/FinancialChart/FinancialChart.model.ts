@@ -76,10 +76,10 @@ export const FinancialChartModelSchema = TrendPriceChartModelSchema.extend({
     // ─────────────────────────────────────────────────────────────────────────
 
     /** Fast moving average configuration */
-    fastMA: MovingAverageSchema.default({ enabled: true, period: 7, color: '#22c55e' }),
+    fastMA: MovingAverageSchema.default({ enabled: true, period: 7, color: '#22c55e', type: 'SMA' }),
 
     /** Slow moving average configuration */
-    slowMA: MovingAverageSchema.default({ enabled: true, period: 25, color: '#ef4444' }),
+    slowMA: MovingAverageSchema.default({ enabled: true, period: 25, color: '#ef4444', type: 'SMA' }),
 
     // ─────────────────────────────────────────────────────────────────────────
     // STYLING (from Graph sample)

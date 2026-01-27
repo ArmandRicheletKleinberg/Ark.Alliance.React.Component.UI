@@ -86,6 +86,12 @@ export const CARD_STATUS_CONFIG = {
         glowDark: 'rgba(239, 68, 68, 0.15)',
         glowLight: 'rgba(239, 68, 68, 0.1)',
     },
+    neutral: {
+        borderDark: 'rgba(107, 114, 128, 0.3)',
+        borderLight: 'rgba(156, 163, 175, 1)',
+        glowDark: 'rgba(107, 114, 128, 0.15)',
+        glowLight: 'rgba(107, 114, 128, 0.1)',
+    },
 } as const;
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -97,7 +103,9 @@ export const CARD_STATUS_CONFIG = {
  */
 export const defaultCardModel: Omit<CardModel, 'title'> & { title?: string } = {
     title: undefined,
-    status: 'idle',
+    status: 'info',
+    variant: 'default',
+    size: 'md',
     compact: false,
     showHeader: true,
     disabled: false,

@@ -25,7 +25,7 @@ interface IconRendererProps {
     iconType: 'emoji' | 'fa' | 'svg' | 'image';
     icon: string;
     faStyle?: 'solid' | 'regular' | 'brands';
-    iconSize?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+    iconSize?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl';
     iconRotation?: '0' | '90' | '180' | '270';
     iconFlip?: 'none' | 'horizontal' | 'vertical' | 'both';
     iconColor?: string;

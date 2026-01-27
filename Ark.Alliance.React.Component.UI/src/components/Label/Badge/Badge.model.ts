@@ -7,7 +7,7 @@
 
 import { z } from 'zod';
 import { extendSchema } from '../../../core/base';
-import { STATUS_COLORS, type StatusType } from '../../../core/constants';
+import { DETAILED_STATUS_COLORS, type DetailedStatusType } from '../../../core/constants';
 import {
     BasicSizeSchema,
     ServiceStatusSchema,
@@ -95,7 +95,7 @@ export const BADGE_SIZE_CLASSES = {
  * Get status color configuration
  */
 export function getBadgeStatusConfig(status: StatusType) {
-    return STATUS_COLORS[status];
+    return DETAILED_STATUS_COLORS[status];
 }
 
 // ═══════════════════════════════════════════════════════════════════════════

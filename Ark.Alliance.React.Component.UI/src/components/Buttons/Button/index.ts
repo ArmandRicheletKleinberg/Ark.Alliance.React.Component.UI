@@ -13,11 +13,12 @@ export { useButton, type UseButtonOptions, type UseButtonResult } from './Button
 // Model
 export {
     ButtonModelSchema,
-    ButtonVariant,
-    ButtonSize,
     defaultButtonModel,
     createButtonModel,
     type ButtonModel,
     type ButtonVariantType,
     type ButtonSizeType,
 } from './Button.model';
+
+// Re-export enums from core (for convenience)
+export { ButtonVariantSchema as ButtonVariant, ComponentSizeSchema as ButtonSize } from '../../../core/enums';

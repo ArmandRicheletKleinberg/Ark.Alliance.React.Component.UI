@@ -7,7 +7,7 @@
 
 import { useMemo } from 'react';
 import { useBaseViewModel, type BaseViewModelResult } from '../../../core/base';
-import { STATUS_COLORS } from '../../../core/constants';
+import { DETAILED_STATUS_COLORS } from '../../../core/constants';
 import type { BadgeModel } from './Badge.model';
 import {
     defaultBadgeModel,
@@ -31,7 +31,7 @@ export interface UseBadgeResult extends BaseViewModelResult<BadgeModel> {
     /** Display label (custom or from status) */
     displayLabel: string;
     /** Status color configuration */
-    statusConfig: typeof STATUS_COLORS[keyof typeof STATUS_COLORS];
+    statusConfig: typeof DETAILED_STATUS_COLORS[keyof typeof DETAILED_STATUS_COLORS];
     /** Computed badge classes */
     badgeClasses: string;
     /** Computed badge styles */
@@ -70,7 +70,7 @@ export function useBadge(options: UseBadgeOptions = {}): UseBadgeResult {
     // ═══════════════════════════════════════════════════════════════════════
 
     const statusConfig = useMemo(() => {
-        return STATUS_COLORS[base.model.status];
+        return DETAILED_STATUS_COLORS[base.model.status];
     }, [base.model.status]);
 
     const displayLabel = useMemo(() => {
