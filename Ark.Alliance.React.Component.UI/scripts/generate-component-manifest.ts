@@ -7,10 +7,17 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// Use script's parent directory as project root (where tsconfig.json should be)
 const PROJ_ROOT = path.resolve(__dirname, '..');
 const SRC_DIR = path.resolve(PROJ_ROOT, 'src');
 const COMPONENTS_DIR = path.resolve(SRC_DIR, 'components');
-const OUTPUT_FILE = path.resolve(PROJ_ROOT, 'component-manifest.json');
+
+// Default output file: current working directory (where user runs the command)
+// Can be overridden via command-line argument: npm run generate:manifest -- ./custom-output.json
+const outputArg = process.argv[2];
+const OUTPUT_FILE = outputArg
+    ? path.resolve(process.cwd(), outputArg)
+    : path.resolve(process.cwd(), 'component-manifest.json');
 
 // Initialize ts-morph project
 const project = new Project({
@@ -266,12 +273,63 @@ function scanDirectory(dir: string) {
 }
 
 function main() {
-    console.log(`Scanning ${COMPONENTS_DIR}...`);
-    scanDirectory(COMPONENTS_DIR);
+    // Show help if requested
+    if (process.argv.includes('--help') || process.argv.includes('-h')) {
+        console.log(`
+Component Manifest Generator
+=============================
 
-    console.log(`Found ${componentsRequest.length} components.`);
-    fs.writeFileSync(OUTPUT_FILE, JSON.stringify(componentsRequest, null, 2));
-    console.log(`Manifest written to ${OUTPUT_FILE}`);
+Usage: npm run generate:manifest [output-path]
+
+Examples:
+  npm run generate:manifest                           # Outputs to ./component-manifest.json
+  npm run generate:manifest ./docs/components.json    # Custom output path
+  npm run generate:manifest -- ../manifest.json       # Output to parent directory
+
+This script scans the components directory and generates a JSON manifest
+containing component metadata, props, and model fields.
+
+The script expects to be run from the project root directory.
+`);
+        process.exit(0);
+    }
+
+    // Verify directories exist
+    if (!fs.existsSync(COMPONENTS_DIR)) {
+        console.error(`ERROR: Components directory not found: ${COMPONENTS_DIR}`);
+        console.error(`Make sure you're running this script from the project root directory.`);
+        console.error(`Current working directory: ${process.cwd()}`);
+        process.exit(1);
+    }
+
+    if (!fs.existsSync(path.resolve(PROJ_ROOT, 'tsconfig.json'))) {
+        console.error(`ERROR: tsconfig.json not found at: ${PROJ_ROOT}`);
+        console.error(`Make sure you're running this script from the correct location.`);
+        process.exit(1);
+    }
+
+    console.log(`📂 Project Root: ${PROJ_ROOT}`);
+    console.log(`📂 Scanning: ${COMPONENTS_DIR}`);
+    console.log(`📄 Output: ${OUTPUT_FILE}\n`);
+
+    try {
+        scanDirectory(COMPONENTS_DIR);
+
+        console.log(`\n✅ Found ${componentsRequest.length} components.`);
+
+        // Ensure output directory exists
+        const outputDir = path.dirname(OUTPUT_FILE);
+        if (!fs.existsSync(outputDir)) {
+            fs.mkdirSync(outputDir, { recursive: true });
+        }
+
+        fs.writeFileSync(OUTPUT_FILE, JSON.stringify(componentsRequest, null, 2));
+        console.log(`✅ Manifest written to: ${OUTPUT_FILE}`);
+        console.log(`\n🎉 Component manifest generation complete!`);
+    } catch (error) {
+        console.error(`\n❌ Error generating manifest:`, error);
+        process.exit(1);
+    }
 }
 
 main();

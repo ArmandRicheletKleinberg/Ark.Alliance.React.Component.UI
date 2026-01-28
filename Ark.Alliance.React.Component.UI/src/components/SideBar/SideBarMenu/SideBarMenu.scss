@@ -202,6 +202,41 @@
         justify-content: center;
         padding: 0.75rem;
     }
+
+    /* Mobile Mode */
+    &--mobile {
+        position: fixed;
+        z-index: 1000;
+        transition: transform 0.3s ease;
+
+        &.ark-sidebar--collapsed {
+            transform: translateX(-100%);
+        }
+    }
+}
+
+/* Mobile Overlay Backdrop */
+.ark-sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+    z-index: 999;
+    animation: fadeIn 0.3s ease;
+    cursor: pointer;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 /* Hamburger Button */
@@ -247,5 +282,21 @@
         .ark-hamburger__line:nth-child(3) {
             transform: translateY(-6px) rotate(-45deg);
         }
+    }
+}
+
+/* Responsive - Mobile */
+@media (max-width: 767px) {
+    .ark-sidebar {
+        &:not(&--collapsed) {
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
+        }
+    }
+}
+
+/* Responsive - Tablet and up */
+@media (min-width: 768px) {
+    .ark-sidebar--mobile {
+        position: fixed;
     }
 }
