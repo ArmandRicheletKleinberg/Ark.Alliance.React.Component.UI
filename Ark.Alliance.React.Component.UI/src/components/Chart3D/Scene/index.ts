@@ -1,8 +1,6 @@
 /**
  * @fileoverview Scene Barrel Export
  * @module components/Chart3D/Scene
- * 
- * Note: Scene3D is not exported here as it is lazy-loaded in Chart3D.tsx
  */
 
 export { AxisSystem } from './AxisSystem';
