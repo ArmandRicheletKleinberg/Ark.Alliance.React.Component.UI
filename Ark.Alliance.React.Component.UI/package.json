@@ -1,6 +1,6 @@
 {
     "name": "ark-alliance-react-ui",
-    "version": "1.5.0",
+    "version": "1.5.1",
     "description": "Professional React UI component library with MVVM architecture, Zod validation, and comprehensive TypeScript support",
     "author": {
         "name": "Armand Richelet-Kleinberg",
@@ -50,6 +50,7 @@
         "build:lib": "tsc && vite build --mode library",
         "lint": "eslint .",
         "preview": "vite preview",
+        "prepare": "npm run build:lib",
         "prepublishOnly": "npm run build:lib",
         "test": "vitest",
         "generate:manifest": "tsx scripts/generate-component-manifest.ts"
@@ -68,7 +69,7 @@
         "@react-three/drei": "^10.7.7",
         "@react-three/fiber": "^9.4.2",
         "@react-three/postprocessing": "^3.0.4",
-        "mermaid": "^11.12.2",
+        "mermaid": "^10.9.5",
         "react-markdown": "^10.1.0",
         "react-organizational-chart": "^2.2.1",
         "remark-gfm": "^4.0.1",
@@ -103,5 +104,10 @@
         "vite-plugin-dts": "^4.5.4",
         "vitest": "^4.0.16",
         "zod": "^4.2.1"
+    },
+    "overrides": {
+        "diff": "8.0.3",
+        "lodash": "4.17.23",
+        "lodash-es": "4.17.23"
     }
 }

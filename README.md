@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Version](https://img.shields.io/badge/version-1.5.0-blue?style=for-the-badge)
+![Version](https://img.shields.io/badge/version-1.5.1-blue?style=for-the-badge)
 [![npm versPlept](https://img.shields.io/badge/TypeScript-5.9-3178c6?style=for-the-badge&logo=typescript)
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 ![Tests](https://img.shields.io/badge/Tests-100%25-success?style=for-the-badge)
@@ -103,7 +103,7 @@ While primarily designed for **large-scale trading and financial applications**,
 ```
 Ark.Alliance.React.Component.UI/                 # Repository Root
 │
-├──│ 📦 Ark.Alliance.React.Component.UI/          # Main Component Library (npm: ark-alliance-react-ui@1.5.0)
+├──│ 📦 Ark.Alliance.React.Component.UI/          # Main Component Library (npm: ark-alliance-react-ui@1.5.1)
 │   ├── src/
 │   │   ├── main.tsx                             # Application entry point
 │   │   ├── App.tsx                              # Root component (loads Showcase)
