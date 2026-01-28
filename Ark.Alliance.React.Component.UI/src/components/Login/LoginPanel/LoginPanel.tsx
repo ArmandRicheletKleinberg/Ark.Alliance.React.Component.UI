@@ -10,6 +10,7 @@
 
 import React, { memo, forwardRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMicrosoft } from '@fortawesome/free-brands-svg-icons';
 import {
     faEnvelope,
     faLock,
@@ -20,7 +21,6 @@ import {
     faExclamationCircle,
     faTimes,
 } from '@fortawesome/free-solid-svg-icons';
-import { faMicrosoft } from '@fortawesome/free-brands-svg-icons';
 import { useLoginPanel, type UseLoginPanelOptions } from './LoginPanel.viewmodel';
 import { AuthProviderType, AUTH_PROVIDER_LABELS } from './LoginPanel.model';
 import './LoginPanel.scss';
