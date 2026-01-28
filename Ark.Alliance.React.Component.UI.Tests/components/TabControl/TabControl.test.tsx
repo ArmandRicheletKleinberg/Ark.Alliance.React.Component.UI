@@ -126,7 +126,7 @@ describe('TabControlModelSchema', () => {
     });
 
     it('should accept variant options', () => {
-        const variants = ['default', 'pills', 'underline', 'boxed', 'compact'];
+        const variants = ['default', 'pills', 'underline', 'boxed', 'compact', 'segmented'];
 
         variants.forEach(variant => {
             const result = TabControlModelSchema.parse({ variant });
@@ -460,6 +460,20 @@ describe('TabControl Component', () => {
 
         const tabControl = container.querySelector('.ark-tab-control');
         expect(tabControl?.className).toContain('ark-tab-control--pills');
+    });
+
+    it('should render segmented variant class', () => {
+        const { container } = render(
+            React.createElement(ThemeProvider, null,
+                React.createElement(TabControl, {
+                    items: tabs,
+                    variant: 'segmented',
+                })
+            )
+        );
+
+        const tabControl = container.querySelector('.ark-tab-control');
+        expect(tabControl?.className).toContain('ark-tab-control--segmented');
     });
 
     it('should call onTabChange when tab clicked', async () => {

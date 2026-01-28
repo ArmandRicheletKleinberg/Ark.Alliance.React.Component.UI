@@ -98,6 +98,7 @@ export const ButtonVariantSchema = z.enum([
  * | `underline` | Tabs with bottom border indicator |
  * | `boxed` | Tabs with full border box |
  * | `compact` | Smaller tabs with minimal padding |
+ * | `segmented` | Grouped segments with shared background |
  */
 export const TabVariantSchema = z.enum([
     'default',
@@ -105,6 +106,7 @@ export const TabVariantSchema = z.enum([
     'underline',
     'boxed',
     'compact',
+    'segmented',
 ]);
 
 /**
@@ -161,4 +163,3 @@ export type SemanticVariant = z.infer<typeof SemanticVariantSchema>;
  * Default variant for most components.
  */
 export const DEFAULT_VARIANT: BasicVariant = 'default';
-

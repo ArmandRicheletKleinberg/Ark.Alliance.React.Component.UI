@@ -27,8 +27,8 @@ export const MenuItemSchema: z.ZodType<MenuItem> = z.object({
     children: z.array(z.any()).optional(),
     /** Disabled state */
     disabled: z.boolean().optional(),
-    /** Badge count */
-    badge: z.number().optional(),
+    /** Badge count or text */
+    badge: z.union([z.number(), z.string()]).optional(),
 });
 
 /** Menu item type */
@@ -38,7 +38,7 @@ export interface MenuItem {
     icon?: string;
     children?: MenuItem[];
     disabled?: boolean;
-    badge?: number;
+    badge?: number | string;
 }
 
 /**
@@ -93,6 +93,15 @@ export const SideBarMenuModelSchema = extendSchema({
     /** Show hamburger toggle */
     showHamburger: z.boolean().default(true),
 
+    /** Enable collapsible behavior */
+    collapsible: z.boolean().default(true),
+
+    /** Mobile overlay mode (covers content when expanded) */
+    mobileOverlay: z.boolean().default(true),
+
+    /** Show badges on menu items */
+    showBadges: z.boolean().default(true),
+
     /** Dark mode */
     isDark: z.boolean().default(true),
 });
@@ -121,6 +130,9 @@ export const defaultSideBarMenuModel: Omit<SideBarMenuModel, 'categories'> & { c
     expandedWidth: 280,
     collapsedWidth: 60,
     showHamburger: true,
+    collapsible: true,
+    mobileOverlay: true,
+    showBadges: true,
     isDark: true,
     disabled: false,
     loading: false,

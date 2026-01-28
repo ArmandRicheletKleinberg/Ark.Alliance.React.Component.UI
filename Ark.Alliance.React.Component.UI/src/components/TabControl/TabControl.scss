@@ -139,6 +139,24 @@
         }
     }
 
+    /* Segmented Variant */
+    &--segmented &__list {
+        border: 1px solid var(--ark-tab-border);
+        border-radius: var(--ark-tab-radius);
+        background: rgba(255, 255, 255, 0.05);
+        padding: 2px;
+        gap: 2px;
+    }
+
+    &--segmented .ark-tab-item {
+        border-radius: calc(var(--ark-tab-radius) - 4px);
+
+        &--active {
+            background: var(--ark-tab-bg-active);
+            color: var(--ark-tab-text-active);
+        }
+    }
+
     /* Compact Variant */
     &--compact .ark-tab-item {
         padding: 4px 10px;
@@ -195,6 +213,10 @@
 
         &.ark-tab-control--boxed .ark-tab-control__list {
             background: rgba(0, 0, 0, 0.02);
+        }
+
+        &.ark-tab-control--segmented .ark-tab-control__list {
+            background: rgba(0, 0, 0, 0.03);
         }
     }
 }

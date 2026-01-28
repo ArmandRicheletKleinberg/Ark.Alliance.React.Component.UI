@@ -54,9 +54,10 @@ interface MenuItemViewProps {
     isCollapsed: boolean;
     onSelect: (key: string, item: MenuItem) => void;
     depth: number;
+    showBadges?: boolean;
 }
 
-function MenuItemView({ item, isActive, isCollapsed, onSelect, depth }: MenuItemViewProps) {
+function MenuItemView({ item, isActive, isCollapsed, onSelect, depth, showBadges = true }: MenuItemViewProps) {
     return (
         <button
             className={`ark-sidebar__item ${isActive ? 'ark-sidebar__item--active' : ''} ${item.disabled ? 'ark-sidebar__item--disabled' : ''}`}
@@ -69,7 +70,7 @@ function MenuItemView({ item, isActive, isCollapsed, onSelect, depth }: MenuItem
             {!isCollapsed && (
                 <>
                     <span className="ark-sidebar__item-label">{item.label}</span>
-                    {item.badge !== undefined && (
+                    {showBadges && item.badge !== undefined && (
                         <span className="ark-sidebar__item-badge">{item.badge}</span>
                     )}
                 </>
@@ -116,64 +117,76 @@ export const SideBarMenu = memo(forwardRef<HTMLElement, SideBarMenuProps>(
         const vm = useSideBarMenu(options);
 
         return (
-            <aside
-                ref={ref}
-                className={`ark-sidebar ${vm.variantClass} ${vm.isCollapsed ? 'ark-sidebar--collapsed' : ''} ${className}`}
-                style={vm.sidebarStyles}
-                data-testid={vm.model.testId}
-            >
-                {/* Header with hamburger */}
-                <div className="ark-sidebar__header">
-                    {vm.model.showHamburger && (
-                        <HamburgerButton
-                            isOpen={!vm.isCollapsed}
-                            onClick={vm.toggleCollapse}
-                            isDark={vm.model.isDark}
-                        />
-                    )}
-                    {!vm.isCollapsed && vm.model.title && (
-                        <h1 className="ark-sidebar__title">{vm.model.title}</h1>
-                    )}
-                </div>
+            <>
+                {/* Mobile Overlay Backdrop */}
+                {vm.showMobileOverlay && (
+                    <div
+                        className="ark-sidebar-overlay"
+                        onClick={vm.closeMobile}
+                        aria-hidden="true"
+                    />
+                )}
 
-                {/* Navigation */}
-                <nav className="ark-sidebar__nav">
-                    {vm.model.categories.map((category: MenuCategory) => (
-                        <div key={category.name} className="ark-sidebar__category">
-                            <button
-                                className="ark-sidebar__category-btn"
-                                onClick={() => vm.toggleCategory(category.name)}
-                                title={vm.isCollapsed ? category.name : undefined}
-                            >
-                                <span className="ark-sidebar__category-icon">{category.icon}</span>
-                                {!vm.isCollapsed && (
-                                    <>
-                                        <span className="ark-sidebar__category-name">{category.name}</span>
-                                        <span className="ark-sidebar__category-arrow">
-                                            {vm.expandedCategories[category.name] ? '▼' : '▶'}
-                                        </span>
-                                    </>
+                <aside
+                    ref={ref}
+                    className={`ark-sidebar ${vm.variantClass} ${vm.isCollapsed ? 'ark-sidebar--collapsed' : ''} ${vm.isMobile ? 'ark-sidebar--mobile' : ''} ${className}`}
+                    style={vm.sidebarStyles}
+                    data-testid={vm.model.testId}
+                >
+                    {/* Header with hamburger */}
+                    <div className="ark-sidebar__header">
+                        {vm.model.showHamburger && (
+                            <HamburgerButton
+                                isOpen={!vm.isCollapsed}
+                                onClick={vm.toggleCollapse}
+                                isDark={vm.model.isDark}
+                            />
+                        )}
+                        {!vm.isCollapsed && vm.model.title && (
+                            <h1 className="ark-sidebar__title">{vm.model.title}</h1>
+                        )}
+                    </div>
+
+                    {/* Navigation */}
+                    <nav className="ark-sidebar__nav">
+                        {vm.model.categories.map((category: MenuCategory) => (
+                            <div key={category.name} className="ark-sidebar__category">
+                                <button
+                                    className="ark-sidebar__category-btn"
+                                    onClick={() => vm.toggleCategory(category.name)}
+                                    title={vm.isCollapsed ? category.name : undefined}
+                                >
+                                    <span className="ark-sidebar__category-icon">{category.icon}</span>
+                                    {!vm.isCollapsed && (
+                                        <>
+                                            <span className="ark-sidebar__category-name">{category.name}</span>
+                                            <span className="ark-sidebar__category-arrow">
+                                                {vm.expandedCategories[category.name] ? '▼' : '▶'}
+                                            </span>
+                                        </>
+                                    )}
+                                </button>
+
+                                {(vm.expandedCategories[category.name] || vm.isCollapsed) && (
+                                    <div className="ark-sidebar__items">
+                                        {category.items.map((item: MenuItem) => (
+                                            <MenuItemView
+                                                key={item.key}
+                                                item={item}
+                                                isActive={vm.activeKey === item.key}
+                                                isCollapsed={vm.isCollapsed}
+                                                onSelect={vm.handleItemClick}
+                                                depth={0}
+                                                showBadges={vm.model.showBadges}
+                                            />
+                                        ))}
+                                    </div>
                                 )}
-                            </button>
-
-                            {(vm.expandedCategories[category.name] || vm.isCollapsed) && (
-                                <div className="ark-sidebar__items">
-                                    {category.items.map((item: MenuItem) => (
-                                        <MenuItemView
-                                            key={item.key}
-                                            item={item}
-                                            isActive={vm.activeKey === item.key}
-                                            isCollapsed={vm.isCollapsed}
-                                            onSelect={vm.handleItemClick}
-                                            depth={0}
-                                        />
-                                    ))}
-                                </div>
-                            )}
-                        </div>
-                    ))}
-                </nav>
-            </aside>
+                            </div>
+                        ))}
+                    </nav>
+                </aside>
+            </>
         );
     }
 ));

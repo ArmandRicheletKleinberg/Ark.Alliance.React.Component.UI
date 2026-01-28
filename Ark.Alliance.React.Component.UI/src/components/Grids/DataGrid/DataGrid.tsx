@@ -66,10 +66,18 @@ function DataGridInner<T extends Record<string, unknown>>(
     // ═══════════════════════════════════════════════════════════════════════
 
     const renderCell = (field: string, value: unknown, row: T): ReactNode => {
+        // 1. Use custom cell renderer if provided (highest priority)
         if (cellRenderer) {
             return cellRenderer(field, value, row);
         }
-        // Default rendering
+
+        // 2. Use column formatter if defined in field config
+        const fieldConfig = vm.visibleFields.find(f => f.fieldKey === field);
+        if (fieldConfig?.formatter) {
+            return fieldConfig.formatter(value, row as Record<string, unknown>);
+        }
+
+        // 3. Default rendering (fallback)
         if (value === null || value === undefined) return '—';
         if (typeof value === 'boolean') return value ? '✓' : '✗';
         if (typeof value === 'number') return value.toLocaleString();

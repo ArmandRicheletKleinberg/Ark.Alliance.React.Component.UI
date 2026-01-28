@@ -5,7 +5,7 @@
  * Business logic for sidebar menu navigation.
  */
 
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState, useEffect } from 'react';
 import { useBaseViewModel, type BaseViewModelResult } from '../../../core/base';
 import type { SideBarMenuModel, MenuCategory, MenuItem } from './SideBarMenu.model';
 import {
@@ -45,6 +45,12 @@ export interface UseSideBarMenuResult extends BaseViewModelResult<SideBarMenuMod
     setActiveKey: (key: string) => void;
     /** Handle item click */
     handleItemClick: (key: string, item: MenuItem) => void;
+    /** Handle mobile overlay close */
+    closeMobile: () => void;
+    /** Is mobile viewport */
+    isMobile: boolean;
+    /** Should show mobile overlay */
+    showMobileOverlay: boolean;
     /** Computed sidebar styles */
     sidebarStyles: React.CSSProperties;
     /** Variant class */
@@ -79,6 +85,18 @@ export function useSideBarMenu(options: UseSideBarMenuOptions): UseSideBarMenuRe
     const [isCollapsed, setIsCollapsed] = useState(modelOptions.collapsed);
     const [expandedCategories, setExpandedCategories] = useState<Record<string, boolean>>({});
     const [activeKey, setActiveKey] = useState<string | null>(initialActiveKey ?? null);
+    const [isMobile, setIsMobile] = useState(false);
+
+    // Mobile detection
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
 
     // ═══════════════════════════════════════════════════════════════════════
     // HANDLERS
@@ -110,11 +128,23 @@ export function useSideBarMenu(options: UseSideBarMenuOptions): UseSideBarMenuRe
         setActiveKey(key);
         onSelect?.(key, item);
         base.emit('item:select', { key, item });
-    }, [base, onSelect]);
 
-    // ═══════════════════════════════════════════════════════════════════════
-    // COMPUTED
-    // ═══════════════════════════════════════════════════════════════════════
+        // Auto-collapse on mobile when item is selected
+        if (isMobile && base.model.mobileOverlay) {
+            setIsCollapsed(true);
+        }
+    }, [base, onSelect, isMobile]);
+
+    const closeMobile = useCallback(() => {
+        if (isMobile && base.model.mobileOverlay) {
+            setIsCollapsed(true);
+        }
+    }, [isMobile, base.model.mobileOverlay]);
+
+    // Computed
+    const showMobileOverlay = useMemo(() => {
+        return isMobile && base.model.mobileOverlay && !isCollapsed;
+    }, [isMobile, base.model.mobileOverlay, isCollapsed]);
 
     const sidebarStyles = useMemo((): React.CSSProperties => ({
         width: isCollapsed ? base.model.collapsedWidth : base.model.expandedWidth,
@@ -139,6 +169,9 @@ export function useSideBarMenu(options: UseSideBarMenuOptions): UseSideBarMenuRe
         activeKey,
         setActiveKey,
         handleItemClick,
+        closeMobile,
+        isMobile,
+        showMobileOverlay,
         sidebarStyles,
         variantClass,
     };
